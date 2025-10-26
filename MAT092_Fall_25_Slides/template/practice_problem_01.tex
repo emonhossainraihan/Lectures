@@ -1,0 +1,123 @@
+%====================
+% PROBLEM SHEET: Sets, Relations, Functions (Intermediate)
+%====================
+\documentclass[12pt]{article}
+
+%=== PACKAGES ===%
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+%=== COLORS ===%
+\definecolor{HeadBlue}{RGB}{0,80,155}
+\definecolor{Accent}{RGB}{0,173,76}
+\definecolor{LineGray}{RGB}{210,210,210}
+\definecolor{BoxBG}{RGB}{248,250,255}
+
+%=== TCOLORBOX STYLES ===%
+\tcbset{colback=BoxBG,colframe=HeadBlue,boxrule=0.9pt,arc=3pt}
+
+%=== TITLE BLOCK ===%
+\newcommand{\SheetTitle}{\textbf{Problem Sheet: Sets, Relations, and Functions}}
+\newcommand{\CourseInfo}{}
+
+%=== SECTION HEADER BOX ===%
+\newtcolorbox{sectbox}[1]{enhanced,breakable,title=\textbf{#1},
+colbacktitle=HeadBlue!8,coltitle=black,colframe=HeadBlue,boxrule=0.9pt,arc=3pt}
+
+%=== LIST SPACING ===%
+\setlist[enumerate]{leftmargin=*,itemsep=6pt}
+\setlist[itemize]{leftmargin=*,itemsep=4pt}
+
+%=== DOCUMENT ===%
+\begin{document}
+
+\begin{tcolorbox}
+\centering
+{\Large \SheetTitle}
+{\small \CourseInfo}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\noindent\textit{Instructions.} Show your reasoning clearly. Unless specified otherwise, the universal set for complements is either stated in the problem or is clear from context. Provide counterexamples where a statement is false.
+
+%====================
+% SECTION 1: SET THEORY
+%====================
+\begin{sectbox}{(1) Set Theory}
+\begin{enumerate}[label=\textbf{S\arabic*:}]
+\item Let $A=\{1,2,3,4,5\}$, $B=\{3,4,5,6,7\}$, $C=\{5,6,7,8,9\}$. Compute:
+\begin{enumerate}[label=(\alph*)]
+\item $(A\cup B)\cap C$\quad
+\item $A\cap (B\cup C)$\quad
+\item $(A\cap B')'\cap C$ assuming $U=\{1,2,\dots,10\}$.
+\end{enumerate}
+
+% \item If $A\subseteq B$ and $B\subseteq C$, prove that $A\subseteq C$. Then give an example where $A\subseteq B$ but $A\neq B$.
+
+\item In a group of 100 students, 60 like Mathematics, 50 like Physics, and 30 like both. Find the number who like (i) only Mathematics, (ii) only Physics, (iii) neither subject.
+
+\item (Optional) Prove or disprove: $A\times(B\cup C)=(A\times B)\cup(A\times C)$ for arbitrary sets $A,B,C$.
+
+\item Let $A={x\in\mathbb{R}:x^2\le 9}$ and $B={x\in\mathbb{R}:-1<x<5}$. Find $A\cap B$, $A\cup B$, and $A\setminus B$ (describe as intervals).
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 2: RELATIONS
+%====================
+\begin{sectbox}{(2) Relations}
+\begin{enumerate}[label=\textbf{R\arabic*:}]
+\item Let $A=\{1,2,3\}$ and $R=\{(1,1),(2,2),(3,3),(1,2),(2,1)\}$. Determine whether $R$ is (i) reflexive, (ii) symmetric, (iii) antisymmetric, (iv) transitive.
+
+\item On $\mathbb{Z}$, define $aRb\iff 4\mid(a-b)$. \begin{itemize}
+    \item Show that $R$ is an equivalence relation.
+    \item (Optional) List the equivalence classes of $0,1,2,3$.
+\end{itemize} 
+
+\item Let $A=\{1,2,3\}$ and $R=\{(1,2),(2,3),(1,3)\}$. Is $R$ transitive? If not, add the minimum pairs to make it transitive.
+
+\item Define $R$ on $\mathbb{R}$ by $aRb\iff a^2+b^2=1$. Determine which of: reflexive, symmetric, transitive hold. Justify each.
+
+\item Let $A=\{1,2,3,4\}$ and $R=\{(a,b):a\le b\}$. Identify all properties satisfied among: reflexive, symmetric, antisymmetric, transitive. Briefly justify.
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 3: FUNCTIONS
+%====================
+\begin{sectbox}{(3) Functions}
+\begin{enumerate}[label=\textbf{F\arabic*:}]
+\item (Domain/Range) Find the domain and range of each:
+\begin{enumerate}[label=(\alph*)]
+\item $f(x)=\sqrt{4-x^2}$ \qquad
+\item $g(x)=\dfrac{1}{x-3}$ \qquad
+\item $h(x)=\sqrt{x-2}+\dfrac{1}{x-5}$
+\end{enumerate}
+
+\item Is $f:\mathbb{R}\to\mathbb{R}$ defined by $f(x)=\sqrt{x}$ a function? Explain carefully.
+
+\item Consider $f:A\to B$ with $A=\{1,2,3,4\}$, $B=\{a,b,c,d\}$, and $f=\{(1,a),(2,b),(3,a),(4,c)\}$. Is $f$ a function? Why?
+
+\item Let $f:\mathbb{R}\to\mathbb{R}$ be $f(x)=3x+2$. Show $f$ is bijective and find $f^{-1}$.
+
+\item Let $f:\mathbb{R}\to\mathbb{R}$, $f(x)=x^2$. (i) Is $f$ injective? (ii) Is $f$ surjective? (iii) Modify domain/codomain to make $f$ bijective.
+
+\item (Optional) Define $f:\mathbb{N}\to\mathbb{N}$ by $f(n)=n+1$. Determine whether $f$ is injective and/or surjective. Justify.
+
+\item (Optional) Let $f:A\to B$ and $g:B\to C$. Prove that if both $f$ and $g$ are injective, then $g\circ f$ is injective. Does the analogous statement hold for surjectivity? Discuss.
+
+\item Let $f:\mathbb{R}\setminus\{1\}\to\mathbb{R}\setminus\{2\}$ be $\displaystyle f(x)=\frac{2x+1}{x-1}$. Show that $f$ is bijective and find $f^{-1}(x)$.
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% FOOTER NOTE (OPTIONAL) ====%
+% \vspace{0.75em}
+% \noindent\textit{Instructor note (remove before distribution):} You may ask students to supply counterexamples in \textbf{S4}, proofs of properties in \textbf{R2, R5}, and an explicit expression for the inverse in \textbf{F8}.
+
+\end{document}
