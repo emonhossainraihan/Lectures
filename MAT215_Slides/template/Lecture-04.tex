@@ -1,0 +1,259 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{physics}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, calc, decorations.markings}
+\usepackage{bm}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-04}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+% Short macros
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\newcommand{\card}{\operatorname{card}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+%========================== FRAME 1 ==========================%
+\begin{frame}{Motivation: Real vs.\ Complex Roots}
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\textbf{In \(\R\):}
+\begin{itemize}
+  \item For \(a>0\), the equation \(x^n=a\) has:
+  \begin{itemize}
+    \item \(\textbf{one}\) positive real root if \(n\) is even,
+    \item \(\textbf{one}\) real root if \(n\) is odd.
+  \end{itemize}
+  \item Roots can be chosen \textit{continuously} on \((0,\infty)\): \(x=\sqrt[n]{a}\).
+  \item No ambiguity from angles; order is total; \(\R\) is simply connected.
+\end{itemize}
+
+\column{0.48\textwidth}
+\textbf{In \(\C\):}
+\begin{itemize}
+  \item For \(w\neq 0\), the equation \(z^n=w\) has \(\textbf{exactly \(n\)}\) distinct roots.
+  \item Formula uses \(\textit{multi-valued argument}\): \(\theta \sim \theta+2\pi k\).
+  \item Any continuous branch must \textit{exclude a ray} (branch cut) from \(0\).
+  \item Going once around \(0\) \(\Rightarrow\) you land on a \textit{different branch}.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+%========================== FRAME 2 ==========================%
+\begin{frame}{Polar Form \& the Source of Multivaluedness}
+Every nonzero \(w\in\C\) can be written as
+\[
+w = r\,e^{i\theta}, \qquad r=|w|>0,\quad \theta=\arg w.
+\]
+But \(\arg\) is \textbf{not single-valued}:
+\[
+\arg w = \theta + 2\pi k,\quad k\in\mathbb{Z}.
+\]
+\pause
+\[
+\Rightarrow\quad w^{1/n} = r^{1/n}\, e^{\,i(\theta+2\pi k)/n},\quad k=0,1,\dots,n-1.
+\]
+\begin{itemize}
+  \item All \(n\) roots lie on the circle of radius \(r^{1/n}\), equally spaced at angle \(2\pi/n\).
+  \item The ``strangeness'': \(\arg\) forces \(n\) consistent choices (\textit{branches}) to define \(z\mapsto z^{1/n}\).
+\end{itemize}
+\end{frame}
+
+%========================== FRAME 3 ==========================%
+\begin{frame}{Geometry: Roots as a Regular Polygon}
+% \begin{center}
+% \begin{tikzpicture}[scale=2]
+%   \def\r{1.35}
+%   % axes
+%   \draw[-{Stealth[length=2mm]}] (-1.8,0) -- (1.8,0) node[below left]{\(\Re\)};
+%   \draw[-{Stealth[length=2mm]}] (0,-1.5) -- (0,1.6) node[left]{\(\Im\)};
+%   % circle
+%   \draw[gray!60] (0,0) circle (\r);
+%   % cube roots (n=3) of w with |w|=r^3 and chosen principal theta
+%   \foreach \k in {0,1,2}{
+%     \coordinate (Z\k) at ({\r*cos(30+120*\k)},{\r*sin(30+120*\k)});
+%     \fill[Main] (Z\k) circle (1.6pt);
+%     \draw[Main] (0,0) -- (Z\k);
+%     \node[Main] at ($(Z\k)+(0.1,0.12)$) {\(\zeta_{\k}\)};
+%   }
+%   \node at (0,-1.25) {\small \(n=3\) roots on a circle, \(120^\circ\) apart};
+% \end{tikzpicture}
+% \end{center}
+\begin{block}{Takeaway}
+For each fixed \(w\neq 0\), the \(n\)-th roots form a regular \(n\)-gon centered at the origin with radius \(|w|^{1/n}\).
+\end{block}
+\end{frame}
+
+%========================== FRAME 4 ==========================%
+% \begin{frame}{Branches, Principal Values, and Branch Cuts}
+% To make \(z\mapsto z^{1/n}\) \emph{single-valued} and \emph{holomorphic} on a domain, we must \textbf{choose a branch} of \(\arg\):
+% \[
+% \Arg z \in (\alpha,\alpha+2\pi) \quad \Longrightarrow \quad z^{1/n} := |z|^{1/n}\, e^{i\,\Arg(z)/n}.
+% \]
+% \begin{itemize}
+%   \item The excluded ray \(\{re^{i\alpha}: r\ge 0\}\) is a \textbf{branch cut}.
+%   \item Standard choice (principal branch): \(\Arg z \in (-\pi,\pi)\), cut along the negative real axis.
+%   \item Continuity fails when crossing the cut; analyticity holds away from it.
+% \end{itemize}
+% \end{frame}
+
+% %========================== FRAME 5 ==========================%
+% \begin{frame}{Monodromy: Cycling Through Branches}
+% \begin{columns}[T,onlytextwidth]
+% \column{0.58\textwidth}
+% Let \(f(z)=z^{1/n}\) on the principal branch (cut along \((-\infty,0]\)). If we loop once around \(0\)
+% \[
+% z \mapsto z\,e^{2\pi i} \;\Rightarrow\; f(z) \mapsto f(z)\,e^{2\pi i / n}.
+% \]
+% \textbf{After \(n\) loops}, we return to the original value.\\[4pt]
+% This cyclic behavior is the \textit{monodromy} of the root function.
+
+% \column{0.42\textwidth}
+% \begin{center}
+% \begin{tikzpicture}[scale=1.2]
+%   \def\R{1.2}
+%   % axes
+%   \draw[-{Stealth[length=2mm]}] (-1.7,0)--(1.7,0);
+%   \draw[-{Stealth[length=2mm]}] (0,-1.5)--(0,1.5);
+%   % branch cut
+%   \draw[line width=1pt, Accent] (-1.7,0)--(0,0);
+%   \node[Accent] at (-1.45,0.2){cut};
+%   % loop
+%   \draw[Main, decorate, decoration={markings,mark=at position 0.55 with {\arrow{Stealth[length=2mm]}}}]
+%     ( \R,0 ) arc (0:350:\R);
+%   \fill[Main] (\R,0) circle (1.3pt);
+%   \node at (0,-1.2){\small Loop around \(0\)};
+% \end{tikzpicture}
+% \end{center}
+% \end{columns}
+
+% \medskip
+% \textit{Intuition:} the Riemann surface of \(z^{1/n}\) has \(n\) sheets helically connected around \(0\).
+% \end{frame}
+
+% %========================== FRAME 6 ==========================%
+% \begin{frame}{Worked Examples (with Pitfalls)}
+% \begin{enumerate}
+%   \item \textbf{Square roots of \(-1\):} \(\sqrt{-1}=\pm i\).\\
+%   On principal branch, \( (-1)^{1/2} = i \) because \(\Arg(-1)=\pi\in(-\pi,\pi]\).
+%   \pause
+%   \item \textbf{Cube roots of \(1+i\):} Let \(1+i=\sqrt{2}\,e^{i\pi/4}\). Then
+%   \[
+%   (1+i)^{1/3} = 2^{1/6}\, e^{i(\pi/12 + 2\pi k/3)},\quad k=0,1,2.
+%   \]
+%   \pause
+%   \item \textbf{Discontinuity across a cut:} Take principal square root.\\
+%   Approach \(x<0\) from above: \(\sqrt{|x|e^{i\pi}}=|x|^{1/2}e^{i\pi/2}=i|x|^{1/2}\).\\
+%   Approach from below: \(\sqrt{|x|e^{-i\pi}}=|x|^{1/2}e^{-i\pi/2}=-i|x|^{1/2}\).\\
+%   \(\Rightarrow\) jump of sign when crossing the negative real axis.
+% \end{enumerate}
+% \end{frame}
+
+% %========================== FRAME 7 ==========================%
+% \begin{frame}{Why This Is ``Stranger'' Than \(\R\)}
+% \begin{itemize}
+%   \item \textbf{Multi-valuedness} is inherent: \(n\) distinct branches globally.
+%   \item \textbf{Topological obstruction:} any loop around \(0\) changes the branch (nontrivial monodromy).
+%   \item \textbf{No global continuous choice} on \(\C^\times\); must \emph{cut} the plane to choose a branch.
+%   \item In \(\R\), we can pick a continuous root on \((0,\infty)\) without ambiguity, and there is no monodromy.
+% \end{itemize}
+% \end{frame}
+
+\begin{frame}{Monodromy of \(z^{1/3}\): an explicit loop example}
+Let \(f(z)=z^{1/3}\) with the principal argument \(\Arg z\in(-\pi,\pi]\) (branch cut along \((-\infty,0]\)).  
+Write \(z=re^{i\theta}\Rightarrow f(z)=r^{1/3}e^{i\theta/3}\).
+
+\medskip
+\textbf{Start.} Take \(z_0=1=e^{i\cdot 0}\). Then \(f(z_0)=1^{1/3}e^{i\cdot 0}=1\).
+
+\medskip
+\textbf{One full loop around the origin.} Move along the unit circle \(z=e^{i\theta}\) as \(\theta:0\to 2\pi\).
+\[
+f_{\text{after 1 loop}}=e^{i(\theta+2\pi)/3}=e^{i\theta/3}\underbrace{e^{i2\pi/3}}_{\text{rotation by }120^\circ}
+\]
+Thus \(f\) is multiplied by \(e^{i2\pi/3}=-\tfrac12+i\tfrac{\sqrt{3}}{2}\): we land on a \emph{different branch}.
+
+\medskip
+\textbf{Two and three loops.}
+\[
+\text{after 2 loops: } f\mapsto f\,e^{i4\pi/3},\qquad
+\text{after 3 loops: } f\mapsto f\,e^{i6\pi/3}=f\,e^{i2\pi}=f
+\]
+Only after \(\boxed{3\ \text{loops}}\) do we return to the original value. \url{https://www.geogebra.org/m/rrnT76DX}. 
+
+\medskip
+\end{frame}
+
+
+
+\begin{frame}{continued...}
+    \begin{block}{Takeaway (monodromy)}
+Each circuit adds \(2\pi\) to the argument, so \(z^{1/3}\) is multiplied by \(e^{2\pi i/3}\).  
+The three branches form a 3-sheeted helical Riemann surface around \(0\).  
+(For \(z^{1/n}\): rotation \(e^{2\pi i/n}\); return after \(n\) loops.)
+\end{block}
+\end{frame}
+
+
+\end{document}

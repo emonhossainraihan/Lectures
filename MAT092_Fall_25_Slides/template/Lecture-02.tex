@@ -1,0 +1,326 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-02}}
+
+
+\title[]{MAT092: Remedial Course in Mathematics}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{From Relations to Functions}
+\textbf{Motivation:}  
+Not all relations behave predictably. Sometimes, we want every input to produce exactly one output — no ambiguity.
+
+\medskip
+\textbf{Definition:}  
+A \emph{function} $f$ from a set $A$ to a set $B$ is a relation $f \subseteq A \times B$ such that  
+\[
+\forall a \in A, \ \exists \, b \in B \text{ with } (a,b) \in f.
+\]
+
+\textbf{Notation:}  
+We write $b = f(a)$, and denote the function as
+\[
+f: A \to B.
+\]
+
+\medskip
+\textbf{Intuition:}  
+A function is like a \emph{machine} — every input goes in once, every output comes out exactly once.
+
+\medskip
+\textbf{Example:}
+\[
+f(x) = x^2, \quad A = \mathbb{R}, \ B = \mathbb{R}.
+\]
+Every real $x$ gives a single output $x^2$.
+\end{frame}
+
+
+\begin{frame}{Domain, Codomain, and Range}
+\textbf{Key Components:}
+\begin{itemize}
+    \item \textbf{Domain:} Set of all admissible inputs.
+    \item \textbf{Codomain:} Set in which outputs live.
+    \item \textbf{Range (Image):} Actual outputs that appear.
+\end{itemize}
+
+\textbf{Example:}
+\[
+f: \mathbb{R} \to \mathbb{R}, \ f(x) = x^2.
+\]
+Domain = $\mathbb{R}$, Codomain = $\mathbb{R}$,  
+Range = $[0, \infty)$.
+
+\medskip
+\textbf{Remark:}  
+Changing the codomain changes the function!  
+For instance,  
+\[
+f: \mathbb{R} \to [0,\infty) \quad \text{is not the same as} \quad f: \mathbb{R} \to \mathbb{R}.
+\]
+\end{frame}
+
+\begin{frame}{Visualizing a Function}
+\textbf{Graphical Idea:}  
+The \emph{graph} of a function $f: A \to B$ is
+\[
+G(f) = \{(x,f(x)) : x \in A\} \subseteq A \times B.
+\]
+
+\textbf{Vertical Line Test:}  
+A curve in the plane represents a function if every vertical line cuts it at most once.
+
+\medskip
+\textbf{Example:}
+\begin{itemize}
+    \item $y = x^2$ $\Rightarrow$ a parabola → passes the vertical line test.
+    \item $x^2 + y^2 = 1$ $\Rightarrow$ a circle → fails the test.
+\end{itemize}
+
+\textbf{Intuition:}  
+The vertical line test encodes the idea “each $x$ gives one $y$”.
+\end{frame}
+
+\begin{frame}{Properties of Functions}
+\textbf{1. Injective (One-to-one):}  
+Distinct inputs give distinct outputs.
+\[
+f(a_1) = f(a_2) \Rightarrow a_1 = a_2.
+\]
+\textbf{Example:} $f(x) = 2x + 1$ is injective.
+
+\medskip
+\textbf{2. Surjective (Onto):}  
+Every element of the codomain is hit by some input.
+\[
+\forall y \in B, \ \exists x \in A \text{ such that } f(x) = y.
+\]
+\textbf{Example:} $f(x) = x^3: \mathbb{R} \to \mathbb{R}$ is surjective.
+
+\medskip
+\textbf{3. Bijective:} Both injective and surjective.  
+Such functions are \emph{invertible.}
+
+\textbf{Example:} $f(x) = 2x + 3$ has inverse $f^{-1}(y) = \frac{y-3}{2}$.
+\end{frame}
+
+\begin{frame}{Composition and Inverse of Functions}
+\textbf{Composition:}  
+Given $f: A \to B$ and $g: B \to C$, define
+\[
+(g \circ f)(x) = g(f(x)).
+\]
+Associative but not necessarily commutative.
+
+\textbf{Example:}
+\[
+f(x) = 2x, \quad g(x) = x + 3.
+\]
+Then
+\[
+(g \circ f)(x) = 2x + 3, \quad (f \circ g)(x) = 2(x + 3) = 2x + 6.
+\]
+
+\medskip
+\textbf{Inverse Function:}  
+If $f$ is bijective, there exists $f^{-1}: B \to A$ such that
+\[
+f^{-1}(f(x)) = x \ \text{and} \ f(f^{-1}(y)) = y.
+\]
+\end{frame}
+
+
+\begin{frame}{Understanding Injectivity and Surjectivity}
+\textbf{Recap of Definitions:}
+
+\begin{itemize}
+    \item $f: A \to B$ is \textbf{injective} (one-to-one) if 
+    \[
+    f(x_1) = f(x_2) \implies x_1 = x_2.
+    \]
+    \item $f: A \to B$ is \textbf{surjective} (onto) if 
+    \[
+    \forall y \in B, \ \exists x \in A \text{ such that } f(x) = y.
+    \]
+\end{itemize}
+
+\textbf{Why domain and codomain matter:}
+\begin{itemize}
+    \item Injectivity depends on how different inputs behave.
+    \item Surjectivity depends on whether all possible outputs (in the codomain) are reached.
+\end{itemize}
+
+\textbf{Moral:}  
+The same rule $f(x)$ can be injective or not, surjective or not — depending on the \emph{chosen sets} $A$ and $B$.
+\end{frame}
+
+\begin{frame}{Example 1: $f(x) = x^2$ — Not Always Injective}
+\textbf{Case 1:} $f: \mathbb{R} \to \mathbb{R}$, $f(x) = x^2$
+
+\[
+f(2) = 4 = f(-2), \quad 2 \neq -2.
+\]
+Hence, $f$ is \textbf{not injective} on $\mathbb{R}$.
+
+\medskip
+\textbf{Case 2:} $f: [0, \infty) \to \mathbb{R}$, $f(x) = x^2$
+
+Now if $f(x_1) = f(x_2)$ then $x_1^2 = x_2^2$ ⇒ $x_1 = x_2$ (since both nonnegative).
+
+\textbf{Hence:} $f$ is injective on $[0,\infty)$.
+
+\medskip
+\textbf{Lesson:}  
+Injectivity can depend entirely on the chosen \emph{domain}.
+\end{frame}
+
+\begin{frame}{Example 2: $f(x) = x^2$ — Surjective or Not?}
+\textbf{Case 1:} $f: \mathbb{R} \to \mathbb{R}$
+
+The range is $[0,\infty)$, but codomain is $\mathbb{R}$.  
+\[
+\Rightarrow \text{$f$ is \emph{not surjective}} \text{ because no $x$ gives } f(x) = -1.
+\]
+
+\medskip
+\textbf{Case 2:} $f: \mathbb{R} \to [0,\infty)$
+
+Now for every $y \ge 0$, there exists $x = \pm \sqrt{y}$ such that $f(x)=y$.  
+\[
+\Rightarrow \text{$f$ is surjective.}
+\]
+
+\medskip
+\textbf{Lesson:}  
+Surjectivity depends on the choice of \emph{codomain}.
+\end{frame}
+
+\begin{frame}{Example 3: $f(x) = 2x + 3$ — A Perfectly Bijective Function}
+\textbf{Function:} $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 2x + 3$
+
+\textbf{Injective:}
+If $f(x_1) = f(x_2)$ then $2x_1 + 3 = 2x_2 + 3 \Rightarrow x_1 = x_2.$
+
+\textbf{Surjective:}
+Given any $y \in \mathbb{R}$, choose $x = \frac{y - 3}{2}$ so that $f(x) = y$.
+
+\textbf{Hence:} $f$ is both injective and surjective — a bijection.
+
+\medskip
+\textbf{Inverse:}
+\[
+f^{-1}(y) = \frac{y - 3}{2}.
+\]
+
+\textbf{Intuition:}  
+Linear functions with nonzero slope are always bijective from $\mathbb{R} \to \mathbb{R}$.
+\end{frame}
+
+\begin{frame}{Example 4: Trigonometric Function and Domain Restriction}
+\textbf{Function:} $f: \mathbb{R} \to [-1,1]$, $f(x) = \sin x$
+
+\begin{itemize}
+    \item Not injective on $\mathbb{R}$ since $\sin x = \sin(x + 2\pi n)$.
+    \item Surjective onto $[-1,1]$ because every value in $[-1,1]$ is achieved.
+\end{itemize}
+
+\medskip
+\textbf{Now restrict domain:}  
+$f: \left[-\frac{\pi}{2}, \frac{\pi}{2}\right] \to [-1,1]$
+
+\begin{itemize}
+    \item Injective: $\sin x$ is strictly increasing on this interval.
+    \item Surjective: it still covers $[-1,1]$.
+\end{itemize}
+
+\textbf{Hence:} $f$ is bijective on $\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$  
+and has inverse $f^{-1}(y) = \arcsin y$.
+
+\textbf{Lesson:}  
+Sometimes, to get injectivity, we must “trim” the domain.
+\end{frame}
+
+
+\begin{frame}{Summary: Domain and Codomain Shape the Function’s Nature}
+\textbf{Key Insights:}
+\begin{itemize}
+    \item The same formula $f(x)$ can be injective or not, surjective or not — depending on the sets involved.
+    \item \emph{Domain} affects injectivity (how inputs behave).  
+    \item \emph{Codomain} affects surjectivity (which outputs we expect).
+    \item Restricting or enlarging either can change the nature of $f$.
+\end{itemize}
+
+\textbf{Examples Recap:}
+\[
+\begin{array}{lcl}
+f(x) = x^2: & \text{Injective on } [0,\infty),\text{ Surjective onto } [0,\infty).\\[4pt]
+f(x) = 2x+3: & \text{Bijective from } \mathbb{R}\to\mathbb{R}.\\[4pt]
+f(x) = \sin x: & \text{Bijective only when restricted to } \left[-\frac{\pi}{2},\frac{\pi}{2}\right].
+\end{array}
+\]
+
+\textbf{Moral:}  
+Mathematical properties don’t live in formulas — they live in the \emph{relationship between sets}.
+\end{frame}
+
+
+% =====================
+
+
+\end{document}

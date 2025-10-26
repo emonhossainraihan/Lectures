@@ -1,0 +1,164 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-01}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Complex plane}
+    As a set, the complex number field $\mathbb C$ be the set $\mathbb R^2=\mathbb R\times\mathbb R$. The set is a plane, so we call it the complex plane. To make it a field, we define addition and product:
+    $$
+    (a,b)+(c,d)\stackrel{\operatorname{def}}{=}(a+c,b+d)
+    $$
+    $$
+    (a,b)(c,d)\stackrel{\operatorname{def}}{=}(ac-bd,bc+da)
+    $$
+    Why do we define the operations in such a way? One answer is to mimic the complex operation. Another is to consider the multiplication as the map $z_1\mapsto z_1z_2$ (which is a real-linear operator). $$a+ib=a\begin{pmatrix}
+        1&0\\0&1
+    \end{pmatrix}+b\begin{pmatrix}
+        0&-1\\1&0
+    \end{pmatrix}=\begin{pmatrix}
+        a&-b\\b&a
+    \end{pmatrix}$$
+    \begin{problem}
+        Show that the additive identity is $\mathbf 0=(0,0)$, the multiplicative identity is $\mathbf 1=(1,0)$ and the multiplicative inverse $(a,b)^{-1}=\left(\frac{a}{a^2+b^2},\frac{-b}{a^2+b^2}\right)$ 
+    \end{problem}
+\end{frame}
+\begin{frame}{Complex numbers}
+    \begin{problem}
+        Find the real numbers $x$ and $y$ such that $3x+2iy-ix+5y=7+5i$
+    \end{problem}
+    \begin{problem}
+        Prove that every real-linear operator on $\mathbb C$, that is every $2\times 2$ real matrix $M$, can be represented by two complex numbers $\xi$ and $\zeta$ and the formula $z\mapsto \xi z+\zeta\bar z$.\\
+        \textbf{Hint:} Use $T(z)=T(x+iy)$
+    \end{problem}
+\end{frame}
+\begin{frame}{Complex number}
+    Given a complex number $z\stackrel{\operatorname{def}}{=}x+iy$, its "evil twin" is the complex conjugate of $z$: $$\bar z\stackrel{\operatorname{def}}{=}x-iy$$
+    Find the real and imaginary parts.\\
+    We can show that, $$x^3+y^3+3ixy=\left(\frac{z+\bar z}{2}\right)^3+\left(\frac{z-\bar z}{2i}\right)^3+3i\left(\frac{z+\bar z}{2}\right)\left(\frac{z-\bar z}{2i}\right)$$
+    \begin{problem}
+        Guess all the properties of Conjugate.\\~\\
+        $z$ and $\bar z$ are not independent variables, why? 
+    \end{problem}
+\end{frame}
+\begin{frame}{Problem}
+    \begin{problem}
+        Find the square root of $-15-8i$. 
+    \end{problem}
+    \begin{problem}
+        Solve the equation $z^2+(2i-3)z+5-i=0$. 
+    \end{problem}
+\end{frame}
+\begin{frame}{Argument}
+    The function $\boldsymbol{\operatorname { A r g }}(z): \mathbb{C} \backslash\{0\} \rightarrow(-\pi, \pi]$ is defined as follows:
+$$
+\operatorname{Arg}(z)=\left\{\begin{array}{cl}
+\arctan \frac{y}{x} & \text { if } x>0, y \in \mathbb{R} \\
+\arctan \frac{y}{x}+\pi & \text { if } x<0, y \geq 0 \\
+\arctan \frac{y}{x}-\pi & \text { if } x<0, y<0 \\
+\frac{\pi}{2} & \text { if } x=0, y>0 \\
+-\frac{\pi}{2} & \text { if } x=0, y<0 \\
+\text { undefined } & \text { if } x=0, y=0
+\end{array}\right.
+$$
+Thus, if $z=r(\cos \Theta+i \sin \Theta)$, with $r>0$ and $-\pi<\Theta \leq \pi$, then
+$$
+\arg (z)=\{\operatorname{Arg}(z)+2 n \pi \mid n \in \mathbb{Z}\} .
+$$
+\end{frame}
+\begin{frame}{Polar form}
+    Properties of Modulus:
+    \begin{itemize}
+        \item $|z_1\cdot z_2|=|z_1|\cdot|z_2|$
+        \item $\left|\frac{z_1}{z_2}\right|=\frac{|z_1|}{|z_2|}$
+        \item $|z^m|=|z|^m$
+    \end{itemize}
+    Properties of Arguments:
+    \begin{itemize}
+        \item $\operatorname{Arg} (z_1\cdot z_2)=\operatorname{Arg} (z_1)+\operatorname{Arg} (z_2)$
+        \item $\operatorname{Arg}\left(\frac{z_1}{z_2}\right)=\operatorname{Arg}(z_1)-\operatorname{Arg}(z_2)$
+        \item $\operatorname{Arg}(z^m)=m\operatorname{Arg}(z)$
+    \end{itemize}
+    \url{https://scipp.ucsc.edu/~haber/ph116A/arg_11.pdf}\\
+    Express each of the following complex numbers in polar form:
+    \begin{itemize}
+        \item (a) $2+2\sqrt{3}i$
+        \item (b) $-5+5i$
+    \end{itemize}
+\end{frame}
+\begin{frame}{problems}
+    \begin{problem}
+        Solve the equation: $e^{4z}=i$
+    \end{problem}
+    \begin{problem}
+        Solve for $x$ and $y$,
+        $$
+        \left(\frac{3}{2}+\frac{\sqrt 3}{2}i\right)^{2024}=3^{1012}(x+iy)
+        $$
+    \end{problem}
+\end{frame}
+\begin{frame}{Good-bye}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{qrcode.png}
+    \end{figure}
+\end{frame}
+\end{document}

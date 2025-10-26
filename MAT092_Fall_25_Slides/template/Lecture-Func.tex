@@ -1,0 +1,237 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-06}}
+
+
+\title[]{MAT092: Remedial Course in Mathematics}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Notation and reminders}
+  \begin{itemize}
+    \item A \emph{function} \(f\colon A \to B\) means \(\forall x\in A\) there exists a \emph{unique} \(y\in B\) with \(f(x)=y\).
+    \item \(\text{Inj}\) (injective): \(f(x_1)=f(x_2)\Rightarrow x_1=x_2\).
+    \item \(\text{Surj}\) (surjective): \(\forall y\in B\ \exists x\in A\) with \(f(x)=y\).
+    \item \(\text{Bij}\) (bijective): both injective and surjective (equivalently invertible).
+    \item \textbf{Always specify the domain and codomain.}
+  \end{itemize}
+\end{frame}
+
+%================ Function =================
+\begin{frame}{(i) Function — Basic example (and rigorous justification)}
+  \textbf{Example (Basic).} Define \(f:\mathbb{R}\to\mathbb{R}\) by \(f(x)=x^2\).\\[6pt]
+  \pause
+  \emph{Justification:} For each \(x\in\mathbb{R}\) the formula \(x\mapsto x^2\) produces exactly one real number. Thus \(\forall x\in\mathbb{R}\) there exists a unique \(f(x)\in\mathbb{R}\). Hence \(f\) is a function.
+\end{frame}
+
+\begin{frame}{(i) Function — Intermediate and hard examples}
+  \textbf{Example (Intermediate).} \(f\colon\{1,2,3\}\to\{a,b\}\) with \(f(1)=a,\ f(2)=a,\ f(3)=b\).\\
+  \pause
+  \emph{Justification:} Each element of the finite domain is assigned exactly one element of the codomain; repeats allowed. So \(f\) is a function.\\[8pt]
+
+  \textbf{Example (Hard).} Define \(f\colon\mathbb{R}\to\mathbb{R}\) by
+  \[
+    f(x)=\begin{cases}
+      x & x\in\mathbb{Q},\\[2pt]
+      -x & x\in\mathbb{R}\setminus\mathbb{Q}.
+    \end{cases}
+  \]
+  \pause
+  \emph{Justification:} For every real \(x\) the right-hand rule returns a single real number (either \(x\) or \(-x\)). Hence \(f\) is a well-defined function (uniqueness and totality hold).
+\end{frame}
+
+\begin{frame}{(i) Function — Non-examples (rigorous reasons)}
+  \textbf{Non-example 1 (Basic).} Relation \(R\subset\mathbb{R}\times\mathbb{R}\) defined by \(xRy\) iff \(y^2=x\).\\
+  \pause
+  \emph{Reason:} For \(x=1\) both \(y=1\) and \(y=-1\) satisfy \(y^2=1\). Uniqueness fails, so \(R\) is not a function.\\[8pt]
+  \pause
+  \textbf{Non-example 2 (Intermediate).} A ``map'' \(g\colon\{1,2,3\}\to\{a,b\}\) with \(g(1)=a,\ g(2)=b\) but \(g(3)\) undefined.\\
+  \emph{Reason:} Totality fails (some domain element has no image), so \(g\) is not a function.
+\end{frame}
+
+%================ Injective =================
+\begin{frame}{Definition: Injective}
+  \(f\colon A\to B\) is \emph{injective} if
+  \[
+    \forall x_1,x_2\in A,\quad f(x_1)=f(x_2)\Rightarrow x_1=x_2.
+  \]
+  Equivalently, distinct domain elements have distinct images.
+\end{frame}
+
+\begin{frame}{(ii) Injective — Basic example with proof}
+  \textbf{Example (Basic).} \(f\colon\mathbb{R}\to\mathbb{R}\) defined by \(f(x)=2x+1\).\\[6pt]
+  \pause
+  \emph{Proof:} Suppose \(f(x_1)=f(x_2)\). Then \(2x_1+1=2x_2+1\). Subtract \(1\): \(2x_1=2x_2\). Divide by \(2\): \(x_1=x_2\). Thus \(f\) is injective.
+\end{frame}
+
+\begin{frame}{(ii) Injective — Intermediate example with proof}
+  \textbf{Example (Intermediate).} \(f\colon\mathbb{R}\to\mathbb{R}\) defined by \(f(x)=x^3\).\\[6pt]
+  \pause
+  \emph{Proof (order argument).} For \(x_1<x_2\),
+  \[
+    f(x_2)-f(x_1)=x_2^3-x_1^3=(x_2-x_1)(x_2^2+x_1x_2+x_1^2).
+  \]
+  Since \(x_2-x_1>0\) and \(x_2^2+x_1x_2+x_1^2>0\) (the quadratic in \(x_2\) has discriminant \(-3x_1^2\le 0\), so it never vanishes for unequal inputs), we get \(f(x_2)-f(x_1)>0\). Hence \(x_1<x_2\Rightarrow f(x_1)<f(x_2)\), so \(f\) is strictly increasing and therefore injective.\\
+  (Alternatively: \(x_1^3=x_2^3\Rightarrow x_1=x_2\).)
+\end{frame}
+
+\begin{frame}{(ii) Injective — Hard example with proof}
+  \textbf{Example (Hard).} \(f\colon\mathbb{R}\to(0,\infty)\) given by \(f(x)=e^x\).\\[6pt]
+  \pause
+  \emph{Proof:} If \(e^{x_1}=e^{x_2}\), then \(e^{x_1-x_2}=1\). Exponential function satisfies \(e^t=1\iff t=0\). Thus \(x_1-x_2=0\Rightarrow x_1=x_2\). Hence \(f\) is injective.
+\end{frame}
+
+\begin{frame}{(ii) Injective — Non-examples (with counterexamples)}
+  \textbf{Non-example (Basic).} \(f\colon\mathbb{R}\to\mathbb{R},\ f(x)=x^2\).\\
+  \pause
+  \emph{Counterexample:} \(f(2)=4=f(-2)\) but \(2\ne -2\). So \(f\) is not injective on \(\mathbb{R}\).\\[6pt]
+  \textbf{Remark:} If we restrict the domain to \([0,\infty)\), then \(x^2\) becomes injective on that domain.
+\end{frame}
+
+%================ Surjective =================
+\begin{frame}{Definition: Surjective}
+  \(f\colon A\to B\) is \emph{surjective} (onto) if
+  \[
+    \forall y\in B\ \exists x\in A\quad f(x)=y.
+  \]
+  Equivalently \(\operatorname{Im}(f)=B\).
+\end{frame}
+
+\begin{frame}{(iii) Surjective — Basic example with proof}
+  \textbf{Example (Basic).} Identity \(f\colon\mathbb{R}\to\mathbb{R}\) with \(f(x)=x\).\\[6pt]
+  \pause
+  \emph{Proof:} For any \(y\in\mathbb{R}\) choose \(x=y\). Then \(f(x)=y\). So \(f\) is surjective.
+\end{frame}
+
+\begin{frame}{(iii) Surjective — Intermediate example with proof}
+  \textbf{Example (Intermediate).} \(f\colon\mathbb{R}\to[0,\infty)\) given by \(f(x)=x^2\).\\[6pt]
+  \pause
+  \emph{Proof:} Let \(y\in[0,\infty)\) be arbitrary. Choose \(x=\sqrt{y}\) (if one prefers, either \(+\sqrt{y}\) or \(-\sqrt{y}\) works). Then \(f(x)=x^2=y\). Hence every \(y\ge 0\) has a preimage, so \(f\) is surjective onto \([0,\infty)\).
+\end{frame}
+
+\begin{frame}{(iii) Surjective — Hard example with proof}
+  \textbf{Example (Hard).} \(f\colon\mathbb{R}\to(0,\infty)\) defined by \(f(x)=e^x\).\\[6pt]
+  \pause
+  \emph{Proof:} Let \(y\in(0,\infty)\). Take \(x=\ln(y)\). Then \(e^x=e^{\ln y}=y\). Thus every positive real has a preimage, so \(f\) is surjective onto \((0,\infty)\).
+\end{frame}
+
+\begin{frame}{(iii) Surjective — Non-examples (with reason)}
+  \textbf{Non-example.} \(f\colon\mathbb{R}\to\mathbb{R}\) with \(f(x)=x^2\).\\[6pt]
+  \pause
+  \emph{Reason:} There exist codomain elements (e.g. \(-1\)) for which no \(x\in\mathbb{R}\) satisfies \(x^2=-1\). Hence \(f\) is not surjective onto \(\mathbb{R}\).
+\end{frame}
+
+%================ Bijective =================
+\begin{frame}{Definition: Bijective}
+  \(f\colon A\to B\) is \emph{bijective} iff it is both injective and surjective.\\[6pt]
+  Equivalently: \(f\) has an inverse function \(f^{-1}\colon B\to A\) with \(f^{-1}\circ f=\mathrm{id}_A\) and \(f\circ f^{-1}=\mathrm{id}_B\).
+\end{frame}
+
+\begin{frame}{(iv) Bijective — Basic and intermediate examples with proofs}
+  \textbf{Example (Basic).} \(f\colon\mathbb{R}\to\mathbb{R}\) defined by \(f(x)=x+3\).\\[6pt]
+  \pause
+  \emph{Proof:} Injective: \(x_1+3=x_2+3\Rightarrow x_1=x_2\). Surjective: for any \(y\in\mathbb{R}\) choose \(x=y-3\) so \(f(x)=y\). Therefore bijective; inverse \(f^{-1}(y)=y-3\).\\[8pt]
+
+  \textbf{Example (Intermediate).} \(f\colon(0,\infty)\to\mathbb{R}\) given by \(f(x)=\ln(x)\).\\
+  \pause
+  \emph{Proof:} Injective: \(\ln\) is strictly increasing on \((0,\infty)\). Surjective: for any \(y\in\mathbb{R}\) take \(x=e^y\) (which lies in \((0,\infty)\)); then \(\ln(x)=y\). Thus \(\ln\) is bijective with inverse \(e^y\).
+\end{frame}
+
+\begin{frame}{(iv) Bijective — Hard example with proof}
+  \textbf{Example (Hard).} \(\tan\colon\big(-\tfrac{\pi}{2},\tfrac{\pi}{2}\big)\to\mathbb{R}\).\\[6pt]
+  \pause
+  \emph{Proof sketch:} \(\tan\) is continuous and strictly increasing on \(\big(-\tfrac{\pi}{2},\tfrac{\pi}{2}\big)\). Moreover,
+  \[
+    \lim_{x\to -\pi/2^+}\tan x = -\infty,\qquad
+    \lim_{x\to \pi/2^-}\tan x = +\infty.
+  \]
+  By the intermediate value property and strict monotonicity, \(\tan\) attains every real value exactly once on the interval. Hence \(\tan\) is bijective onto \(\mathbb{R}\); inverse is \(\arctan\).
+\end{frame}
+
+\begin{frame}{(iv) Bijective — Non-examples and fixes}
+  \textbf{Non-example 1.} \(f(x)=x^2\) as a map \(\mathbb{R}\to\mathbb{R}\). Not injective (collisions) and not surjective (negatives missing).\\[6pt]
+  \pause
+  \textbf{Fix:} Restrict domain and codomain to \(f\colon[0,\infty)\to[0,\infty)\) given by \(f(x)=x^2\). This restricted map is bijective; inverse \(f^{-1}(y)=\sqrt{y}\).\\[6pt]
+  \textbf{Non-example 2.} \(f(x)=e^x\) as \(f\colon\mathbb{R}\to\mathbb{R}\). Injective but not surjective. Fix by changing codomain to \((0,\infty)\): \(e^x\colon\mathbb{R}\to(0,\infty)\) is bijective.
+\end{frame}
+
+\begin{frame}{Quick in-class exercises}
+  \begin{itemize}
+    \item Prove that \(\sin\colon[-\tfrac{\pi}{2},\tfrac{\pi}{2}]\to[-1,1]\) is injective and surjective.
+    \item Determine whether \(f\colon\mathbb{Z}\to\mathbb{Z}\) defined by \(f(n)=n+1\) is bijective. Find the inverse if it exists.
+    \item Decide injectivity/surjectivity of
+    \[
+      f(x)=\begin{cases}
+        x, & x\ge 0,\\
+        x+1, & x<0,
+      \end{cases}\quad f\colon\mathbb{R}\to\mathbb{R}.
+    \]
+    Give proofs or explicit counterexamples.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Takeaways (short)}
+  \begin{itemize}
+    \item Always state domain and codomain — injectivity and surjectivity depend on them.
+    \item Injective \(\Leftrightarrow\) no two domain elements map to the same codomain element.
+    \item Surjective \(\Leftrightarrow\) every codomain element is attained.
+    \item Bijective \(\Leftrightarrow\) invertible (has an inverse function).
+  \end{itemize}
+\end{frame}
+
+\end{document}

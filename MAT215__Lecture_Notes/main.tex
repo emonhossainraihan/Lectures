@@ -1,0 +1,51 @@
+\documentclass[11pt,oneside,openright,numbers=noenddot]{scrbook}
+\input{tex/preamble}
+
+
+\title{%
+\includegraphics[scale=.75]{tex/bracu_logo.png}~\\[2cm]
+Complex Variables \& Laplace Transformations (MAT215)
+}
+\subtitle{ ~\\[1cm]
+\LARGE{Lecture Notes}\\
+\vspace{1cm}
+\Large{Author: Emon Hossain (EMNH)}\\
+\Large{Template: Atonu Roy Chowdhury}}
+\date{\today}
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={170mm,257mm},
+left=20mm,
+top=20mm,
+}
+% mine import
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+
+\begin{document}
+\frontmatter
+
+% \maketitle
+
+% \include{tex/preface} ## UNCOMMENT THIS LINE IF YOU WANT TO ADD THE PREFACE, AND EDIT THE FILE tex/preface.tex
+
+\cleardoublepage
+\newcounter{temppage}
+\setcounter{temppage}{\value{page}}
+\mainmatter
+\setcounter{page}{\value{temppage}}
+
+\tableofcontents
+
+\include{tex/chap1} 
+ \include{tex/chap11}
+ \include{tex/chap22}
+ \include{tex/chap2}
+ \include{tex/Random}
+\appendix
+
+\backmatter
+
+
+\end{document}

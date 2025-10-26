@@ -1,0 +1,380 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-04}}
+
+
+\title[]{MAT092: Remedial Course in Mathematics}
+
+\setbeamertemplate{navigation symbols}{}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+% \begin{frame}{Other Fundamental Set Identities (Summary Table)}
+% \textbf{Identity Laws:}
+% \[
+% A \cup \emptyset = A, \quad A \cap U = A
+% \]
+
+% \textbf{Domination Laws:}
+% \[
+% A \cup U = U, \quad A \cap \emptyset = \emptyset
+% \]
+
+% \textbf{Idempotent Laws:}
+% \[
+% A \cup A = A, \quad A \cap A = A
+% \]
+
+% \textbf{Complement Laws:}
+% \[
+% A \cup A' = U, \quad A \cap A' = \emptyset
+% \]
+
+% \textbf{Double Complement:}
+% \[
+% (A')' = A
+% \]
+% \end{frame}
+
+% \begin{frame}{Distributive and Associative Laws}
+% \textbf{Distributive Laws:}
+% \[
+% A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
+% \]
+% \[
+% A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+% \]
+
+% \textbf{Associative Laws:}
+% \[
+% (A \cup B) \cup C = A \cup (B \cup C)
+% \]
+% \[
+% (A \cap B) \cap C = A \cap (B \cap C)
+% \]
+
+% \textbf{Commutative Laws:}
+% \[
+% A \cup B = B \cup A, \quad A \cap B = B \cap A
+% \]
+
+% \textbf{Useful for:} simplifying complex set expressions or logical formulas.
+% \end{frame}
+
+% \begin{frame}{Distributive Law: $A\cup(B\cap C) = (A\cup B)\cap(A\cup C)$}
+% \textbf{Goal:} Show both inclusions.
+
+% \pause
+% \textbf{(1) $\subseteq$ direction:}
+% \[
+% \begin{aligned}
+% x\in A\cup(B\cap C)
+% &\Rightarrow x\in A \text{ or } (x\in B \text{ and } x\in C)\\
+% &\Rightarrow?\\
+% &\Rightarrow x\in (A\cup B)\cap(A\cup C).
+% \end{aligned}
+% \]
+
+% \pause
+% \textbf{(2) $\supseteq$ direction:}
+% \[
+% \begin{aligned}
+% x\in (A\cup B)\cap(A\cup C)
+% &\Rightarrow x\in A\cup B \text{ and } x\in A\cup C\\
+% &\Rightarrow (x\in A \text{ or } x\in B)
+% \text{ and }(x\in A \text{ or } x\in C).\\
+% &\Rightarrow x\in A \text{ or } (x\in B \text{ and } x\in C).\\
+% &\Rightarrow x\in A\cup(B\cap C).
+% \end{aligned}
+% \]
+
+% \pause
+% \textbf{Therefore:} \(A\cup(B\cap C) = (A\cup B)\cap(A\cup C)\).
+% \end{frame}
+
+
+
+
+
+% %---------------------------------------------------------
+% \begin{frame}{Motivation}
+% Functions describe how elements of one set (domain) correspond to another (codomain).  
+% But often, the \textbf{cardinality} of these sets already hints at whether the function is:
+% \[
+% \text{injective, surjective, or bijective.}
+% \]
+% \pause
+% \begin{block}{Key Idea}
+% Comparing $|A|$ and $|B|$ gives valuable information about the possible type of function.
+% \end{block}
+% \end{frame}
+% %---------------------------------------------------------
+
+% \begin{frame}{Recap: Function Properties}
+% \begin{table}[h!]
+% \centering
+% \renewcommand{\arraystretch}{1.3}
+% \begin{tabular}{|l|l|l|}
+% \hline
+% \textbf{Property} & \textbf{Definition} & \textbf{Symbolic Form} \\ \hline
+% \textbf{Injective (One-to-one)} & Different inputs\\ give different outputs & $f(x_1)=f(x_2)\Rightarrow x_1=x_2$ \\ \hline
+% \textbf{Surjective (Onto)} & Every element\\ of codomain is hit & $\forall y\in B,\ \exists x\in A: f(x)=y$ \\ \hline
+% \textbf{Bijective} & Both injective\\ and surjective & One-to-one and onto \\ \hline
+% \end{tabular}
+% \end{table}
+% \end{frame}
+% %---------------------------------------------------------
+
+% \begin{frame}{Cardinality Clues}
+% Let $f:A\to B$, with $|A|=m$ and $|B|=n$.
+
+% \begin{table}[h!]
+% \centering
+% \renewcommand{\arraystretch}{1.3}
+% \begin{tabular}{|l|c|l|}
+% \hline
+% \textbf{Type} & \textbf{Relation} & \textbf{Consequence} \\ \hline
+% Injective & $m\le n$ & Domain can't have more elements than codomain. \\ \hline
+% Surjective & $m\ge n$ & Domain must be large enough to cover all of codomain. \\ \hline
+% Bijective & $m=n$ & Perfect pairing between domain and codomain. \\ \hline
+% \end{tabular}
+% \end{table}
+% \end{frame}
+% %---------------------------------------------------------
+
+
+% \begin{frame}{Examples}
+% \begin{exampleblock}{Example 1}
+% $f:\{1,2,3\}\to\{a,b,c,d\}$ \\
+% $|A|=3, |B|=4$ $\Rightarrow$ can be injective, not surjective.
+% \end{exampleblock}
+
+% \pause
+% \begin{exampleblock}{Example 2}
+% $f:\{1,2,3,4\}\to\{a,b,c\}$ \\
+% $|A|=4, |B|=3$ $\Rightarrow$ can be surjective, not injective.
+% \end{exampleblock}
+
+% \pause
+% \begin{exampleblock}{Example 3}
+% $f:\{1,2,3\}\to\{a,b,c\}$ \\
+% $|A|=|B|$ $\Rightarrow$ possible bijection.
+% \end{exampleblock}
+% \end{frame}
+% %---------------------------------------------------------
+
+% \begin{frame}{Infinite Sets: A Remark}
+% \begin{block}{Finite vs Infinite}
+% For finite sets, counting elements works. \\
+% For infinite sets, we use one-to-one correspondences.
+% \end{block}
+
+% \pause
+% \begin{exampleblock}{Example}
+% There exists a bijection between $\mathbb{N}$ and $2\mathbb{N}$:
+% \[
+% f(n) = 2n.
+% \]
+% Even though $2\mathbb{N} \subset \mathbb{N}$, they have the same cardinality.
+% \end{exampleblock}
+% \end{frame}
+% %---------------------------------------------------------
+
+% \begin{frame}{Summary Table}
+% \begin{table}[h!]
+% \centering
+% \renewcommand{\arraystretch}{1.3}
+% \begin{tabular}{|l|c|c|}
+% \hline
+% \textbf{Property} & \textbf{Finite Sets} & \textbf{Infinite Sets} \\ \hline
+% Injective & $|A|\le |B|$ & Exists $A\hookrightarrow B$ \\ \hline
+% Surjective & $|A|\ge |B|$ & Exists $A\twoheadrightarrow B$ \\ \hline
+% Bijective & $|A|=|B|$ & Exists $A\leftrightarrow B$ \\ \hline
+% \end{tabular}
+% \end{table}
+% \end{frame}
+% %---------------------------------------------------------
+
+% \begin{frame}{Quick Quiz}
+% \begin{enumerate}
+% \item $f:\{1,2,3,4,5\}\to\{a,b,c\}$  
+% \quad Can it be injective? \textcolor{red}{No.}
+% \item Can it be surjective? \textcolor{green!60!black}{Yes.}
+% \item $f:\{1,2\}\to\{a,b,c\}$  
+% \quad Can it be injective? \textcolor{green!60!black}{Yes.}
+% \quad Surjective? \textcolor{red}{No.}
+% \end{enumerate}
+
+% \pause
+% \begin{block}{Takeaway}
+% Cardinality gives strong hints—but the mapping itself confirms the property!
+% \end{block}
+% \end{frame}
+% %---------------------------------------------------------
+\begin{frame}{Composition Function}
+    $f = \{(1, 1), (2, 3), (3, 1), (4, 2)\}$, and $g = \{(1, 2), (2, 3), (3, 1), (4, 2)\}$, then $g \circ f = \{(1, 2), (2, 1), (3, 2), (4, 3)\}$
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Quadratic Functions: A Classic Example}
+\textbf{Definition:}  
+A \emph{quadratic function} is a polynomial of degree 2:
+\[
+f(x) = ax^2 + bx + c, \quad a \neq 0.
+\]
+
+\textbf{Graph:}  
+Its graph is a parabola:
+\begin{itemize}
+    \item Opens upwards if $a > 0$, downwards if $a < 0$.
+    \item Axis of symmetry: $x = -\frac{b}{2a}$.
+    \item Vertex: $\left(-\frac{b}{2a}, f\!\left(-\frac{b}{2a}\right)\right)$.
+\end{itemize}
+
+\textbf{Example:}  
+\[
+f(x) = x^2 - 4x + 3 \Rightarrow a=1,b=-4,c=3.
+\]
+Vertex at $(2,-1)$, roots at $x=1,3$.
+\end{frame}
+
+
+
+\begin{frame}{Quadratic Equations and Their Roots}
+\textbf{Equation:}
+\[
+ax^2 + bx + c = 0, \quad a \neq 0.
+\]
+Solutions (roots) given by:
+\[
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+\]
+
+\textbf{Discriminant:} $\Delta = b^2 - 4ac$
+\begin{itemize}
+    \item $\Delta > 0$: Two distinct real roots.
+    \item $\Delta = 0$: One repeated real root.
+    \item $\Delta < 0$: Two complex conjugate roots.
+\end{itemize}
+
+\textbf{Example:}  
+\[
+x^2 - 4x + 3 = 0 \Rightarrow \Delta = 4.
+\]
+Hence $x = 1, 3$.
+
+\textbf{Remark:}  
+Quadratic functions encode symmetry — the vertex sits halfway between the roots.
+\end{frame}
+
+\begin{frame}{Completing the Square: Geometry in Algebra}
+\textbf{Idea:} Rewrite $ax^2 + bx + c$ to reveal symmetry.
+
+\[
+f(x) = a\left(x^2 + \frac{b}{a}x + \frac{c}{a}\right)
+     = a\left(\left(x + \frac{b}{2a}\right)^2 - \frac{b^2 - 4ac}{4a^2}\right).
+\]
+
+\textbf{Hence:}
+\[
+f(x) = a(x - h)^2 + k, \quad \text{where } h = -\frac{b}{2a}, \ k = f(h).
+\]
+
+\textbf{Geometric meaning:}
+\begin{itemize}
+    \item $(h,k)$ = vertex of the parabola.
+    \item The parabola is symmetric about $x=h$.
+\end{itemize}
+
+\textbf{Example:}  
+\[
+f(x) = x^2 - 4x + 3 = (x-2)^2 - 1.
+\]
+Vertex $(2,-1)$, minimum value $-1$.
+\end{frame}
+
+\begin{frame}{Why Quadratics Matter}
+\textbf{Intuition:}  
+Quadratics are everywhere because they describe:
+\begin{itemize}
+    \item \emph{Equilibrium and optimization:} minimizing cost, energy, or distance.
+    \item \emph{Motion under uniform acceleration:} $s(t) = ut + \frac{1}{2}at^2$.
+    \item \emph{Geometry:} circles, conics, and symmetry.
+\end{itemize}
+
+\textbf{Mathematical beauty:}  
+Quadratic functions are the simplest nonlinear functions, yet rich enough to capture curvature and symmetry.
+
+\textbf{Moral:}  
+Quadratic functions bridge algebra, geometry, and physics — a perfect meeting point of structure and intuition.
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
+

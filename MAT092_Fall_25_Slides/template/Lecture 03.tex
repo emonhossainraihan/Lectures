@@ -1,0 +1,209 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-03}}
+
+
+\title[]{MAT092: Remedial Course in Mathematics}
+
+\setbeamertemplate{navigation symbols}{}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Set Theory Review: Basic Level}
+\small
+Let $A = \{1, 2, 3, 4\}$. Determine:  \\
+(a) $2 \in A$  \\
+\pause
+— Yes, because $2$ is one of the listed elements.  \\
+(b) $\{2\} \subseteq A$\\
+\pause
+— Yes, every element of $\{2\}$ (only $2$) belongs to $A$.\\
+(c) $\{2\} \in \mathcal{P}(A)$\\
+\pause
+— Yes, because $\{2\}$ is a subset of $A$, so it appears in the power set.
+\end{frame}
+
+\begin{frame}{Example}
+Express in roster form:  
+$U = \{x \in \mathbb{Z} \mid -1 < x < 4\}$  
+\pause
+$A = \{0, 1, 2, 3\}$
+
+Let $B = \{1,3,5,7\}$, $C = \{3,4,5,6\}$.  
+\begin{align*}
+A \cup B &= ?\\
+A \cap B &= ? \\
+A - B &= ?
+\end{align*}
+\pause
+\begin{align*}
+A \cup B &= \{1,3,4,5,6,7\} \\
+A \cap B &= \{3,5\} \\
+A - B &= \{1,7\}
+\end{align*}
+\end{frame}
+
+
+\begin{frame}{Example}
+    If $n(A)=20$, $n(B)=15$, $n(A \cup B)=25$, find $n(A \cap B)$.
+    \pause
+\[
+n(A \cup B) = n(A) + n(B) - n(A \cap B) \Rightarrow 25 = 20 + 15 - n(A \cap B)
+\]
+\[
+\Rightarrow n(A \cap B) = 10
+\]
+\end{frame}
+
+\begin{frame}{Example}
+    Write the power set $\mathcal{P}(\{a,b\})$.  
+    \pause
+\[
+\mathcal{P}(\{a,b\}) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}
+\]
+(Every subset is listed, from empty to full set.)
+
+\end{frame}
+
+\begin{frame}{Example}
+    True or False:  
+    \begin{itemize}
+        \item $\emptyset \in \{\emptyset\}$ - ?
+        \item $\emptyset \subseteq \{\emptyset\}$ - ?
+    \end{itemize}
+    \pause
+    True or False:  
+    \begin{itemize}
+        \item $\emptyset \in \{\emptyset\}$ — True, because the empty set is an element of the set $\{\emptyset\}$.
+        \item $\emptyset \subseteq \{\emptyset\}$ — True, the empty set is a subset of every set.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Example}
+    If $U=\{1,2,3,4,5,6\}$, $A=\{1,2,3\}$, find $A'$.  
+\[
+A' = U - A = \{4,5,6\}
+\]
+
+Find $\mathcal{P}(\emptyset)$.  
+\[
+\mathcal{P}(\emptyset) = \{\emptyset\} \quad \text{(only one subset — itself).}
+\]
+\end{frame}
+
+\begin{frame}{Set Theory Review: Moderate Level}
+$U=\{1,2,3,4,5,6,7,8\}$, $A=\{1,3,5,7\}$, $B=\{3,4,5,6\}$.  
+\[
+A' = U - A = \{2,4,6,8\}, \quad 
+A \triangle B = (A - B) \cup (B - A) = \{1,4,6,7\}.
+\]
+(Symmetric difference = elements not common to both.)
+\end{frame}
+
+\begin{frame}{Example}
+    If $A = \{x, y, z\}$, list all subsets.  
+\pause
+\[
+\mathcal{P}(A) = \{\emptyset, \{x\}, \{y\}, \{z\}, \{x,y\}, \{x,z\}, \{y,z\}, \{x,y,z\}\}
+\]
+There are $2^{|A|}=2^3=8$ subsets.
+\end{frame}
+
+\begin{frame}{Example}
+    $A = \{1,2\}$, $B = \{x,y,z\}$.  
+    \pause
+\[
+A \times B = \{(1,x),(1,y),(1,z),(2,x),(2,y),(2,z)\}, \quad 
+B \times A = \{(x,1),(x,2),(y,1),(y,2),(z,1),(z,2)\}.
+\]
+Not equal because order of elements in pairs matters.
+
+\end{frame}
+
+% \begin{frame}{Example}
+%     Verify: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.  
+% (Use membership reasoning: pick $x$, check both sides; or show via Venn diagram — both include all elements that are in $A$ or common to $B$ and $C$.)
+
+% If $n(A)=5$, $n(B)=3$, find $n(A\times B)$.  
+% \[
+% n(A\times B) = n(A)\times n(B) = 5\times 3 = 15.
+% \]
+% (Each element of $A$ pairs with every element of $B$.)
+
+% Find $n(\mathcal{P}(A))$ when $A=\{1,2,3,4\}$.  
+% \[
+% n(\mathcal{P}(A)) = 2^{|A|} = 2^4 = 16.
+% \]
+
+% Show that $(A-B)\cap C=(A\cap C)-B$.  
+% Proof:  
+% Let $x\in (A-B)\cap C \Rightarrow x\in A$, $x\notin B$, and $x\in C$.  
+% So $x\in A\cap C$ and $x\notin B$, hence $x\in (A\cap C)-B$.  
+% Conversely, the reverse direction follows similarly.
+
+% Determine if $A \subseteq B$ for $A=\{1,2,3\}$, $B=\{1,2,3,4,5\}$.  
+% Yes, because every element of $A$ is contained in $B$.
+
+% True or False:  
+% (a) $\mathcal{P}(A\cup B) = \mathcal{P}(A)\cup\mathcal{P}(B)$ — False; e.g., $\{1,2\}$ is a subset of $A\cup B$ but may not appear in either $\mathcal{P}(A)$ or $\mathcal{P}(B)$.  
+% (b) $\mathcal{P}(A\cap B) \subseteq \mathcal{P}(A) \cap \mathcal{P}(B)$ — True; any subset of the intersection is automatically a subset of both $A$ and $B$.
+
+% If $A = \{1,2,3,4\}$, $B = \{3,4,5,6\}$, find $(A\cup B)'$ in $U = \{1,2,3,4,5,6,7,8\}$.  
+% \[
+% A \cup B = \{1,2,3,4,5,6\}, \quad (A\cup B)' = \{7,8\}.
+% \]
+% \end{frame}
+
+\end{document}

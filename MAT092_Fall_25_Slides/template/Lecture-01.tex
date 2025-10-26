@@ -1,0 +1,209 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-01}}
+
+
+\title[]{MAT092: Remedial Course in Mathematics}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{What is a Set?}
+\textbf{Definition:}  
+A \emph{set} is a collection of distinct and \emph{well-defined} objects (called \emph{elements}) considered as a single entity.
+
+\medskip
+\textbf{Intuition:}  
+We often think of sets as “bags of objects” — but mathematics demands precision.  
+Without \emph{well-definedness}, we could not even decide whether something belongs to a set.
+
+\medskip
+\textbf{Why well-definedness?}  
+\begin{itemize}
+    \item Consider $A = \{\text{beautiful numbers}\}$ — unclear which numbers qualify!  
+    \item But $B = \{x \in \mathbb{N} : x \text{ is even}\}$ is precise.
+\end{itemize}
+
+\medskip
+\textbf{Examples:}
+\begin{itemize}
+    \item $S = \{1, 2, 3, 4, 5\}$  
+    \item $T = \{x \in \mathbb{R} : x^2 < 2\}$  
+    \item $\emptyset = \{\}$ (empty set)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Set and Membership}
+\textbf{Notation:}
+\[
+x \in A \quad \text{means “$x$ is an element of $A$”}.
+\]
+
+\textbf{Examples:}
+\begin{itemize}
+    \item $2 \in \{1,2,3\}$ but $4 \notin \{1,2,3\}$.
+    \item $\pi \in \mathbb{R}$ but $\pi \notin \mathbb{Q}$.
+\end{itemize}
+
+\textbf{Remark:}
+Sets do not care about order or repetition:
+\[
+\{1,2,3\} = \{3,2,1\} = \{1,1,2,3,3\}.
+\]
+
+\textbf{Idea:}  
+Set theory is the \emph{language} of mathematics — almost every structure we define later (functions, relations, numbers) is built using sets.
+\end{frame}
+
+\begin{frame}{Relations: The Hidden Structure Between Sets}
+\textbf{Definition:}  
+Given sets $A$ and $B$, a \emph{relation} $R$ from $A$ to $B$ is any subset of the Cartesian product $A \times B$.
+
+\[
+R \subseteq A \times B.
+\]
+
+If $(a,b) \in R$, we write $aRb$.
+
+\medskip
+\textbf{Example:}
+\[
+A = B = \mathbb{N}, \quad R = \{(a,b): a < b\}.
+\]
+Here, $1R2$ is true but $2R1$ is false.
+
+\medskip
+\textbf{Motivation:}  
+Relations tell us how elements “interact” across or within sets — they capture structure, order, similarity, and more.
+\end{frame}
+
+\begin{frame}{Types of Relations on a Set}
+Let $A$ be a set and $R \subseteq A \times A$.
+
+\begin{itemize}
+    \item \textbf{Reflexive:} $(a,a) \in R$ for all $a \in A$.  
+    Example: $\leq$ on $\mathbb{R}$.
+    \item \textbf{Symmetric:} $aRb \Rightarrow bRa$.  
+    Example: “is sibling of”.
+    \item \textbf{Antisymmetric:} $aRb$ and $bRa$ $\Rightarrow$ $a=b$.  
+    Example: $\leq$ on $\mathbb{R}$.
+    \item \textbf{Transitive:} $aRb$ and $bRc$ $\Rightarrow$ $aRc$.  
+    Example: $<$ on $\mathbb{R}$.
+\end{itemize}
+
+\medskip
+\textbf{Special Types:}
+\begin{itemize}
+    \item \emph{Equivalence relation:} Reflexive, Symmetric, Transitive.  
+    → Partitions a set into “equivalence classes”.
+    \item \emph{Partial order:} Reflexive, Antisymmetric, Transitive.  
+    → Describes hierarchy or order.
+\end{itemize}
+Is the relation $R = \{(1, 1), (2, 2), (3, 3), (1, 2), (2, 1), (2, 3), (3, 2)\}$ on set $A = \{1, 2, 3\}$ an equivalence relation?
+\end{frame}
+
+
+\begin{frame}{Relations as the Foundation for Functions}
+\textbf{Observation:}
+Every \emph{function} is a special kind of relation!
+
+\[
+f \subseteq A \times B \text{ such that } 
+\forall a \in A, \ \exists! b \in B \text{ with } (a,b) \in f.
+\]
+
+\textbf{Meaning:}  
+A function is a relation where each input has a unique output.
+
+\medskip
+\textbf{Examples:}
+\begin{itemize}
+    \item $f(x) = x^2$ is a function from $\mathbb{R}$ to $\mathbb{R}_{\ge 0}$.
+    \item The relation $R = \{(x,y): x^2 = y^2\}$ is \emph{not} a function since $x=2$ gives $y=\pm 2$.
+\end{itemize}
+
+\medskip
+\textbf{Intuition:}  
+Relations give the raw “connection”; functions impose a rule of determinism.
+\end{frame}
+
+\begin{frame}{Hidden Relations in Mathematics}
+\textbf{Idea:}  
+Many mathematical objects secretly rely on relations.
+
+\begin{itemize}
+    \item \emph{Equality} ($=$) is an equivalence relation.  
+    \item \emph{Order} ($\leq$) is a partial order relation.  
+    \item \emph{Congruence} ($\equiv$ mod $n$) partitions $\mathbb{Z}$ into classes — a basis for modular arithmetic.  
+    \item \emph{Parallelism} in geometry, “is parallel to”, is symmetric and transitive.
+\end{itemize}
+
+\medskip
+\textbf{Moral:}  
+Relations form the invisible scaffolding of mathematics —  
+from “equal” to “connected”, “similar”, or “less than”.
+\end{frame}
+
+\begin{frame}{Discord}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{qr_code.png}
+    \end{figure}
+\end{frame}
+
+
+\end{document}
