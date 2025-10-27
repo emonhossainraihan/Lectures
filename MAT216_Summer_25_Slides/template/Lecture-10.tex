@@ -1,0 +1,123 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-10}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Linear Transformation}
+    \begin{definition}
+        Let $U$ and $V$ be two vector spaces over the same field $\mathbb F$. A linear Transformation $T$ of $U$ into $V$, written as $T: U \rightarrow V$, is a function of $U$ into $V$ such that
+        \begin{itemize}
+            \item $T\left(\overrightarrow{u_1}+\overrightarrow{u_2}\right)=T\left(\overrightarrow{u_1}\right)+T\left(\overrightarrow{u_2}\right)$ for all $\overrightarrow{u_1}, \overrightarrow{u_2} \in U$ 
+            \item $T(\alpha \vec{u})=\alpha T(\vec{u})$ for all $\vec{u} \in U$ and for all $\alpha \in F$
+        \end{itemize}
+    \end{definition}
+    \begin{example}
+        Let $T:\mathbb R^2\rightarrow\mathbb R^3$ be the transformation defined by $$T\begin{pmatrix}
+            x\\y
+        \end{pmatrix}=\begin{pmatrix}
+            x\\x+y\\x-y
+        \end{pmatrix}$$
+    \end{example}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Let $T:\mathbb R^3\rightarrow\mathbb R^3$ be the transformation defined by $$T(x,y,z)=(xy,x+y,x+z)$$
+        Show that $T$ is not a linear transformation.
+    \end{example}
+    N.B.: Let $V$ be a vector space over a field $\mathbb F$. If the transformation $T:V\rightarrow V$, is a linear transformation from $V$ into itself, then $T$ is called a linear operator.
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Consider a linear Transformation $T:\mathbb R^2\rightarrow\mathbb R^3$. Given that, 
+    $$T(1,0)=(-1,1),\:\:T(0,1)=(2,1)$$
+    Then find $T(x,y)$.
+    \end{example}
+\end{frame}
+
+\begin{frame}{Matrix Representation}
+    \begin{example}
+        Let $T:\mathbb R^2\rightarrow\mathbb R^2$ be a linear transformation defined by
+        $$T(x,y)=(x-4y,3x+2y)$$
+        Find the matrix representation with respect to the standard basis. 
+    \end{example}
+    \begin{example}
+        Let $T:\mathbb R^3\rightarrow\mathbb R^3$ be a linear transformation defined by
+        $$T\begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}=\begin{pmatrix}
+            2x-3y+z\\x+y-4z\\2y+5z
+        \end{pmatrix}$$
+        Find the matrix representation with respect to the standard basis. 
+    \end{example}
+\end{frame}
+
+\begin{frame}{Kernel of a Linear Transformation}
+    $$\text{Kernel of }T=\text{Null space of }T$$
+    \begin{example}
+        Let $T:\mathbb R^3\rightarrow\mathbb R^3$ be a linear transformation defined by $$T(x,y,z)=(2x-y+z,x+2y-z,x+7y-4z)$$
+        Find the Basis and Dimension of $\operatorname{Ker}(T)$. 
+    \end{example}
+\end{frame}
+
+\begin{frame}{Image of a Linear Transformation}
+    $$\text{Image of }T=\text{Column space of }T$$
+    \begin{example}
+        Let $T:\mathbb R^3\rightarrow\mathbb R^3$ be a linear transformation defined by $$T(x,y,z)=(2x-y+z,x+2y-z,x+7y-4z)$$
+        Find the Basis and Dimension of $\operatorname{Im}(T)$. 
+    \end{example}
+\end{frame}
+
+\end{document}

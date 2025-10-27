@@ -1,0 +1,159 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-05}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Vector Space}
+    \begin{itemize}
+        \item Physicist: Arrow
+        \item CSE: Array 
+        \item Mathematician: $10$ Axioms 
+    \end{itemize}
+    What we need before we talk about vector space: A set, $V$, where we define an operator $\oplus$ which operates on set elements and another operator $\odot$ which operates on the field and set elements\\
+    \textbf{Example:} $$\begin{pmatrix}
+        1\\2
+    \end{pmatrix}\oplus\begin{pmatrix}
+        2\\3
+    \end{pmatrix}=\begin{pmatrix}
+        3\\5
+    \end{pmatrix}$$
+    $$
+    2\odot \begin{pmatrix}
+        1\\2
+    \end{pmatrix}=\begin{pmatrix}
+        2\\4
+    \end{pmatrix}
+    $$
+\end{frame}
+\begin{frame}{Axioms}
+    \textbf{Operations on vector addition:}
+\begin{itemize}
+    \item \textbf{Closure law (A1):} $\forall u,v\in V\implies u\oplus v\in V$. 
+    \item \textbf{Commutative law (A2):} $\mathbf{u}\oplus\mathbf{v}=\mathbf{v}\oplus\mathbf{u}$ 
+    \item \textbf{Associative law (A3):} $\mathbf{u}\oplus(\mathbf{v}\oplus\mathbf{w})=(\mathbf{u}\oplus\mathbf{v})\oplus\mathbf{w}$.
+    \item \textbf{Existence of Additive identity (A4):} There exists an element $\mathbf{0}_V \in V$, called the zero vector, such that $\mathbf{v}\oplus\mathbf{0}_V=\mathbf{v}$ for all $\mathbf{v} \in V$.
+    \item \textbf{Existence of Additive inverse (A5):} For every $\mathbf{v} \in V$, there exists an element $-\mathbf{v} \in V$, called the additive inverse of $\mathbf{v}$, such that $\mathbf{v}\oplus(-\mathbf{v})=\mathbf{0}$.
+\end{itemize}
+\end{frame}
+\begin{frame}{Axioms}
+    \textbf{Operations on scalar multiplication:}
+\begin{itemize}
+    \item \textbf{Closure law (M1):} $\forall\alpha\in\mathbb F$ and $\mathbf{v}\in V\implies \alpha\odot\mathbf{v}\in V$.
+    \item \textbf{Distributive law respect to vector addition (M2):} $\alpha \odot (\mathbf{u}\oplus\mathbf{v})=\alpha\odot\mathbf{u}\oplus\alpha\odot\mathbf{v}$
+    \item \textbf{Distributive law respect to field addition (M3):} $(\alpha\tilde\oplus \beta)\odot \mathbf{v}=\alpha\odot \mathbf{v}\oplus \beta\odot\mathbf{v}$
+    \item \textbf{Compatibility of scalar multiplication with field multiplication (M4):} $\alpha\odot(\beta \odot \mathbf{v})=(\alpha \star \beta)\odot \mathbf{v}$.
+    \item \textbf{Existence of multiplicative identity (M5):} $1_{\mathbb F} \mathbf{v}=\mathbf{v}$, where $1_{\mathbb F}$ denotes the multiplicative identity in $\mathbb F$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example}
+    Consider the set $V=\mathbb R^2$. A generic element of $\mathbb R^2$ is given by the pair $(x,y)$ where $x,y\in\mathbb R$ and $k\in\mathbb R$. The operations of addition and scalar multiplication are defined on $\mathbb R^2$ by 
+    \begin{align*}
+        (x_1,y_1)+(x_2,y_2)&=(x_1+x_2,y_1y_2)\\
+        k(x_1,y_1) &= (kx_1,ky_1)
+    \end{align*}
+    \pause 
+    \textbf{Check Axiom M5}.
+\end{frame}
+
+\begin{frame}{Example}
+    Consider the set $V=\mathbb R^2$. A generic element of $\mathbb R^2$ is given by the pair $(x,y)$ where $x,y\in\mathbb R$ and $k\in\mathbb R$. The operations of addition and scalar multiplication are defined on $\mathbb R^2$ by 
+    \begin{align*}
+        (x_1,y_1)+(x_2,y_2)&=(x_1+x_2,y_1+y_2)\\
+        k(x_1,y_1) &= (kx_1,y_1)
+    \end{align*}
+    \pause 
+    \textbf{Check Axiom M3}.
+\end{frame}
+
+\begin{frame}{Example}
+    Consider the set $V=\mathbb R^2$. A generic element of $\mathbb R^2$ is given by the pair $(x,y)$ where $x,y\in\mathbb R$ and $k\in\mathbb R$. The operations addition and scalar multiplication is defined on $\mathbb R^2$ by 
+    \begin{align*}
+        (x_1,y_1)+(x_2,y_2)&=(x_1+x_2+1,y_1+y_2+1)\\
+        k(x_1,y_1) &= (kx_1,ky_1)
+    \end{align*}
+    \pause 
+    \textbf{Check Axiom M3}.
+\end{frame}
+
+
+\begin{frame}{Example}
+    Consider the set $V=\mathbb R^2$. A generic element of $\mathbb R^2$ is given by the pair $(x,y)$ where $x,y\in\mathbb R$ and $k\in\mathbb R$. The operations addition and scalar multiplication is defined on $\mathbb R^2$ by 
+    \begin{align*}
+        (x_1,y_1)+(x_2,y_2)&=(x_1+x_2,y_1+y_2)\\
+        k(x_1,y_1) &= (k^2x_1,k^2y_1)
+    \end{align*}
+    \pause 
+    \textbf{Check Axiom M3}.
+\end{frame}
+
+\begin{frame}{Example}
+    Consider the set $V=\mathbb R^2$. A generic element of $\mathbb R^2$ is given by the pair $(x,y)$ where $x,y\in\mathbb R$ and $k\in\mathbb R$. The operations addition and scalar multiplication is defined on $\mathbb R^2$ by 
+    \begin{align*}
+        (x_1,y_1)+(x_2,y_2)&=(x_1+x_2,y_1+y_2)\\
+        k(x_1,y_1) &= (0,0)
+    \end{align*}
+    \pause 
+    \textbf{Check Axiom M5}.
+\end{frame}
+
+\begin{frame}{Example}
+    Let $V=\{(0,0,0)\}$. Is $V$ a vector space over $\mathbb R$ with respect to the usual operations? Justify your answer. 
+\end{frame}
+
+\begin{frame}{Example}
+    Let $V=\{(1,1,1)\}$. Is $V$ a vector space over $\mathbb R$ with respect to the usual operations? Justify your answer. 
+\end{frame}
+
+\end{document}

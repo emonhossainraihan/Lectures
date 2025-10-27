@@ -1,0 +1,147 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-08}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Span}
+    \begin{definition}
+    Let $S$ be a nonempty subset of a vector space $V$. The span of $S$, denoted by $\operatorname{span}(S)$, is the set containing all linear combinations of vectors in $S$. For convenience, we define $\operatorname{span}(\emptyset)=\{0\}$.
+\end{definition}
+\begin{example}
+    Does $\left\{\begin{pmatrix}2\\0\end{pmatrix}, \begin{pmatrix}1\\0\end{pmatrix}, \begin{pmatrix}0\\1\end{pmatrix}\right\}$ span $\mathbb R^2$?
+\end{example}
+A set of vectors $S=\{v_1,\cdots,v_n\}\subset V$ spans the vector space $V$ if every vector in $V$ can be generated using a linear combination of $S$. Mathematically, for any arbitrary $\vec v_{\text{random}}\in V$ the system, $$\alpha_1 v_1+\cdots+\alpha_n v_n=v_{\text{random}}$$
+has a solution(unique or many).
+\end{frame}
+
+\begin{frame}{Example}
+    \textbf{Question-1:} Determine whether or not the vectors $u=\begin{pmatrix}
+        1\\1\\2
+    \end{pmatrix},v=\begin{pmatrix}
+        1\\-1\\2
+    \end{pmatrix}$ and $w=\begin{pmatrix}
+        1\\0\\1
+    \end{pmatrix}$ span $\mathbb R^3$.\\~\\
+    \textbf{Question-2:} Determine whether the set of vectors $S$ span $\mathbb R^3$:
+    $$S=\{(3,0,4),(6,2,-1),(12,4,-2),(3,2,-5)\}$$
+\end{frame}
+
+
+\begin{frame}{Basis}
+\begin{definition}
+    A basis is a set of vectors, $S$, that generates all elements of the vector space $V$, and the vectors in the set are linearly independent.
+\end{definition}
+That means to be a basis, we need to satisfy two conditions:
+\begin{itemize}
+    \item $S$ is linearly independent
+    \item $S$ spans $V$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Summary}
+    \begin{center}
+\begin{forest}
+for tree={
+  align=center,
+  grow'=south,
+  parent anchor=south,
+  child anchor=north,
+  l=1cm,
+  s sep=5pt,
+  edge={->}
+}
+[
+\shortstack{$\alpha_1 v_1+\cdots+\alpha_n v_n$},
+  [\shortstack{Check\\independency:\\$\alpha_1 v_1+\cdots+\alpha_n v_n = 0$},
+    [\shortstack{Unique solution:\\Independent}]
+    [\shortstack{Many solutions:\\Dependent}]
+  ]
+  [\shortstack{Check\\linear combination:\\$\alpha_1 v_1+\cdots+\alpha_n v_n = b$},
+    [\shortstack{No solution:\\Do not Span}]
+    [\shortstack{Unique/Many solution:\\Span}]
+  ]
+]
+\end{forest}
+\end{center}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Is $S=\{(1,2),(2,3)\}$ a basis of $\mathbb R^2$?
+    \end{example}
+    \textbf{Hint:} Check linear independence and spanning condition.
+    \begin{example}
+        What about $S=\{(1,2),(2,4)\}$?
+    \end{example}
+    \begin{example}
+        Determine whether the set of vectors $S$ form a basis of $\mathbb R^3$:
+        $$
+        S=\{(2,-3,1),(4,1,1)\}
+        $$
+    \end{example}
+\end{frame}
+
+\begin{frame}{More example}
+    \begin{example}
+        Find the basis of the space $M_{2\times 2}(\mathbb R)=\left\{\begin{pmatrix}
+            a&b\\c&d
+        \end{pmatrix}:a+b+c+d=0\right\}$
+    \end{example}
+    \textbf{Hint:} How many way you can pair $1$ and $-1$ inside the matrix entries?
+    \begin{example}
+        Find the basis from $\{t^3-2t^2+4t+1,2t^3-3t^2+9t-1,t^3+6t-5,2t^3-5t^2+7t+5\}$.
+    \end{example}
+\end{frame}
+
+\end{document}

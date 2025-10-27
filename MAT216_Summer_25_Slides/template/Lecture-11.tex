@@ -1,0 +1,210 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-11}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Eigen system}
+As we know that the is no difference between a matrix and a Linear Transformation. Consider a linear transformation, $T:(\mathbb R^2,+,\cdot)\rightarrow(\mathbb R^2,+,\cdot)$ defined by, $$T\begin{bmatrix}
+    x\\y
+\end{bmatrix}=\begin{bmatrix}
+    2x+y\\x+2y
+\end{bmatrix}$$ 
+Then the corresponding matrix is, 
+$$A={\begin{bmatrix}2&1\\1&2\end{bmatrix}}$$
+To visualize the transformation, use this: \url{https://www.geogebra.org/m/YCZa8TAH}
+\end{frame}
+
+\begin{frame}{Eigen system}
+We are interested in those vectors (from the domain) which doesn't change direction after transformation. 
+\begin{align*}
+A \vec{v} &= \lambda \vec{v}\\
+A \vec{v} - \lambda \vec{v} &= 0\\
+(A - \lambda I) \vec{v} &= 0\\
+\end{align*}
+This is a homogeneous system. For nontrivial solution ($\mathbf{v} \ne \mathbf{0}$) to exist, the matrix $(A - \lambda I)$ must be singular. (Why?)
+$$
+\det(A - \lambda I) = 0
+$$
+This is called the characteristic equation. 
+\end{frame}
+
+\begin{frame}{Calculate eigen values and vectors}
+Let
+$$
+A = \begin{bmatrix}
+2 & 1 \\
+1 & 2
+\end{bmatrix}
+$$
+Step 1: Compute the characteristic polynomial
+$$
+\det(A - \lambda I) = \det\begin{bmatrix}
+2 - \lambda & 1 \\
+1 & 2 - \lambda
+\end{bmatrix}
+= (2 - \lambda)^2 - 1 = \lambda^2 - 4\lambda + 3
+$$
+Set this to zero:
+$$
+\lambda^2 - 4\lambda + 3 = 0 \Rightarrow (\lambda - 1)(\lambda - 3) = 0
+$$
+So the eigenvalues are $\lambda_1 = 1$, $\lambda_2 = 3$.
+\end{frame}
+
+\begin{frame}{continued...}
+    Step 2: Find eigenvectors
+For $\lambda = 1$:
+$$
+(A - I)\mathbf{v} = \begin{bmatrix}
+1 & 1 \\
+1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+v_1 \\
+v_2
+\end{bmatrix} = \mathbf{0}
+\Rightarrow v_1 + v_2 = 0
+\Rightarrow \mathbf{v}_1 = \begin{bmatrix}1 \\ -1\end{bmatrix}
+$$
+For $\lambda = 3$:
+$$
+(A - 3I)\mathbf{v} = \begin{bmatrix}
+-1 & 1 \\
+1 & -1
+\end{bmatrix}
+\Rightarrow -v_1 + v_2 = 0 \Rightarrow \mathbf{v}_2 = \begin{bmatrix}1 \\ 1\end{bmatrix}
+$$
+\end{frame}
+
+\begin{frame}{Example}
+Consider the matrix
+$$
+A=\begin{bmatrix}2&0&0\\0&3&4\\0&4&9\end{bmatrix}
+$$
+The characteristic polynomial of A is $$\begin{aligned}\det(A-\lambda I)&=\left|{\begin{bmatrix}2&0&0\\0&3&4\\0&4&9\end{bmatrix}}-\lambda {\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}}\right|={\begin{vmatrix}2-\lambda &0&0\\0&3-\lambda &4\\0&4&9-\lambda \end{vmatrix}},\\[6pt]&=(2-\lambda ){\bigl [}(3-\lambda )(9-\lambda )-16{\bigr ]}=-\lambda ^{3}+14\lambda ^{2}-35\lambda +22.\end{aligned}$$
+The roots of the characteristic polynomial are 2, 1, and 11, which are the only three eigenvalues of A. These eigenvalues correspond to the eigenvectors $\begin{bmatrix}1\\0\\0\end{bmatrix},\begin{bmatrix}0\\-2\\1\end{bmatrix}$, and $\begin{bmatrix}0\\1\\2\end{bmatrix}$, or any nonzero multiple thereof.
+\end{frame}
+
+\begin{frame}{Example}
+\begin{example}
+    Do the same for, 
+    $$A=\begin{pmatrix}
+        2&-3&6\\
+        0&5&-6\\
+        0&1&0
+    \end{pmatrix}$$
+\end{example}
+\end{frame}
+
+\begin{frame}{Similar Matrix}
+    Two square matrices $A$ and $B$ of the same size $n \times n$ are called similar if there exists an \textbf{invertible matrix} $P$ such that: 
+
+$$
+B = P^{-1} A P
+$$
+This is denoted as:
+$$
+A \sim B
+$$
+In words: Matrix $B$ is similar to $A$ if $B$ is obtained from $A$ by a change of basis via $P$.
+
+Why It Matters: Similarity captures the idea that two matrices \textbf{represent the same linear transformation}, but \textbf{in different bases}.
+\end{frame}
+
+\begin{frame}{Properties of similar matrices}
+\textbf{Properties of Similar Matrices:}\\
+1. Same Characteristic Polynomial:
+   $$
+   \det(A - \lambda I) = \det(B - \lambda I)
+   $$
+   So they have the \textbf{same eigenvalues} (including algebraic multiplicity).\\
+2. Same Minimal Polynomial\\
+3. Same Determinant and Trace:
+    \begin{itemize}
+        \item $\det(A) = \det(B)$
+        \item $\operatorname{tr}(A) = \operatorname{tr}(B)$
+    \end{itemize}
+4. Same Rank\\
+5. Same Eigenvalues: But \textbf{not necessarily} the same eigenvectors.
+\end{frame}
+
+\begin{frame}{Properties of similar matrices}
+    6. Same Jordan Canonical Form\\
+7. Similarity is an Equivalence Relation:
+    \begin{itemize}
+        \item Reflexive: $A \sim A$
+        \item Symmetric: If $A \sim B$, then $B \sim A$
+        \item Transitive: If $A \sim B$ and $B \sim C$, then $A \sim C$
+    \end{itemize}
+8. Diagonalization:
+   A matrix $A$ is \textbf{diagonalizable} if it is similar to a diagonal matrix:
+     $$
+     D = P^{-1} A P
+     $$
+     This happens when $A$ has $n$ linearly independent eigenvectors.
+\end{frame}
+
+\begin{frame}{Example}
+    Let
+$$
+A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}, \quad
+P = \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix}
+$$
+Then compute:
+$$
+B = P^{-1} A P = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}
+$$
+So $A \sim B$, and $B$ is diagonal.
+\end{frame}
+\end{document}

@@ -1,0 +1,131 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-06}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Example}
+    Consider the set $V=\mathbb R^2$. A generic element of $\mathbb R^2$ is given by the pair $(x,y)$ where $x,y\in\mathbb R$ and $k\in\mathbb R$. The operations addition and scalar multiplication is defined on $\mathbb R^2$ by 
+    \begin{align*}
+        (x_1,y_1)+(x_2,y_2)&=(x_1+x_2+1,y_1+y_2+1)\\
+        k(x_1,y_1) &= (kx_1,ky_1)
+    \end{align*}
+    \pause 
+    \textbf{Check Axiom M3}.
+\end{frame}
+
+\begin{frame}{Example}
+    Consider the set $V=\mathbb R^2$. A generic element of $\mathbb R^2$ is given by the pair $(x,y)$ where $x,y\in\mathbb R$ and $k\in\mathbb R$. The operations addition and scalar multiplication is defined on $\mathbb R^2$ by 
+    \begin{align*}
+        (x_1,y_1)+(x_2,y_2)&=(x_1+x_2,y_1+y_2)\\
+        k(x_1,y_1) &= (k^2x_1,k^2y_1)
+    \end{align*}
+    \pause 
+    \textbf{Check Axiom M3}.
+\end{frame}
+
+\begin{frame}{Example}
+    Consider the set $V=\mathbb R^2$. A generic element of $\mathbb R^2$ is given by the pair $(x,y)$ where $x,y\in\mathbb R$ and $k\in\mathbb R$. The operations addition and scalar multiplication is defined on $\mathbb R^2$ by 
+    \begin{align*}
+        (x_1,y_1)+(x_2,y_2)&=(x_1+x_2,y_1+y_2)\\
+        k(x_1,y_1) &= (0,0)
+    \end{align*}
+    \pause 
+    \textbf{Check Axiom M5}. \url{https://math.stackexchange.com/questions/22179/does-the-multiplicative-identity-have-to-be-1}
+\end{frame}
+
+\begin{frame}{Example}
+    Let $V=\{(0,0,0)\}$. Is $V$ a vector space over $\mathbb R$ with respect to the usual operations? Justify your answer. 
+\end{frame}
+
+\begin{frame}{Example}
+    Let $V=\{(1,1,1)\}$. Is $V$ a vector space over $\mathbb R$ with respect to the usual operations? Justify your answer. 
+\end{frame}
+
+\begin{frame}{Small buddy! Big catch}
+    \begin{definition}
+    If $W$ be a non-empty subset of a vector space $V(\mathbb F)$, then $W$ is called a subspace of $V$ if $W$ satisfies all the axioms of vector space $V$ with respect to vector addition and scalar multiplication. So, formally we can write the laws as:
+    \begin{itemize}
+        \item $W\neq \emptyset$
+        \item $W$ is closure under addition, $\forall u,v\in W\implies u+v\in W$
+        \item $W$ is closed under scalar multiplication, $\alpha\in\mathbb F, u\in W\implies \alpha u\in W$
+    \end{itemize}
+\end{definition}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{problem}
+    Determine whether the following sets are subspace of $\mathbb R^2$ or not.
+        $S=\left\{\begin{pmatrix}
+            x\\y\\0
+        \end{pmatrix}\in\mathbb R^3:x,y\in\mathbb R\right\}$,
+         $T=\left\{\begin{pmatrix}
+            x\\y\\1
+        \end{pmatrix}\in\mathbb R^3:x,y\in\mathbb R\right\}$,
+        $U=\left\{\begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}\in\mathbb R^3:x,y\in\mathbb R,x\geq 0\right\}$,
+        $V=\left\{\begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}\in\mathbb R^3:x,y\in\mathbb R,x\geq y\right\}$
+\end{problem}
+\end{frame}
+
+\begin{frame}{Remark}
+\textbf{Remark:} If $S$ and $T$ are two subspaces of a vector space $V(\mathbb F)$ then $S\cap T$ is a subspace of $V(\mathbb F)$. But what about $S\cup T$? For example, take $W_1$ to be the $x$-axis and $W_2$ the $y$-axis, both subspaces of $\mathbb{R}^2$.    
+Their union includes both $(3,0)$ and $(0,5)$, whose sum, $(3,5)$, is not in the union. Hence, the union is not a vector space.
+\end{frame}
+
+
+\end{document}

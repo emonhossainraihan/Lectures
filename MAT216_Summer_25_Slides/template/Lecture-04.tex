@@ -1,0 +1,217 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-04}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Elementary row operation}
+    \begin{itemize}
+        \item Swapping any two rows. $\left(R_i^{\prime} \leftrightarrow R_j^{\prime}\right)$
+        \item Multiplying a row by a non-zero constant. ( $R_i^{\prime}=k \cdot R_i^{\prime}$ )
+        \item Adding some multiple of a row to another row. $\left(R_i^{\prime}=R_i^{\prime} \pm k \cdot R_j^{\prime}\right)$
+    \end{itemize}
+An elementary matrix is a square matrix that has been obtained by
+performing an elementary row or column operation on an identity
+matrix.
+\end{frame}
+
+\begin{frame}{Example}
+    $$
+E_1 = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 1
+\end{bmatrix}, E_2 = \begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix},
+E_3 = \begin{bmatrix}
+1 & 0 & 0 \\
+3 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+$$
+A_1 = \begin{bmatrix}
+2 & 0 \\
+0 & 3
+\end{bmatrix}, A_2 = \begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}, 
+A_3 = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 1 \\
+0 & 0 & 0
+\end{bmatrix},
+A_4 = \begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix}
+$$
+
+\end{frame}
+
+\begin{frame}{Inverse matrix}
+a) Calculate the inverse of the matrix using Gauss-Jordan elimination method
+
+$$
+A=\left(\begin{array}{ccc}
+2 & 2 & 3 \\
+1 & -3 & 1 \\
+1 & 2 & 0
+\end{array}\right)
+$$
+
+b) Hence, solve the system
+
+$$
+\begin{array}{r}
+2 x+2 y+3 z=1 \\
+x-3 y+z=2 \\
+x+2 y=5
+\end{array}
+$$
+    
+\end{frame}
+
+\begin{frame}{Binary operation}
+    Suppose $*$ is a binary operation. A set $G$ is called closed under $*$ if $$a*b\in G\forall a,b\in G$$
+    \textbf{Examples:}
+    \begin{itemize}
+    \item Addition on the set $\mathbb{R}$, operation $\boldsymbol{a} * \boldsymbol{b}=\boldsymbol{a}+\boldsymbol{b}$
+    \item Addition on the set $\mathbb{N}$, operation $a * b=a+b$
+    \item Addition on the set $\mathbb{Z}$, operation $a * b=a+b$
+    \item Subtraction on the set $\mathbb{R}$, operation $a * b=a-b$
+    \item Matrix addition on the set of all $3 \times 3$ matrices
+    \item Matrix multiplication on the set of all $2 \times 2$ matrices
+    \end{itemize}
+    \textbf{Non-Example:}
+    Substraction on the set $\mathbb N$ oeprator: $a*b=a-b$
+\end{frame}
+
+\begin{frame}{Commutativity}
+    Suppose $*$ is a binary operation on the set $G$. The operation $*$ is called commutative if $$a*b=b*a \forall a,b\in G$$
+    \textbf{Examples:}
+    \begin{itemize}
+    \item Addition: $a*b=a+b$
+    \item Multiplication: $a*b=ab$
+    \item Matrix Addition
+    \end{itemize}
+    \textbf{Non-Example:}
+    Substraction, Division, Matrix Multiplication
+\end{frame}
+
+\begin{frame}{Associativity}
+    Suppose $*$ is a binary operation on the set $G$. The operation $*$ is called associative if $$(a*b)*c=a*(b*c) \forall a,b,c\in G$$
+    \textbf{Examples:}
+    \begin{itemize}
+    \item Multiplication: $a*b=ab$
+    \item Matrix Addition: $(A+B)+C=A+(B+C)$
+    \item Matrix Multiplication
+    \end{itemize}
+    \textbf{Non-Example:}
+    Substraction, Division
+\end{frame}
+
+\begin{frame}{Identity}
+    Suppose $*$ is a binary operation on the set $G$. The operation $*$ has an identity if there is a fixed unique element $e$ such that 
+    $$e*a=a*e=a\forall a\in G$$
+    Here $e$ is called the identity of the operation.\\
+    Find the identity element of the operation $*$ on $\mathbb R$ where $$a*b=a+b-1$$
+    Find the identity of the operation $\oplus$ on $\mathbb R^2$ where
+    $$(a,b)\oplus(c,d)=(a+c+2,b+d-1)$$
+\end{frame}
+
+\begin{frame}{Inverse}
+Suppose $*$ is a binary operation on the set $G$ with the identity element $e$. Existence of Inverse means for each element $a \in G$ there will have a unique element $a^{\prime}$ which can be dependent of $a$, such that
+
+$$
+a^{\prime} * a=a * a^{\prime}=e \text { for all } a \in G
+$$
+
+
+Here $a^{\prime}$ is called the Inverse of $a$.\\
+
+Find the inverse $$a*b=a+b-1$$
+    
+\end{frame}
+\begin{frame}{Vector Space}
+    To have a vector space, the ten following axioms must be satisfied for every $u, v$ and $w$ in $V$, and $a$ and $b$ in $\mathbb F$.\\~\\
+(Basically, we need a set, $V$ where we define an operator $\oplus$ which operates on set elements and another operator $\odot$ which operates on the field and set elements)\\~\\
+\textbf{Operations on vector addition:}
+\begin{itemize}
+    \item \textbf{Closure law (A1):} $\forall u,v\in V\implies u\oplus v\in V$. 
+    \item \textbf{Commutative law (A2):} $\mathbf{u}\oplus\mathbf{v}=\mathbf{v}\oplus\mathbf{u}$ 
+    \item \textbf{Associative law (A3):} $\mathbf{u}\oplus(\mathbf{v}\oplus\mathbf{w})=(\mathbf{u}\oplus\mathbf{v})\oplus\mathbf{w}$.
+    \item \textbf{Existence of Additive identity (A4):} There exists an element $\mathbf{0}_V \in V$, called the zero vector, such that $\mathbf{v}\oplus\mathbf{0}_V=\mathbf{v}$ for all $\mathbf{v} \in V$.
+    \item \textbf{Existence of Additive inverse (A5):} For every $\mathbf{v} \in V$, there exists an element $-\mathbf{v} \in V$, called the additive inverse of $\mathbf{v}$, such that $\mathbf{v}\oplus(-\mathbf{v})=\mathbf{0}$.
+\end{itemize}
+\end{frame}
+\begin{frame}{Axioms}
+    \textbf{Operations on scalar multiplication:}
+\begin{itemize}
+    \item \textbf{Closure law (M1):} $\forall\alpha\in\mathbb F$ and $\mathbf{v}\in V\implies \alpha\odot\mathbf{v}\in V$.
+    \item \textbf{Distributive law respect to vector addition (M2):} $\alpha \odot (\mathbf{u}\oplus\mathbf{v})=\alpha\odot\mathbf{u}\oplus\alpha\odot\mathbf{v}$
+    \item \textbf{Distributive law respect to field addition (M3):} $(\alpha\tilde\oplus \beta)\odot \mathbf{v}=\alpha\odot \mathbf{v}\oplus \beta\odot\mathbf{v}$
+    \item \textbf{Compatibility of scalar multiplication with field multiplication (M4):} $\alpha\odot(\beta \odot \mathbf{v})=(\alpha \star \beta)\odot \mathbf{v}$.
+    \item \textbf{Existence of multiplicative identity (M5):} $1_{\mathbb F} \mathbf{v}=\mathbf{v}$, where $1_{\mathbb F}$ denotes the multiplicative identity in $\mathbb F$.
+\end{itemize}
+\end{frame}
+% \section{Bibliography}
+% \begin{frame}[t,allowframebreaks]
+% \frametitle{Bibliography}
+% \printbibliography[heading=none]
+% \end{frame}
+\end{document}

@@ -1,0 +1,140 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-13}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Periodic functions}
+\textbf{Square wave:}
+  $$
+  f(x) = \begin{cases}1, & 0 < x < \pi \\ -1, & -\pi < x < 0 \end{cases}
+  $$
+\textbf{Sawtooth wave:}
+  $$
+  f(x) = x \quad \text{on } [-\pi,\pi]
+  $$
+\end{frame}
+
+\begin{frame}{Trigonometric Identity}
+Prove the following identities:
+    $$
+    \int_{-\pi}^\pi \cos(mx)\cos(nx)dx=\begin{cases}
+        0,&m\neq n\\
+        \pi, & m=n
+    \end{cases}
+    $$
+    $$
+    \int_{-\pi}^\pi \sin(mx)\sin(nx)dx=\begin{cases}
+        0,&m\neq n\\
+        \pi, & m=n
+    \end{cases}
+    $$
+\end{frame}
+
+\begin{frame}{Orthogonal Basis}
+    Consider the orthogonal basis, $$\mathcal B=\{1,\cos(kx),\sin(kx)\}_{k=1}^\infty$$
+    And for any $2\pi$-periodic function $f(x)$ we get,
+    $$
+    f(x)=\frac{a_0}{2}+\sum_{k=1}^\infty a_k\cos(kx)+\sum_{k=1}^\infty b_k \sin(kx)
+    $$
+    Then we can derive the coefficient in the same fashion and will get
+    \begin{align*}
+        a_k &= \frac{1}{\pi} \int_{-\pi}^\pi f(x)\cos(kx) dx\\
+        b_k &= \frac{1}{\pi} \int_{-\pi}^\pi f(x)\sin(kx) dx\\
+        a_0 &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) dx
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Example}
+    Find the Fourier series of the following function,
+    $$
+    f(x)= \begin{cases}
+        1, &0<x<\pi\\
+        -1, & -\pi<x<0
+    \end{cases}
+    $$
+    \textbf{Hint:} First, get the periodic extension. Carefully observe the domain $[-\pi,\pi]$ and then find the Fourier series. 
+\end{frame}
+
+\begin{frame}{Example}
+    Find the Fourier series of the following function,
+    $$
+    f(x)= \begin{cases}
+        1, &\pi<x<2\pi\\
+        -1, & 0<x<\pi
+    \end{cases}
+    $$
+    \textbf{Hint:} First, get the periodic extension. Carefully observe the domain $[0,2\pi]$ and then find the Fourier series.
+\end{frame}
+
+\begin{frame}{General Formula}
+$$
+f(x)=\frac{a_0}{2}+\sum_{k=1}^\infty a_k \cos\left(k\frac{x\pi}{L}\right)+\sum_{k=1}^\infty b_k\sin\left(k\frac{x\pi}{L}\right)
+$$
+    \begin{align*}
+        a_k &= \frac{1}{L} \int_{-L}^L f(x)\cos(kx) dx\\
+        b_k &= \frac{1}{L} \int_{-L}^L f(x)\sin(kx) dx\\
+        a_0 &= \frac{1}{L} \int_{-L}^L f(x) dx
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Example}
+    Find the Fourier series of the following function,
+    $$
+    f(x)= x^2, -1<x<1
+    $$
+    \textbf{Hint:} First, get the periodic extension. Carefully observe the domain $[-1,1]$ and then find the Fourier series.
+\end{frame}
+
+\end{document}

@@ -1,0 +1,242 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-02}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Gaussian Elimination}
+\begin{frame}{Different taste!}
+$$
+    \begin{cases}
+        x-y&=1\\
+        2x+y&=6
+    \end{cases}\qquad\quad
+    \begin{cases}
+        x+y&=4\\
+        3x+3y&=6
+    \end{cases}\qquad\quad 
+    \begin{cases}
+        4x-2y&=1\\
+        16x-8y&=4
+    \end{cases}
+$$
+\textbf{System 1:} \say{We'll end up in mutual understanding} \( \frac{a_1}{a_2} \neq \frac{b_1}{b_2} \neq \frac{c_1}{c_2} \)\\
+\textbf{System 2:} \say{We’ll never intersect!}  \( \frac{a_1}{a_2} = \frac{b_1}{b_2} \neq \frac{c_1}{c_2} \)\\
+\textbf{System 3:} \say{Wait, Are we different?} \( \frac{a_1}{a_2} = \frac{b_1}{b_2} = \frac{c_1}{c_2} \)\\
+\pause
+\textbf{Observation:} The First system gives a unique solution, the second one gives no solution ($0=-6$) and the third one gives infinitely many solutions ($0=0$).\\ 
+\textbf{Takeaway:} \\(1) If your system contains $0=\star$ then the system is inconsistent.\\ (2) And if your system contains $0=0$  then it is consistent (with infinitely many solutions).  
+\end{frame}
+
+
+
+\begin{frame}{Tree}
+    \begin{center}
+\begin{forest}
+for tree={
+  align=center,
+  grow'=south,
+  parent anchor=south,
+  child anchor=north,
+  l=2cm,
+  s sep=10pt,
+  edge={->}
+}
+[
+\shortstack{Linear system},
+  [\shortstack{Consistent},
+    [\shortstack{Unique solution\\(number of unknowns\\=\\number of pivots)}]
+    [\shortstack{Many solutions\\(number of unknowns\\>\\number of pivots)}]
+  ]
+  [\shortstack{Inconsistent},
+    [\shortstack{No solution\\(zero=non-zero)}]
+  ]
+]
+\end{forest}
+\end{center}
+\end{frame}
+
+\begin{frame}{Some more systems!}
+Identify the nature of the solutions of the following systems: 
+    $$
+    \left(\begin{array}{ccc|c}
+         1 & 0 & 0 & 1 \\
+         0 & 1 & 2 & 0 \\
+         0 & 0 & 0 & 1
+    \end{array}\right)\qquad\quad \left(\begin{array}{ccc|c}
+         1 & 0 & 3 & -1 \\
+         0 & 1 & -4 & 2 \\
+         0 & 0 & 0 & 0
+    \end{array}\right)\qquad\quad 
+    \left(\begin{array}{ccc|c}
+         1 & -5 & 1 & 4 \\
+         0 & 0 & 0 & 0 \\
+         0 & 0 & 0 & 0
+    \end{array}\right)
+    $$
+\end{frame}
+
+
+\begin{frame}{Reverse engineering}
+    Solve the system from the nicer form:
+    $$
+    \left(\begin{array}{ccc|c}
+         1 & 0 & 0 & 6 \\
+         0 & 1 & 0 & 7 \\
+         0 & 0 & 1 & 8
+    \end{array}\right)\qquad
+    \left(\begin{array}{ccccc|c}
+        1 & -6 & 0 &0&3&-2 \\
+        0 & 0 & 1 &0&4&7 \\
+        0 & 0 & 0 &1 &5 &8 \\
+        0 & 0 & 0 & 0 & 0& 0
+    \end{array}\right)\qquad
+    \left(\begin{array}{ccc|c}
+         1 & 2 & 3 & 6 \\
+         0 & 1 & 2 & 7 \\
+         0 & 0 & 1 & 8
+    \end{array}\right)
+    $$
+\end{frame}
+
+\begin{frame}{Operation tools!}
+We call a column as a Pivot column if it has only one non-zero entry and rest of them are zeros. As for the $3\times3$ matrix, we can have the following scenarios:
+$$
+\begin{pmatrix}
+    \star\\0\\0
+\end{pmatrix}\text{ or}\begin{pmatrix}
+    0\\\star\\0
+\end{pmatrix}\text{ or }\begin{pmatrix}
+    0\\0\\\star
+\end{pmatrix}
+$$
+$$
+\left(\begin{array}{ccc|c}
+    \star & \star & \star & \star\\
+    \star & \star & \star & \star\\
+    \star & \star & \star & \star\\
+\end{array}\right) \rightarrow \left(\begin{array}{ccc|c}
+    1 & \star & \star & \star\\
+    \star & \star & \star & \star\\
+    \star & \star & \star & \star\\
+\end{array}\right) \rightarrow \left(\begin{array}{ccc|c}
+    1 & \star & \star & \star\\
+    0 & \star & \star & \star\\
+    0 & \star & \star & \star\\
+\end{array}\right)$$
+$$
+\rightarrow \left(\begin{array}{ccc|c}
+    1 & \star & \star & \star\\
+    0 & 1 & \star & \star\\
+    0 & \star & \star & \star\\
+\end{array}\right) \rightarrow \left(\begin{array}{ccc|c}
+    1 & \star & \star & \star\\
+    0 & 1 & \star & \star\\
+    0 & 0 & \star & \star\\
+\end{array}\right) \rightarrow \underbrace{\left(\begin{array}{ccc|c}
+    1 & \star & \star & \star\\
+    0 & 1 & \star & \star\\
+    0 & 0 & 1 & \star\\
+\end{array}\right)}_{\text{Row Echelon form}}
+$$
+You can use back substitution or row operations to get the solution. 
+\end{frame}
+\begin{frame}{continued...}
+    $$
+\left(\begin{array}{ccc|c}
+    1 & \star & \star & \star\\
+    0 & 1 & \star & \star\\
+    0 & 0 & 1 & \star\\
+\end{array}\right) \rightarrow \left(\begin{array}{ccc|c}
+    1 & 0 & \star & \star\\
+    0 & 1 & \star & \star\\
+    0 & 0 & 1 & \star\\
+\end{array}\right) \rightarrow \underbrace{\left(\begin{array}{ccc|c}
+    1 & 0 & 0 & \star\\
+    0 & 1 & 0 & \star\\
+    0 & 0 & 1 & \star\\
+\end{array}\right)}_{\text{Reduced Row Echelon form}}
+    $$
+Now, Apply your tools to the following system:
+$$
+\begin{cases}
+    x+y+2z&=9\\
+    2x+4y-3z&=1\\
+    3x+6y-5z&=0 
+\end{cases} \implies \left(\begin{array}{ccc|c}
+     1&1&2&9\\
+     2&4&-3&1\\
+     3&6&-5&0
+\end{array}\right)
+$$
+\end{frame}
+\begin{frame}{continued...}
+    .
+\end{frame}
+\begin{frame}{continued...}
+    .
+\end{frame}
+\begin{frame}{continued...}
+    Gaussian Elimination: \href{https://www.youtube.com/watch?v=bnC848ie16Q}{https://www.youtube.com/watch?v=bnC848ie16Q}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.1]{YT_QR1.png}
+\end{figure}
+\end{frame}
+% \section{Bibliography}
+% \begin{frame}[t,allowframebreaks]
+% \frametitle{Bibliography}
+% \printbibliography[heading=none]
+% \end{frame}
+\end{document}

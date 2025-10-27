@@ -1,0 +1,174 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-09}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Null Space}
+    \begin{definition}
+        The \textbf{Null space} of a $m\times n$ matrix $A$, written as $\operatorname{Null}(A)$ is the set of all solutions to the homogeneous equation $Ax=0$. 
+        $$\operatorname{Null}(A)=\{x:x\text{ is in }\mathbb R^n,Ax=0\}$$
+    \end{definition}
+    $\operatorname{Null}(A)$ is a subspace of $\mathbb R^n$. 
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Find the null space of the following matrix:
+    $$
+    T=\begin{pmatrix}
+        2&-1&1\\1&2&-1\\1&7&-4
+    \end{pmatrix}
+    $$
+    \end{example}
+\end{frame}
+
+
+\begin{frame}{Example}
+    \begin{example}
+        Determine whether the following set is a vector space:
+    $$
+    W=\left\{
+    \begin{bmatrix}
+        x\\y\\z
+    \end{bmatrix}:x-y=0,y+z=0
+    \right\}
+    $$
+    \end{example}
+    \textbf{Hint:} 
+    $$
+    \begin{bmatrix}
+        1&-1&0\\0&1&1
+    \end{bmatrix}\begin{bmatrix}
+        x\\y\\z
+    \end{bmatrix}=\begin{bmatrix}
+        0\\0
+    \end{bmatrix}
+    $$
+\end{frame}
+
+\begin{frame}{Row Space}
+    \begin{definition}
+        The \textbf{Row space} of $m\times n$ matrix $A$ is the set of all linear combinations of the rows of $A$. 
+        $$\operatorname{Row}(A)=\operatorname{Span}\{R_1,\cdots, R_n\}$$
+    \end{definition}
+    The row space of an $m\times n$ matrix $A$ is a subspace of $\mathbb R^n$.    
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Find the row space of the following matrix:
+        $$
+        T=\begin{pmatrix}
+            2&-1&1\\1&2&-1\\1&7&-4
+        \end{pmatrix}
+        $$
+    \end{example}
+\end{frame}
+
+
+
+\begin{frame}{Column Space}
+    \begin{definition}
+        The \textbf{Column space} of $m\times n$ matrix $A$ is the set of all linear combinations of the columns of $A$. 
+        $$\operatorname{Col}(A)=\operatorname{Span}\{C_1,\cdots, C_n\}$$
+        or, 
+        $$\operatorname{Col}(A)=\{b:b=Ax\text{ for some }x\in\mathbb R^n\}$$
+    \end{definition}
+    The column space of an $m\times n$ matrix $A$ is a subspace of $\mathbb R^m$. 
+\end{frame}
+
+
+\begin{frame}{Example}
+    \begin{example}
+        Find the column space of the following matrix:
+        $$
+        T=\begin{pmatrix}
+            2&-1&1\\1&2&-1\\1&7&-4
+        \end{pmatrix}
+        $$
+    \end{example}
+\end{frame}
+
+
+
+\begin{frame}{Example}
+\begin{example}
+    Find a matrix $A$ such that $W=\operatorname{Col}(A)$ where 
+    $$W=\left\{
+    \begin{bmatrix}
+        x-2y\\3y\\x+y
+    \end{bmatrix}:x,y\in\mathbb R
+    \right\}$$
+Determine whether $W$ is a vector space or not. 
+\end{example}
+    \textbf{Hint:}
+    $$
+    \begin{bmatrix}
+        x-2y\\3y\\x+y
+    \end{bmatrix}=x\begin{bmatrix}
+        1\\2\\0
+    \end{bmatrix}+y\begin{bmatrix}
+        1\\-3\\3
+    \end{bmatrix}
+    $$
+\end{frame}
+
+
+\begin{frame}{Rank-Nullity Theorem}
+    $$
+    \operatorname{row-rank}(T)+\operatorname{nullity}(T)=\# \text{ of columns}
+    $$
+\end{frame}
+
+\end{document}

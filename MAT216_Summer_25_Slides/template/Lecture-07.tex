@@ -1,0 +1,132 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-07}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Linear Combination: sum of scalar multiples of vectors}
+    Let $(V,+, \cdot)$ be a vector space, and $\mathbf{v}_1, \ldots, \mathbf{v}_n \in V$ a collection of $n$ vectors in $V$. Then a linear combination of $\mathbf{v}_1, \ldots, \mathbf{v}_n$ is a sum of scalar multiples of these vectors; in other words, a sum of the form
+$$
+\alpha_1 \mathbf{v}_1+\alpha_2 \mathbf{v}_2+\cdots+\alpha_n \mathbf{v}_n
+$$
+for some choice of scalars $\alpha_1, \alpha_2, \ldots, \alpha_n$. A vector $\mathbf{v}$ is a linear combination of $\mathbf{v}_1, \ldots, \mathbf{v}_n$ if it can be written in this form.
+
+In general, given vectors $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n$, it can be quite difficult to determine simply by inspection whether or not some other vector $\mathbf{v}$ is or is not a linear combination of the given collection. One of our goals, discussed in detail below, will be to establish some systematic way of answering this question.
+\end{frame}
+
+\begin{frame}{Example}
+    Describe the set of all linear combinations of $e_{11}$, $e_{12}$, and $e_{22}$.\\
+    In the vector space $M_{2\times2}(\mathbb R)$, express the vector $A=\begin{pmatrix}
+        5&1\\-2&3
+    \end{pmatrix}$ as a linear combination of the vectors $e_{11}$, $e_{12}$, $e_{21}$, and $e_{22}$. Now do the same for the following ones:
+    $$
+    e=\begin{pmatrix}
+        1&0\\1&0
+    \end{pmatrix}, f=\begin{pmatrix}
+        1&-1\\0&1
+    \end{pmatrix},g=\begin{pmatrix}
+        0&1\\-1&0
+    \end{pmatrix}
+    $$
+    Hint: $A=2e+3f+4g$
+\end{frame}
+
+\begin{frame}{Example}
+    In the vector space $\mathbb R^3$ express the vector $v=(6,-7,3)$ as a linear combination of the vectors $v_1=(1,-2,1)$, $v_2=(2,1,-1)$ and $v_3=(7,-4,1)$.\\ 
+    Hint: $(4-3t,1-2t,t)$\\~\\
+    In the vector space $\mathbb R^3$ express the vector $v=(1,2,6)$ as a linear combination of the vectors $v_1=(2,1,0)$, $v_2=(1,-1,2)$ and $v_3=(0,3,-4)$.
+\end{frame}
+
+\begin{frame}{Linear Independence}
+A collection of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_n$ is linearly independent if
+$$
+\alpha_1 \mathbf{v}_1+\alpha_2 \mathbf{v}_2+\cdots+\alpha_n \mathbf{v}_n=\vec0 \quad \Longleftrightarrow \quad \alpha_1=\alpha_2=\cdots=\alpha_n=0
+$$
+In other words, the only linear combination of the vectors that produces the zero vector is the trivial combination, where each coefficient $\alpha_i=0$.\\
+A collection of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_n$ is linearly dependent iff it is not linearly independent.
+\end{frame}
+
+\begin{frame}{Example}
+    Show that the set of vectors ${(2,1,2),(0,1,-1),(4,3,4)}$ in $\mathbb R^3$ is linearly independent.\\
+    Check that for $v_1=\begin{pmatrix}
+        3\\4\\5
+    \end{pmatrix}$ and $v_2=\begin{pmatrix}
+        -1\\0\\1
+    \end{pmatrix}$ linearly independent. 
+\end{frame}
+
+\begin{frame}{Example}
+    Given the set of vectors
+
+$$
+v_1=\left(\begin{array}{l}
+1 \\
+2 \\
+3
+\end{array}\right), \quad v_2=\left(\begin{array}{l}
+4 \\
+5 \\
+6
+\end{array}\right) \quad \text { and } \quad v_3=\left(\begin{array}{l}
+7 \\
+8 \\
+9
+\end{array}\right)
+$$
+
+a) Determine whether the vectors are linearly independent or dependent.
+b) If they are linearly dependent, then express one of the vectors as a linear combination of the others
+\end{frame}
+
+\end{document}
