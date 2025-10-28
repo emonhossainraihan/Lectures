@@ -1,0 +1,200 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[lmargin=1in, tmargin=1in]{geometry}  %For centering solution box
+\usepackage{graphicx}
+\lhead{MAT216\\}
+\rhead{Quiz-01: Linear Algebra\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+\begingroup
+\centering
+\begin{figure}
+    \centering
+    \includegraphics[width=50px]{brac-university-logo.png}
+\end{figure}
+\LARGE Linear Algebra \& Fourier Analysis\\
+\LARGE Assessment\\
+\large \today\\
+\large Total - 0 Marks\\.\\% , Due date: \textcolor{red}{Thursday, June 27, Please submit hard copy}\\
+\endgroup
+\hrule
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+\textcolor{white}{text} \\
+\textbf{\large Name:}\\ \\
+\textbf{\large ID:}\\ \\
+\textbf{\large Section:}\\
+\hrule
+\vspace{10pt} 
+\section{Sets}
+%======================
+
+%=== CUSTOM COMMAND FOR ANSWER SPACE ===%
+\newcommand{\answerspace}[1][1.5cm]{%
+    \vspace{#1}
+    \rule{\linewidth}{0.3pt}\vspace{0.2cm}
+}
+
+%======================%
+\begin{questions}
+
+\question[3 Marks]
+Let \(A = \{1,2,3,4\}\) and \(B = \{2,4,6,8\}\).  
+Find \(A \cap B\).
+\begin{multicols}{2}
+A) \(\{1,3,5,7\}\)\\
+B) \(\{2,4\}\)\\
+C) \(\{6,8\}\)\\
+D) \(\{1,2,3,4,6,8\}\)
+\end{multicols}
+\droppoints
+\answerspace[1.2cm]
+
+\question[3 Marks]
+If \(X = \{a,b,c\}\), how many subsets does \(X\) have?  
+\begin{multicols}{2}
+A) 3 \\ B) 6 \\ C) 8 \\ D) 9
+\end{multicols}
+\droppoints
+\answerspace[1.2cm]
+
+\question[4 Marks]
+Let \(A = \{1,2,3,4,5\}\).  
+How many subsets of \(A\) contain both 1 and 2?
+\begin{multicols}{2}
+A) 4 \\ B) 8 \\ C) 16 \\ D) 32
+\end{multicols}
+\droppoints
+\answerspace[1.4cm]
+
+\end{questions}
+
+%======================%
+\section{Relations}
+%======================%
+\begin{questions}
+
+\question[3 Marks]
+Let \(A = \{1,2,3\}\) and define \(R = \{(x,y)\in A\times A : x < y\}\).  
+Which property does \(R\) satisfy?
+\begin{multicols}{2}
+A) Reflexive\\ B) Symmetric\\ C) Transitive\\ D) Both A and C
+\end{multicols}
+\droppoints
+\answerspace[1.2cm]
+
+\question[3 Marks]
+How many reflexive relations can be defined on a set with 3 elements?
+\begin{multicols}{2}
+A) \(2^9\)\\ B) \(2^6\)\\ C) \(2^3\)\\ D) \(3!\)
+\end{multicols}
+\droppoints
+\answerspace[1.2cm]
+
+\question[4 Marks]
+Let \(A = \{1,2,3,4\}\), \(R = \{(1,2),(2,3),(1,3)\}\).  
+Is \(R\) transitive?
+\begin{multicols}{2}
+A) Yes\\ B) No\\ C) Only if \((2,4)\) added\\ D) Insufficient data
+\end{multicols}
+\droppoints
+\answerspace[1.5cm]
+
+\end{questions}
+
+%======================%
+\section{Functions}
+%======================%
+\begin{questions}
+
+\question[3 Marks]
+Which of the following is a function from \(A=\{1,2,3\}\) to \(B=\{4,5,6\}\)?
+\begin{multicols}{2}
+A) \(\{(1,4),(2,5),(3,6)\}\)\\
+B) \(\{(1,4),(1,5),(3,6)\}\)\\
+C) \(\{(2,4),(3,4)\}\)\\
+D) \(\{(1,5),(2,5),(3,5),(2,6)\}\)
+\end{multicols}
+\droppoints
+\answerspace[1.2cm]
+
+\question[3 Marks]
+Let \(f(x)=2x+3\). Find \(f^{-1}(x)\).
+\begin{multicols}{2}
+A) \(\dfrac{x-3}{2}\)\\ B) \(\dfrac{x+3}{2}\)\\ C) \(2x-3\)\\ D) \(\dfrac{3x-1}{2}\)
+\end{multicols}
+\droppoints
+\answerspace[1.2cm]
+
+\question[3 Marks]
+Let \(f(x)=|x|\). Which of the following is true?
+\begin{multicols}{2}
+A) One-one but not onto\\
+B) Onto but not one-one\\
+C) Both one-one and onto\\
+D) Neither one-one nor onto
+\end{multicols}
+\droppoints
+\answerspace[1.4cm]
+
+\question[4 Marks]
+If \(f(x)=3x+2\) and \(g(x)=x^2\), find \((g\circ f)(x)\).
+\begin{multicols}{2}
+A) \(3x^2+2x\)\\ B) \(9x^2+12x+4\)\\ C) \(x^2+3x+2\)\\ D) \(x^2+9x+4\)
+\end{multicols}
+\droppoints
+\answerspace[1.2cm]
+
+\question[5 Marks]
+Let 
+\[
+A = \{a,b,c\}, \quad B = \{1,2,3,4\}, \quad C = \{x,y,z\}
+\]
+and define:
+\[
+f:A\to B, \quad 
+\begin{cases}
+f(a)=1,\\ f(b)=2,\\ f(c)=3
+\end{cases}
+\qquad
+g:B\to C, \quad 
+\begin{cases}
+g(1)=x,\\ g(2)=x,\\ g(3)=y,\\ g(4)=z
+\end{cases}
+\]
+Consider the composition \(g\circ f:A\to C\).
+
+\begin{enumerate}
+    \item[(i)] Determine \((g\circ f)(a)\), \((g\circ f)(b)\), and \((g\circ f)(c)\).
+    \item[(ii)] Is \(g\circ f\) \textbf{injective}? Justify your answer.
+    \item[(iii)] Is \(g\circ f\) \textbf{surjective}? Justify your answer.
+\end{enumerate}
+\droppoints
+\answerspace[2cm]
+
+\question[5 Marks]
+Let \(f:A\to B\), \(g:B\to C\).  
+If \(g\circ f\) is injective, which must hold?
+\begin{multicols}{2}
+A) \(f\) is injective\\
+B) \(g\) is injective\\
+C) Both are injective\\
+D) None necessarily
+\end{multicols}
+\droppoints
+\answerspace[1.5cm]
+
+\end{questions}
+
+
+
+    \vfill
+\begin{center}
+    \large\textbf{Best of Luck!}
+\end{center}
+\end{document}

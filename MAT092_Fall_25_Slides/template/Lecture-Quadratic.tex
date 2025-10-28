@@ -1,0 +1,383 @@
+%==========================================================
+% BRAC University Lecture Slides
+% Lecture: Quadratic Function Analysis (Without Calculus)
+%==========================================================
+\documentclass[12pt]{beamer}
+
+%==== PACKAGES ====%
+\usepackage{amsmath, amssymb, graphicx, xcolor, booktabs}
+
+%==== THEME & COLORS ====%
+\usetheme{Madrid}
+\definecolor{HeadBlue}{RGB}{0,70,150}
+\setbeamercolor{title}{fg=white,bg=HeadBlue}
+\setbeamercolor{frametitle}{fg=HeadBlue}
+\setbeamercolor{structure}{fg=HeadBlue}
+
+%==== TITLE INFO ====%
+\title[Quadratic Function Analysis]{Quadratic Function Analysis (Without Calculus)}
+\author{Emon Hossain}
+\institute[BRAC University]{Department of Mathematics and Natural Sciences \\ BRAC University}
+\date{}
+
+%==========================================================
+\begin{document}
+%==========================================================
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Quadratic Function Analysis (Without Calculus)}
+
+\textbf{General Form:}
+\[
+f(x) = ax^2 + bx + c, \quad (a \neq 0)
+\]
+
+\textbf{Shape:}
+\begin{itemize}
+    \item Opens \textcolor{blue}{upward} if $a > 0$
+    \item Opens \textcolor{red}{downward} if $a < 0$
+\end{itemize}
+
+\pause
+\textbf{Vertex Form (by completing the square):}
+\[
+\begin{aligned}
+f(x) &= a(x^2 + \tfrac{b}{a}x) + c \\
+     &= a\left(x + \tfrac{b}{2a}\right)^2 - \tfrac{b^2 - 4ac}{4a}
+\end{aligned}
+\]
+\[
+\boxed{f(x) = a(x - h)^2 + k}, \quad 
+h = -\tfrac{b}{2a}, \; k = c - \tfrac{b^2}{4a}
+\]
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Vertex and Axis of Symmetry}
+
+\textbf{Vertex:} $(h, k) = \left(-\tfrac{b}{2a}, \, c - \tfrac{b^2}{4a}\right)$
+
+\textbf{Axis of Symmetry:} $x = h$
+
+\textbf{Extreme Value:}
+\[
+\begin{cases}
+\text{Minimum at } (h, k), & a>0, \\[4pt]
+\text{Maximum at } (h, k), & a<0.
+\end{cases}
+\]
+
+\pause
+\textbf{Example:}
+\[
+f(x) = 2x^2 - 8x + 3 = 2(x-2)^2 - 5
+\]
+\[
+\Rightarrow \text{Vertex } (2, -5), \quad \text{Minimum value } f_{\min} = -5
+\]
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Maximum Example}
+
+\[
+f(x) = -x^2 + 6x - 8 = -(x-3)^2 + 1
+\]
+
+\[
+\Rightarrow \text{Vertex } (3, 1), \quad f_{\max} = 1
+\]
+\[
+\text{Axis: } x = 3, \quad a = -1 < 0 \Rightarrow \text{opens downward.}
+\]
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Discriminant and Nature of Roots}
+
+\[
+\Delta = b^2 - 4ac
+\]
+
+\begin{center}
+\begin{tabular}{c|c|c}
+Case & Roots & Graph \\ \hline
+$\Delta > 0$ & 2 real distinct & Cuts $x$-axis twice \\
+$\Delta = 0$ & 1 real double root & Touches $x$-axis \\
+$\Delta < 0$ & No real roots & Lies above/below $x$-axis
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Range and Axis Symmetry}
+
+\textbf{From } $f(x) = a(x-h)^2 + k$:
+
+\[
+\text{Range: } 
+\begin{cases}
+[k, \infty), & a>0 \\[4pt]
+(-\infty, k], & a<0
+\end{cases}
+\]
+
+\pause
+\textbf{Example:}
+\[
+f(x) = x^2 + 4x + 7 = (x+2)^2 + 3
+\]
+\[
+\Rightarrow \text{Vertex } (-2, 3), \text{ Range } [3, \infty)
+\]
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Application Example}
+
+\textbf{Height of a projectile:}
+\[
+h(t) = -5t^2 + 20t + 1 = -5(t-2)^2 + 21
+\]
+\[
+\Rightarrow \text{Maximum height } = 21 \text{ m at } t = 2 \text{ s.}
+\]
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Summary Table}
+
+\begin{center}
+\begin{tabular}{l|l}
+\textbf{Concept} & \textbf{Formula / Meaning} \\ \hline
+Vertex & $(h, k) = (-\tfrac{b}{2a}, c - \tfrac{b^2}{4a})$ \\
+Axis of symmetry & $x = -\tfrac{b}{2a}$ \\
+Extreme value & $f(h) = k$ \\
+Range & $[k, \infty)$ or $(-\infty, k]$ \\
+Discriminant & $\Delta = b^2 - 4ac$
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% %------------------------------------------
+% \begin{frame}{Practice Problems}
+
+% \begin{enumerate}
+%     \item Find the vertex, axis, and range of $f(x) = 3x^2 + 6x - 9$.
+%     \item Determine if $f(x) = -2x^2 + 8x - 5$ has a max or min and find it.
+%     \item For $f(x) = x^2 - 6x + 5$, find:
+%     \begin{itemize}
+%         \item Vertex
+%         \item Minimum value
+%         \item Values of $x$ when $f(x)=9$
+%     \end{itemize}
+%     \item A company’s profit: $P(x) = -2x^2 + 12x - 20$. \\
+%     Find $x$ giving max profit and the max value.
+% \end{enumerate}
+
+% \end{frame}
+
+
+\begin{frame}{Example 4 — Interesting Parameter Problem}
+
+For what value of $k$ will the quadratic
+\[
+f(x) = x^2 - 6x + k
+\]
+have its minimum value equal to $4$?
+
+\pause
+\[
+f(x) = (x-3)^2 + (k - 9)
+\]
+Minimum value = $k - 9 = 4 \Rightarrow k = 13$.
+
+\textbf{Hence } $f(x) = x^2 - 6x + 13$ has $\min f(x) = 4$ at $x = 3$.
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Example 5 — Optimizing Without Calculus}
+
+The sum of a number and its reciprocal is given by:
+\[
+S = x + \frac{1}{x}, \quad x>0.
+\]
+Find the minimum value of $S$.
+
+\pause
+Multiply by $x$: 
+\[
+Sx = x^2 + 1.
+\]
+\[
+S = x + \frac{1}{x} \Rightarrow Sx - x^2 = 1
+\Rightarrow x^2 - Sx + 1 = 0
+\]
+For real $x$, discriminant $\ge 0$:
+\[
+S^2 - 4 \ge 0 \Rightarrow S \ge 2.
+\]
+\textbf{Hence } $\min S = 2$ at $x = 1$.
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Example 6 — Geometric Problem}
+
+The product of two positive numbers is $36$.  
+Find the minimum possible value of their sum.
+
+\pause
+Let the numbers be $x$ and $\frac{36}{x}$.
+
+\[
+S = x + \frac{36}{x}, \quad x>0
+\]
+\[
+Sx = x^2 + 36 \Rightarrow S = x + \frac{36}{x}
+\]
+By discriminant method:
+\[
+S^2 - 4\cdot36 \ge 0 \Rightarrow S \ge 12.
+\]
+\textbf{Hence } $\min S = 12$ when $x = 6$.
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Example 7 — Vertex in Disguise}
+
+Find the minimum value of 
+\[
+f(x) = 4x^2 - 12x + 11.
+\]
+\pause
+\[
+f(x) = 4(x^2 - 3x) + 11 = 4\left[(x - \tfrac{3}{2})^2 - \tfrac{9}{4}\right] + 11
+\]
+\[
+f(x) = 4(x - \tfrac{3}{2})^2 + 2.
+\]
+\textbf{Minimum value } $= 2$ at $x = \tfrac{3}{2}$.
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Example 8 — Advanced Challenge}
+
+The function $f(x) = 2x^2 - 8x + m$ has a minimum value of $10$.  
+Find $m$.
+
+\pause
+\[
+f(x) = 2(x-2)^2 + (m - 8)
+\]
+Minimum value $= m - 8 = 10 \Rightarrow m = 18$.
+
+\textbf{Hence } $f(x) = 2x^2 - 8x + 18$ has $\min f(x) = 10$ at $x=2$.
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Example 9 — Hard Conceptual One}
+
+If $f(x) = a(x-1)^2 + b(x-2)^2 + c(x-3)^2$ has a minimum at $x=2$,  
+find a relation among $a,b,c$.
+
+\pause
+At $x=2$ (vertex), slope of symmetry ⇒ coefficients of $(x-2)$ vanish.
+Without calculus, compare symmetry:
+
+Let $x = 2 + t$ and $x = 2 - t$, then $f(2+t)=f(2-t)$ for all $t$.
+
+After simplification:
+\[
+(a+c) = b.
+\]
+\textbf{Hence the condition: } $b = a + c.$
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Example 10 — Extreme with Parameter}
+
+Find all $p$ for which the minimum value of
+\[
+f(x) = x^2 + (p-4)x + p
+\]
+is equal to $1$.
+
+\pause
+\[
+f(x) = (x + \tfrac{p-4}{2})^2 - \tfrac{(p-4)^2}{4} + p
+\]
+Minimum value $= -\tfrac{(p-4)^2}{4} + p = 1$
+\[
+\Rightarrow (p-4)^2 = 4(p-1)
+\]
+\[
+\Rightarrow p^2 - 8p + 16 = 4p - 4
+\]
+\[
+\Rightarrow p^2 - 12p + 20 = 0
+\Rightarrow p = 10 \text{ or } 2.
+\]
+\textbf{Hence } $p = 2$ or $10.$
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Summary Table}
+
+\begin{center}
+\begin{tabular}{l|l}
+\textbf{Concept} & \textbf{Formula / Meaning} \\ \hline
+Vertex & $(h, k) = (-\tfrac{b}{2a}, c - \tfrac{b^2}{4a})$ \\
+Axis of symmetry & $x = -\tfrac{b}{2a}$ \\
+Extreme value & $f(h) = k$ \\
+Range & $[k, \infty)$ or $(-\infty, k]$ \\
+Discriminant & $\Delta = b^2 - 4ac$
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{Practice Problems for Students}
+
+\begin{enumerate}
+    \item Find the vertex, axis, and range of $f(x) = 3x^2 + 6x - 9$.
+    \item For $f(x) = -2x^2 + 8x - 5$, find its maximum and range.
+    \item If $f(x) = x^2 - 6x + k$ has a minimum value of $2$, find $k$.
+    \item Find the least value of $x + \frac{9}{x}$ for $x > 0$.
+    \item If $f(x) = a(x-1)^2 + b(x-2)^2 + c(x-3)^2$ has vertex at $x=2$, find $b$ in terms of $a,c$.
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------
+\begin{frame}{References}
+
+\begin{enumerate}
+    \item Seymour Lipschutz \& Murray Spiegel, \textit{Schaum’s Outline of College Algebra}, McGraw-Hill.
+    \item Erwin Kreyszig, \textit{Advanced Engineering Mathematics}, Wiley.
+    \item Dennis Zill, \textit{A First Course in Differential Equations}, Cengage.
+    \item Lial, Hornsby \& Schneider, \textit{Precalculus: Graphs and Models}, Pearson.
+\end{enumerate}
+
+\end{frame}
+
+%==========================================================
+\end{document}
