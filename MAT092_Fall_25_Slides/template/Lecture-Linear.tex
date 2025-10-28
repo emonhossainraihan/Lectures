@@ -1,0 +1,233 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+
+%=== THEME AND COLORS ===%
+\usetheme{Madrid}
+\usecolortheme{default}
+\definecolor{DefBlue}{RGB}{0,102,224}
+\definecolor{ThmGreen}{RGB}{0,173,76}
+\definecolor{ProbOrange}{RGB}{204,85,0}
+
+\setbeamercolor{block title}{bg=DefBlue!15, fg=DefBlue}
+\setbeamercolor{block body}{bg=DefBlue!5}
+
+\setbeamercolor{block title example}{bg=ThmGreen!20, fg=ThmGreen!90!black}
+\setbeamercolor{block body example}{bg=ThmGreen!5}
+
+\setbeamercolor{block title alerted}{bg=ProbOrange!20, fg=ProbOrange!90!black}
+\setbeamercolor{block body alerted}{bg=ProbOrange!5}
+
+\usefonttheme{professionalfonts}
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{graphicx}
+
+\title[Linear Functions]{\textbf{Linear Functions: Forms, Intuition, and Inverses}}
+\author[Emon Hossain]{Emon Hossain \\ Department of Mathematics and Natural Sciences \\ BRAC University}
+\date{}
+
+%=== BEGIN DOCUMENT ===%
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Motivation}
+Linear functions are the simplest yet most fundamental class of functions.
+\pause
+
+\begin{itemize}
+    \item They describe \textbf{uniform change} and \textbf{straight lines}.
+    \item They appear everywhere: physics, economics, and geometry.
+    \item They serve as \textbf{building blocks} of linear transformations.
+\end{itemize}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Definition}
+\begin{block}{Linear Function}
+A function \( f:\mathbb{R}\to\mathbb{R} \) is called \textbf{linear (affine)} if
+\[
+f(x) = m x + c, \qquad m,c\in\mathbb{R}.
+\]
+\end{block}
+\pause
+\begin{itemize}
+    \item \(m\): slope — rate of change.
+    \item \(c\): intercept — value of \(f\) when \(x=0\).
+\end{itemize}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Different Forms of Linear Equations}
+\begin{tabular}{lll}
+\textbf{Form} & \textbf{Equation} & \textbf{Use} \\ \hline
+Slope--Intercept & \(y = mx + c\) & Quick graphing \\
+Point--Slope & \(y - y_1 = m(x - x_1)\) & Given one point \\
+Two--Point & \(y - y_1 = \frac{y_2 - y_1}{x_2 - x_1}(x - x_1)\) & Two points known \\
+General & \(Ax + By + C = 0\) & Algebraic relations \\
+Vector & \(\vec{r}=\vec{r_0}+t\vec{v}\) & Geometry / vector form
+\end{tabular}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Geometric Intuition}
+\begin{itemize}
+    \item The graph of \(y = mx + c\) is a \textbf{straight line}.
+    \item Equal change in \(x\) $\Rightarrow$ equal change in \(y\).
+    \item \(m>0\): increasing; \(m<0\): decreasing; \(m=0\): constant.
+\end{itemize}
+
+\pause
+\begin{center}
+\includegraphics[width=0.6\textwidth]{example-image-a}
+\end{center}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Injectivity and Surjectivity}
+\begin{block}{Injective}
+\(f\) is injective if \(f(x_1)=f(x_2)\Rightarrow x_1=x_2\).
+\[
+mx_1+c = mx_2+c \implies m(x_1-x_2)=0.
+\]
+So \(f\) is injective iff \(m\neq0\).
+\end{block}
+\pause
+\begin{block}{Surjective}
+For \(f:\mathbb{R}\to\mathbb{R}\),
+\[
+y=mx+c \Rightarrow x=\frac{y-c}{m}.
+\]
+All \(y\in\mathbb{R}\) have preimages iff \(m\neq0\).
+\end{block}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Inverse Function}
+If \(f(x)=mx+c\) with \(m\neq0\),
+\[
+f^{-1}(x) = \frac{x-c}{m}.
+\]
+
+\pause
+\begin{exampleblock}{Verification}
+\[
+f^{-1}(f(x)) = \frac{mx+c-c}{m}=x.
+\]
+Thus \(f^{-1}\) and \(f\) are mirror images over \(y=x\).
+\end{exampleblock}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Composition Property}
+\begin{exampleblock}{Composition}
+If \(f(x)=m_1x+c_1,\quad g(x)=m_2x+c_2\), then
+\[
+(f\circ g)(x)=m_1m_2x+(m_1c_2+c_1).
+\]
+Hence linear functions form a group under composition when \(m\neq0\).
+\end{exampleblock}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Matrix Viewpoint}
+For \(T(\mathbf{x})=A\mathbf{x}\):
+
+\begin{itemize}
+    \item Injective $\Leftrightarrow \ker(A)=\{0\}$ $\Leftrightarrow \det(A)\neq0$.
+    \item Surjective $\Leftrightarrow$ $\operatorname{Im}(A)=\mathbb{R}^m$.
+    \item Bijective $\Leftrightarrow$ square $A$ with $\det(A)\neq0$.
+\end{itemize}
+
+\pause
+Example:
+\[
+A=\begin{pmatrix}2 & 1\\ 1 & 3\end{pmatrix},\quad
+A^{-1}=\frac{1}{5}\begin{pmatrix}3 & -1\\ -1 & 2\end{pmatrix}.
+\]
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Common Misconception}
+\begin{alertblock}{Beware}
+\(f(x)=mx+c\) is not a \textbf{linear transformation} unless \(c=0\).
+\end{alertblock}
+
+\pause
+In linear algebra, linear maps preserve:
+\[
+T(a\mathbf{x}+b\mathbf{y}) = aT(\mathbf{x}) + bT(\mathbf{y}).
+\]
+An affine term \(+c\) breaks this property.
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Examples}
+\begin{exampleblock}{Example 1}
+\(f(x)=3x-5\): injective, surjective, and
+\[
+f^{-1}(x)=\frac{x+5}{3}.
+\]
+\end{exampleblock}
+
+\pause
+\begin{exampleblock}{Example 2}
+\(f(x)=0x+2\Rightarrow f(x)=2\).
+Not injective, not surjective.
+\end{exampleblock}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Advanced Problems (I)}
+\begin{alertblock}{Algebraic / Functional}
+\begin{enumerate}
+    \item If \(f(x)=2x+3\), \(g(x)=ax+b\) and \(f\circ g=g\circ f\), find \(a,b\).
+    \item Find all \(m,c\) so that \(f^{-1}=f\).
+    \item If \(f(g(x))=x\), prove \(f,g\) are inverses and determine coefficients.
+\end{enumerate}
+\end{alertblock}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Advanced Problems (II)}
+\begin{alertblock}{Matrix and Proof Problems}
+\begin{enumerate}
+    \item \(T:\mathbb{R}^2\to\mathbb{R}^2,\; T(x,y)=(3x+2y,4x+y)\). Find if \(T\) is invertible and compute \(T^{-1}\).
+    \item Prove: a linear map \(T:\mathbb{R}^n\to\mathbb{R}^n\) is injective $\Leftrightarrow$ surjective.
+    \item Let \(T(x,y,z)=(x+y,y+z,z+x)\). Find \(\ker(T)\) and \(\operatorname{Im}(T)\).
+\end{enumerate}
+\end{alertblock}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Summary}
+\begin{center}
+\begin{tabular}{llll}
+\textbf{Property} & \(m=0\) & \(m\neq0\) & \textbf{Inverse} \\
+\hline
+Injective & ✗ & ✓ & \(f^{-1}(x)=\frac{x-c}{m}\)\\
+Surjective & ✗ & ✓ & -- \\
+Invertible & ✗ & ✓ & Exists \\
+Graph Type & Constant & Straight Line & Reflection about \(y=x\)
+\end{tabular}
+\end{center}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}{Suggested Reading}
+\begin{itemize}
+    \item Seymour Lipschutz, \textit{Schaum’s Outline of Linear Algebra}.
+    \item Stephen Abbott, \textit{Understanding Analysis}.
+    \item Erwin Kreyszig, \textit{Advanced Engineering Mathematics}.
+    \item Zill, \textit{A First Course in Differential Equations with Linear Algebra}.
+\end{itemize}
+\end{frame}
+
+%--------------------------------------------------%
+\begin{frame}[standout]
+Thank You! \\[1em]
+Questions or discussions?
+\end{frame}
+
+\end{document}
