@@ -1,0 +1,175 @@
+ \documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-08}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Differentiability in higher dimensions}
+    What does it mean by a function, $f:D\subset\mathbb R\rightarrow\mathbb R$, is differentiable at a point $a$? 
+    \begin{itemize}
+        \item Geometrically, what does it mean?
+    \end{itemize}
+    $$\boxed{\lim_{h\rightarrow 0}\frac{f(a+h)-f(a)}{h}}\qquad\boxed{\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}}$$
+    \textbf{Question:} How can you lift this definition to a higher dimension? 
+    \pause
+    \begin{itemize}
+        \item \textbf{Problem-1}: Dividing by the norm of $(x-a)\in\mathbb R^n$
+        \item \textbf{Problem-2}: Considering the derivative as a transformation: $\tilde{f}'(a)\cdot(x-a)$ 
+    \end{itemize}
+\end{frame}
+\begin{frame}{Definition}
+    \begin{definition}
+        The function $f:\mathbb R^n\rightarrow\mathbb R^m$ is differentiable at the point $a$ if there exists a linear transformation $T:\mathbb R^n\rightarrow\mathbb R^m$  that satisfies the condition:
+        $$
+        \boxed{\lim_{x\rightarrow a}\frac{\|f(x)-f(a)-T(x-a)\|}{\|x-a\|}=0}
+        $$
+    \end{definition}
+    You can check \url{https://mathinsight.org/differentiability_multivariable_definition} to get the full insight about the condition. 
+\end{frame}
+
+\begin{frame}{Find the Derivative}
+    \begin{example}
+        Let $f:\mathbb R^2\rightarrow\mathbb R$, and suppose the function is differentiable at $a=(x_0,y_0)$ and the derivative (transformation) is denoted by $Df(x_0,y_0)$. Then the condition gives us:
+        \begin{align*}
+           \lim_{(x,y)\rightarrow(x_0,y_0)}  \frac{\| f(x,y)-f(x_0,y_0)-Df(x_0,y_0)(x-x_0,y-y_0)\|}{\|x-a\|}=0
+        \end{align*}
+        Now, we knew that $Df(x_0,y_0)$ must be something like $\begin{pmatrix}
+            f_1(x_0,y_0)&f_2(x_0,y_0)
+        \end{pmatrix}$. Consider, $y=y_0$ then, 
+        \begin{align*}
+            \lim_{x\rightarrow x_0}  \frac{\| f(x,y_0)-f(x_0,y_0)-f_1(x_0,y_0)(x-x_0)-f_2(x_0,y_0)(y_0-y_0)\|}{\sqrt{(x-x_0)^2+(y_0-y_0)^2}}&=0\\
+            \lim_{x\rightarrow x_0}  \frac{\| f(x,y_0)-f(x_0,y_0)-f_1(x_0,y_0)(x-x_0)\|}{\|x-x_0\|}&=0
+        \end{align*}
+    \end{example}
+\end{frame}
+\begin{frame}{Continued...}
+    \begin{example}
+            $$
+            \underbrace{\lim_{x\rightarrow x_0}  \frac{\| f(x,\star)-f(x_0,\star)-f_1(x_0,\star)(x-x_0)\|}{\|x-x_0\|}=0}_{f_1(x_0,y_0)=\partial_1f(x_0,y_0)}
+            $$
+            Similarly, we can get, 
+            $$
+            \underbrace{\lim_{y\rightarrow y_0}  \frac{\| f(\star,y)-f(\star,y_0)-f_2(\star,y_0)(y-y_0)\|}{\|y-y_0\|}=0}_{f_2(x_0,y_0)=\partial_2f(x_0,y_0)}
+            $$
+            Hence, 
+            $$Df(x_0,y_0)=\begin{pmatrix}
+                \partial_1 f(x_0,y_0)&\partial_2 f(x_0,y_0)
+            \end{pmatrix}$$
+            Which is nothing but the Jacobian. 
+    \end{example}
+\end{frame}
+\begin{frame}{Complex Derivative}
+    \textbf{Question:} What is $f'(a)$ in the definition of the complex derivative?\\
+    Consider the complex function as $f:\mathbb R^2\rightarrow\mathbb R^2$ then we can mimic the same computation and will get:
+    $$
+    Df=\begin{pmatrix}
+        \partial_1 u&\partial_2 u\\\partial_1 v&\partial_2v
+    \end{pmatrix}
+    $$
+    which should follow something like, $\begin{pmatrix}
+        a&-b\\b&a
+    \end{pmatrix}$. Which implies, 
+    $$
+        \begin{cases}
+            \partial_x u&=\partial_y v\\
+            -\partial_y u&= \partial_x v
+        \end{cases}
+    $$
+    This is nothing but the famous Cauchy-Riemann Equation. 
+\end{frame}
+\begin{frame}{CR Theorem}
+    \begin{definition}
+        A complex function $f(z)=u(x, y)+i v(x, y)$ has a complex derivative $f^{\prime}(z)$ if and only if its real and imaginary part are continuously differentiable and satisfy the Cauchy-Riemann equations
+    $$
+        u_x=v_y, \quad u_y=-v_x
+    $$
+In this case, the complex derivative of $f(z)$ is equal to any of the following expressions:
+    $$
+        f^{\prime}(z)=\underbrace{u_x+i v_x}_{\text{horizontal dir.}}=\underbrace{v_y-i u_y}_{\text{vertical dir.}}
+    $$
+    Once CR equations hold, any direction of approach yields the same derivative. Check \url{https://complex-analysis.com/content/complex_differentiation.html} for more details.
+    \end{definition}
+\end{frame}
+\begin{frame}{Holomorphic vs Analytic}
+    Holomorphic is just talking about differentiability in the complex plane. Suppose a complex-valued function is holomorphic in all points of a domain, then it is called an analytic function. Have a look at the Wiki \url{https://en.wikipedia.org/wiki/Holomorphic_function}. 
+\end{frame}
+\begin{frame}{Wirtinger Derivative}
+    The Wirtinger derivatives are defined as the following linear partial differential operators of first order:
+    \begin{align*}{\frac {\partial }{\partial z}}&={\frac {1}{2}}\left({\frac {\partial }{\partial x}}-i{\frac {\partial }{\partial y}}\right)\\{\frac {\partial }{\partial {\bar {z}}}}&={\frac {1}{2}}\left({\frac {\partial }{\partial x}}+i{\frac {\partial }{\partial y}}\right)\end{align*}
+\end{frame}
+\begin{frame}{Examples}
+    \begin{example}
+        Consider the function $f:\mathbb C\rightarrow\mathbb C$, $f(z)=z^2$. Find the complex derivative. 
+    \end{example}
+    The $f(z)$ can be written as
+    $$
+        z^2=\left(x^2-y^2\right)+i(2 x y)
+    $$
+Its real part $u=x^2-y^2$ and imaginary part $v=2 x y$ satisfy the Cauchy-Riemann equations, since
+    $$
+        u_x=2 x=v_y, \quad u_y=-2 y=-v_x
+    $$
+The CR theorem implies that $f(z)=z^2$ is differentiable. Its derivative turns out to be
+    $$
+        f^{\prime}(z)=u_x+i v_x=v_y-i u_y=2 x+i 2 y=2(x+i y)=2 z
+    $$
+\end{frame}
+\end{document}

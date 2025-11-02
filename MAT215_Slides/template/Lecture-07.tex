@@ -1,0 +1,280 @@
+\documentclass[12pt,a4paper]{article}
+
+%==============================
+%   ENCODING & FONTS
+%==============================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%==============================
+%   MATH & GRAPHICS
+%==============================
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+
+%==============================
+%   CUSTOM BOXES
+%==============================
+\newtcolorbox{DefBox}{
+  colback=Blue!5!white,
+  colframe=Blue!60!black,
+  fonttitle=\bfseries,
+  title=Definition,
+  arc=2mm, boxrule=0.6pt
+}
+\newtcolorbox{ThmBox}{
+  colback=Green!5!white,
+  colframe=Green!50!black,
+  fonttitle=\bfseries,
+  title=Theorem,
+  arc=2mm, boxrule=0.6pt
+}
+\newtcolorbox{ExBox}{
+  colback=Yellow!5!white,
+  colframe=Orange!80!black,
+  fonttitle=\bfseries,
+  title=Example,
+  arc=2mm, boxrule=0.6pt
+}
+\newtcolorbox{NoteBox}{
+  colback=gray!10!white,
+  colframe=gray!70!black,
+  fonttitle=\bfseries,
+  title=Note,
+  arc=2mm, boxrule=0.6pt
+}
+
+%==============================
+%   TITLE
+%==============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{L'Hospital's Rule and Indeterminate Forms}}\\[4pt]
+    \textbf{Department of Mathematics and Natural Sciences}\\
+    \textit{BRAC University}\\[1em]
+    \rule{0.9\textwidth}{0.4pt}
+\end{center}
+
+%==============================
+%   INTRODUCTION
+%==============================
+\section*{1. Motivation}
+
+When evaluating limits, sometimes substitution yields undefined forms such as
+\[
+\frac{0}{0},\quad \frac{\infty}{\infty},\quad 0\cdot\infty,\quad
+\infty-\infty,\quad 0^0,\quad 1^\infty,\quad \infty^0.
+\]
+These are called \textbf{indeterminate forms} since the resulting limit depends
+on the relative rates of vanishing or growth of the functions involved.
+
+%==============================
+%   L'HOSPITAL'S RULE
+%==============================
+\begin{ThmBox}
+Let $f,g$ be differentiable near $a$ (except possibly at $a$).
+Suppose:
+\begin{enumerate}[itemsep=2pt, topsep=3pt]
+    \item $f(a)=g(a)=0$ or $f(x),g(x)\to\infty$ as $x\to a$,
+    \item $g'(x)\neq 0$ near $a$,
+    \item $\displaystyle\lim_{x\to a}\frac{f'(x)}{g'(x)}$ exists (finite or $\infty$).
+\end{enumerate}
+Then
+\[
+\boxed{\displaystyle \lim_{x\to a}\frac{f(x)}{g(x)}
+= \lim_{x\to a}\frac{f'(x)}{g'(x)}}.
+\]
+\end{ThmBox}
+
+%==============================
+%   TYPE 0/0
+%==============================
+\section*{2. Indeterminate Form $\frac{0}{0}$}
+
+\begin{ExBox}
+\[
+\lim_{x\to 0}\frac{\sin x}{x}
+\quad\Rightarrow\quad \frac{0}{0}.
+\]
+Apply L'Hospital:
+\[
+\lim_{x\to 0}\frac{\cos x}{1} = 1.
+\]
+\end{ExBox}
+
+\begin{ExBox}
+\[
+\lim_{x\to 0}\frac{e^x - 1}{x}
+= \lim_{x\to 0}\frac{e^x}{1} = 1.
+\]
+\end{ExBox}
+
+%==============================
+%   TYPE ∞/∞
+%==============================
+\section*{3. Indeterminate Form $\frac{\infty}{\infty}$}
+
+\begin{ExBox}
+\[
+\lim_{x\to\infty}\frac{3x^2 + 4x}{5x^2 - 7}
+\Rightarrow \frac{\infty}{\infty}.
+\]
+Differentiate:
+\[
+\lim_{x\to\infty}\frac{6x + 4}{10x} = \frac{3}{5}.
+\]
+\end{ExBox}
+
+\begin{ExBox}
+\[
+\lim_{x\to\infty}\frac{\ln x}{x}
+= \lim_{x\to\infty}\frac{1/x}{1} = 0.
+\]
+\end{ExBox}
+
+%==============================
+%   TYPE 0·∞
+%==============================
+\section*{4. Indeterminate Form $0\cdot\infty$}
+
+\begin{ExBox}
+\[
+\lim_{x\to 0^+}x\ln x
+= \lim_{x\to 0^+}\frac{\ln x}{1/x}.
+\]
+Apply L'Hospital:
+\[
+\lim_{x\to 0^+}\frac{1/x}{-1/x^2}
+= \lim_{x\to 0^+}(-x) = 0.
+\]
+\end{ExBox}
+
+%==============================
+%   TYPE ∞−∞
+%==============================
+\section*{5. Indeterminate Form $\infty - \infty$}
+
+\begin{ExBox}
+\[
+\lim_{x\to\infty}(\sqrt{x^2 + x} - x)
+\]
+Multiply by conjugate:
+\[
+\frac{x}{\sqrt{x^2 + x} + x}
+= \frac{1}{\sqrt{1 + 1/x} + 1} \to \frac{1}{2}.
+\]
+\end{ExBox}
+
+%==============================
+%   EXPONENTIAL TYPES
+%==============================
+\section*{6. Exponential Indeterminate Forms}
+
+\begin{ExBox}
+\[
+\lim_{x\to 0^+}x^x.
+\]
+Let $\ln y = x\ln x$.  Since $x\ln x \to 0$,
+\[
+\ln y \to 0 \Rightarrow y\to e^0 = 1.
+\]
+\end{ExBox}
+
+\begin{ExBox}
+\[
+\lim_{x\to \infty}\left(1 + \frac{1}{x}\right)^x.
+\]
+Let $\ln y = x\ln(1 + 1/x)$.
+\[
+\lim_{x\to\infty}x\left(\frac{1}{x} - \frac{1}{2x^2}+\cdots\right)=1,
+\]
+so $y=e$.
+\end{ExBox}
+
+\begin{ExBox}
+\[
+\lim_{x\to 0^+}\left(\frac{1}{x}\right)^x.
+\]
+$\ln y = -x\ln x \to 0 \Rightarrow y\to 1.$
+\end{ExBox}
+
+%==============================
+%   HIGHER ORDER
+%==============================
+\section*{7. Repeated Applications}
+
+\begin{ExBox}
+\[
+\lim_{x\to 0}\frac{1 - \cos x}{x^2}.
+\]
+After two applications of L'Hospital:
+\[
+\lim_{x\to 0}\frac{\cos x}{2} = \frac{1}{2}.
+\]
+\end{ExBox}
+
+\begin{ExBox}
+\[
+\lim_{x\to 0}\frac{e^{2x} - 1 - 2x}{x^2}
+= \lim_{x\to 0}\frac{2e^{2x}}{1} = 2.
+\]
+\end{ExBox}
+
+%==============================
+%   SUMMARY TABLE
+%==============================
+\section*{8. Summary Table}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Type} & \textbf{Example} & \textbf{Technique} & \textbf{Result}\\
+\hline
+$0/0$ & $\dfrac{\sin x}{x}$ & Direct L'Hospital & 1\\
+\hline
+$\infty/\infty$ & $\dfrac{\ln x}{x}$ & Direct L'Hospital & 0\\
+\hline
+$0\cdot\infty$ & $x\ln x$ & Rewrite as $\ln x/(1/x)$ & 0\\
+\hline
+$\infty-\infty$ & $\sqrt{x^2+x}-x$ & Multiply by conjugate & 1/2\\
+\hline
+$0^0$ & $x^x$ & Logarithmic form & 1\\
+\hline
+$1^\infty$ & $(1+1/x)^x$ & Logarithmic form & $e$\\
+\hline
+$\infty^0$ & $(1/x)^x$ & Logarithmic form & 1\\
+\hline
+\end{tabular}
+\end{center}
+
+%==============================
+%   NOTES
+%==============================
+\begin{NoteBox}
+\textbf{Key Ideas:}
+\begin{itemize}[leftmargin=1.5em]
+    \item L'Hospital's Rule compares \textit{rates of change} of numerator and denominator.
+    \item Sometimes algebraic simplification is easier than differentiation.
+    \item Always ensure $g'(x)\neq 0$ and both functions are differentiable in a neighborhood of $a$.
+\end{itemize}
+\end{NoteBox}
+
+\begin{NoteBox}
+When both $f$ and $g$ vanish (or blow up), their ratio is governed by
+how steeply each function changes near the point:
+\[
+\frac{f(x)}{g(x)} \approx \frac{f'(x)}{g'(x)}.
+\]
+\end{NoteBox}
+\end{document}
