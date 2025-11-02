@@ -1,0 +1,111 @@
+\chapter{Lecture 4}
+\section{Linear Combination}
+Suppose we have vectors $u=\begin{pmatrix}
+    u_1\\u_2\\u_3
+\end{pmatrix},v=\begin{pmatrix}
+    v_1\\v_2\\v_3
+\end{pmatrix}$ and $w=\begin{pmatrix}
+    w_1\\w_2\\w_3
+\end{pmatrix}$ which live in $\mathbb R^3$. The linear combination of $u,v$ and $w$ are:
+\begin{align*}
+    \alpha u+\beta v+\gamma w&=\alpha \begin{pmatrix}
+    u_1\\u_2\\u_3
+\end{pmatrix}+\beta \begin{pmatrix}
+    v_1\\v_2\\v_3
+\end{pmatrix}+\gamma \begin{pmatrix}
+    w_1\\w_2\\w_3
+\end{pmatrix}
+\end{align*}
+Here $\alpha,\beta$ and $\gamma\in\mathbb R$ (can take arbitrary value from real number). We can check if a specific vector can be written in terms of given vectors $u,v,w$. Let's construct an example. Before that choose $u,v$ and $w$:
+
+$$
+u=\begin{pmatrix}
+    1\\0\\0
+\end{pmatrix},v=\begin{pmatrix}
+    0\\1\\0
+\end{pmatrix},w=\begin{pmatrix}
+    0\\0\\1
+\end{pmatrix}
+$$
+Here we choose the standard unit vectors to make our life and computation easy. Now, if I ask can $\ell = \begin{pmatrix}
+    1\\2\\3
+\end{pmatrix}$ be written in terms of $u,v,w$ (or in a linear combination)? I know, I know, you can easily say yes. Because
+\begin{align}
+\label{linear_com1}
+    \begin{pmatrix}
+        1\\2\\3
+    \end{pmatrix}=1\begin{pmatrix}
+    1\\0\\0
+\end{pmatrix}+2\begin{pmatrix}
+    0\\1\\0
+\end{pmatrix}+3\begin{pmatrix}
+    0\\0\\1
+\end{pmatrix}
+\end{align}
+But wait, can we find the same answer using a linear system? Yes, you are right! 
+\begin{align*}
+\begin{pmatrix}
+        1\\2\\3
+    \end{pmatrix}&=\alpha\begin{pmatrix}
+    1\\0\\0
+\end{pmatrix}+\beta\begin{pmatrix}
+    0\\1\\0
+\end{pmatrix}+\gamma\begin{pmatrix}
+    0\\0\\1
+\end{pmatrix}
+\end{align*}
+which become,
+$$
+\begin{cases}
+    1&=\alpha+0+0\\
+    2&=0+\beta+0\\
+    3&=0+0+\gamma
+\end{cases}
+$$
+Did you see how our solution of this linear system gives the coefficient we guess in \ref{linear_com1}? Now you can ask me why we are making our life difficult when we can guess the values of $\alpha,\beta$ and $\gamma$!!! Because here I choose very nice vectors $u,v,w$. If it was not chosen as nicely as I did here then you can't guess the values of $\alpha,\beta$ and $\gamma$ so easily/randomly. 
+\section{Are relations too strong to determine inverse?}
+Finally! we get space in this room to discuss our old friend, Inverse of a matrix.
+\\~\\
+Before we start doing some computation let's see how to predict whether a matrix will have an inverse or not!
+$$
+A=\begin{pmatrix}
+    1&2&3\\
+    4&5&6\\
+    7&8&9
+\end{pmatrix}
+$$
+Okay, suppose we have the inverse then,
+$$
+AA^{-1}=I\implies\begin{pmatrix}
+    1&2&3\\
+    4&5&6\\
+    7&8&9
+\end{pmatrix}\begin{pmatrix}
+    \star&\star&\star\\
+    \star&\star&\star\\
+    \star&\star&\star
+\end{pmatrix}=\begin{pmatrix}
+    1&0&0\\
+    0&1&0\\
+    0&0&1
+\end{pmatrix}
+$$
+But is it really possible?\\
+Did you see some relation in the column vectors? Like how do our columns take the values? Ah, you got it. The average of the first and third entries is the second entry for each column vector. Or more explicitly, the values of our column follow something like $\begin{pmatrix}
+    a\\ \frac{a+b}{2}\\b
+\end{pmatrix}$. But do our right-hand side vectors follow that? Like if we take the first column of our inverse matrix then,
+$$
+\begin{pmatrix}
+    1&2&3\\
+    4&5&6\\
+    7&8&9
+\end{pmatrix}\begin{pmatrix}
+    \star\\
+    \star\\
+    \star
+\end{pmatrix}=\begin{pmatrix}
+    1\\0\\0
+\end{pmatrix}
+$$
+So, what's your conclusion?
+ 

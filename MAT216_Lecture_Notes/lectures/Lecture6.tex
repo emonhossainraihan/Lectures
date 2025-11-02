@@ -1,0 +1,1518 @@
+\chapter{Quiz time!}
+I will add the question of Quiz-01 here. 
+\chapter{Lecture 7: Vector Space}
+\section{Stuff you can add and scale, but not multiply!}
+\textbf{A philosophical point:} we never say exactly what vectors are, only what vectors do. This is an example of abstraction, which appears everywhere in mathematics (but especially in algebra): the exact substance of an object is not important, only its properties and functions. (For instance, when using the number “three” in mathematics, it is unimportant whether we refer to three rocks, three sheep, or whatever; what is important is how to add, multiply, and otherwise manipulate these numbers, and what properties these operations have). This is tremendously powerful: it means that we can use a single theory (linear algebra) to deal with many very different subjects (physical vectors, population vectors in biology, portfolio vectors in finance, probability distributions in probability, functions in analysis, etc.). [A similar philosophy underlies \say{object-oriented programming} in computer science.] Of course, even though vector spaces can be abstract, it is often very helpful to keep concrete examples of vector spaces such as $\mathbb R^2$ or $\mathbb R^3$ handy, as they are of course much easier to visualize.
+\\~\\
+Suppose we have a set, $V=\{0,1,2,3,4\}$. We want to construct some well-defined operations on our set. Wait a minute! We don't have any additional operations except set union, intersection and set minus. And all of them need to sets. But here we want to operate using two elements of our set. How can we do that? Did you hear about the binary operation? 
+\begin{definition}
+    Let $V$ be a non-empty set and $b$ be a mapping ( or function) from $V\times V$ into $V$ i.e., $b:V\times V\rightarrow V$ then $b$ is called a binary operator on $V$. 
+\end{definition}
+~\\
+Now, can you define such a binary operation on our set $V=\{0,1,2,3,4\}$? We can consider $\mathbb F$ to be a field of scalars (I already give a motivation for why we need such a mathematical object here).  
+
+\begin{myremark}
+    \textbf{Hint:} We can define two operation for $a,b\in V$ and $k\in\mathbb F$,
+    \begin{align*}
+        a\triangle b&:= (a+b)\mod 5\\
+        k\square a&:= ka\mod 5
+    \end{align*}
+    Here we defined two weird operations $\triangle$ and $\square$. Can you verify that these two operations are well-defined for all pairs of elements? 
+\end{myremark}
+\begin{definition}
+To have a vector space, the following ten axioms must be satisfied for every $u, v$ and $w$ in $V$, and $a$ and $b$ in $\mathbb F$.\\~\\
+(Basically, we need a set, $V$ where we define an operator $\oplus$ which operates on set elements and another operator $\odot$ which operates on the field and set elements)\\~\\
+\textbf{Operations on vector addition:}
+\begin{itemize}
+    \item \textbf{Closure law (A1):} $\forall u,v\in V\implies u\oplus v\in V$. 
+    \item \textbf{Commutative law (A2):} $\mathbf{u}\oplus\mathbf{v}=\mathbf{v}\oplus\mathbf{u}$ 
+    \item \textbf{Associative law (A3):} $\mathbf{u}\oplus(\mathbf{v}\oplus\mathbf{w})=(\mathbf{u}\oplus\mathbf{v})\oplus\mathbf{w}$.
+    \item \textbf{Existence of Additive identity (A4):} There exists an element $\mathbf{0}_V \in V$, called the zero vector, such that $\mathbf{v}\oplus\mathbf{0}_V=\mathbf{v}$ for all $\mathbf{v} \in V$.
+    \item \textbf{Existence of Additive inverse (A5):} For every $\mathbf{v} \in V$, there exists an element $-\mathbf{v} \in V$, called the additive inverse of $\mathbf{v}$, such that $\mathbf{v}\oplus(-\mathbf{v})=\mathbf{0}$.
+\end{itemize}
+\textbf{Operations on scalar multiplication:}
+\begin{itemize}
+    \item \textbf{Closure law (M1):} $\forall\alpha\in\mathbb F$ and $\mathbf{v}\in V\implies \alpha\odot\mathbf{v}\in V$.
+    \item \textbf{Distributive law respect to vector addition (M2):} $\alpha \odot (\mathbf{u}\oplus\mathbf{v})=\alpha\odot\mathbf{u}\oplus\alpha\odot\mathbf{v}$
+    \item \textbf{Distributive law respect to field addition (M3):} $(\alpha\tilde\oplus \beta)\odot \mathbf{v}=\alpha\odot \mathbf{v}\oplus \beta\odot\mathbf{v}$
+    \item \textbf{Compatibility of scalar multiplication with field multiplication (M4):} $\alpha\odot(\beta \odot \mathbf{v})=(\alpha \star \beta)\odot \mathbf{v}$.
+    \item \textbf{Existence of multiplicative identity (M5):} $1_{\mathbb F} \mathbf{v}=\mathbf{v}$, where $1_{\mathbb F}$ denotes the multiplicative identity in $\mathbb F$.
+\end{itemize}
+\end{definition}
+\begin{problem}
+    Show that the set $M$ of all $2\times 2$ matrices with real entries is a vector space.
+\end{problem}
+\begin{example}
+\textbf{The space of durations}: \href{https://math.stackexchange.com/a/3987097}{I took the following interesting example from here}.\\
+For durations, we can clearly have some idea that it ought to be possible to take two lengths of time and sum them together - certainly expressions such as
+$$1\text{ minute} + 17\text{ seconds}$$
+$$1\text{ hour} + 34\text{ minutes}$$
+make sense, where we can just imagine placing such intervals of time end-to-end and will naturally run into such things. It *also* makes sense to scale a duration - I can say that an hour is sixty times as long as a minute, and generally multiplications such as
+$$2\cdot( 51\text{ seconds})$$
+$$\frac{1}7\cdot (1 \text{ hour})$$
+clearly refer to meaningful durations - where I can take a duration and a positive scaling factor and get a new duration. What *doesn't* make sense*, however, is to try to multiply two durations:
+$$(1\text{ hour})\cdot (1\text{ hour}) =\,\,???$$
+$$(60\text{ minutes})\cdot (60\text{ minutes}) =\,\,???$$
+Sure, you could come up with arbitrary definitions for multiplication of durations, but it wouldn't really mean anything tangible. We *could* get around this sort of issue if we all agreed "duration will always be represented as a real number their length in minutes," but this would be a completely arbitrary choice and wouldn't tell us anything new about durations. If we want to stick to the natural phenomenon, we're left with only a couple operations on durations: we can *add* and we can *scale*. We might envision a duration as something that lives on a timeline - just being some segment of that line that we can lay end to end to add or dilate to scale - but that's about all you can do with line segments without adding any extra information.
+
+You might generalize a bit to add some sign information to this - maybe we want to discuss how 5:00 PM is one hour before 6:00 PM, but 7:00 PM is one hour after. Okay, fine, we can revise our model to imagine that durations are more like arrows between points on a timeline - they have a length and a direction. This is much like how one gets from natural numbers to integers. 
+
+At this point all we really know is that we can add and subtract signed durations, as well as scale them by real factors. There's our first example of a vector space, albeit a one-dimensional one.
+\end{example}
+Okay, here are some non-example:
+\begin{example} \textbf{Set of polynomials with degree exactly 2} (e.g., \( ax^2 + bx + c \), where \( a \neq 0 \)): adding two such polynomials can give a polynomial of degree \( \leq 2 \), but it could be of degree \( <2 \), violating closure.  
+\end{example}
+
+\begin{example}
+\textbf{Set of solutions to a nonlinear equation} (e.g., \( x^2 + y^2 = 1 \)): \( (1,0) \) and \( (0,1) \) are on the unit circle, but their sum \( (1,1) \) is not.      
+\end{example}
+
+\chapter{Lecture 8}
+\section{Small buddy! Big catch}
+\begin{definition}
+    If $W$ be a non-empty subset of a vector space $V(\mathbb F)$, then $W$ is called a subspace of $V$ if $W$ satisfies all the axioms of vector space $V$ with respect to vector addition and scalar multiplication. So, formally we can write the laws as:
+    \begin{itemize}
+        \item $W\neq \emptyset$
+        \item $W$ is closure under addition, $\forall u,v\in W\implies u+v\in W$
+        \item $W$ is closed under scalar multiplication, $\alpha\in\mathbb F, u\in W\implies \alpha u\in W$
+    \end{itemize}
+\end{definition}
+\begin{problem}
+    Determine whether the following sets are subspace of $\mathbb R^2$ or not.
+    \begin{enumerate}
+        \item $S=\left\{\begin{pmatrix}
+            x\\y\\0
+        \end{pmatrix}\in\mathbb R^3:x,y\in\mathbb R\right\}$
+        \item $T=\left\{\begin{pmatrix}
+            x\\y\\1
+        \end{pmatrix}\in\mathbb R^3:x,y\in\mathbb R\right\}$
+        \item $U=\left\{\begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}\in\mathbb R^3:x,y\in\mathbb R,x\geq 0\right\}$
+        \item $V=\left\{\begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}\in\mathbb R^3:x,y\in\mathbb R,x\geq y\right\}$
+    \end{enumerate}
+\end{problem}
+\textbf{Remark:} If $S$ and $T$ are two subspaces of a vector space $V(\mathbb F)$ then $S\cap T$ is a subspace of $V(\mathbb F)$. But what about $S\cup T$? For example, take $W_1$ to be the $x$-axis and $W_2$ the $y$-axis, both subspaces of $\mathbb{R}^2$.    
+Their union includes both $(3,0)$ and $(0,5)$, whose sum, $(3,5)$, is not in the union. Hence, the union is not a vector space.\\~\\ 
+Under what condition will it also be a subspace? % https://math.stackexchange.com/a/71879/1167703
+\\
+The next logical question would be, \say{How do I then define the joining of two spaces?}.
+\begin{problem}
+    Show that any straight line passing through the origin is a subspace of $\mathbb R^2$. \\
+    \textbf{Hint:} Take the set of any straight line passing through origin is $S=\left\{\begin{pmatrix}
+        x\\y
+    \end{pmatrix}:y=mx\right\}$. Now take any $u,v\in S$ and show that $\alpha u+\beta v\in S$ for $\alpha,\beta\in\mathbb R^2$. 
+\end{problem}
+\begin{problem}
+    Is the set of vectors $$W=\left\{\left.\begin{pmatrix}
+        x\\y\\z
+    \end{pmatrix}\right|x,y,z\in\mathbb R,y=-4x-z,z=8x\right\}$$
+    a subspace of the vector space $V=\mathbb R^3$?
+\end{problem}
+Okay, we have enough talk on subspace. Now, can you guess why we are interested in a small portion of our vector space? Does it really give us some useful information about the vector space? Right now, the answer is shadow down behind the wall of transformation or you can say something like a function defined on a vector space.
+\clearpage
+\section{Linear Combination}
+Let $V$ be a vector space over the field $\mathbb F$, then $v\in V$ is said to be linear combination of the vectors $v_1,\cdots,v_n\in V$ if there exists scalars $\alpha_1,\cdots,\alpha_n$ such that, $$v=\alpha_1 v_1+\cdots+\alpha_n v_n.$$ 
+\begin{problem} Suppose $V=\mathbb R^2$ with as usual addition and scalar multiplication with $\mathbb F=\mathbb R$. 
+    Let $v=\begin{pmatrix}
+        1\\1
+    \end{pmatrix}$ and $e_1=\begin{pmatrix}
+        1\\0
+    \end{pmatrix}$ and $e_2=\begin{pmatrix}
+        0\\1
+    \end{pmatrix}$. Show that $v$ can be expressed as a linear combination of $e_1$ and $e_2$.\\~\\ 
+\textbf{Answer:} $$\begin{pmatrix}
+    1\\1
+\end{pmatrix}=1\begin{pmatrix}
+    1\\0
+\end{pmatrix}+1\begin{pmatrix}
+    0\\1
+\end{pmatrix}$$
+\end{problem}
+
+\begin{problem}
+    Consider $v=\begin{pmatrix}
+        2\\-3\\0
+    \end{pmatrix}$ and $v_1=\begin{pmatrix}
+        2\\-3\\0
+    \end{pmatrix}, v_2=\begin{pmatrix}
+        2\\-3\\0
+    \end{pmatrix}$. Now can you write $v$ in terms of $v_1,v_2$?
+\end{problem}
+\begin{problem}
+    Express $E=\begin{pmatrix}
+        4&-2\\-14&-3
+    \end{pmatrix}$ as a linear combination of $A=\begin{pmatrix}
+        1&2\\3&4
+    \end{pmatrix}, B=\begin{pmatrix}
+        1&0\\-1&3
+    \end{pmatrix},C=\begin{pmatrix}
+        1&2\\5&0
+    \end{pmatrix}$.\\~\\
+\textbf{Answer:} $E=2A+5B-3C$
+\end{problem}
+
+\begin{problem}
+    Express the polynomial $p(x)=7+8x+9x^2$ as a linear combination of the polynomials $f(x)=2+x+4x^2, g(x)=1-x+3x^2$ and $h(x)=3+2x+5x^2$. 
+\end{problem}
+
+\begin{example}
+Let $V$ be the set of all ordered pairs of real numbers and consider the following addition and scalar multiplication operations on $x=\left(x_1, x_2\right)$ and $y=\left(y_1, y_2\right)$ :
+
+$$
+\begin{gathered}
+x+y=\left(x_1+y_1+1, x_2+y_2+1\right) \\
+k x=\left(k x_1, k x_2\right)
+\end{gathered}
+$$
+Is $V$ a vector space over the field $R$?
+\end{example}
+
+\begin{example}
+Consider the subset $W$ of all $3 \times 3$ invertible matrices from $M_{3 \times 3}$. Determine whether this subset will be a subspace of $M_{3 \times 3}$?
+\end{example}
+\begin{example}
+    Let $v_1=(1,3,0,-2), v_2=(3,-6,3,5), v_3=(4,-2,1,3)$ and $v_4=(2,-6,1,3)$. Determine whether the set of vectors $S=\left\{v_1, v_2, v_3, v_4\right\}$ span the vector space $R^4$.
+\end{example}
+
+\begin{example}
+Define Linearly independent and dependent set of vectors. Decide whether the following vectors are linearly independent or not.
+$$
+\left\{v_1=(1,1,0,0,1), v_2=(1,-1,0,1,0), v_3=(2,0,1,1,0)\right\}
+$$    
+\end{example}
+
+
+\section{Linear Independence}
+Suppose we have a vector space $V$ and a set $S=\{v_1,\cdots,v_n\}$ of vectors of $V$. Let the vector equation, $$\alpha_1 v_1+\cdots+\alpha_n v_n=0$$
+If all $\alpha_i$ are zeros (trivial solution) then we call the set $S$ a linearly independent set in $V$. In other words, the vectors $v_1,\cdots, v_n$ are linearly independent vectors.\\
+If all $\alpha_i\neq 0$ then we call the vectors are linearly dependent.
+\begin{example}
+    Are the vectors $v=\begin{pmatrix}
+        3\\4\\5
+    \end{pmatrix}$ and $w=\begin{pmatrix}
+        -1\\0\\1
+    \end{pmatrix}$ linearly independent?\\~\\
+\textbf{Answer:} We need to check the solution of the system $\alpha v+\beta w=0$:
+\begin{align*}
+    \alpha v+\beta w&=0\\
+    \alpha \begin{pmatrix}
+        3\\4\\5
+    \end{pmatrix} + \beta \begin{pmatrix}
+        -1\\0\\1
+    \end{pmatrix} &= \begin{pmatrix}
+        0\\0
+    \end{pmatrix}\\
+    \begin{pmatrix}
+        3&-1\\
+        4&0\\
+        5&1
+    \end{pmatrix}\begin{pmatrix}
+        \alpha\\ \beta
+    \end{pmatrix}&=\begin{pmatrix}
+        0\\0
+    \end{pmatrix}
+\end{align*}
+We can apply Gauss Elimination to get the solution:
+$$
+\left(\begin{array}{cc|c}
+    3&-1&0\\
+    4&0&0\\
+    5&1&0
+\end{array}\right)\sim \left(\begin{array}{cc|c}
+    1&-\frac13&0\\
+    4&0&0\\
+    5&1&0
+\end{array}\right)\sim \left(\begin{array}{cc|c}
+    1&-\frac13&0\\
+    0&\frac43&0\\
+    0&\frac53&0
+\end{array}\right)\sim \left(\begin{array}{cc|c}
+    1&-\frac13&0\\
+    0&1&0\\
+    0&\frac53&0
+\end{array}\right)
+$$
+$$
+\sim \left(\begin{array}{cc|c}
+    1&-\frac13&0\\
+    0&1&0\\
+    0&0&0
+\end{array}\right)\simeq \left(\begin{array}{cc|c}
+    1&-\frac13&0\\
+    0&1&0
+\end{array}\right)
+$$
+Here we drop the last row because it doesn't say anything about the value of $\alpha$ and $\beta$. Now, we see clearly that $\beta=0$. And the first row gives, $\alpha-\frac13\beta=0\implies \alpha=0$.
+\end{example}
+
+\begin{problem}
+    Determine whether the matrices are linearly independent or not:
+    $$\left\{
+    \begin{pmatrix}
+        1&2\\3&1
+    \end{pmatrix}, \begin{pmatrix}
+        3&-1\\2&2
+    \end{pmatrix},\begin{pmatrix}
+        -1&-5\\4&0
+    \end{pmatrix}\right\}
+    $$
+    \textbf{Answer:} Linearly Independent.
+\end{problem}
+\begin{problem}
+    Determine whether the following polynomials of degree $\leq 2$ are linearly independent or not:
+    $$\left\{t^2+t+2,2t^2+t,3t^2+2t+2\right\}$$
+\end{problem}
+\chapter{Lecture 9}
+I will try to resolve some questions like the following ones in our up coming classes:
+\begin{itemize}
+    \item Why do we need to include a field in our definition of a vector space? So far, we haven't felt the need to use the multiplicative inverse of our scalar. 
+    \item Can we relax our conditions for the scalars? For instance, what if we weaken the algebraic structure of the source of our scalars?
+\end{itemize}
+\section{Span \& Basis}
+\begin{definition}
+    Let $S$ be a nonempty subset of a vector space $V$. The span of $S$, denoted by $\operatorname{span}(S)$, is the set containing all linear combinations of vectors in $S$. For convenience, we define $\operatorname{span}(\emptyset)=\{0\}$.
+\end{definition}
+\begin{definition}
+    A basis is a set of vectors that generates all elements of the vector space, and the vectors in the set are linearly independent.
+\end{definition}
+Span is usually used for a set of vectors. The span of a set of vectors is the set of all linear combinations of these vectors. 
+\\~\\
+So the span of $\left\{\begin{pmatrix}1\\0\end{pmatrix}, \begin{pmatrix}0\\1\end{pmatrix}\right\}$ would be the set of all linear combinations of them, which is $\mathbb{R}^2$. The span of $\left\{\begin{pmatrix}2\\0\end{pmatrix}, \begin{pmatrix}1\\0\end{pmatrix}, \begin{pmatrix}0\\1\end{pmatrix}\right\}$ is also $\mathbb{R}^2$, although we don't need $\begin{pmatrix}2\\0\end{pmatrix}$ to be so. 
+\\~\\
+So both these two sets are said to be the spanning sets of $\mathbb{R}^2$.
+\\~\\
+However, only the first set $\left\{\begin{pmatrix}1\\0\end{pmatrix}, \begin{pmatrix}0\\1\end{pmatrix}\right\}$ is a basis of $\mathbb{R}^2$, because the $\begin{pmatrix}2\\0\end{pmatrix}$ makes the second set linearly dependent.
+\\~\\
+Also, the set $\left\{\begin{pmatrix}2\\0\end{pmatrix}, \begin{pmatrix}0\\1\end{pmatrix}\right\}$ can also be a basis for $\mathbb{R}^2$. Because its span is also $\mathbb{R}^2$ and it is linearly independent.
+\\~\\
+For another example, the span of the set $\left\{\begin{pmatrix}1\\1\end{pmatrix}\right\}$ is the set of all vectors in the form of $\begin{pmatrix}a\\a\end{pmatrix}$.
+
+\begin{problem}
+    Determine whether or not the vectors $u=\begin{pmatrix}
+        1\\1\\2
+    \end{pmatrix},v=\begin{pmatrix}
+        1\\-1\\2
+    \end{pmatrix}$ and $w=\begin{pmatrix}
+        1\\0\\1
+    \end{pmatrix}$ span $\mathbb R^3$.\\~\\
+    \textbf{Answer:} For any arbitrary vector $z=\begin{pmatrix}
+        a\\b\\c
+    \end{pmatrix}$ then:
+    \begin{align*}
+        \alpha\begin{pmatrix}
+            1\\1\\2
+        \end{pmatrix}+\beta\begin{pmatrix}
+            1\\-1\\2
+        \end{pmatrix}+\gamma\begin{pmatrix}
+            1\\0\\1
+        \end{pmatrix}=\begin{pmatrix}
+            a\\b\\c
+        \end{pmatrix}
+    \end{align*}
+    gives,
+    $$
+    \left(\begin{array}{ccc|c}
+        1&1&1&a\\
+        1&-1&0&b\\
+        2&2&1&c
+    \end{array}\right)\sim\cdots\sim \left(\begin{array}{ccc|c}1&1&1&a\\ 0&-2&-1&b-a\\ 0&0&-1&c-2a\end{array}\right)
+    $$
+    So, the system is consistent. Hence, these vectors span $\mathbb R^3$. 
+\end{problem}
+
+\begin{problem}
+    Determine whether or not the vectors $u_1=\begin{pmatrix}
+        1,1,2
+    \end{pmatrix},u_2=\begin{pmatrix}
+        1,-1,2
+    \end{pmatrix}$ and $u_3=\begin{pmatrix}
+        1,0,1
+    \end{pmatrix}$ span $\mathbb R^3$.\\
+    \textbf{Answer:} Let's see the system:
+    \begin{align*}
+        \alpha u_1+\beta u_2+\gamma u_3&=v_\text{random}\\
+        \alpha\begin{pmatrix}
+        1,1,2
+    \end{pmatrix}+\beta\begin{pmatrix}
+        1,-1,2
+    \end{pmatrix}+\gamma\begin{pmatrix}
+        1,0,1
+    \end{pmatrix}&=(a,b,c)\\
+    (\alpha+\beta+\gamma,\alpha-\beta,2\alpha+2\beta+\gamma)&=(a,b,c)
+    \end{align*}
+    $$\begin{cases}
+        \alpha+\beta+\gamma&=a\\
+        \alpha-\beta&=b\\
+        2\alpha+2\beta+\gamma&=c
+    \end{cases}\sim \begin{cases}
+        \alpha+\beta+\gamma&=a\\
+        -2\alpha-\beta&=b-a\\
+        -\gamma&=c-2a
+    \end{cases}$$
+    $\gamma=2a-c$, $\beta=\frac12(c-a-b)$ and $\alpha=\frac12(-a+b+c)$
+\end{problem}
+
+\begin{problem}
+    Show that the set of vectors:
+    $$\left\{\begin{pmatrix}
+        1\\1\\1\\1
+    \end{pmatrix},\begin{pmatrix}
+        0\\1\\1\\1
+    \end{pmatrix},\begin{pmatrix}
+        0\\0\\1\\1
+    \end{pmatrix},\begin{pmatrix}
+        0\\0\\0\\1
+    \end{pmatrix}\right\}$$
+    are basis of $\mathbb R^4$.
+\end{problem}
+\begin{problem}
+    Show that the set of vectors:
+    $$\{(1,2,7),(-1,3,5)\}$$
+    do not form the basis of $\mathbb R^3$.
+\end{problem}
+\begin{problem}
+    Find the coordinate of $(4,-3)$ in the basis of $\mathcal B=\{(1,1),(2,3)\}$.
+\end{problem}
+\begin{problem}
+    Find the basis from $\{t^3-2t^2+4t+1,2t^3-3t^2+9t-1,t^3+6t-5,2t^3-5t^2+7t+5\}$.
+\end{problem}
+\textbf{Hint:} Consider $$t^3-2t^2+4t+1\mapsto (1,-2,4,1)$$
+\begin{problem}
+    Find the basis from $$\begin{pmatrix}
+        1&2\\-1&3
+    \end{pmatrix}, \begin{pmatrix}
+        2&5\\1&-1
+    \end{pmatrix}, \begin{pmatrix}
+        5&12\\1&1
+    \end{pmatrix},\begin{pmatrix}
+        3&4\\-2&5
+    \end{pmatrix}.$$
+\end{problem}
+\textbf{Hint:} Consider $$\begin{pmatrix}
+    1&2\\-1&3
+\end{pmatrix}=1\varepsilon_1+2\varepsilon_2-1\varepsilon_3+3\varepsilon_4\mapsto (1,2,-1,3)$$
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Let $A$ be a square $n \times n$ matrix. Then the following are equivalent:
+\begin{enumerate}
+ \item $A$ is invertible.
+ \item $\det(A) \neq 0$.
+ \item The columns of $A$ are linearly independent.
+ \item The columns of $A$ span $R^n$.
+ \item  The columns of $A$ are a basis in  $R^n$.
+ \item The rows of $A$ are linearly independent.
+ \item The rows of $A$ span $R^n$.
+ \item  The rows of $A$ are a basis in  $R^n$.
+ \item  The reduced row echelon form of $A$ has a leading 1 in each row.
+\end{enumerate}
+\end{tcolorbox}
+~\\
+
+\begin{center}
+\begin{forest}
+for tree={
+  align=center,
+  grow'=south,
+  parent anchor=south,
+  child anchor=north,
+  l=2cm,
+  s sep=10pt,
+  edge={->}
+}
+[
+\shortstack{$\alpha_1 v_1+\cdots+\alpha_n v_n$},
+  [\shortstack{Check independency:\\$\alpha_1 v_1+\cdots+\alpha_n v_n = 0$},
+    [\shortstack{Unique solution:\\Independent}]
+    [\shortstack{Many solutions:\\Dependent}]
+  ]
+  [\shortstack{Check linear combination:\\$\alpha_1 v_1+\cdots+\alpha_n v_n = b$},
+    [\shortstack{No solution:\\Do not Span}]
+    [\shortstack{Unique/Many solution:\\Span}]
+  ]
+]
+\end{forest}
+\end{center}
+
+
+\section{Maps which preserve structure}
+When studying a field of mathematics, one looks not only to understand the objects but also the maps between those objects. When the objects are vector spaces, we are interested in maps that preserve structure; in other words, take addition to addition and scalar multiplication to scalar multiplication. The maps which do this are called \say{linear transformations}. A nice source in function space is \href{here}{https://people.math.harvard.edu/~knill/teaching/math22b2019/handouts/lecture25.pdf}. 
+
+\begin{definition}
+    Let $U$ and $V$ be two vector spaces over the same field $\mathbb F$. A linear transformation $T$ of $U$ into $V$, written as $T:U\rightarrow V$, is a function of $U$ into $V$ such that:
+    \begin{itemize}
+        \item $T(u_1+u_2)=T(u_1)+T(u_2)$ for all $u_1,u_2\in U$
+        \item $T(\alpha u)=\alpha T(u)$ for all $u\in U$ and for all $\alpha\in\mathbb F$
+        \item $T(0_U)=0_V$; zero vector of $U$ mapped to zero vector of $V$.
+    \end{itemize}
+\end{definition}
+We'll come to the remarkable conclusion that all such maps on finite-dimensional spaces are really matrices in disguise. 
+\begin{problem}
+    Let the transformation $D(f(x))=f'(x)$. Can you show that this transformation is linear? If $D_n$ is the restriction of the derivative to $P_n$, $D_n:P_n\mapsto P_{n-1}$, the subspace of $P$ consisting of all polynomials of degree $\leq n$, what is $D_n$'s range? Find the $\operatorname{Ker}(D_n)$? What about:
+    \begin{itemize}
+        \item $I_n:P_n\rightarrow P_{n+1}, I_n(f(x))=\int^{t=x}_{t=0}f(t)dt$
+        \item $r_n:P_n\rightarrow P_n, r_n(f(x))=f(-x)$
+    \end{itemize}
+\end{problem}
+\textbf{Remark:} $I_n$ is injective by definition. But this transformation is not surjective since there is no way for a constant polynomial to be in the range. One approach is to show that two finite-dimensional vector space are isomorphic since we can then build an isomorphism just by identifying their bases with the standard basis of some Euclidean space.
+\begin{problem}
+$$
+\begin{tikzcd}[row sep=large]
+    P_3 \arrow[r,"D_3"]  & P_2 \arrow[d,leftrightarrow,"a+bx+cx^2\mapsto\begin{pmatrix}
+            a\\b\\c
+        \end{pmatrix}"]\\
+    \mathbb R^4 \arrow[u,leftrightarrow,"a+bx+cx^2+dx^3\mapsto\begin{pmatrix}
+            a\\b\\c\\d
+        \end{pmatrix}\quad"] \arrow[r, "A"] & \mathbb R^3
+\end{tikzcd}
+$$
+\end{problem}
+If $T:V\rightarrow W$ is a linear map between finite-dimensional vector spaces, it's represented by a matrix $w_{\mathcal B'}=[T]_{\mathcal B}^{\mathcal B'}v_{\mathcal B}$.
+% https://brilliant.org/courses/lin-alg/?from_llp=advanced-math
+\begin{problem}
+    Let $T:\mathbb R^3\rightarrow\mathbb R^3$ be the transformation defined by: $$T(x,y,z)=(x+1,x+y,x+z)$$
+\textbf{Answer:} Take $u=(0,0,0)$ and $\alpha=2$.
+\end{problem}
+
+\section{Kernel and Image of a Transformation}
+\begin{example}
+    Let the transformation:
+    \begin{align*}
+        T:\mathbb R^3&\rightarrow\mathbb R^3\\
+        \begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}&\mapsto\begin{pmatrix}
+            x-y\\y-x\\x-z
+        \end{pmatrix}
+    \end{align*}
+    Find the kernel or $\operatorname{Ker} T$, Range or $\operatorname{Im} T$.\\~\\
+    For $\operatorname{Ker}(T)$ or $\operatorname{Im}(T)$ we first find out the matrix of the corresponding transformation. To do this let's choose the basis vector for our input space, $\mathbb R^3$. 
+    $$e_1=\begin{pmatrix}
+        1\\0\\0
+    \end{pmatrix},e_2=\begin{pmatrix}
+        0\\1\\0
+    \end{pmatrix},e_3=\begin{pmatrix}
+        0\\0\\1
+    \end{pmatrix}$$
+    Now apply the transformation to these basis vectors:
+    \begin{align*}
+        T(e_1)&=T\begin{pmatrix}
+            1\\0\\0
+        \end{pmatrix}=\begin{pmatrix}
+            1-0\\0-1\\1-0
+        \end{pmatrix}=\begin{pmatrix}
+            1\\-1\\1
+        \end{pmatrix}\\
+        T(e_2)&= T\begin{pmatrix}
+            0\\1\\0
+        \end{pmatrix}=\begin{pmatrix}
+            0-1\\1-0\\0-0
+        \end{pmatrix}=\begin{pmatrix}
+            -1\\1\\0
+        \end{pmatrix}\\
+        T(e_3)&=T\begin{pmatrix}
+            0\\0\\1
+        \end{pmatrix}=\begin{pmatrix}
+            0-0\\0-0\\0-1
+        \end{pmatrix}=\begin{pmatrix}
+            0\\0\\-1
+        \end{pmatrix}
+    \end{align*}
+    Hence, our transformation matrix is:
+    \begin{align}
+    \label{trans_ex_01}
+        A=\begin{pmatrix}
+            1&-1&0\\
+            -1&1&0\\
+            1&0&-1
+        \end{pmatrix}
+    \end{align}
+    \textbf{First part}: To find $\operatorname{Ker}(T)$ we just need to find the null space of this matrix.
+    \begin{align*}
+        \begin{pmatrix}
+            1&-1&0\\
+            -1&1&0\\
+            1&0&-1
+        \end{pmatrix}\begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}=\begin{pmatrix}
+            0\\0\\0
+        \end{pmatrix}
+    \end{align*}
+    Let's solve this system:
+    $$
+    \left(\begin{array}{ccc|c}
+            1&-1&0&0\\
+            -1&1&0&0\\
+            1&0&-1&0
+    \end{array}\right)\sim \left(\begin{array}{ccc|c}
+            1&-1&0&0\\
+            0&0&0&0\\
+            1&0&-1&0
+    \end{array}\right)\sim \left(\begin{array}{ccc|c}
+            1&-1&0&0\\
+            0&0&0&0\\
+            0&1&-1&0
+    \end{array}\right)\sim \left(\begin{array}{ccc|c}
+            1&-1&0&0\\
+            0&1&-1&0\\
+            0&0&0&0
+    \end{array}\right)
+    $$
+    We get, $x-y=0\implies x=y$ and $y-z=0\implies y=z$. Hence, we get the general solution:
+    $$
+    \begin{pmatrix}
+        x\\y\\z
+    \end{pmatrix}= \begin{pmatrix}
+        z\\z\\z
+    \end{pmatrix}=z\begin{pmatrix}
+        1\\1\\1
+    \end{pmatrix}
+    $$
+    Hence, 
+    $$
+    \operatorname{Ker}(T)=\operatorname{span}\left\{\begin{pmatrix}
+        1\\1\\1
+    \end{pmatrix}\right\}
+    $$
+    \textbf{Second part:} 
+    Now, we can follow two methods to find the $\operatorname{Im}(T)$.\\~\\
+    \textbf{Method-1}: Convert the columns into rows and apply Gauss Elimination. Find which rows are independent then convert them into columns (to reverse what you did first!).
+    \textbf{Step-1}: Turn columns into rows:
+    $$\begin{pmatrix}
+        1&-1&1\\
+        -1&1&0\\
+        0&0&-1
+    \end{pmatrix}$$
+    \textbf{Step-2}: Apply Gauss Elimination:
+    $$
+    \begin{pmatrix}
+        1&-1&1\\
+        -1&1&0\\
+        0&0&-1
+    \end{pmatrix}\stackrel{R_2'=R_2+R_1}{\sim} \begin{pmatrix}
+        1&-1&1\\
+        0&0&0\\
+        0&0&-1
+    \end{pmatrix}\stackrel{R_2\leftrightarrow R_3}{\sim} 
+    \begin{pNiceMatrix}
+\strut 1&-1&1\\
+\strut 0&0&-1\\
+\strut 0&0&0
+\CodeAfter
+\begin{tikzpicture} 
+[inner xsep = 1mm , inner ysep = 0.1mm , outer sep = 1mm]
+\node [draw, fit = (1-1) (1-3)] (L1) { } ; 
+\node [draw, fit = (2-1) (2-3)] (L2) { } ;
+\end{tikzpicture}
+\end{pNiceMatrix}
+    $$
+    Now, Turn the independent rows into columns:
+    $$
+    \begin{pmatrix}
+        1\\-1\\1
+    \end{pmatrix},\begin{pmatrix}
+        0\\0\\-1
+    \end{pmatrix}
+    $$
+    That's it. Hence, we finally get:
+    $$
+    \operatorname{Im}(T)=\left\{\begin{pmatrix}
+        1\\-1\\1
+    \end{pmatrix},\begin{pmatrix}
+        0\\0\\-1
+    \end{pmatrix} \right\}
+    $$
+    \textbf{Remark:} Here we are trying to find independent columns which actually need column operation. But we are not used to doing column operations. That's why converting them into rows and applying row operation. Now, you might ask, wait! Why do we need a column operation instead of a row? because remember, the row operation changes the column space. You don't need to write this explanation in your copy. \\~\\   
+    \textbf{Method-2} Forget about transpose. Just do row echelon to our original matrix \ref{trans_ex_01}. 
+    $$
+    \begin{pmatrix}
+            1&-1&0\\
+            -1&1&0\\
+            1&0&-1
+        \end{pmatrix}\sim\begin{pmatrix}
+            1&-1&0\\
+            0&0&0\\
+            0&1&-1
+        \end{pmatrix}\stackrel{R_2\leftrightarrow R_3}{\sim}\begin{pmatrix}
+             \boxed{1}&-1&0\\
+              0&\boxed{1}&-1\\
+              0&0&0
+        \end{pmatrix}
+    $$
+   So, here we see the pivots are in the first and second columns. Hence, the original first and second columns are the image.
+   $$
+   \operatorname{Im}(T)=\left\{\begin{pmatrix}
+       1\\-1\\1
+   \end{pmatrix},\begin{pmatrix}
+       -1\\1\\0
+   \end{pmatrix}\right\}
+   $$
+   That's it. These two images or $\operatorname{Im}(T)$ might seem different but they span exactly the same space. Because if we add the current vectors:
+   $$
+   \begin{pmatrix}
+       1\\-1\\1
+   \end{pmatrix}+\begin{pmatrix}
+       -1\\1\\0
+   \end{pmatrix}=\begin{pmatrix}
+       0\\0\\1
+   \end{pmatrix}\stackrel{\times(-1)}{\longrightarrow}\begin{pmatrix}
+       0\\0\\-1
+   \end{pmatrix}
+   $$
+\end{example}
+
+\chapter{Eigenvalue, Eigenvectors, Diagonalization}
+Give a short geometric insight about the determinant of a transformation. 
+\begin{definition}
+    For a matrix transformation $T$, a non-zero vector $v(\neq 0)$ is called its eigenvector if $T v=\lambda v$ for some scalar $\lambda$. This means that applying the matrix transformation to the vector only scales the vector. The corresponding value of $\lambda$ for $v$ is an eigenvalue of $T$.
+\end{definition}
+~\\
+Let $v_1,v_2,..,v_n$ be any eigenvectors of $A$. Then we can write for each $1 \leq j \leq n$
+$$Av_j =\lambda_j v_j$$
+This implies that 
+$$A \begin{bmatrix} v_1 & v_2 & ... & v_n \end{bmatrix}=\begin{bmatrix} \lambda_1 v_1 & \lambda_2 v_2 & ... & \lambda_n v_n \end{bmatrix}$$
+
+Now, remembering how multiplication with diagonal matrices works, it is easy to see that 
+$$\begin{bmatrix} \lambda_1 v_1 & \lambda_2 v_2 & ... & \lambda_n v_n \end{bmatrix}=\begin{bmatrix}  v_1 & v_2 & ... &  v_n \end{bmatrix} \begin{bmatrix} \lambda_1 & 0 &...& 0 \\
+0& \lambda_2 & ...& 0\\
+...&...&...&...\\
+0&0& ...& \lambda_n
+\end{bmatrix}$$
+
+In conclusion, you get the following more general phenomenon:
+
+If $A$ is any matrix, $P$ is any matrix whose columns are eigenvectors of $A$ and $D$ is the diagonal matrix consisting of the corresponding eigenvalues, then 
+$$AP=PD$$
+
+Now, we would like to move $P$ on the other side. This is only possible when $P$ is invertible, or equivalently the columns of $P$ are linearly independent.
+
+Therefore, if $A$ has $n$ linearly independent eigenvectors (which is exactly the diagonalisation condition), we can put them in $P$ and then $P$ becomes invertible. In that case
+$$AP=PD \Rightarrow A=PDP^{-1}$$
+\subsection{Characteristic Equation and Eigenvalue}
+The characteristic equation of a $2\times2$ matrix $A$ takes the form,
+$$\lambda^2-\operatorname{tr}(A)\lambda+\det A=0$$
+The easy and quick way to compute the characteristic equation of a $3\times3$ matrix is to use the formulae(at your own risk :3), 
+$$\lambda^3-\operatorname{tr}(A)\lambda^2+(A_{11}+A_{22}+A_{33})\lambda-\det A=0$$
+\textbf{Remark}: The cofactor of an element is derived from its minor but includes a sign factor.\\ 
+\begin{problem}
+$$
+    A=\begin{pmatrix}
+        1&0\\
+        1&2
+    \end{pmatrix}
+$$
+To compute the eigenvalue use the formula $\det (A-\lambda I)=0$ where $I$ is the identity matrix. 
+\begin{align*}
+    \det (A-\lambda I)&=0\\
+    \det \left[\begin{pmatrix}
+        1&0\\
+        1&2
+    \end{pmatrix}-\lambda \begin{pmatrix}
+        1&0\\
+        0&1
+    \end{pmatrix}\right]&=0\\
+    \det\left[ \begin{pmatrix}
+        1-\lambda & 0\\
+        1 & 2-\lambda
+    \end{pmatrix}\right]&=0\\
+    (1-\lambda)(2-\lambda)&-0\\
+    \lambda^2-3\lambda+2&=0\\
+    \lambda&=1,2
+\end{align*}
+Now, we want to compute the associate eigenvector for these eigenvalues. Here we use the formula $(A-\lambda I)\vec v=0$.\\
+Eigenvector for $\lambda=1$: $\begin{pmatrix}-1\\ 1\end{pmatrix}$. Eigenvector for $\lambda=2$: $\begin{pmatrix}0\\1\end{pmatrix}$.
+\qed\\
+Give a try for the following transformation:
+$$
+    A=\begin{pmatrix}
+        0&-1\\
+        1&0
+    \end{pmatrix}
+$$
+Did you see the transformation is nothing but a rotation? What can you say about the eigenvector for this case?
+\end{problem}
+\begin{problem}
+    Find eigenvalue and eigenvector for, 
+    $$
+    A=\begin{pmatrix}2&1&0\\1&2&0\\0&0&3\end{pmatrix}
+    $$
+\end{problem}
+~\\
+\textbf{Answer:} Eigenvector for $\lambda=3$: $\begin{pmatrix}0\\ 0\\ 1\end{pmatrix},\:\begin{pmatrix}1\\ 1\\ 0\end{pmatrix}$. Eigenvector for $\lambda=1$: $\begin{pmatrix}-1\\ 1\\ 0\end{pmatrix}$.\\
+Characteristics equation and eigenvector system \url{https://opencurve.info/wp-content/uploads/2018/12/real-eigenvalues-and-eigenvectors-of-3x3-matrices-example-3-GB.pdf}.\\
+Example of three distinct real numbers as eigenvalues \url{https://metric.ma.ic.ac.uk/metric_public/matrices/eigenvalues_and_eigenvectors/eigenvalues2.html}\\
+\textbf{Fun application} $1$: Take the Fibonacci sequence $0,1,1,2,3,\cdots$. Hence, we get: $F_n=F_{n-1}+F_{n-2}$. What will be the next number after $83204$? Take, $$\begin{pmatrix}
+    F_n\\F_{n-1}
+\end{pmatrix}=\begin{pmatrix}
+    1&1\\1&0
+\end{pmatrix}\begin{pmatrix}
+    F_{n-1}\\F_{n-2}
+\end{pmatrix}$$
+Can you plot all the coordinate representations of points in a $2d$ plane? What did you get? How is it related to eigenvectors corresponding to the matrix transformation written above?\\
+\textbf{Fun application} $2$: Take the differentiation operator, $\frac{d}{dt}e^{kt}=ke^{kt}$. How can you relate this to our eigenvalue and eigenvector problem? OK, now can you relate this to a system of ODEs? Let's see a complete solution. You can skip it.\\
+\textbf{Question}: Find the solution to the initial value problem
+$$
+\binom{x_1}{x_2}^{\prime}=\left(\begin{array}{rr}
+1 & -1 \\
+-1 & -1
+\end{array}\right)\binom{x_1}{x_2} \quad x_1(0)=1, \quad x_2(0)=0
+$$
+\textbf{Answer:} First, we compute the eigenvalues of the coefficient matrix from the characteristic equation:
+$$
+\operatorname{det}(A-\lambda I)=\operatorname{det}\left(\begin{array}{rr}
+1-\lambda & -1 \\
+-1 & -1-\lambda
+\end{array}\right)=\lambda^2-2=0
+$$
+So $\lambda_{1,2}= \pm \sqrt{2}$. Now we need an eigenvector for each eigenvalue.
+For $\lambda_1=\sqrt{2}$ the eigenvector needs to be in the kernel (or nullspace) of $A-\sqrt{2} I$, which we row-reduce:
+$$
+\left(\begin{array}{cc}
+1-\sqrt{2} & -1 \\
+-1 & -1-\sqrt{2}
+\end{array}\right) \rightarrow\left(\begin{array}{cc}
+1 & 1+\sqrt{2} \\
+0 & 0
+\end{array}\right)
+$$
+and we can choose $v_1=\binom{-1-\sqrt{2}}{1}$ (any other nonzero multiple would also work). Similarly for $\lambda_2=-\sqrt{2}$, we get
+$$
+A+\sqrt{2} I=\left(\begin{array}{cc}
+1+\sqrt{2} & -1 \\
+-1 & -1+\sqrt{2}
+\end{array}\right) \rightarrow\left(\begin{array}{rr}
+1 & 1-\sqrt{2} \\
+0 & 0
+\end{array}\right)
+$$
+and we can choose $v_2=\binom{-1+\sqrt{2}}{1}$
+The general solution to the system is
+$$
+x=C_1 v_1 e^{\sqrt{2} t}+C_2 v_2 e^{-\sqrt{2} t}
+$$
+Substituting in the initial condition $x(0)=(1,0)^T$ we have the linear algebraic system
+$$
+\left(\begin{array}{cc}
+-1-\sqrt{2} & -1+\sqrt{2} \\
+1 & 1
+\end{array}\right)\binom{C_1}{C_2}=\binom{1}{0}
+$$
+We can row-reduce the augmented coefficient matrix, or use simple substitution to find that $C_1=-\frac{1}{2 \sqrt{2}}$, $C_2=\frac{1}{2 \sqrt{2}}$ and so
+$$
+x=\begin{pmatrix}
+    \frac{\sqrt{2}}{4}\left(e^{\sqrt{2} t}-e^{-\sqrt{2} t}\right)+\frac{e^{\sqrt{2} t}}{2}+\frac{e^{-\sqrt{2} t}}{2}\\ \frac{\sqrt{2}}{4}\left(-e^{\sqrt{2} t}+e^{-\sqrt{2} t}\right)
+\end{pmatrix}
+$$
+\qed\\
+Do you want a more fun application, seriously? I am running out of storage. I will add more if I can buy some more space at a cheap price.
+\subsection{Diagonalization}
+Let's take an example which has two distinct eigenvalues, one of which is repeated.
+$$
+\begin{aligned}
+\operatorname{det}\left(\left(\begin{array}{lll}
+2 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 1 & 2
+\end{array}\right)-\lambda\left(\begin{array}{lll}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{array}\right)\right) & =0 \\
+\operatorname{det}\left(\begin{array}{ccc}
+2-\lambda & 0 & 0 \\
+0 & 1-\lambda & 0 \\
+0 & 1 & 2-\lambda
+\end{array}\right) & =0 \\
+\operatorname{det}\left(\begin{array}{ccc}
+2-\lambda & 0 & 0 \\
+0 & 1-\lambda & 0 \\
+0 & 0 & 2-\lambda
+\end{array}\right) & =0 \\
+(2-\lambda)^2(1-\lambda) & =0 \\
+\lambda & =2,2,1
+\end{aligned}
+$$
+When we solve for the eigenvector corresponding to the eigenvalue $\boldsymbol{\lambda}=2$, we find that the solution consists of combinations of two independent vectors.
+$$
+\begin{aligned}
+\left(\left(\begin{array}{lll}
+2 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 1 & 2
+\end{array}\right)-2\left(\begin{array}{lcc}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{array}\right)\right) v & =\left(\begin{array}{l}
+0 \\
+0 \\
+0
+\end{array}\right) \\
+\left(\begin{array}{ccc}
+0 & 0 & 0 \\
+0 & -1 & 0 \\
+0 & 1 & 0
+\end{array}\right) v & =\left(\begin{array}{l}
+0 \\
+0 \\
+0
+\end{array}\right) \\
+v & =\left(\begin{array}{l}
+1 \\
+0 \\
+0
+\end{array}\right) s+\left(\begin{array}{l}
+0 \\
+0 \\
+1
+\end{array}\right) t
+\end{aligned}
+$$
+We shall use the simplest cases, $s=1, t=0$ and $s=0, t=1$, to choose two eigenvectors corresponding to the eigenvalue $\boldsymbol{\lambda}=2$. Thus, we have two eigenvalue-eigenvector pairs!
+$$
+\begin{aligned}
+& \lambda_1=2, v_1=\left(\begin{array}{l}
+1 \\
+0 \\
+0
+\end{array}\right) \\
+& \lambda_2=2, v_2=\left(\begin{array}{l}
+0 \\
+0 \\
+1
+\end{array}\right)
+\end{aligned}
+$$
+We solve for the third eigenvector, corresponding to the eigenvalue $\lambda_3=1$, as usual.
+$$
+\begin{aligned}
+& \left(A-\lambda_3\right) v_3=0 \\
+& \left(\left(\begin{array}{lll}
+2 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 1 & 2
+\end{array}\right)-1\left(\begin{array}{lll}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{array}\right)\right) v_3=\left(\begin{array}{l}
+0 \\
+0 \\
+0
+\end{array}\right) \\
+& \left(\begin{array}{lll}
+1 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 1 & 1
+\end{array}\right) v_3=\left(\begin{array}{l}
+0 \\
+0 \\
+0
+\end{array}\right) \\
+& v_3=\left(\begin{array}{c}
+0 \\
+1 \\
+-1
+\end{array}\right)
+\end{aligned}
+$$
+Then, we can invert the eigenvector matrix and diagonalize it.
+\begin{align*}
+\begin{pmatrix}
+    2&0&0\\
+    0&1&0\\
+    0&1&2\\
+\end{pmatrix} &= \begin{pmatrix}
+    1&0&0\\
+    0&0&1\\
+    0&1&-1
+\end{pmatrix} \begin{pmatrix}
+    2&0&0\\
+    0&2&0\\
+    0&0&1
+\end{pmatrix} \begin{pmatrix}
+    1&0&0\\
+    0&0&1\\
+    0&1&-1
+\end{pmatrix}^{-1}\\
+&= \begin{pmatrix}
+    1&0&0\\
+    0&0&1\\
+    0&1&-1
+\end{pmatrix} \begin{pmatrix}
+    2&0&0\\
+    0&2&0\\
+    0&0&1
+\end{pmatrix} \begin{pmatrix}
+    1&0&0\\
+    0&1&1\\
+    0&1&0
+\end{pmatrix}\\
+\end{align*}
+Okay, don't yell at me. I know how much you suffer to get the inverse in your midterm exam. But don't worry, we can fix it for this case easily. Have you ever noticed the matrix? 
+$$
+\begin{pmatrix}
+    1&0&0\\
+    0&0&1\\
+    0&1&-1
+\end{pmatrix}^{-1}
+$$
+It contains a $2\times 2$ sub-matrix. And we know how to inverse it easily. Because,
+$$
+\begin{pmatrix}
+    a&b\\
+    c&d
+\end{pmatrix}^{-1} = \frac{1}{ad-bc}\begin{pmatrix}
+    d&-c\\
+    -b&a
+\end{pmatrix}
+$$
+Okay, back to our case:
+$$
+\begin{pmatrix}1&0&0\\ 0&a&b\\ 0&c&d\end{pmatrix}^{-1}=\begin{pmatrix}1&0&0\\ 0&\frac{d}{ad-bc}&-\frac{b}{ad-bc}\\ 0&-\frac{c}{ad-bc}&\frac{a}{ad-bc}\end{pmatrix}
+$$
+Great! No objection, Right? 
+\\~\\ 
+Some more useful resources:
+\begin{itemize}
+    \item \url{https://www.justinmath.com/eigenvalues-eigenvectors-and-diagonalization/}
+    \item \url{https://www.youtube.com/watch?v=i8FukKfMKCI}
+    \item \url{https://people.math.harvard.edu/~knill/teaching/math22b2019/handouts/lecture16.pdf}
+    \item \url{https://brilliant.org/wiki/matrix-diagonalization/}
+    \item \url{https://www.d.umn.edu/~mhampton/ODELA/#Systems/#eulers-method-for-systems}
+\end{itemize}
+
+\chapter{Inner product, Orthogonality, The Gram Schmidt Process}
+\section{Inner product}
+If we remember how we define the dot product between two vectors in $\mathbb R^3$ we see $$\begin{bmatrix}
+    1\\2\\3
+\end{bmatrix}\cdot\begin{bmatrix}
+    4\\5\\6
+\end{bmatrix}=\begin{bmatrix}
+    1&2&3
+\end{bmatrix}\begin{bmatrix}
+    4\\5\\6
+\end{bmatrix}=1\cdot4+2\cdot5+3\cdot6=32$$
+But if you carefully look the second step then you can see a linear transformation, $T:\mathbb R^3\rightarrow\mathbb R$:
+$$
+\begin{bmatrix}
+    1&2&3
+\end{bmatrix}\left(\begin{bmatrix}
+    4\\5\\6
+\end{bmatrix}\right)\leftrightarrow T\left(\begin{bmatrix}
+    4\\5\\6
+\end{bmatrix}\right)=32
+$$
+There was another geometric interpretation. 
+\begin{definition}
+    An inner product on a real vector space $V$ is a function that assigns a real number $\langle v,w\rangle$ to every pair $v,w$ of vectors in $V$ in such a way that the following axioms are satisfied:
+    \begin{itemize}
+        \item $\langle v,w \rangle$ is a real number for all $v,w\in V$
+        \item  $\langle v,w \rangle=\langle w,v \rangle$ for all $v,w\in V$
+        \item $\langle v+w,u \rangle$ =  $\langle v,u \rangle$+ $\langle w,u \rangle$ for all $v,w,u\in V$
+        \item  $\langle rv,w \rangle = r\langle v,w \rangle$ for all $v,w\in V$ and all $r\in \mathbb R$
+        \item  $\langle v,v \rangle>0$ for all $v\neq 0_V \in V$
+    \end{itemize}
+\end{definition}
+\begin{example}
+    A very non-intuitive example: If $A$ and $B$ are $m\times n$ matrices, we can define $\langle A,b\rangle=\operatorname{tr}(AB^T)$ where $\operatorname{tr}(A)$ is the trace of the square matrix $A$. 
+\end{example}
+
+\section{Make things normal}
+
+In many applications—such as numerical analysis, quantum mechanics, and data science—we prefer working with \textbf{orthogonal} or \textbf{orthonormal} bases instead of arbitrary ones. Orthogonal vectors simplify calculations: projections become easy, matrix representations become diagonal (in some cases), and inner products simplify.
+
+However, in practice, we often begin with a linearly independent set of vectors $\{v_1, v_2, \dots, v_n\}$ in an inner product space (like $\mathbb{R}^n$ or $\mathbb{C}^n$), which are not necessarily orthogonal.
+
+The Gram-Schmidt process transforms such a set into an \textbf{orthogonal} (or orthonormal) basis for the same subspace.
+
+To orthogonalize a set of vectors, we:
+\begin{itemize}
+  \item Keep the first vector as is.
+  \item Subtract from each subsequent vector its projection onto all the previous orthogonal vectors.
+\end{itemize}
+
+This way, each new vector becomes orthogonal to all the ones before it.
+
+Let $\{v_1, v_2, \dots, v_n\}$ be a linearly independent set of vectors in an inner product space.
+
+We want to construct an orthogonal set $\{u_1, u_2, \dots, u_n\}$ such that:
+\[
+\text{span}(u_1, \dots, u_k) = \text{span}(v_1, \dots, v_k) \quad \text{for all } k
+\]
+
+Let $u_1 = v_1$. Since $v_1 \neq 0$, this is a valid starting vector.
+
+We want $u_2$ to be orthogonal to $u_1$. So we subtract from $v_2$ its projection onto $u_1$:
+\[
+u_2 = v_2 - \frac{\langle v_2, u_1 \rangle}{\langle u_1, u_1 \rangle} u_1
+\]
+
+For general $k$:
+\[
+u_k = v_k - \sum_{j=1}^{k-1} \frac{\langle v_k, u_j \rangle}{\langle u_j, u_j \rangle} u_j
+\]
+
+This ensures $u_k$ is orthogonal to all $u_1, \dots, u_{k-1}$.
+
+If we want an \textbf{orthonormal} basis $\{e_1, \dots, e_n\}$, simply define:
+\[
+e_k = \frac{u_k}{\norm{u_k}}
+\]
+
+Given linearly independent vectors $\{v_1, v_2, \dots, v_n\}$, the Gram-Schmidt process constructs an orthonormal basis $\{e_1, e_2, \dots, e_n\}$ by:
+\[
+u_1 = v_1,\quad
+u_k = v_k - \sum_{j=1}^{k-1} \frac{\langle v_k, u_j \rangle}{\langle u_j, u_j \rangle} u_j,\quad
+e_k = \frac{u_k}{\norm{u_k}}
+\]
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Fourier Analysis}
+\section{Motivation}
+Fourier transformation is nothing but a coordinate transformation. When Fourier tries to solve the $2$D heat equation, $u_t=\alpha\nabla^2 u$. Fourier transformation essentially diagonalizes the Laplacian operator in the heat equation. This operator has eigenvalues and eigenfunctions $(\sin x$ or $\cos x)$. 
+
+Consider two orthogonal vectors $X$ and $Y$. We want to write a random vector $V$ in term of these vectors.  
+$$
+% VECTOR breakdown in vectors
+\begin{tikzpicture}
+  \def\ul{0.52}
+  \def\R{4}
+  \def\ang{28}
+  \coordinate (O) at (0,0);
+  \coordinate (R) at (\ang:\R);
+  \coordinate (X) at ({\R*cos(\ang)},0);
+  \coordinate (Y) at (0,{\R*sin(\ang)});
+  \draw[projcol,dashed] (X) -- (R);
+  \draw[projcol,dashed] (Y) -- (R);
+  \draw[vector] (O) -- (R) node[midway,left=5,above right=0] {$\vb{V}$};
+  \draw[vector,<->,projcol]
+    (X) node[scale=0.9,left=4,below=-1] {} -- (O) --
+    (Y) node[scale=0.9,below=4,left] {};
+  \draw[vector,<->,unitcol]
+    (\ul,0) node[scale=0.9,left=2,below left=0] {$\vu{x}$} -- (O) --
+    (0,\ul) node[scale=0.9,below=2,below left=0] {$\vu{y}$};
+\end{tikzpicture}
+$$
+
+$$
+V=\langle V, X\rangle\:\vu{x}+\langle V,Y\rangle\:\vu{y}
+$$
+Now, consider the infinite dimensional orthogonal basis $\{1\}\cup\{\cos(kx),\sin(kx)\}_{k=1}^{\infty}$. On this basis, we can write any periodic function as,
+
+$$\boxed{f(x)=\frac{\langle f(x),1 \rangle}{\langle 1,1 \rangle}\cdot 1+\sum_{k=1}^{\infty}\frac{\langle f(x),\cos(kx) \rangle}{\langle \cos(kx),\cos(kx) \rangle}\cdot \cos(kx)+\sum_{k=1}^\infty\frac{\langle f(x),\sin(kx) \rangle}{\langle \sin(kx),\sin(kx) \rangle}\cdot \sin(kx)}$$
+
+\section{Derivation: Fourier Series complex form}
+So, far we have,
+\begin{align}
+\label{sin_cos_formula}
+    \begin{split}
+        \cos\theta&=\frac{e^{ikx}+e^{-ikx}}{2}\\
+        \sin\theta&=\frac{e^{ikx}-e^{-ikx}}{2i}\\
+        &= \frac{ie^{ikx}-ie^{-ikx}}{-2}
+    \end{split}
+\end{align}
+\begin{align*}
+    f(x)&=\frac{A_0}{2}+\sum_{k=1}^\infty A_k\cos(kx)+\sum_{k=1}^\infty B_k\sin(kx)\\
+    &\stackrel{\ref{sin_cos_formula}}{=} \frac{A_0}{2}+\sum_{k=1}^\infty A_k\frac{e^{ikx}+e^{-ikx}}{2}+\sum_{k=1}^\infty B_k\frac{-ie^{ikx}+ie^{-ikx}}{2}\\
+    &=\frac{A_0}{2}+\sum_{k=1}^\infty\left(\frac{A_k-iB_k}{2}\right)e^{ikx}+\sum_{k=1}^\infty\left(\frac{A_k+iB_k}{2}\right)e^{-ikx}
+\end{align*}
+Now, we want to collect all summation into a single summation. But how? The main problem arises because the last term contains a negative exponent. We replace it with a dummy indices $-k\rightarrow k$, then we get,
+\begin{align*}
+    &= \underbrace{\frac{A_0}{2}}_{C_0}+\sum_{k=1}^\infty\underbrace{\left(\frac{A_k-iB_k}{2}\right)}_{C_k}e^{ikx}+\sum_{k=-1}^{-\infty}\underbrace{\left(\frac{A_{-k}+iB_{-k}}{2}\right)}_{C_{-k}}e^{ikx}\\
+    &= \sum_{k=-\infty}^\infty C_k e^{ikx}
+\end{align*}
+So far, so good. But how do we compute the complex coefficient $C_k$? Here comes the inner product role. So, we have,
+\begin{align}
+\label{com_Fseries}
+    f(x)=\sum_{k=-\infty}^\infty C_k e^{ikx}
+\end{align}
+We can multiply $e^{-imx}$ both side of \ref{com_Fseries} and integrate from $\pi$ to $\pi$. 
+\begin{align*}
+    \int_{-\pi}^\pi f(x) e^{-imx} \, dx &= \int_{-\pi}^\pi \sum_{k=-\infty}^\infty C_k e^{ikx} e^{-imx} \, dx \\
+    &= \sum_{k=-\infty}^\infty C_k \underbrace{\int_{-\pi}^\pi e^{ikx} e^{-imx} \, dx}_{2\pi\delta^k_m} \\
+    &= \sum_{k=-\infty}^\infty 2\pi C_k \delta^k_m \\
+    &= 2\pi C_m
+\end{align*}
+From where we can grab our complex coefficient and rewrite it as,
+$$
+\boxed{C_k=\frac{1}{2\pi}\int_{-\pi}^\pi  f(x)e^{-ikx}dx}
+$$
+\qed
+~\\
+We can see how the integration give the $2\pi$ result. Suppose, we have $$\int_{-\pi}^\pi e^{ikx}dx$$. Let's find the integral for $k=0:$
+\begin{align*}
+    \int_{-\pi}^\pi e^{i0x}dx&=\int_{-\pi}^\pi dx\\
+    &=2\pi
+\end{align*}
+And for $k\neq0:$
+\begin{align*}
+    \int_{-\pi}^\pi e^{ikx}dx&=\frac{1}{ik}\left(e^{ik\pi}-e^{-ik\pi}\right)\\
+    &=\frac{1}{ik}\left(\cos(k\pi)+i\sin(k\pi)-\cos(-k\pi)-i\sin(-k\pi)\right)\\
+    &= \frac{1}{ik}2i\underbrace{\sin{k\pi}}_{=0}\\
+    &= 0 
+\end{align*}
+
+
+\section{Half range Fourier series}
+A half-range Fourier series is a Fourier series defined on an interval $(0, L)$ rather than the interval $(-L, L)$.\\
+Given a function $f(x)$, defined on the interval $(0, L)$, we obtain its half-range sine series by calculating the Fourier sine series of its odd extension
+$$
+f_o(x)= \begin{cases}f(x) & \text { if } 0<x<L \\ -f(-x) & \text { if } \quad-L<x<0\end{cases}
+$$
+The Fourier coefficients of $f_o(x)$ are $a_n=0$ and
+$$
+b_n=\frac{1}{L} \int_{-L}^L f_o(x) \sin \frac{n \pi x}{L} d x=\frac{2}{L} \int_0^L f(x) \sin \frac{n \pi x}{L} d x .
+$$
+This gives the half range sine series for $f(x)$ on $(0, L)$ as $f(x)=\sum_{n=1}^{\infty} b_n \sin \frac{n \pi x}{L}$.
+Given a function $f(x)$, defined on the interval $(0, L)$, we obtain its half-range cosine series by calculating the Fourier cosine series of its even extension
+$$
+f_e(x)= \begin{cases}f(x) & \text { if } 0<x<L \\ f(-x) & \text { if } \quad-L<x<0\end{cases}
+$$
+The Fourier coefficients of $f_e(x)$ are $b_n=0$ and
+$$
+a_n=\frac{1}{L} \int_{-L}^L f_e(x) \cos \frac{n \pi x}{L} d x=\frac{2}{L} \int_0^L f(x) \cos \frac{n \pi x}{L} d x
+$$
+This gives the half range cosine series for $f(x)$ on $(0, L)$ as $f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty} a_n \cos \frac{n \pi x}{L}$.
+For a given (physical) problem on an interval $(0, L)$ it is usually the boundary conditions that determine whether an odd extension and a half sine Fourier series or an even extension and a half cosine Fourier series is more appropriate.
+
+\begin{center}
+	\begin{forest}
+		for tree={%
+			align=center, %% ADDED
+			edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}
+		}
+		[
+		Fourier Series ($-L\leq x\leq L$)\\Use formula \ref{normal_FS},
+		[Fourier Sine Series ($0\leq x\leq L$)\\Use formula \ref{FSS}]
+		[Fourier Cosine Series ($0\leq x\leq L$)\\Use formula \ref{FCS}]
+		]
+	\end{forest}
+\end{center}
+
+\begin{align}
+\label{normal_FS}
+    \begin{split}
+        f(x)&=\frac{A_0}{2}+\sum_{k=1}^\infty A_k\cos\left(\frac{kx\pi}{L}\right)+\sum_{k=1}^\infty B_k\sin\left(\frac{kx\pi}{L}\right)\\
+        A_k &= \frac{1}{L} \int_{-L}^L f(x) \cos\left(\frac{kx\pi}{L}\right) dx\\
+        B_k &= \frac{1}{L}\int_{-L}^L f(x) \sin\left(\frac{kx\pi}{L}\right) dx
+    \end{split}
+\end{align}
+
+\begin{align}
+\label{FSS}
+    \begin{split}
+        f(x)&=\sum_{k=1}^\infty B_k\sin\left(\frac{kx\pi}{L}\right)\\
+        B_k &= \frac{1}{L} \int_{-L}^L f_{\text{odd}}(x) \sin\left(\frac{kx\pi}{L}\right) dx\\
+        &= \boxed{\frac{2}{L} \int_{0}^L f(x) \sin\left(\frac{kx\pi}{L}\right) dx}
+    \end{split}
+\end{align}
+
+\begin{align}
+\label{FCS}
+    \begin{split}
+        f(x)&=\frac{A_0}{2}+\sum_{k=1}^\infty A_k\cos\left(\frac{kx\pi}{L}\right)\\
+        A_k &=  \frac{1}{L} \int_{-L}^L f_{\text{even}} \cos\left(\frac{kx\pi}{L}\right) dx\\
+        &= \boxed{\frac{2}{L} \int_{0}^L f(x) \cos\left(\frac{kx\pi}{L}\right) dx}
+    \end{split}
+\end{align}
+
+\section{Pythagoras' formula in Fourier world!}
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Determine the period of the function $y=7\sin^{2024}5x+21$.
+\end{tcolorbox}
+~\\
+\end{problem}
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Draw sketches of the following graphs:
+\begin{itemize}
+    \item $f(x)=3|\sin(x)|,0\leq x\leq2\pi$
+    \item $\begin{cases}
+        2\sin x&,0\leq x\leq\pi\\
+        0&,\pi\leq x\leq2\pi
+    \end{cases}$
+    \item $\begin{cases}
+        1&,0\leq x\leq\pi\\
+        0&,\pi\leq x\leq2\pi
+        \end{cases}$
+\end{itemize}
+\end{tcolorbox}
+~\\
+\end{problem}
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Find the Fourier series expansion of the function $f(x)$,
+$$
+f(x)=\begin{cases}
+    x&,0<x<\pi\\
+    -x&,-\pi<x<0
+\end{cases}
+$$
+\end{tcolorbox}
+~\\
+\end{problem}
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Find the Fourier series expansion of the function $f(x)$,
+$$
+f(x)=\begin{cases}
+    2&,0<x<\pi\\
+    -2&,-\pi<x<0
+\end{cases}
+$$
+\end{tcolorbox}
+~\\
+\end{problem}
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Find the Fourier Sine series expansion of the function $f(x)$,
+$$
+f(x)=\cos x, 0\leq x\leq \pi
+$$
+\end{tcolorbox}
+~\\
+\end{problem}
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Find the odd extension of $f(x)=\cos(x)$ on $[0,\pi]$, draw it and find the Fourier Sine Series of it. 
+\end{tcolorbox}
+~\\
+\end{problem}
+
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Find the even extension of $f(x)=1-x$ on $[0,\pi]$, draw it and find the Fourier Sine Series of it. 
+\end{tcolorbox}
+~\\
+\end{problem}
+\section{From Fourier series to Transform}
+\begin{align}
+\label{complx_ft}
+        f(x)&=\sum_{k=-\infty}^\infty C_k e^{\frac{ikx\pi}{L}}
+\end{align}
+
+Where, $$C_k = \frac{1}{2L}\int_{-L}^L f(x)e^{\frac{-ik\pi x}{L}}dx.$$
+Take 
+\begin{align}
+\label{freq_CFT}
+    w=k\frac{\pi}{L}=k\Delta w.
+\end{align}
+Now, we want a find the Fourier series of a function which is not periodic, $L\rightarrow\infty$ which implies our $\Delta w\rightarrow 0$. Then our \ref{complx_ft} become, 
+
+\begin{align*}
+    f(x) &= \lim_{\Delta w\rightarrow 0 }\left( \sum_{k=-\infty}^\infty {\color{red}{C_k}} e^{iwx} \right)\\
+    &= \lim_{\Delta w\rightarrow 0 }\left( \sum_{k=-\infty}^\infty \left[{\color{red}{\frac{\Delta w}{2\pi} \int_{-\frac{\pi}{\Delta w}}^{\frac{\pi}{\Delta w}} f(\xi)e^{i(k\Delta w)\xi} d\xi}} \right] e^{iwx} \right)\\
+    &= {\color{blue}{\lim_{\Delta w\rightarrow 0 }\sum_{k=-\infty}^\infty}}\left(\left[{\color{red}{\frac{1}{2\pi} \int_{-\frac{\pi}{\Delta w}}^{\frac{\pi}{\Delta w}} f(\xi)e^{iw\xi} d\xi}} \right] e^{iwx} \right){\color{blue}{\Delta w}}\\
+    &= {\color{red}{\frac{1}{2\pi}}}{\color{blue}{\int_{-\infty}^{\infty}}} \underbrace{\left[{\color{red}{\int_{-\infty}^\infty f(\xi) e^{-iw\xi}d\xi}}\right]}_{\vu{f}(w)} {\color{blue}{e^{iwx} dw}}
+\end{align*}
+From this, we can say that the Fourier transform of a given function $f(x)$ is nothing but the following integral,
+$$
+\boxed{\mathcal F\{f(x)\}=\int_{-\infty}^\infty f(x) e^{-iwx}dx}
+$$
+And we denoted it by $\vu{f}(\omega)$. Similarly, for inverse Fourier Transform of given $f(x)$ is the following integral,
+$$
+\boxed{\mathcal F^{-1}\{f(x)\}=\frac{1}{2\pi}\int_{-\infty}^\infty f(x) e^{iwx}dw}
+$$
+Voila! We just derive the formula.
+\qed\\
+That means when we try to find the Fourier series of an aperiodic function we end up with the Fourier transform, Voila!\\
+By the way, some authors distribute the $2\pi$ differently. Which creates slightly different looks for these formulas like:
+$$
+f(x)=\cdots={\color{red}{\frac{1}{\sqrt{2\pi}}}}{\color{blue}{\int_{-\infty}^{\infty}}} \underbrace{\left[{\color{red}{\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty f(x) e^{-iwx}dx}}\right]}_{\vu{f}(w)} {\color{blue}{e^{iwx} dw}}
+$$
+Which implies,
+$$
+\boxed{\mathcal F\{f(x)\}=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty f(x) e^{-iwx}dx}
+$$
+$$
+\boxed{\mathcal F^{-1}\{f(x)\}=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty f(x) e^{iw\xi}dw}
+$$
+Like our Fourier Series discussion, we can also see how odd or even functions can change the formula a bit.\\
+If our $f(x)$ is an even function then, 
+\begin{align}
+\label{dum_cop}
+\begin{split}
+\mathcal{F}\{f(x)\}&=\int_{-\infty}^{\infty} f(x)e^{-i\omega x} \ dx \\
+&=\int_{-\infty}^{\infty} f(x)\left(\cos(\omega x)-i\sin(\omega x)\right) \ dx \\
+&=\int_{-\infty}^{\infty}\underbrace{f(x)\cos(\omega x)}_{\text{even function}} \ dx-\frac{i}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\underbrace{f(x)\sin(\omega x)}_{\text{odd function}} dx \\
+&={\color{blue}{2}}\underbrace{\int_0^{\infty} f(x) \cos(\omega x)  \ dx}_{\mathcal{F}_c\{f(\omega\}}
+\end{split}
+\end{align}
+Doing the same computation for inverse Fourier transform we get,
+\begin{align*}
+    \mathcal F^{-1}(f(x))&=\frac{1}{2\pi}\int_{-\infty}^\infty f(x)e^{i\omega x}dx\\
+    &=\vdots\\
+    &= \frac{1}{2\pi}\int_{-\infty}^\infty f(x)\cos(\omega x)d\omega\\
+    &= {\color{red}{2}}\frac{1}{2\pi}\int_{-\infty}^\infty f(x)\cos(\omega x)d\omega\\
+    &\stackrel{\ref{dum_cop}}{=}\frac{{\color{blue}{2}}\cdot{\color{red}{2}}}{2\pi}\int_{-\infty}^\infty f(x)\cos(\omega x)d\omega\\
+    &= \underbrace{\frac{2}{\pi}\int_{-\infty}^\infty f(x)\cos(\omega x)d\omega}_{\mathcal{F}^{-1}_c\{f(x)\}}
+\end{align*}
+Here, again we collect all coefficients in the inverse Fourier transform part. However, some authors distribute them equally. Okay, you can do the same computation for an odd function and get $\mathcal{F}_s\{f(x)\}$ and $\mathcal{F}^{-1}_s\{f(x)\}$.\\ 
+For the sake of simplicity please use the following formula-tree to avoid confusion. 
+\begin{center}
+	\begin{forest}
+		for tree={%
+			align=center, %% ADDED
+			edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}
+		}
+		[
+		Fourier Transform\\Use formula \ref{normal_FT},
+		[Fourier Sine Transform\\Use formula \ref{FST}]
+		[Fourier Cosine Transform\\Use formula \ref{FCT}]
+		]
+	\end{forest}
+\end{center}
+
+\begin{align}
+\label{normal_FT}
+    \begin{split}
+        \mathcal F\{f(x)\}&=\int_{-\infty}^\infty f(x) e^{-i\omega x}dx=\vu{f}(\omega)\\
+        \mathcal F^{-1}\{\vu f(\omega)\}&=\frac{1}{2\pi}\int_{-\infty}^\infty \vu{f}(\omega) e^{i\omega x}d\omega
+    \end{split}
+\end{align}
+
+\begin{align}
+\label{FST}
+    \begin{split}
+        \mathcal F_s\{f(x)\}&=\int_{0}^\infty f(x) \sin(\omega x)dx=\vu{f}_s(\omega)\\
+        \mathcal F^{-1}_s\{\vu f_s(\omega)\}&=\frac{2}{\pi}\int_{0}^\infty \vu{f}_s(\omega)\sin(\omega x)d\omega
+    \end{split}
+\end{align}
+
+\begin{align}
+\label{FCT}
+    \begin{split}
+        \mathcal F_c\{f(x)\}&=\int_{0}^\infty f(x) \cos(\omega x)dx=\vu{f}_c(\omega)\\
+        \mathcal F^{-1}_c\{\vu f_c(\omega)\}&=\frac{2}{\pi}\int_{0}^\infty \vu{f}_c(\omega)\cos(\omega x)d\omega
+    \end{split}
+\end{align}
+So, why is there $\frac{2}{\pi}$ in the inverse formula? Because we split our integral (because of eveness) twice: first in the $\mathcal F_c$ and second in the $\mathcal F_c^{-1}$. Hence, total factor increased by four times. We just collect this scaling and put inside the inverse formula,
+\begin{align*}
+    2\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\cdots\right)\rightarrow2\left(\frac{2}{2\pi}\int_{0}^{\infty}\cdots\right)\rightarrow\left(\frac{2}{\pi}\int_{-\infty}^{\infty}\cdots\right) 
+\end{align*}
+To make your life easy remember the following formulas:
+$$\boxed{\int e^{ax}\cos bx\;dx = \frac{e^{ax}}{a^2+b^2}(a\cos bx+b\sin bx)}$$
+$$\boxed{\int e^{ax}\sin bx\;dx = \frac{e^{ax}}{a^2+b^2}(a\sin bx - b\cos bx)}$$
+You can find the full derivation \href{https://math.stackexchange.com/a/1502079}{here}.\\
+\clearpage
+\section{Unknotting the Interval mess up}
+Okay, how do we calculate the upper and lower limits of the integration used in the Fourier series or transform part?  We always integrate the function in the given domain because our function is defined in that space. Actually, we do the periodic extension and then find the Fourier series. Like for the function, $f(x)=\begin{cases}
+    1, & 0 < x < \pi\\
+    -1, &-\pi < x < 0
+\end{cases}$
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{F_extend.png}
+    \caption{Periodic extension}
+    \label{fig:periodic_extend}
+\end{figure}
+
+So, basically, if you ask for the Fourier series, just make sure to find the interval of the function using the $2L$ formula, $$2L=\textbf{Given domain of the function}$$
+And then use it in the general formula of the Fourier series:
+
+\begin{align*}
+    f(x)&=\frac{a_0}{2}+\sum_{k=1}^\infty a_k\cos{\left(k\frac{\pi x}{L}\right)}+\sum_{k=1}^\infty b_k\sin{\left(k\frac{\pi x}{L}\right)}\\
+    a_0 &= \frac{1}{L}\int_{-L}^L f(x) dx\\
+    a_k &= \frac{1}{L}\int_{-L}^L f(x) \cos{\left(k\frac{\pi x}{L}\right)} dx\\
+    b_k&=  \frac{1}{L}\int_{-L}^L f(x) \sin{\left(k\frac{\pi x}{L}\right)} dx
+\end{align*}
+
+But if you asked for the Fourier Sine or Cosine series, then your formula gets changed as,
+$$L=\textbf{Given domain of the function}$$
+Because, this time we make it Odd or Even extension and then find the normal periodic extension and hence find the Fourier series.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/Extension_odd_even.png}
+    \caption{Odd or Even extension}
+    \label{fig:odd-even_extend}
+\end{figure}
+
+And then use it in the general formula of the Fourier Sine series:
+
+\begin{align*}
+    f_s(x)&=\sum_{k=1}^\infty b_k\sin{\left(k\frac{\pi x}{L}\right)}\\\\
+    b_k&=\frac{1}{L}\int_{-L}^L \underbrace{f(x) \sin{\left(k\frac{\pi x}{L}\right)}}_{odd\cdot odd=even} dx\\
+    &\stackrel{eveness}{=}  \frac{2}{L}\int_{0}^L f(x) \sin{\left(k\frac{\pi x}{L}\right)} dx
+\end{align*}
+Here, $a_0,a_k=0$ because $f(x)$ is an odd (extended) function and $\cos{\left(k\frac{\pi x}{L}\right)}$ is an even function, hence their product is an odd function. And we know that, integrating an odd function in a complete period gives zero as the signed areas cancel each other.  
+Fourier Cosine series:
+
+\begin{align*}
+    f_c(x)&=\frac{a_0}{2}+\sum_{k=1}^\infty a_k\cos{\left(k\frac{\pi x}{L}\right)}\\
+    a_0 &= \frac{2}{L}\int_{-L}^L f(x) dx\\
+    &= \frac{1}{L}\int_{-L}^L \underbrace{f(x) \cos{\left(k\frac{\pi x}{L}\right)}}_{even\cdot even=even} dx\\
+    &\stackrel{eveness}{=} \frac{2}{L}\int_{0}^L f(x) \cos{\left(k\frac{\pi x}{L}\right)} dx
+\end{align*}
+Similarly, $b_k=0$ is also zero because,
+$$
+\tilde f(x)\sin{\left(k\frac{\pi x}{L}\right)}=\text{even (extended) function}\cdot\text{odd function}=\text{odd function}
+$$
+\begin{problem} 
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Given that, $$f(x)=\begin{cases}
+    1,& |x|<a\\
+    0,&|x|>a
+\end{cases}$$
+Use Fourier transform to find, $$\int_{-\infty}^\infty \frac{\sin(\omega a)\cos(\omega x)}{\omega}d\omega$$
+Use your result to find, $$\int_{-\infty}^\infty\frac{\sin(x)}{x}dx=\frac{\pi}{2}$$
+\end{tcolorbox}
+~\\
+\end{problem}
+
+\begin{problem} 
+~\\ 
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Given that, $$f(x)=\begin{cases}
+    1-x,& |x|<1\\
+    0,&|x|>1
+\end{cases}$$
+Use Fourier transform to find, $$\int_{0}^\infty\left(\frac{x\cos(x)-\sin(x)}{x^3}\right)\cos{\frac{x}{2}}dx$$
+\end{tcolorbox}
+~\\
+\end{problem}
+
+\begin{problem} 
+~\\ 
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Given that, $$f(x)=\begin{cases}
+    1,& 0<x<1\\
+    0,&x\geq1
+\end{cases}$$
+Find Fourier Sine and Cosine transform of $f(x)$.
+\end{tcolorbox}
+~\\
+\end{problem}
+
+\clearpage

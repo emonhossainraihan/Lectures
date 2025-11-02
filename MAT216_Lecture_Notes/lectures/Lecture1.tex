@@ -1,0 +1,399 @@
+\chapter{Lecture 1}
+\section{Motivation}
+System of equations is the most fascinating topic in Linear Algebra. Because we can see it through both vector space and Linear Transformation perspective respectively. For example, take a system of linear equations,
+\begin{align}
+\begin{split}
+    x-y&=1\\
+    2x+y&=6
+\end{split}
+\end{align}
+If you write the system as a linear combination of vectors (as we are considering our coefficient of a specific variable e.g., $\begin{pmatrix}
+    1\\2
+\end{pmatrix}$ for $x$ to a column vector which live in $\mathbb R^2$) then we can rewrite it as,
+\begin{align*}
+    \begin{pmatrix}
+        1\\2
+    \end{pmatrix}x+\begin{pmatrix}
+        -1\\1
+    \end{pmatrix}y=\begin{pmatrix}
+        1\\6
+    \end{pmatrix}
+\end{align*}
+\textbf{Interpretation of the solution:} Here, we want to find such scalars $x,y$ for which our vectors $\begin{pmatrix}
+    1\\2
+\end{pmatrix}$ and $\begin{pmatrix}
+    -1\\1
+\end{pmatrix}$ can reach the vector $\begin{pmatrix}
+    1\\6
+\end{pmatrix}$ by \textbf{vector addition}.
+\\~\\
+Likewise, we can rewrite the system as,
+\begin{align*}
+    \begin{pmatrix}
+        1 & -1\\
+        2 & 1
+    \end{pmatrix}\begin{pmatrix}
+        x\\y
+    \end{pmatrix}=\begin{pmatrix}
+        1\\6
+    \end{pmatrix}
+\end{align*}
+Here, we are considering the linear transformation (don't worry we will discuss it in our upcoming lectures, or if you want to understand it right now have a look at the course \href{https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}{Essence of linear algebra}, YouTube playlist from 3b1b channel) and want to find such vectors which are mapped to the specific vector $\begin{pmatrix}
+    1\\6
+\end{pmatrix}$ after the transformation applied.\\
+\textbf{Interpretation of the solution:} So, basically we want all those vectors $\begin{pmatrix}
+    x\\y
+\end{pmatrix}$ which are mapped to $\begin{pmatrix}
+    1\\6
+\end{pmatrix}$.
+\clearpage
+\begin{center}
+	\begin{forest}
+		for tree={%
+			align=center, %% ADDED
+			edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}
+		}
+		[
+		System of linear Equations,
+		[Algebraic form]
+		[Vector form]
+		[Transformation form]
+        [$\cdots$]
+		]
+	\end{forest}
+\end{center}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{images/madness.jpeg}
+\end{figure}
+Welcome to Linear Algebra, where the notation is made up and you might gain your third eye.
+\begin{displayquote}
+\say{Life isn't linear, but written words are. Like our system of linear equations.}
+\end{displayquote}
+
+\section{System of Linear Equations} 
+Let's Consider,
+\begin{align*}
+    3x&=6\\
+    2y&=4
+\end{align*}
+We can easily find the solution of this two-dimensional linear equation or a system of equations where($x=2$ and $y=2$). Because the equations of this system (lines) are orthogonal or in other words, they are perpendicular to each other.
+
+% you can use this template to add image
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{L1 example 1.png}
+\end{figure}
+~\\
+\textbf{Remark:} In this course, our main focus will be to convert any system of linear equations into an orthogonal set of linear equations (which might not look the same but share the same solution). And how will we do this? Gaussian Elimination! Gaussian Elimination!! Gaussian Elimination!!! 
+
+\subsection{System of equation: Two variables}
+For two-dimensional linear equations, there are two different possible types. Either it is: \emph{Consistent} or \emph{Inconsistent}. Consistent means that, the system may have unique or multiple solutions whereas inconsistent means there is no possible solution for the system.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{L1 lines.png}
+\end{figure}
+
+ If the slopes of the lines are the same then they may be parallel or they may be the same exact line. In this case, one line may be scaled or extended by a scalar multiplication. Again, if they are parallel, then there will be no solutions and again, if they are exact same line then, there will be infinitely many solutions. On the other hand, one unique solution is possible if they coincide at one point.
+
+\subsection{System of Equation: Three variables}
+A three-dimensional linear system has also three possible types of solutions.\\
+ \textbf{Fact:}\\
+ Every system of linear equations has zero, one, or infinitely many solutions. There are
+no other possibilities.\\
+But for three-dimensional cases, many possible cases will result which gives the above solution case.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{L1 planes.png}
+\end{figure}
+
+Like for a three-variable system:
+$$
+\begin{cases}
+    a_1x+b_1y+c_1z&=d_1\\
+    a_2x+b_2y+c_2z&=d_2\\
+    a_3x+b_3y+c_3z&=d_3
+\end{cases}
+$$
+We can rewrite it in the vector form:
+$$
+\underbrace{\begin{pmatrix}
+    a_1\\a_2\\a_3
+\end{pmatrix}}_{\in\mathbb R_3}x+
+\underbrace{\begin{pmatrix}
+    b_1\\b_2\\b_3
+\end{pmatrix}}_{\in\mathbb R_3}y+
+\underbrace{\begin{pmatrix}
+    c_1\\c_2\\c_3
+\end{pmatrix}}_{\in\mathbb R_3}z=
+\underbrace{\begin{pmatrix}
+    d_1\\d_2\\d_3
+\end{pmatrix}}_{\in\mathbb R_3}
+$$
+So, our solution $\begin{pmatrix}
+    x\\y\\z
+\end{pmatrix}$ actually tell us how much we should scale our column vectors $\begin{pmatrix}
+    a_1\\a_2\\a_3
+\end{pmatrix},\begin{pmatrix}
+    b_1\\b_2\\b_3
+\end{pmatrix}$ and $\begin{pmatrix}
+    c_1\\c_2\\c_3
+\end{pmatrix}$ respectively in order to reach the right hand side vector $\begin{pmatrix}
+    d_1\\d_2\\d_3
+\end{pmatrix}$.
+\\~\\
+Two questions that we will revisit many times throughout our course:
+\begin{enumerate}
+    \item Does a given linear system have a solution? In other words, is it consistent?
+    \item If it is consistent, is the solution unique?
+\end{enumerate}
+Let's sum up everything in a diagram:
+
+
+\begin{center}
+\begin{forest}
+for tree={
+  align=center,
+  grow'=south,
+  parent anchor=south,
+  child anchor=north,
+  l=2cm,
+  s sep=10pt,
+  edge={->}
+}
+[
+\shortstack{Linear system},
+  [\shortstack{Consistent},
+    [\shortstack{Unique solution\\(number of unknowns\\=\\number of pivots)}]
+    [\shortstack{Many solutions\\(number of unknowns\\>\\number of pivots)}]
+  ]
+  [\shortstack{Inconsistent},
+    [\shortstack{No solution\\(zero=non-zero)}]
+  ]
+]
+\end{forest}
+\end{center}
+
+
+\section{Too early for Gaussian Elimination?}
+Gaussian elimination, also known as row reduction, is an algorithm for solving systems of linear equations. It consists of a sequence of row-wise operations performed on the corresponding matrix of coefficients. Rules of Gaussian Elimination:
+
+\begin{itemize}
+    \item  Multiplying by a constant.
+    \item Adding a row by row
+    \item Row swap
+\end{itemize}
+
+The following example is a preview of how we can say so many things just by looking at the columns. 
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+  \textbf{Question $1$}: Solve the following system,
+  $$
+  \begin{cases}
+    x+4z+7t&=8\\
+    y+5z+11t&=11
+\end{cases}
+  $$
+\end{tcolorbox}
+ We can write the linear system,
+% use $$ code $$ to make render math mode
+$$
+\begin{cases}
+    x+4z+7t&=8\\
+    y+5z+11t&=11
+\end{cases}\implies
+\underbrace{\begin{pmatrix}
+ 1 & 0&4&7\\
+ 0&1&5&11\\
+ \end{pmatrix}}_{\text{coefficient matrix}}\begin{pmatrix}
+     x\\
+     y\\
+     z\\
+     t\\
+ \end{pmatrix} = \begin{pmatrix}
+     8\\
+     11\\
+ \end{pmatrix}
+$$ 
+Now, if we consider $z=0 ,t =0$, then our system will be reduced and we will get,
+$$
+\begin{pmatrix}
+ 1 & 0\\
+ 0&1\\
+ \end{pmatrix}\begin{pmatrix}
+     x\\
+     y\\
+     
+ \end{pmatrix} = \begin{pmatrix}
+    8\\
+     11\\
+ \end{pmatrix}
+ $$
+then, we can find the solution easily, $x=8$, $y=11$.\\
+But wait, the story isn't over yet. This solution isn't the sole one for this system; many possible solutions exist. Can you contemplate the underlying reason? 
+
+\begin{myremark}{Hints:}
+If you see the system through the column perspective then we have four vectors $\begin{pmatrix}
+    1\\0
+\end{pmatrix},\begin{pmatrix}
+    0\\1
+\end{pmatrix},\begin{pmatrix}
+    4\\5
+\end{pmatrix},\begin{pmatrix}
+    7\\11
+\end{pmatrix}$ in $\mathbb R^2$. And we want to reach $\begin{pmatrix}
+    8\\11
+\end{pmatrix}$ using those vectors. 
+\end{myremark}
+According to the General Formula which we didn't discuss in full detail,
+$$
+\text{Solution}=\begin{pmatrix}
+    8\\
+    11\\
+    0\\
+    0\\
+    
+\end{pmatrix} + \alpha \begin{pmatrix}
+    4\\
+    5\\
+    -1\\
+    0\\
+    
+\end{pmatrix} + \beta \begin{pmatrix}
+    7\\
+    11\\
+    0\\
+    -1\\
+\end{pmatrix}
+$$
+Here we can see that the multiplication of the first column by $4$, the second one by $5$ and the third column by $-1$ give us zero vector.
+$$
+4\begin{pmatrix}
+ 1\\0   
+\end{pmatrix}+5\begin{pmatrix}
+    0\\1
+\end{pmatrix}-\begin{pmatrix}
+    4\\5
+\end{pmatrix}+0\begin{pmatrix}
+    7\\11
+\end{pmatrix}=\begin{pmatrix}
+    0\\0
+\end{pmatrix}
+$$
+That means this configuration $4,5,-1,0$ (linear combination) of column vectors will give us $\begin{pmatrix}
+    0\\0
+\end{pmatrix}$. But how do we represent this linear combination? Look carefully what our solution $\begin{pmatrix}
+    x\\y\\z\\t
+\end{pmatrix}$ does to the column vectors.
+\begin{myremark}{Hints:}
+$$
+\begin{pmatrix}
+ 1 & 0&4&7\\
+ 0&1&5&11\\
+ \end{pmatrix}\begin{pmatrix}
+     x\\y\\z\\t
+ \end{pmatrix}=\begin{pmatrix}
+     1\\0
+ \end{pmatrix}x+\begin{pmatrix}
+     0\\1
+ \end{pmatrix}y+\begin{pmatrix}
+     4\\5
+ \end{pmatrix}z+\begin{pmatrix}
+     7\\11
+ \end{pmatrix}t
+ $$
+\end{myremark}
+~\\
+And adding this to our particular solution $\begin{pmatrix}
+    8\\11\\0\\0
+\end{pmatrix}$ won't change the solution at all. Similarly for $\begin{pmatrix}
+    7\\11\\0\\-1
+\end{pmatrix}$. But can you see what's going on with our solution set? 
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+  \textbf{Question $2$}: Solve the following system,
+$$
+\begin{pmatrix}
+    1&2&3\\
+    4&5&6\\
+    7&8&9\\
+\end{pmatrix}\begin{pmatrix}
+    x\\
+    y\\
+    z\\
+\end{pmatrix}=\begin{pmatrix}
+    20\\50\\80
+\end{pmatrix}
+$$
+\end{tcolorbox}
+~\\
+We have given that:
+$$
+\begin{pmatrix}
+    1&2&3\\
+    4&5&6\\
+    7&8&9\\
+\end{pmatrix}\begin{pmatrix}
+    x\\
+    y\\
+    z\\
+\end{pmatrix}=\begin{pmatrix}
+    20\\50\\80
+\end{pmatrix}
+$$
+Now, if we multiply column two by $10$ we can get a particular solution,
+$\begin{pmatrix}
+    x\\y\\z
+\end{pmatrix}=\begin{pmatrix}
+    0\\10\\0\\
+\end{pmatrix}$. Because this solution gives us,
+$$
+\begin{pmatrix}
+    1\\4\\7
+\end{pmatrix}\cdot0+\begin{pmatrix}
+    2\\5\\8
+\end{pmatrix}\cdot10+\begin{pmatrix}
+    3\\6\\9
+\end{pmatrix}\cdot0=\begin{pmatrix}
+    20\\50\\80
+\end{pmatrix}
+$$
+So, $x=0, y=10, z = 0$. which is our particular solution. By the way, What if we apply Gaussian Elimination here?
+
+$$
+\left(\begin{array}{ccc|c}
+     1&2&3&20\\
+     4&5&6&50\\
+     7&8&9&80
+\end{array}\right)\stackrel{R_2'=R_2-4R_1}{\sim}
+\left(\begin{array}{ccc|c}
+     1&2&3&20\\
+     0&-3&-6&-30\\
+     0&-6&-12&-60
+\end{array}\right)\stackrel{R_3'=R_3-2R_2}{\sim}
+\left(\begin{array}{ccc|c}
+     1&2&3&20\\
+     0&-3&-6&-30\\
+     0&0&0&0
+\end{array}\right)
+$$
+If we write the general solution, we will get something like the below: 
+$$
+\begin{pmatrix}
+    x\\y\\z
+\end{pmatrix}=\begin{pmatrix}
+    z\\10-2z\\z
+\end{pmatrix}\implies\begin{pmatrix}
+    x\\y\\z
+\end{pmatrix}=
+\begin{pmatrix}
+    0\\10\\0
+\end{pmatrix}+\begin{pmatrix}
+    1\\-2\\1
+\end{pmatrix}z
+$$
+Ah, we get more solutions, and to get more things we have to do something extra \smiley. 
+

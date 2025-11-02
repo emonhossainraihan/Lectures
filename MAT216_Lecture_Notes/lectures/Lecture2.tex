@@ -1,0 +1,499 @@
+\chapter{Lecture 2}
+\section{Why does Gaussian Elimination work? No geometry, Uhem!}
+There are three fundamental operations we perform on a linear system. 
+\begin{itemize}
+    \item Multiplying a row by a scalar. 
+    \item Interchanging two rows. 
+    \item Adding a scalar multiple of a row to another row. 
+\end{itemize}
+These are called \textbf{Elementary row operations}. The thing to notice is that after performing any of these three operations the resultant system consists of equations that are linear combinations of the original one.\\~\\ 
+For example, say we have a system, 
+$$
+\begin{array}{c}
+a_1x+b_1y+c_1z=d_1 \\ 
+a_2x+b_2y+c_2z=d_2 \\ 
+a_3x+b_3y+c_3z=d_3
+\end{array}
+$$
+Say we multiply the first row by $q$ and add it to the second. The resultant system is, 
+$$
+\begin{array}{c}
+a_1x+b_1y+c_1z=d_1 \\ 
+q(a_1x+b_1y+c_1z) + a_2x+b_2y+c_2z=q \cdot d_1 + d_2 \\ 
+a_3x+b_3y+c_3z=d_3
+\end{array}
+$$
+Now say $(x, y, z)^T$ was a solution to the original system. Then, it is also a solution to the second one. Let us try to convince ourselves of this. The first and last rows are not a problem. The second equation of the resultant system is also satisfied because $a_2x+b_2y+c_2z= d_2$ and $(a_1x+b_1y+c_1z) = d_1 \implies q (a_1x+b_1y+c_1z) = q \times d_1 $. 
+\\~\\
+The other two linear operations are also similarly disposed of. 
+\\~\\
+Now look at what we have proven. We have proven that \textit{"any solution to the original system is a solution to the system resulting from one of the three linear operations"}. 
+\\~\\
+But we require a little more. We want the solutions of the new system to be exactly those of the first one. This is established by the fact that every linear operation mentioned has a corresponding inverse operation *which is also one of the three linear operations*. For example, the inverse operation of the one we performed above is multiplying the first row of the second system by $-q$ and adding to the second row. Now think of the original system as resulting from the second one through the performance of a linear operation. Hence from what we proved above any solution to the second system is also a solution to the first. 
+
+So any solution to the original system is a solution to the resultant system and any solution to the resultant system is a solution to the original one. Hence the solutions to the first system are exactly those to the second. This is exactly what we require. There is a nice explanation of all this in the first twenty or so pages in \href{http://www.cin.ufpe.br/~jrsl/Books/Linear%20Algebra%20-%20Kenneth%20Hoffman%20&%20Ray%20Kunze%20.pdf}{"Linear Algebra by Hoffman, Kunze"}. 
+\section{Gaussian Elimination in Action}
+ If the slopes of a linear system equation are different, then the intersection point is unique.
+Consider,
+\begin{align*}
+    x-y&=1\\
+    2x+y&=6
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{images/L2 S1.jpeg}
+\end{figure}
+~\\
+ To solve a linear equation both two or three-dimensional, we try to make the equation lines orthogonal.\\
+ For the above system\\~\\
+\textbf{Step $1$:} by doing, $ R_2'= R_2-2R_1$\\
+ $$
+ \begin{pmatrix}
+ x &-y\\
+ 0 & 3y \\
+ \end{pmatrix}=\begin{pmatrix}
+     1\\
+     4\\
+ \end{pmatrix}
+$$
+\textbf{Step:} $2$ by doing $R_1'=R_1+\frac{1}{3}R_2$,
+$$
+\begin{pmatrix}
+ x &0\\
+ 0 & 3y \\
+ \end{pmatrix}=\begin{pmatrix}
+     \frac{7}{3}\\
+     4\\
+ \end{pmatrix}
+$$
+The corresponding linear system becomes:
+$$
+\begin{cases}
+    x&=\frac73\\
+    3y&=4
+\end{cases}
+$$
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{images/L2-S2.jpeg}
+\end{figure}
+So, the solution is, $$(x,y)= \left(\frac{7}{3},\frac{4}{3}\right).$$
+\\~\\
+\textbf{Remark:} Did you see how our system became orthogonal one after applying Gaussian Elimination? Though we have the same solution. Can you interpret this through the geometrical point of view which I gave in the class? 
+\section{Augmented Matrix}
+For any linear system of equations, $A\mathbf{x}=\mathbf{b}$ we can write a matrix $(A|\mathbf{b})$ to perform elementary row operation (only one operation using rows) and call it as an augmented matrix for that system.\\~\\
+If a system of linear equations is,
+$$
+\begin{cases}
+    x_1+x_2+2x_2&=9\\
+    2x_1+4x_2-3x_3&=1\\
+    3x_1+6x_2-5x_3&=0
+\end{cases}
+$$
+then their Augmented Matrix is,\\
+$$
+A=\left(\begin{array}{ccc|c}
+1 & 1 & 2 & 9 \\
+2 & 4 & -3 & 1 \\
+3 & 6 & -5 & 0
+\end{array}\right)
+$$
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Solve the following system if possible,
+\begin{align*}
+    x+y&=4\\
+    3x+3y&=6
+\end{align*}
+\end{tcolorbox}
+~\\
+A linear system of equations,
+\begin{align*}
+    x+y&=4\\
+    3x+3y&=6
+\end{align*}
+which we can also write as,
+$$
+\begin{pmatrix}
+    1&1\\
+    3&3
+\end{pmatrix}\begin{pmatrix}
+    x\\y
+\end{pmatrix}=\begin{pmatrix}
+    4\\6
+\end{pmatrix}
+$$
+Now, by doing,
+$$
+\begin{pmatrix}
+    1&1\\
+    0&0\\
+\end{pmatrix}=\begin{pmatrix}
+    12\\6\\
+\end{pmatrix}\quad [R_2'=3 R_1-R_2]
+$$
+we get $0=6$ which is not possible. So, this system has no solution.
+\end{problem}
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Solve the following system if possible,
+$$
+\begin{cases}
+    4x-2y&=1\\
+    16x-8y&=4
+\end{cases}
+$$
+\end{tcolorbox}
+~\\
+    $$
+\begin{cases}
+    4x-2y&=1\\
+    16x-8y&=4
+\end{cases}
+$$
+Now, by doing $ R_2'= R_2-4R_1$\\
+$$
+\begin{cases}
+    4x-2y&=1\\
+    0&=0
+\end{cases}
+$$
+Here, $0=0 $ is a trivial case, and they are both same line. So, this system has infinitely many solutions.
+\end{problem}
+~\\
+\textbf{Need row swap:}
+$$
+\begin{aligned}
+x+ y + z &= 3 \\
+2x + 2y + 5z &= 9\\
+3x + 6y + 4z &= 12 \\
+\end{aligned}\qquad
+\begin{aligned}
+y + z &= 2 \\
+x + y + z &= 3 \\
+2x + 3y + z &= 5 \\
+\end{aligned}\qquad
+\begin{aligned}
+x+ y + z &= 3 \\
+2x + 2y + 2z &= 6\\
+x + 2y + 3z &= 4 \\
+\end{aligned}
+$$
+\textbf{No solution case:}
+$$
+\begin{aligned}
+x+ 2y -3z &= -1 \\
+3x -y + 2z &= 7\\
+5x + 3y - 4z &= 2 \\
+\end{aligned}\qquad
+\begin{aligned}
+2x+ 3y + 5z + t&= 3 \\
+3x + 4y + 2z + 3t&= -2\\
+x + 2y + 8z - t&= 8 \\
+7x+9y+z+8t &=0
+\end{aligned}
+$$
+
+
+
+
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Find the parametric solution of the following system using Gaussian Elimination,
+$$
+\begin{cases}
+    x-y+2z&=5\\
+    2x-2y+4z&=10\\
+    3x-3y+6z&=15\\ 
+\end{cases}
+$$
+\end{tcolorbox}
+~\\
+The augmented matrix is,
+    $$
+\left(\begin{array}{ccc|c}
+    1&-1&2&5\\
+    2&-2&4&10\\
+    3&-3&6&15
+\end{array}\right)
+$$
+By doing Gaussian Elimination, we find
+$$
+\left(\begin{array}{ccc|c}
+    1&-1&2&5\\
+    2&-2&4&10\\
+    3&-3&6&15
+\end{array}\right)\stackrel{R'_2=R_2-2R_1}{\sim}
+\left(\begin{array}{ccc|c}
+    1&-1&2&5\\
+    0&0&0&0\\
+    3&-3&6&15
+\end{array}\right)\stackrel{R'_3=R_3-3R_1}{\sim}
+\left(\begin{array}{ccc|c}
+    1&-1&2&5\\
+    0&0&0&0\\
+    0&0&0&0
+\end{array}\right)
+$$
+Now, the corresponding linear system becomes,
+$$
+\begin{cases}
+x-y+2z&=5\\
+0&=0\\
+0&=0
+\end{cases}
+$$
+Let, $y=r, z=s$ then we can assign two random values for $r$ and $s$ and find the value of $x= 5+r-2s$. Writing the solution in terms of parameters (like here $r,s$) is called the parametric solution of a system of equations.
+$$
+\begin{pmatrix}
+    x\\y\\z
+\end{pmatrix}=\begin{pmatrix}
+    5+r-2s\\
+    r\\
+    s
+\end{pmatrix}
+$$
+\end{problem}
+
+\begin{problem}
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Write down the parametric solution of the following systems:
+    $$
+    \left(\begin{array}{ccc|c}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 2 & 0 \\
+        0 & 0 & 0 & 0
+    \end{array}\right),
+    \left(\begin{array}{ccc|c}
+        1 & 0 & 3 & -1 \\
+        0 & 1 & -4 & 2 \\
+        0 & 0 & 0 & 0
+    \end{array}\right),
+    \left(\begin{array}{ccc|c}
+        1 & -5 & 1 & 4 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{array}\right)
+    $$
+\end{tcolorbox}
+\end{problem}
+
+\begin{problem}
+   \textbf{Anton example-12}\\
+\begin{align*}
+    2x-3y=a\\
+    4x-6y=b
+\end{align*}
+What are the conditions that this system has:
+\begin{enumerate}
+    \item No solution
+    \item Unique solution
+    \item Many solutions
+\end{enumerate}
+\textbf{Solution:}\\
+  For the system of equations, The first equation will be considered as a scaled or actually be double the second one if $b=2a$. \\
+  $1$. Now for $b\neq2a$, these two equations will never coincide at any point. So, the condition that the system has no solution is $b\neq2a$\\
+  $2$. As the slope of this system of linear equations are same, so either these lines are parallel or the same line. So, they can never have a unique solution.\\
+  $3$. Now, for many solutions, $b$ must be equal to $2a$\\
+  Because, by this condition, they can be same line and have multiple solutions. 
+\end{problem}
+
+\begin{problem}
+\textbf{More examples}(Anton page:10)\\
+Find all values of $k$ for which the given
+augmented matrix corresponds to a consistent linear system.
+\\~\\
+19(a).
+$$
+\left(\begin{array}{cc|c}
+1 & k & -4 \\
+4 & -8 & 2
+\end{array}\right)
+$$
+20(a).
+$$
+\left(\begin{array}{cc|c}
+-3 & -4 & k \\
+-6 & 8 & 5
+\end{array}\right)
+$$    
+\end{problem}
+~\\
+19(a). Given that,
+$$\left(\begin{array}{cc|c}
+1 & k & -4 \\
+4 & -8 & 2
+\end{array}\right)
+$$
+$$\stackrel{R_2'=R_2-4R_1}{\sim}\left(\begin{array}{cc|c}
+1 & k & -4 \\
+4-4 & -8-4k & 2+16
+\end{array}\right)
+$$
+Simplified,
+$$\left(\begin{array}{cc|c}
+1 & k & -4 \\
+0 & -8-4k & 18
+\end{array}\right)
+$$
+\\
+For, $k=-2$ the second row becomes $0=18$, which results in inconsistency.\\
+So, for consistency, $k\neq-2$ is the condition.
+\\
+$20(a)$.\\
+$$\left(\begin{array}{cc|c}
+3 & -4 & k \\
+-3 & 4 & \frac{5}{2}
+\end{array}\right)\\ \quad \left[R_2'=\frac{R_2}{4}\right]$$\\
+Hint: Apply, $$\left[R_2'=R_2+R_1\right]$$ and find the value of $k$.\\
+Answer: $k=-5/2$
+
+\begin{problem}
+\textbf{Example: 6} (Anton page: 7)
+~\\
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Write down the solution of the following system using the Gaussian Elimination technique and the Gauss-Jordan technique:
+$$\left(\begin{array}{ccc|c}
+1 & 1 & 2 & 9 \\
+2 & 4 & -3 & 1 \\
+3 & 6 & -5 & 0
+\end{array}\right)
+$$
+\end{tcolorbox}
+~\\
+\textbf{Step:} $1$\\
+$$\left(\begin{array}{ccc|c}
+1 & 1 & 2 & 9 \\
+0 & 2 & -7 & -17 \\
+3 & 6 & -5 & 0
+\end{array}\right) \;\left[R_2^{\prime}=R_2-2 R_1\right]$$\\
+\textbf{Step:} $2$\\
+\\
+$$\left(\begin{array}{ccc|c}
+1 & 1 & 2 & 9 \\
+0 & 2 & -7 & -17 \\
+0 & 3 & -11 & -27
+\end{array}\right) \;\left[R_3^{\prime}=R_3-3 R_1\right]$$\\
+\\
+\textbf{Step:} $3$\\
+
+$$\left(\begin{array}{ccc|c}
+1 & 1 & 2 & 9 \\
+0 & 1 & -7 / 2 & -17 / 2 \\
+0 & 3 & -11 & -27
+\end{array}\right) \left[R_2^{\prime}=\frac{R_2}{2}\right]$$\\
+\textbf{Step:} $4$\\
+$$\left(\begin{array}{ccc|c}
+1 & 1 & 2 & 9 \\
+0 & 1 & -7/2 & -17/2 \\
+0 & 0 & -1/2 & -3/2
+\end{array}\right) \left[R_3^{\prime}=R_3-3R_2\right]$$\\
+\textbf{Step:} $5$\\
+$$\left(\begin{array}{ccc|c}
+1 & 1 & 2 & 9 \\
+0 & 1 & -7/2 & -17/2 \\
+0 & 0 & 1 & 3
+\end{array}\right) \left[R_3^{\prime}=-2R_3\right]$$\\
+Now, from the matrix,
+\begin{align*}
+ x+y+2z&=9\\
+y-(\frac{7}{2})z &= \frac{-17}{2}\\
+z&=3
+\end{align*}
+We can easily do some maths to find the values of $x$ and $y$. So, here we apply Gaussian Elimination to convert our augmented matrix into row echelon form and back substitution to get the solution. This approach is called the \textbf{Gaussian Elimination technique} to get the solution of a system. But you can go further,
+$$
+\left(\begin{array}{ccc|c}
+1 & 1 & 2 & 9 \\
+0 & 1 & -7/2 & -17/2 \\
+0 & 0 & 1 & 3
+\end{array}\right)\stackrel{R_1'=R_2-R_1}{\sim}
+\left(\begin{array}{ccc|c}
+1 & 0 & 11/2 & 35/2 \\
+0 & 1 & -7/2 & -17/2 \\
+0 & 0 & 1 & 3
+\end{array}\right)\stackrel{R_2'=R_2+\frac{7}{2}R_3}{\sim}
+\left(\begin{array}{ccc|c}
+1 & 0 & 11/2 & 35/2 \\
+0 & 1 & 0 & 2 \\
+0 & 0 & 1 & 3
+\end{array}\right)
+$$
+$$
+\stackrel{R_1'=R_1-\frac{11}{2}R_3}{\sim}\left(\begin{array}{ccc|c}
+1 & 0 & 0 & 1 \\
+0 & 1 & 0 & 2 \\
+0 & 0 & 1 & 3
+\end{array}\right)
+$$
+This time we get the solution $\begin{pmatrix}
+    x\\y\\z
+\end{pmatrix}=\begin{pmatrix}
+    1\\2\\3
+\end{pmatrix}$ by converting our augmented matrix into the reduced row echelon form. This method is called the \textbf{Gauss-Jordan technique}.
+\\~\\
+\textbf{Remark:} Some facts about REF and RREF are:
+\begin{itemize}
+    \item Every matrix has a unique Reduced Row Echelon Form.
+    \item Row Echelon Forms are not unique.
+    \item Row Echelon Forms of a matrix $A$ have the same number of zeros rows, and the leading elements always occur in the same positions. Those are called the pivot positions of $A$. A column that contains a pivot position is called a pivot column of $A$.  
+\end{itemize}
+
+\section{Pivot column}
+\label{sec:pivot_col}
+We call a column as a Pivot column if it has only one non-zero entry and rest of them are zeros. As for the $3\times3$ matrix, we can have the following scenarios:
+$$
+\begin{pmatrix}
+    \star\\0\\0
+\end{pmatrix}\text{ or}\begin{pmatrix}
+    0\\\star\\0
+\end{pmatrix}\text{ or }\begin{pmatrix}
+    0\\0\\\star
+\end{pmatrix}
+$$
+However, most of the authors prefer to have $1$ as the non-zero entry (and named it as canonical form). So, we will try to replace the non-zero entry $\star$ with $1$ always as per computation concern.  
+\end{problem}
+~\\
+\textbf{Remark:} We can consider pivots as the unit vectors which span our solution space. Solution space \textbf{didn't change under the elementary row operations.} 
+\\~\\
+For example, 
+$$
+\underbrace{\left(\begin{array}{cccc|c}1&3&1&1&2\\2&6&3&4&5\\7&21&8&9&15\end{array}\right)}_{A}\sim\cdots\sim\underbrace{\left(\begin{array}{cccc|c}1&3&0&-1&1\\0&0&1&2&1\\0&0&0&0&0\end{array}\right)}_{\operatorname{rref}(A)}
+$$
+This suggests that $\operatorname{rref}(A)$ has a different column space than $A$ as we can see its column space contained in $xy$-plane inside $\mathbb R^3$ vector space. But our original column space was contained in $\mathbb R^3$. But the interesting fact is, that both share the same solution space. Can you figure out the reason?
+\begin{myremark}{Hint: Do some quick checks!}
+$$
+\quad\begin{pmatrix}
+    1\\0\\0
+\end{pmatrix}x+\begin{pmatrix}
+    3\\0\\0
+\end{pmatrix}y+\begin{pmatrix}
+    0\\1\\0
+\end{pmatrix}z+\begin{pmatrix}
+    -1\\2\\0
+\end{pmatrix}t=\begin{pmatrix}
+    1\\1\\0
+\end{pmatrix}
+$$
+$$
+\leftrightarrow\begin{pmatrix}
+    1\\2\\7
+\end{pmatrix}x+\begin{pmatrix}
+    3\\6\\21
+\end{pmatrix}y+\begin{pmatrix}
+    1\\3\\8
+\end{pmatrix}z+\begin{pmatrix}
+    1\\4\\9
+\end{pmatrix}t=\begin{pmatrix}
+    2\\5\\15
+\end{pmatrix}
+ $$
+\end{myremark}
+

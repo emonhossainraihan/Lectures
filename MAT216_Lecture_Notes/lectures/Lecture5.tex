@@ -1,0 +1,27 @@
+\chapter{Lecture 5: Review of L1-L4}
+
+\textbf{Question:} Do applying elementary row operations change column space? \\
+\textbf{Answer:} Yes. You can find some explanation \href{https://www.math.iitb.ac.in/~srg/106/Lecture8_D4.pdf?authuser=1}{here} and \href{https://math.stackexchange.com/q/2950357/736159?authuser=1}{here}. Besides, I gave some intuition on section \ref{sec:pivot_col} also.
+\\~\\
+\textbf{Question:} How to compute column space of a matrix $A$, $\operatorname{col} A$ and kernel of a matrix $A$, $\operatorname{Ker} A$?\\
+\textbf{Answer:} Discussed in the class.
+
+\section{Characterization of Invertible Matrices}
+\begin{theorem}
+(The Invertible Matrix Theorem). Let $A$ be a square $n \times n$ matrix. Then the following are equivalent.
+\begin{enumerate}
+    \item A is an invertible matrix.
+    \item A is row equivalent to the $n \times n$ identity matrix, $\operatorname{rref}(A)=I_n$.
+    \item A has $n$ pivot positions.
+    \item The equation $A \mathbf{x}=\mathbf{0}$ has only the trivial solution, $\operatorname{Ker} A=\{0\}$.
+    \item The columns of A form a linearly independent set.
+    \item The linear transformation $\mathbf{x} \mapsto A \mathbf{x}$ is one-to-one.
+    \item The equation $A \mathbf{x}=\mathbf{b}$ has at least one solution for each $\mathbf{b} \in \mathbb{R}^n$.
+    \item The columns of $A$ span $\mathbb{R}^n$ or $\operatorname{rank}(A)=n$ or $\operatorname{Im}(A)=\mathbb R^n$.
+    \item The linear transformation $\mathbf{x} \mapsto A \mathbf{x}$ maps $\mathbb{R}^n$ onto $\mathbb{R}^n$.
+    \item There is an $n \times n$ matrix $C$ such that $C A=I$.
+    \item There is an $n \times n$ matrix $D$ such that $A D=I$.
+    \item $A^T$ is an invertible matrix.
+\end{enumerate}
+\end{theorem}
+We didn't prove this theorem in the class but use the statement to determine weather the inverse exist or not. Don't worry if you didn't understand any statement above. We will gradually understand them in our up coming lectures.  

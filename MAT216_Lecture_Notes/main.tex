@@ -1,0 +1,147 @@
+% !TeX document-id = {8ff48607-dcb4-4d5c-89b6-63c6d50da873}
+% !BIB TS-program = biber
+\documentclass[12 pt,a4paper,oneside]{book}
+\usepackage[T1]{fontenc}
+\usepackage[top=1in,bottom=0.7in,left=1in,right=1in]{geometry}
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+
+% plotting things
+\usepackage{graphicx,tikz,tikz-3dplot}
+\graphicspath{{images/}}
+\usepackage{pst-solides3d,tikz-cd}
+\usetikzlibrary{positioning, decorations.markings, calc,intersections,fadings, shadows.blur,patterns,arrows}
+\usepackage{forest,svg}
+\usepackage{pgfplots}
+\usepgfplotslibrary{patchplots}
+\pgfplotsset{compat=1.15}
+
+
+\usepackage{xcolor}
+\definecolor{fg}{RGB}{30,30,30}
+\newcommand{\semitransp}[2][80]{\textcolor{fg!#1}{#2}}
+
+% from amsthm package
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{definition}{Definition}[section] % make dependence on theorem numbers
+\newtheorem{example}{Example}[section]
+\newtheorem{problem}{Problem}[section]
+\newtheorem{extra}{Extra}[section]
+\newtheorem{proposition}{Proposition}[section]
+\numberwithin{equation}{section} % Number equations within sections
+
+% Add triangle at the end of the example
+\AtBeginEnvironment{example}{%
+  \pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}%
+}
+\AtEndEnvironment{example}{\popQED\endexample}
+
+\usepackage[toc,page]{appendix}
+\usepackage{relsize}
+
+% Set pdfborder option to remove red box
+\hypersetup{colorlinks=true,linkcolor=black}
+
+
+% add style for chapter
+\usepackage{fancyhdr,lastpage,lipsum,caption,subcaption,enumitem,setspace,forest}
+% box
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage[tikz]{bclogo}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\NewEnviron{myremark}[1]
+  {\par\medskip\noindent
+  \begin{tikzpicture}
+    \node[inner sep=0pt] (box) {\parbox[t]{.99\textwidth}{%
+      \begin{minipage}{.3\textwidth}
+      \centering\tikz[scale=5]\node[scale=3,rotate=30]{\bclampe};
+      \end{minipage}%
+      \begin{minipage}{.65\textwidth}
+      \textbf{#1}\par\smallskip
+      \BODY
+      \end{minipage}\hfill}%
+    };
+    \draw[red!75!black,line width=3pt] 
+      ( $ (box.north east) + (-5pt,3pt) $ ) -- ( $ (box.north east) + (0,3pt) $ ) -- ( $ (box.south east) + (0,-3pt) $ ) -- + (-5pt,0);
+    \draw[red!75!black,line width=3pt] 
+      ( $ (box.north west) + (5pt,3pt) $ ) -- ( $ (box.north west) + (0,3pt) $ ) -- ( $ (box.south west) + (0,-3pt) $ ) -- + (5pt,0);
+  \end{tikzpicture}\par\medskip%
+}
+
+\usepackage{lmodern,wasysym}
+\usepackage[most]{tcolorbox}
+\usepackage{nicematrix}
+
+\usepackage{bm}
+\pagestyle{fancy}
+\lhead{Section \thesection}
+\rhead{Page \thepage}
+\cfoot{}
+%\usepackage[Glenn]{fncychap}
+
+
+
+
+
+
+\usepackage{physics}
+\usepackage[outline]{contour} % glow around text
+\usetikzlibrary{angles,quotes} % for pic
+\tikzset{>=latex} % for LaTeX arrow head
+\usepackage{xcolor}
+\colorlet{veccol}{green!70!black}
+\colorlet{vcol}{green!70!black}
+\colorlet{xcol}{blue!85!black}
+\colorlet{projcol}{xcol!60}
+\colorlet{unitcol}{xcol!60!black!85}
+\colorlet{myblue}{blue!70!black}
+\colorlet{myred}{red!90!black}
+\colorlet{mypurple}{blue!50!red!80!black!80}
+\tikzstyle{vector}=[->,very thick,xcol]
+
+%% start writing the content %%
+
+\begin{document}
+\input{title}
+\clearpage
+\pagenumbering{roman}
+\input{acknowledgement}
+\pagebreak
+\tableofcontents
+\pagebreak
+\hypersetup{urlcolor=green,citecolor=red,linkcolor=blue}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{lectures/Lecture1}
+\clearpage
+\input{lectures/Lecture2}
+\clearpage
+\input{lectures/Lecture3}
+\clearpage
+\input{lectures/Lecture4}
+\clearpage
+\input{lectures/Lecture5}
+\clearpage
+\input{lectures/Lecture6}
+
+\printbibliography
+\end{document}
+
+
+
+

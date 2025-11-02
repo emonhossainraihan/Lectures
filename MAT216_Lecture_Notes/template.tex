@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{lmodern}
+\usepackage[most]{tcolorbox}
+\begin{document}
+\begin{tcblisting}{colback=red!5!white,colframe=red!75!black}
+This is a \LaTeX\ example:
+\begin{equation}
+\sum\limits_{i=1}^n i = \frac{n(n+1)}{2}.
+\end{equation}
+\end{tcblisting}
+
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+Write down the general solution of the following system:
+    $$
+\left(\begin{array}{ccc|c}
+1 & 2 & 3 & 1 \\
+2 & 4 & 7 & 0 \\
+3 & 7 & 11 & -1
+\end{array}\right)
+    $$
+\end{tcolorbox}
+\end{document}
