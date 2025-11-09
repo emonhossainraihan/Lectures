@@ -1,0 +1,283 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+%================================================
+% PACKAGES
+%================================================
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{fontawesome5}
+\usepackage{bm}
+
+%================================================
+% THEME CONFIGURATION
+%================================================
+\usetheme{Madrid}
+\usecolortheme{dolphin}
+
+\setbeamercolor{title}{fg=white,bg=blue!65!black}
+\setbeamercolor{frametitle}{fg=white,bg=blue!70!black}
+\setbeamercolor{block title}{bg=blue!60!black,fg=white}
+\setbeamercolor{block body}{bg=blue!5!white}
+\setbeamercolor{example block title}{bg=green!45!black,fg=white}
+\setbeamercolor{example block body}{bg=green!5!white}
+\setbeamercolor{alerted text}{fg=red!70!black}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.7\paperwidth,ht=2.5ex,dp=1ex,leftskip=2ex]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1ex,rightskip=2ex plus1fil]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertframenumber{} / \inserttotalframenumber
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+%================================================
+% TITLE INFO
+%================================================
+\title[Exponential, Logarithmic \& Trigonometric Functions]{Exponential, Logarithmic, and Trigonometric Functions}
+\author[Emon Hossain]{\textbf{Emon Hossain}\\Department of Mathematics \& Natural Sciences\\BRAC University}
+\date{Fall 2025}
+
+%================================================
+% DOCUMENT
+%================================================
+\begin{document}
+
+%================================================
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%================================================
+\begin{frame}{Motivation}
+\Large
+\begin{itemize}
+  \item Exponential, logarithmic, and trigonometric functions describe many natural phenomena:
+  \begin{itemize}
+    \item Growth and decay
+    \item Oscillation and periodic motion
+    \item Sound, light, and signal behavior
+  \end{itemize}
+  \item These functions are fundamental for calculus, physics, and engineering.
+\end{itemize}
+\end{frame}
+
+%================================================
+\section{Exponential Functions}
+\begin{frame}{Definition}
+\begin{block}{Definition}
+For any \(a>0, a \neq 1\),
+\[
+f(x) = a^x
+\]
+is called the \textbf{exponential function}.
+\end{block}
+
+\pause
+\begin{exampleblock}{Natural Base}
+When \(a = e \approx 2.71828\),
+\[
+f(x) = e^x
+\]
+is the \textbf{natural exponential function}.
+\end{exampleblock}
+\end{frame}
+
+%================================================
+\begin{frame}{Properties of Exponential Functions}
+\begin{columns}
+\begin{column}{0.55\textwidth}
+\begin{itemize}
+  \item Domain: \(\mathbb{R}\)
+  \item Range: \((0, \infty)\)
+  \item \(a^{x+y} = a^x a^y\)
+  \item \(a^{-x} = \dfrac{1}{a^x}\)
+  \item \((a^x)^y = a^{xy}\)
+\end{itemize}
+\end{column}
+\begin{column}{0.45\textwidth}
+% \centering
+% \includegraphics[width=\linewidth]{exp-graph.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+%================================================
+\section{Logarithmic Functions}
+\begin{frame}{Definition and Inverse Relationship}
+\begin{block}{Definition}
+\[
+\log_a y = x \iff a^x = y, \quad a>0, a\neq1, y>0
+\]
+\end{block}
+
+\pause
+\begin{exampleblock}{Natural Logarithm}
+\[
+\ln x = \log_e x
+\]
+\end{exampleblock}
+
+\pause
+\[
+a^{\log_a x} = x, \quad \log_a(a^x) = x
+\]
+\end{frame}
+
+%================================================
+\begin{frame}{Properties of Logarithms}
+\begin{columns}
+\begin{column}{0.55\textwidth}
+\begin{itemize}
+  \item \(\log_a (xy) = \log_a x + \log_a y\)
+  \item \(\log_a \dfrac{x}{y} = \log_a x - \log_a y\)
+  \item \(\log_a (x^r) = r \log_a x\)
+  \item \(\log_a x = \dfrac{\log_b x}{\log_b a}\)
+\end{itemize}
+\end{column}
+\begin{column}{0.45\textwidth}
+% \centering
+% \includegraphics[width=\linewidth]{log-graph.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+%================================================
+\begin{frame}{Examples}
+\begin{exampleblock}{Evaluate}
+\begin{align*}
+\log_2 8 &= 3 \\
+\ln e^2 &= 2 \\
+\log_{10} 0.01 &= -2
+\end{align*}
+\end{exampleblock}
+\pause
+\begin{alertblock}{Observe}
+Exponential and logarithmic functions are inverses — their graphs are mirror images across \(y=x\).
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{itemize}
+        \item Convert $2^x=128$ to logarithmic form and solve it.
+        \item Convert $\log_{10}x=2.9$ to exponential form and solve it.
+        \item Solve $\log_2(\log_5 x)=2$
+        \item Solve $4\log_x 2-\log_x 4 = 2$
+        \item Solve $(\log_5 x)^2-\log_5 x^3=18$
+        \item Solve $3(2^{2x})-2^{x+1}-8=0$    
+    \end{itemize}     
+    How to change base of the Logarithm? Take $x=\log_b a$ then $b^x=a$. Now, change the base,
+    $$\log_c b^x=\log_c a\implies x=\frac{\log_c a}{\log_c b}$$
+    \begin{itemize}
+        \item Solve $\log_3 x = \log_9 (x+6)$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Application}
+    \begin{itemize}
+        \item The volume of water in a container, $V \mathrm{~cm}^3$, at time $t$ minutes, is given by the formula
+$$
+V=2000 \mathrm{e}^{-k t}
+$$
+When $V=1000, t=15$. Find the value of $k$. Find the value of $V$ when $t=22$.
+    \item Sketch the graph of $y=3e^{-2x}-5$.
+    \item Sketch the graph of $y=\ln(2x+5)$. 
+    \item Find the inverse of the function $f(x)=2e^{-4x}+3,x\in\mathbb R$ and find the domain of the inverse function. 
+\end{itemize}
+
+\end{frame}
+%================================================
+\section{Trigonometric Functions}
+\begin{frame}{Definition}
+\begin{block}{Right Triangle Definition}
+\[
+\sin \theta = \frac{\text{Opposite}}{\text{Hypotenuse}}, \quad
+\cos \theta = \frac{\text{Adjacent}}{\text{Hypotenuse}}, \quad
+\tan \theta = \frac{\text{Opposite}}{\text{Adjacent}}
+\]
+\end{block}
+
+\pause
+Reciprocal functions:
+\[
+\csc \theta = \frac{1}{\sin \theta}, \quad
+\sec \theta = \frac{1}{\cos \theta}, \quad
+\cot \theta = \frac{1}{\tan \theta}
+\]
+\end{frame}
+
+%================================================
+\begin{frame}{Domain, Range, and Periodicity}
+\centering
+\begin{tabular}{lccc}
+\toprule
+Function & Domain & Range & Period \\ \midrule
+\(\sin x\) & \(\mathbb{R}\) & \([-1,1]\) & \(2\pi\) \\
+\(\cos x\) & \(\mathbb{R}\) & \([-1,1]\) & \(2\pi\) \\
+\(\tan x\) & \(x \ne \frac{\pi}{2}+k\pi\) & \(\mathbb{R}\) & \(\pi\) \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+%================================================
+\begin{frame}{Fundamental Identities}
+\Large
+\[
+\sin^2 x + \cos^2 x = 1
+\]
+\[
+1 + \tan^2 x = \sec^2 x, \qquad 1 + \cot^2 x = \csc^2 x
+\]
+\pause
+\begin{exampleblock}{Example}
+Find \(\sin \theta\) if \(\cos \theta = \frac{3}{5}\) and \(\theta\) is in the first quadrant.
+\[
+\sin \theta = \sqrt{1 - \cos^2 \theta} = \frac{4}{5}
+\]
+\end{exampleblock}
+\end{frame}
+
+%================================================
+\section{Connections Between Them}
+\begin{frame}{Interconnections}
+\begin{itemize}
+  \item Exponential ↔ Logarithmic: \(\log_a(a^x) = x\)
+  \item Exponential ↔ Trigonometric: Euler’s Formula
+  \[
+  e^{ix} = \cos x + i \sin x
+  \]
+  \item Logarithmic ↔ Trigonometric: Appears in calculus
+  \[
+  \int \tan x \, dx = -\ln|\cos x| + C
+  \]
+\end{itemize}
+\end{frame}
+
+%================================================
+\section{Practice Problems}
+\begin{frame}{Exercises}
+\begin{enumerate}
+  \item Simplify \(2^{3x} \cdot 2^{2x}\)
+  \item Solve for \(x\): \(\log_3(x - 1) = 2\)
+  \item Find the range of \(y = \sin(2x)\)
+  \item Express \(\log_2 8\) in exponential form
+  \item Show that \(e^{ix} e^{-ix} = 1\)
+  \item Prove \(\tan x = \frac{\sin x}{\cos x}\)
+\end{enumerate}
+\end{frame}
+
+%================================================
+\begin{frame}[standout]
+\Huge \textbf{Thank You!}\\[0.4em]
+\Large Questions or Discussion?
+\end{frame}
+
+\end{document}
