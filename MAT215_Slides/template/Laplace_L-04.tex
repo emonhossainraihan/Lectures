@@ -1,0 +1,195 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+% \graphicspath{{images/}}
+\graphicspath{{../}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-04}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Normal}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{1}{s^4}\right\}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{12}{4-3s}\right\}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{23s-15}{s^2+5}\right\}$$
+        \end{itemize}
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{First Translation}
+    First Translation Theorem states that:
+    \[
+        \mathcal L^{-1}\left\{F(s)\right\} = e^{at}\mathcal L^{-1}{F(s+a)}
+    \]
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{6}{(s-2)^6}\right\}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{5}{(s-3)^2+15}\right\}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{4s}{(s-3)^2+25}\right\}$$
+        \end{itemize}
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{First Translation}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{5s}{s^2+2s+5}\right\}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{6s-4}{s^2-8s-9}\right\}$$
+        \end{itemize}
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Second Translation}
+    Second Translation Theorem states that:
+    \[
+        \mathcal{L} \left\{f(t-a)u(t-a)\right\} = e^{-as}\mathcal L\left\{f(t+a)\right\}
+    \]
+    \[
+        \mathcal L^{-1}\left\{F(s)e^{-as}\right\} = f(t-a)u(t-a)
+    \]
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{1}{s^4}e^{-2s}\right\}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{1}{(s-3)e^{-2s}}\right\}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{1}{s^2+4}e^{-\pi s}\right\}$$
+        \end{itemize}
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Second Translation}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{6s-3}{s^2+4}e^{-\pi s}\right\}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{6s-4}{s^2-8s-9}e^{-\pi s}\right\}$$
+        \end{itemize}
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Using Partial Fraction Decomposition}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Find the partial fraction decomposition of $$\frac{1}{s(s+1)}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{1}{s(s+1)}e^{-s}\right\}$$
+        \end{itemize}
+        \textbf{Hint:}
+        $$\frac{1}{s(s+1)} = \frac{1}{s} - \frac{1}{s+1}$$
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Using Partial Fraction Decomposition}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Find the partial fraction decomposition of $$\frac{2s+3}{(s+1)(2s^3+3s^2-3s-2)}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{2s+3}{(s+1)(2s^3+3s^2-3s-2)}\right\}$$
+        \end{itemize}
+        \textbf{Hint:}
+        $$\frac{2s+3}{(s+1)(2s^3+3s^2-3s-2)} = \frac{1/9}{s+1}+\frac{5/18}{s+2}+\frac{1/2}{s-1}+\frac{-16/9}{2s+1}$$
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Using Partial Fraction Decomposition}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Find the partial fraction decomposition of $$\frac{4s^2-5s}{(s+1)(s-2)^2}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{4s^2-5s}{(s+1)(s-2)^2}\right\}$$
+        \end{itemize}
+        \textbf{Hint:}
+        $$\frac{4s^2-5s}{(s+1)(s-2)^2} = \frac{1}{s+1} + \frac{3}{s-2} + \frac{2}{(s-2)^2}$$
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Using Partial Fraction Decomposition}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Find the partial fraction decomposition of $$\frac{-s}{(s^2+1)(s+1)}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{-s}{(s^2+1)(s+1)}e^{-\pi s}\right\}$$
+        \end{itemize}
+        \textbf{Hint:}
+        $$\frac{-s}{(s^2+1)(s+1)} = \frac{-1/2s-1/2}{s^2+1} + \frac{1/2}{s+1}$$
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Using Partial Fraction Decomposition}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Find the partial fraction decomposition of $$\frac{1}{(s^2+1)(s^2+4)}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{1}{(s^2+1)(s^2+4)}\right\}$$
+        \end{itemize}
+        \textbf{Hint:}
+        $$\frac{1}{(s^2+1)(s^2+4)} = \frac{1/3}{u+1} + \frac{-1/3}{u+4}$$
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Using Partial Fraction Decomposition}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Find the partial fraction decomposition of $$\frac{1}{(s^2+1)(s^2+4)}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{1}{(s^2+1)(s^2+4)}e^{-2\pi s}\right\}$$
+        \end{itemize}
+        \textbf{Hint:}
+        $$\frac{1}{(s^2+1)(s^2+4)} = \frac{1/3}{s^2+1} + \frac{-1/3}{s^2+4}$$
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Using Partial Fraction Decomposition}
+    \begin{example}
+        \begin{itemize}[label=\textbullet]
+            \item Find the partial fraction decomposition of $$\frac{s^2+2s+3}{(s^2+2s+2)(s^2+2s+5)}$$
+            \item Evaluate $$\mathcal L^{-1}\left\{\frac{s^2+2s+3}{(s^2+2s+2)(s^2+2s+5)}\right\}$$
+            \item \item Evaluate $$\mathcal L^{-1}\left\{\frac{s^2+2s+3}{(s^2+2s+2)(s^2+2s+5)}e^{-3\pi s}\right\}$$
+        \end{itemize}
+        \textbf{Hint:}
+        $$\frac{s^2+2s+3}{(s^2+2s+2)(s^2+2s+5)} = \frac{1/3}{u+2}+\frac{2/3}{u+5}$$
+    \end{example}
+\end{frame}
+\end{document}
