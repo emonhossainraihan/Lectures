@@ -1,0 +1,223 @@
+%====================
+% PROBLEM SHEET: Trigonometry & Complex Variables (Intermediate)
+%====================
+\documentclass[12pt]{article}
+
+%=== PACKAGES ===%
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+%=== COLORS ===%
+\definecolor{HeadBlue}{RGB}{0,80,155}
+\definecolor{Accent}{RGB}{0,173,76}
+\definecolor{LineGray}{RGB}{210,210,210}
+\definecolor{BoxBG}{RGB}{248,250,255}
+
+%=== TCOLORBOX STYLES ===%
+\tcbset{colback=BoxBG,colframe=HeadBlue,boxrule=0.9pt,arc=3pt}
+
+%=== TITLE BLOCK ===%
+\newcommand{\SheetTitle}{\textbf{Problem Sheet: Trigonometry and Complex Variables}}
+\newcommand{\CourseInfo}{\textit{(Graphs, Transformations, Modulus, Polar Form, Roots, Loci)}}
+
+%=== SECTION HEADER BOX ===%
+\newtcolorbox{sectbox}[1]{enhanced,breakable,title=\textbf{#1},
+colbacktitle=HeadBlue!8,coltitle=black,colframe=HeadBlue,boxrule=0.9pt,arc=3pt}
+
+%=== LIST SPACING ===%
+\setlist[enumerate]{leftmargin=*,itemsep=6pt}
+\setlist[itemize]{leftmargin=*,itemsep=4pt}
+
+%=== DOCUMENT ===%
+\begin{document}
+
+\begin{tcolorbox}
+\centering
+{\Large \SheetTitle}\par
+{\small \CourseInfo}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\noindent\textit{Instructions.} Sketch neatly and label key features (amplitude, period, phase shift, intercepts, asymptotes, key points). For complex variable problems, justify algebraic steps and use geometric interpretation whenever relevant.
+
+%====================
+% SECTION 1: TRIGONOMETRY
+%====================
+\begin{sectbox}{(1) Trigonometry}
+\begin{enumerate}[label=\textbf{T\arabic*:}]
+
+\item \textbf{(Transformations)} Sketch the graph of
+\[
+y = 2\sin\left(x-\frac{\pi}{4}\right)+1
+\]
+and clearly mark amplitude, period, phase shift, and vertical shift.
+
+\item \textbf{(Scaling \& reflection)} Sketch
+\[
+y = -3\cos(2x+\pi)
+\]
+and indicate all $x$-intercepts and the maximum/minimum values.
+
+\item \textbf{(Period comparison)} On the same axes, sketch
+\[
+y=\sin\left(\frac{x}{2}\right),\qquad y=\sin(2x)
+\]
+for $x\in[-2\pi,2\pi]$. Compare their periods and frequencies.
+
+\item \textbf{(Tangent with shift)} Sketch
+\[
+y=-\tan\left(x-\frac{\pi}{3}\right)
+\]
+and write down all vertical asymptotes in the interval $[-\pi,\pi]$.
+
+\item \textbf{(Combined transformations)} Sketch step-by-step
+\[
+y = 1 + 2\cos\left(3x - \frac{\pi}{2}\right).
+\]
+Mark at least one full period.
+
+\item \textbf{(Modulus graph)} Sketch
+\[
+y = |\sin x|
+\]
+for $x\in[-2\pi,2\pi]$ and identify all points where the graph is not differentiable.
+
+\item \textbf{(Modulus with frequency)} Sketch
+\[
+y = |\cos(2x)|
+\]
+for $x\in[0,2\pi]$ and determine its period.
+
+\item \textbf{(Shifted modulus)} Sketch
+\[
+y = \left|\sin x-\frac{1}{2}\right|
+\]
+for $x\in[0,2\pi]$. Clearly mark the points where $\sin x-\frac12=0$.
+
+\item \textbf{(Sum of moduli, optional)} Sketch
+\[
+y = |\sin x| + |\cos x|
+\]
+for $x\in[0,2\pi]$ and determine its minimum and maximum values (with where they occur).
+
+\item \textbf{(Graphical solution: intersections)} Using graphs, determine the number of solutions of
+\[
+\sin x = x-1
+\]
+in $0\le x\le 2\pi$. (A rough sketch with reasoning is sufficient.)
+
+\item \textbf{(Equation with modulus)} Solve in $0\le x<2\pi$:
+\[
+|\sin x|=\cos x.
+\]
+Explain briefly how the graph helps.
+
+\item \textbf{(Sine identity via graph)} Solve
+\[
+\sin(2x)=\sin x
+\]
+in $0\le x<2\pi$ using a graph first, then verify algebraically.
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 2: COMPLEX VARIABLES
+%====================
+\begin{sectbox}{(2) Complex Variable}
+\begin{enumerate}[label=\textbf{C\arabic*:}]
+
+\item \textbf{(Rectangular $\to$ polar)} Write each in polar form $r(\cos\theta+i\sin\theta)$ (principal argument):
+\[
+z_1=1+i\sqrt{3},\qquad z_2=-2-2i.
+\]
+
+\item \textbf{(Polar $\to$ rectangular)} Convert to $a+bi$:
+\[
+z_1=4\left(\cos\frac{\pi}{6}+i\sin\frac{\pi}{6}\right),\qquad
+z_2=3\left(\cos\frac{5\pi}{4}+i\sin\frac{5\pi}{4}\right).
+\]
+
+\item \textbf{(Argument \& geometry)} Find $\arg(z)$ and the principal value $\mathrm{Arg}(z)$ for
+\[
+z=-1+i\sqrt{3}.
+\]
+Sketch $z$ in the Argand plane.
+
+\item \textbf{(Modulus \& conjugate)} Let $z=a+bi$. Express the following in terms of $a,b$:
+\[
+|z|^2,\quad \bar z,\quad z+\bar z,\quad z-\bar z,\quad \Re(z),\quad \Im(z).
+\]
+
+\item \textbf{(De Moivre)} Compute (in simplest rectangular form):
+\[
+(1-i)^8.
+\]
+\textbf{Hint:} Use polar form and De Moivre's theorem.
+\item \textbf{(Cube roots)} Find all cube roots of
+\[
+z=8(\cos\pi+i\sin\pi).
+\]
+Plot the roots on the complex plane and describe their symmetry.
+
+\item \textbf{(Fourth roots)} Find all fourth roots of
+\[
+z=16i.
+\]
+Write them in both polar and rectangular form.
+
+\item \textbf{(Roots of unity)} Solve
+\[
+z^5=1
+\]
+and sketch the roots. What polygon do they form?
+
+\item \textbf{(Circle locus)} Describe geometrically and sketch:
+\[
+|z-1|=2.
+\]
+
+\item \textbf{(Perpendicular bisector locus)} Describe geometrically and sketch:
+\[
+|z-i|=|z+i|.
+\]
+
+\item \textbf{(Half-disk region)} Sketch the region:
+\[
+|z|\le 2,\qquad \Re(z)\ge 0.
+\]
+
+\item \textbf{(Ellipse locus)} Identify and sketch:
+\[
+|z-1|+|z+1|=4.
+\]
+State the foci and major axis length.
+
+\item \textbf{(Real condition)} Show that if
+\[
+z+\frac{1}{z}\in\mathbb{R}\quad (z\ne 0),
+\]
+then $z$ lies either on the real axis or on the unit circle.
+
+\item \textbf{(Plot a complex equation)} Sketch the set of all $z$ satisfying
+\[
+\Re\big((1-i)z\big)=2.
+\]
+(Write it as a line in the $(x,y)$-plane where $z=x+iy$.)
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% FOOTER NOTE (OPTIONAL)
+%====================
+% \vspace{0.75em}
+% \noindent\textit{Instructor note (remove before distribution):}
+% Consider collecting sketches for T6--T9 and loci for C9--C12. For roots problems C6--C8, ask students to show the geometric pattern (equal angles, same radius).
+
+\end{document}
