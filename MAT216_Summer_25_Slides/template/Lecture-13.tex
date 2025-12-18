@@ -56,6 +56,17 @@
 
 
 \begin{frame}{Periodic functions}
+A function $f(x)$ is said to be periodic with period $P$ if
+$$f(x+P)=f(x)$$
+for all values of $x$ in the domain of $f$. The smallest positive value of $P$ for which this equation holds is called the fundamental period of $f$.   
+\textbf{Question:} Find the period for the following Trigonometric function:
+$$
+f(x)=a \sin^b(cx+d)+e
+$$
+\textbf{Answer:} If $b$ is an even integer, then the period is $\frac{\pi}{c}$. Otherwise, the period is $\frac{2\pi}{c}$.
+\end{frame}
+
+\begin{frame}{Periodic functions}
 \textbf{Square wave:}
   $$
   f(x) = \begin{cases}1, & 0 < x < \pi \\ -1, & -\pi < x < 0 \end{cases}
@@ -64,6 +75,52 @@
   $$
   f(x) = x \quad \text{on } [-\pi,\pi]
   $$
+\end{frame}
+\begin{frame}{Examples of odd and even functions}
+    \begin{itemize}
+        \item $f(x)=x^2$ is an even function since $f(-x)=(-x)^2=x^2=f(x)$
+        \item $f(x)=x^3$ is an odd function since $f(-x)=(-x)^3=-x^3=-f(x)$
+        \item $f(x)=\sin x$ is an odd function since $\sin(-x)=-\sin x$
+        \item $f(x)=\cos x$ is an even function since $\cos(-x)=\cos x$
+        \item $f(x)=3|\sin(x)|$ is an even function since $| \sin(-x)|=|\sin x|$
+        \item $f(x)=1+\sin(x)$ is neither even nor odd since $f(-x)=1+\sin(-x)=1-\sin x\neq f(x)$ and $f(-x)\neq -f(x)$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Example of complicated odd and even functions}
+\begin{example}
+    Determine whether the function $f(x)=\begin{cases}
+        -x, & -\pi<x<0\\
+        x, & 0\leq x<\pi
+    \end{cases}$ is even, odd, or neither.
+\end{example}
+\begin{example}
+    Determine whether the function $f(x)=\begin{cases}
+        x, & -\pi<x<0\\
+        -x, & 0\leq x<\pi
+    \end{cases}$ is even, odd, or neither.
+\end{example}        
+\end{frame}
+
+\begin{frame}{Continued...}
+    \begin{example}
+    Determine whether the function $f(x)=\begin{cases}
+        2, & -\pi<x<0\\
+        -2, & 0\leq x<\pi
+    \end{cases}$ is even, odd, or neither.
+\end{example}
+\begin{example}
+    Determine whether the function $f(x)=\begin{cases}
+        1, & |x|\leq 1\\
+        0, & \text{otherwise}
+    \end{cases}$ is even, odd, or neither.
+\end{example}
+\begin{example}
+    Determine whether the function $f(x)=\begin{cases}
+        2\sin x, & 0<x<\pi\\
+        0, & \text{otherwise}
+    \end{cases}$ is even, odd, or neither.
+\end{example}
 \end{frame}
 
 \begin{frame}{Trigonometric Identity}
