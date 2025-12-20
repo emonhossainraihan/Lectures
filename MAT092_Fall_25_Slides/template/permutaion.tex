@@ -1,0 +1,158 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture on Permutations}}
+
+
+\title[]{MAT092: Remedial Course in Mathematics}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Rule of sum and product}
+    \begin{definition}
+        If there are $n$ choices for one action, and $m$ choices for another action and the two actions can't be done at the same time, then there are $n + m$ ways to choose one of the actions.
+    \end{definition}
+    \begin{definition}
+        If there are $n$ choices for one action, and $m$ choices for another action and the two actions can be done one after another, then there are $n \times m$ ways to choose both actions.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Examples}
+    \begin{example}
+        How many positive divisors does $2000$ have?
+        \pause
+        $$2000 = 2^4 \times 5^3$$
+        Any positive divisor of $2000$ is of the form $2^a \times 5^b$ where $0 \leq a \leq 4$ and $0 \leq b \leq 3$.
+        $$0\leq a\leq 4, 0 \leq b \leq 3$$
+        So, there are $5$ choices for $a$ and $4$ choices for $b$. By the rule of product, the total number of positive divisors of $2000$ is $5 \times 4 = 20$.
+    \end{example}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        How many parallelograms are formed when a set of $5$ parallel lines intersects a set of $4$ parallel lines?
+        \pause
+        $$\binom{5}{2} \times \binom{4}{2} = 10 \times 6 = 60$$
+    \end{example}
+\end{frame}
+
+\begin{frame}{Permutations of a set of Distinct Objects}
+What is \textbf{Lexicographic Order}? 
+\pause 
+It's fancy term meaning \textbf{in dictionary order}. Try to find the all Permutations of $1234$.
+\pause
+$1234, 1243, 1324, 1342, 1423, 1432,$\\
+$2134, 2143, 2314, 2341, 2413, 2431,$\\
+$3124, 3142, 3214, 3241, 3412, 3421,$\\
+$4123, 4132, 4213, 4231, 4312, 4321.$  
+\begin{example}
+    Out of a class of $30$ students, how many ways are there to choose a class president, a secretary, and a treasurer? A student may hold at most one post.
+    \pause
+    $$30 \times 29 \times 28 = 24360$$
+\end{example}    
+\end{frame}
+\begin{frame}{Example}
+    \begin{example}
+    How many different ways are there to color a $3\times 3$ grid with green, red, and blue paints, using each color 3 times?
+    % add image
+    \begin{center}
+    \includegraphics[width=0.3\textwidth]{../color.png}    
+    \end{center}
+    \pause
+    $$\binom{9}{3}\binom{6}{3}\binom{3}{3}=1680$$    
+    \end{example}
+\end{frame}
+
+\begin{frame}{Restrictions on Topology}
+    \begin{example}
+    $6$ friends go out for dinner. How many ways are there to sit them around a round table? Rotations of a sitting arrangement are considered the same, but a reflection will be considered different.\\
+    \pause
+    \textbf{Solution 1:} Since rotations are considered the same, we may fix the position of one of the friends, and then proceed to arrange the 5 remaining friends clockwise around him. Thus, there are $5!=120$ ways to arrange the friends.\\    
+    \pause
+    \textbf{Solution 2:} Consider arranging the $6$ friends in a line. There are $6!=720$ ways to do this. Now, for each arrangement in a line, there are $6$ rotations that correspond to the same arrangement around the round table. Thus, the number of distinct arrangements around the round table is $\frac{6!}{6}=120$.    
+\end{example}
+\end{frame}
+
+\begin{frame}{Example}
+\begin{example}
+Suppose Ellie is choosing a secret passcode consisting of the digits $0,1,2, \ldots, k$ for some $k \leq 9$. She would like her passcode to use each digit at most once and because she is concerned about security, she would like to choose a value of $k$ such that the number of possible permutations is at least 250,000 . What is the smallest value of $k$ Ellie can use?
+\pause
+\newline
+\textbf{Solution:} Note that $8!=40320$ and $9!=362880$. Therefore, Ellie needs at least 9 digits in her passcode. Since the digits start from 0 , the smallest value of $k$ Ellie can choose is $k=8$.
+\end{example}
+\end{frame}
+
+\begin{frame}{Example}
+\begin{example}
+    How many $5$-digit numbers without repetition of digits can be formed using the digits $0, 2, 4, 6, 8$?
+\end{example}
+\begin{example}
+    If Anna has $12$ different ornaments and would like to place $k$ of them on a necklace and if Lisa has $13$ different ornaments and would like to place $k$ of them on a necklace, for what values of $k$  does Anna have more choices in the possible number of ways to place all of her ornaments?  
+\end{example}
+\end{frame}
+
+\begin{frame}{Stratergy}
+    Given a permutation problem, how do we determine which category the problem falls under and which technique should be applied to solve the problem? It may be useful to first ask yourself a few questions:
+\begin{itemize}[label=$\bullet$]
+    \item Are the objects all distinct?
+    \item How many objects are there in total?
+    \item How many objects are we asked to place into an ordering?
+    \item Are there any restrictions on the orderings?
+\end{itemize}    
+\end{frame}
+\end{document}
