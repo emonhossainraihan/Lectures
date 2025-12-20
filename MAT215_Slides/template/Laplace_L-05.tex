@@ -1,0 +1,94 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+% \graphicspath{{images/}}
+\graphicspath{{../}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-05}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Derivative formula}
+    \begin{example}
+        Show that, $$\mathcal{L}\{y'(t)\}=sY(s)-y(0)$$
+    \end{example}
+    \begin{example}
+        Show that, $$\mathcal{L}\{y''(t)\}=s^2Y(s)-sy(0)-y'(0)$$
+    \end{example}
+    \begin{example}
+        Show that, $$\mathcal{L}\{y'''(t)\}=s^3Y(s)-s^2y(0)-sy'(0)-y''(0)$$
+    \end{example}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Solve the given differential equation:
+        $$y''-4y'+4y=t^3e^{2t},\:y(0)=0,y'(0)=0$$
+    \end{example}
+    \begin{example}
+        Solve the given differential equation:
+        $$y''-3y'+2y=4,y(0)=1,y'(0)=-1$$
+        \textbf{Hint:}
+        $$\frac{s-2}{s(s-1)}=\frac{2}{s}+\frac{-1}{s-1}$$
+    \end{example}
+\end{frame}
+\begin{frame}{Example}
+    \begin{example}
+        Solve the given differential equation:
+        $$y'''-3y''+3y'-y=e^t t^2,\:y(0)=0,y'(0)=1,y''(0)=-2$$
+    \end{example}
+    \begin{example}
+        Solve the given differential equation:
+        $$\frac{dy}{dt}+y=13\sin 2t,\:y(0)=6$$
+        \textbf{Hint:}
+        $$\frac{6s^2+50}{(s+3)(s^2+4)}=\frac{8}{(s+3)}+\frac{-2s+6}{(s^2+4)}$$
+    \end{example}
+\end{frame}
+\end{document}
