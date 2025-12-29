@@ -1,0 +1,525 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\graphicspath{{../}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+\date[] % (optional)
+{\textsc{Lecture-01}}
+\title[]{MAT092}
+
+\setbeamertemplate{navigation symbols}{}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% ---------- small helpers ----------
+\newcommand{\ds}{\displaystyle}
+\newcommand{\eps}{\varepsilon}
+
+\begin{document}
+
+% =========================================================
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Lecture Goals}
+By the end of this lecture, you should be able to:
+\begin{itemize}
+  \item Read and interpret limit notation (two-sided and one-sided).
+  \item Compute limits using substitution, factoring, rationalizing, and special trig limits.
+  \item Recognize when a limit does \textbf{not} exist (jump, oscillation, infinity).
+  \item See the \textbf{rigorous} meaning of ``approaches'' via \textbf{$\eps$--$\delta$}.
+\end{itemize}
+\end{frame}
+
+% =========================================================
+\section{Intuition and Notation}
+
+\begin{frame}{What does a limit mean? (Intuition)}
+\[
+\lim_{x\to a} f(x) = L
+\]
+means:
+\begin{quote}
+As $x$ gets closer to $a$ (not necessarily equal), $f(x)$ gets closer to $L$.
+\end{quote}
+
+\pause
+\textbf{Key idea:} The limit depends on the behavior \emph{near} $a$, not at $a$.
+
+\pause
+\textbf{Important:} It is possible that $f(a)$ is undefined or different from $L$.
+\end{frame}
+
+\begin{frame}{One-sided limits}
+\[
+\lim_{x\to a^-} f(x)\quad \text{(from the left)}, 
+\qquad
+\lim_{x\to a^+} f(x)\quad \text{(from the right)}.
+\]
+
+\pause
+\textbf{Fact:} The two-sided limit exists iff the one-sided limits exist and are equal:
+\[
+\lim_{x\to a} f(x) \text{ exists } \Longleftrightarrow 
+\lim_{x\to a^-} f(x)=\lim_{x\to a^+} f(x).
+\]
+\end{frame}
+
+% =========================================================
+\section{Basic Limits by Substitution}
+
+\begin{frame}{Example 1: Direct substitution (polynomials)}
+Evaluate:
+\[
+\lim_{x\to 2} (3x^2-5x+1).
+\]
+
+\pause
+\textbf{Solution:} Polynomials are continuous everywhere, so substitute $x=2$:
+\[
+\lim_{x\to 2} (3x^2-5x+1)=3(2)^2-5(2)+1=12-10+1=3.
+\]
+\end{frame}
+
+\begin{frame}{Example 2: Rational function where denominator is nonzero}
+Evaluate:
+\[
+\lim_{x\to -1}\frac{x^2+3x+2}{x^2+1}.
+\]
+
+\pause
+\textbf{Solution:} Since $(-1)^2+1=2\neq 0$, substitute:
+\[
+\frac{(-1)^2+3(-1)+2}{(-1)^2+1}=\frac{1-3+2}{2}=\frac{0}{2}=0.
+\]
+\end{frame}
+
+% =========================================================
+\section{Indeterminate Forms and Algebra Tricks}
+
+\begin{frame}{When substitution gives $\frac{0}{0}$}
+If
+\[
+\lim_{x\to a} f(x)
+\]
+gives $\frac{0}{0}$, it is \textbf{indeterminate}. You must simplify first using:
+\begin{itemize}
+  \item factoring and canceling,
+  \item rationalizing,
+  \item trig identities (sometimes).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example 3: Factoring (removable discontinuity)}
+Evaluate:
+\[
+\lim_{x\to 3}\frac{x^2-9}{x-3}.
+\]
+
+\pause
+\textbf{Solution:}
+\[
+\frac{x^2-9}{x-3}=\frac{(x-3)(x+3)}{x-3}=x+3 \quad (x\neq 3).
+\]
+So,
+\[
+\lim_{x\to 3}\frac{x^2-9}{x-3}=\lim_{x\to 3}(x+3)=6.
+\]
+\end{frame}
+
+\begin{frame}{Example 4: Factoring a cubic}
+Evaluate:
+\[
+\lim_{x\to 2}\frac{x^3-8}{x-2}.
+\]
+
+\pause
+\textbf{Solution:} Use $x^3-a^3=(x-a)(x^2+ax+a^2)$:
+\[
+\frac{x^3-8}{x-2}=\frac{(x-2)(x^2+2x+4)}{x-2}=x^2+2x+4.
+\]
+Thus,
+\[
+\lim_{x\to 2}\frac{x^3-8}{x-2}=2^2+2(2)+4=4+4+4=12.
+\]
+\end{frame}
+
+\begin{frame}{Example 5: Rationalizing}
+Evaluate:
+\[
+\lim_{x\to 4}\frac{\sqrt{x}-2}{x-4}.
+\]
+
+\pause
+\textbf{Solution:} Multiply by the conjugate:
+\[
+\frac{\sqrt{x}-2}{x-4}\cdot \frac{\sqrt{x}+2}{\sqrt{x}+2}
+=
+\frac{x-4}{(x-4)(\sqrt{x}+2)}=\frac{1}{\sqrt{x}+2}\quad (x\neq 4).
+\]
+So,
+\[
+\lim_{x\to 4}\frac{\sqrt{x}-2}{x-4}=\frac{1}{\sqrt{4}+2}=\frac{1}{4}.
+\]
+\end{frame}
+
+\begin{frame}{Example 6: Absolute value (piecewise thinking)}
+Evaluate:
+\[
+\lim_{x\to 0}\frac{|x|}{x}.
+\]
+
+\pause
+\textbf{Solution:}
+\[
+\frac{|x|}{x}=
+\begin{cases}
+1, & x>0,\\
+-1, & x<0.
+\end{cases}
+\]
+Thus,
+\[
+\lim_{x\to 0^+}\frac{|x|}{x}=1,\qquad
+\lim_{x\to 0^-}\frac{|x|}{x}=-1.
+\]
+Since left $\neq$ right, the two-sided limit \textbf{does not exist}.
+\end{frame}
+
+% =========================================================
+\section{One-sided Limits and Non-existence}
+
+\begin{frame}{Example 7: Jump discontinuity}
+Let
+\[
+f(x)=
+\begin{cases}
+2x+1, & x<1,\\
+5, & x\ge 1.
+\end{cases}
+\]
+Find $\ds \lim_{x\to 1^-}f(x)$ and $\ds \lim_{x\to 1^+}f(x)$.
+
+\pause
+\textbf{Solution:}
+\[
+\lim_{x\to 1^-}f(x)=\lim_{x\to 1^-}(2x+1)=3,\qquad
+\lim_{x\to 1^+}f(x)=\lim_{x\to 1^+}5=5.
+\]
+So $\lim_{x\to 1}f(x)$ \textbf{does not exist}.
+\end{frame}
+
+\begin{frame}{Example 8: Oscillation (no single value approached)}
+Consider $f(x)=\sin\left(\frac{1}{x}\right)$. Evaluate $\ds \lim_{x\to 0} f(x)$.
+
+\pause
+\textbf{Solution (idea):}
+As $x\to 0$, $\frac{1}{x}$ becomes very large and $\sin(\frac{1}{x})$
+keeps oscillating between $-1$ and $1$ infinitely often.
+Therefore the function does not approach a single number.
+
+\[
+\boxed{\lim_{x\to 0}\sin\left(\frac{1}{x}\right) \text{ does not exist.}}
+\]
+\end{frame}
+
+% =========================================================
+\section{Infinite Limits and Asymptotes}
+
+\begin{frame}{Example 9: Infinite limit (vertical asymptote)}
+Evaluate:
+\[
+\lim_{x\to 0^+}\frac{1}{x}
+\qquad \text{and}\qquad
+\lim_{x\to 0^-}\frac{1}{x}.
+\]
+
+\pause
+\textbf{Solution:}
+\[
+\lim_{x\to 0^+}\frac{1}{x}=+\infty,
+\qquad
+\lim_{x\to 0^-}\frac{1}{x}=-\infty.
+\]
+So the two-sided limit at $0$ does not exist (it blows up differently).
+\end{frame}
+
+\begin{frame}{Example 10: Limit at infinity (horizontal asymptote)}
+Evaluate:
+\[
+\lim_{x\to \infty}\frac{3x^2-1}{x^2+5x+7}.
+\]
+
+\pause
+\textbf{Solution:} Divide numerator and denominator by $x^2$:
+\[
+\frac{3-\frac{1}{x^2}}{1+\frac{5}{x}+\frac{7}{x^2}}
+\;\xrightarrow[x\to \infty]{}\;
+\frac{3-0}{1+0+0}=3.
+\]
+\[
+\boxed{\lim_{x\to \infty}\frac{3x^2-1}{x^2+5x+7}=3.}
+\]
+\end{frame}
+
+% =========================================================
+\section{Trig Limits (Precalculus-ready)}
+
+\begin{frame}{A key special limit (used later in calculus)}
+A fundamental limit is:
+\[
+\lim_{x\to 0}\frac{\sin x}{x}=1.
+\]
+(Here $x$ is measured in \textbf{radians}.)
+
+\pause
+Using it, we can compute many trig limits by rewriting expressions.
+\end{frame}
+
+\begin{frame}{Example 11: Using $\lim_{x\to 0}\frac{\sin x}{x}=1$}
+Evaluate:
+\[
+\lim_{x\to 0}\frac{\sin(5x)}{x}.
+\]
+
+\pause
+\textbf{Solution:}
+Rewrite:
+\[
+\frac{\sin(5x)}{x}=\frac{\sin(5x)}{5x}\cdot 5.
+\]
+Now as $x\to 0$, we have $5x\to 0$, so
+\[
+\lim_{x\to 0}\frac{\sin(5x)}{5x}=1.
+\]
+Hence
+\[
+\boxed{\lim_{x\to 0}\frac{\sin(5x)}{x}=5.}
+\]
+\end{frame}
+
+\begin{frame}{Example 12: A trig simplification}
+Evaluate:
+\[
+\lim_{x\to 0}\frac{1-\cos x}{x^2}.
+\]
+
+\pause
+\textbf{Solution:} Multiply by the conjugate:
+\[
+\frac{1-\cos x}{x^2}\cdot \frac{1+\cos x}{1+\cos x}
+=
+\frac{1-\cos^2 x}{x^2(1+\cos x)}
+=
+\frac{\sin^2 x}{x^2(1+\cos x)}.
+\]
+Then
+\[
+\frac{\sin^2 x}{x^2(1+\cos x)}
+=
+\left(\frac{\sin x}{x}\right)^2\cdot \frac{1}{1+\cos x}.
+\]
+As $x\to 0$:
+\[
+\left(\frac{\sin x}{x}\right)^2 \to 1,\qquad \cos x\to 1.
+\]
+So
+\[
+\boxed{\lim_{x\to 0}\frac{1-\cos x}{x^2}=\frac{1}{2}.}
+\]
+\end{frame}
+
+% =========================================================
+\section{Rigorous Definition: $\eps$--$\delta$}
+
+\begin{frame}{The $\eps$--$\delta$ definition (rigor)}
+We write
+\[
+\lim_{x\to a} f(x)=L
+\]
+if:
+
+\medskip
+For every $\eps>0$ there exists $\delta>0$ such that
+\[
+0<|x-a|<\delta \quad \Longrightarrow \quad |f(x)-L|<\eps.
+\]
+
+\pause
+\textbf{Interpretation:}
+\begin{itemize}
+  \item You (the challenger) choose how close you want $f(x)$ to be to $L$ (that is $\eps$).
+  \item I (the solver) must produce a distance $\delta$ so that if $x$ is within $\delta$ of $a$,
+  then $f(x)$ is within $\eps$ of $L$.
+\end{itemize}
+
+Check :\url{https://betterexplained.com/articles/an-intuitive-introduction-to-limits/}
+\end{frame}
+
+\begin{frame}{Example 13: $\eps$--$\delta$ proof for a linear function}
+Prove using $\eps$--$\delta$ that:
+\[
+\lim_{x\to 2}(3x-1)=5.
+\]
+
+\pause
+\textbf{Proof:} Let $\eps>0$ be given. We want $|3x-1-5|<\eps$ whenever $0<|x-2|<\delta$.
+
+\[
+|3x-1-5|=|3x-6|=3|x-2|.
+\]
+So it is enough to ensure:
+\[
+3|x-2|<\eps \quad \Longleftarrow \quad |x-2|<\frac{\eps}{3}.
+\]
+
+\pause
+Choose:
+\[
+\boxed{\delta=\frac{\eps}{3}.}
+\]
+Then $0<|x-2|<\delta$ implies $|3x-1-5|<\eps$.
+
+\hfill $\square$
+\end{frame}
+
+\begin{frame}{Example 14: $\eps$--$\delta$ proof for a quadratic}
+Prove using $\eps$--$\delta$ that:
+\[
+\lim_{x\to 1}x^2=1.
+\]
+
+\pause
+\textbf{Proof:} Let $\eps>0$. We want $|x^2-1|<\eps$ when $0<|x-1|<\delta$.
+
+Factor:
+\[
+|x^2-1|=|x-1||x+1|.
+\]
+We need to control $|x+1|$.
+
+\pause
+Assume additionally $|x-1|<1$. Then $x\in(0,2)$, so $|x+1|<3$.
+
+Hence, under $|x-1|<1$:
+\[
+|x^2-1|=|x-1||x+1|<3|x-1|.
+\]
+So it suffices to guarantee:
+\[
+3|x-1|<\eps \quad \Longleftarrow \quad |x-1|<\frac{\eps}{3}.
+\]
+
+\pause
+Choose:
+\[
+\boxed{\delta=\min\left\{1,\frac{\eps}{3}\right\}.}
+\]
+Then $0<|x-1|<\delta$ implies $|x^2-1|<\eps$.
+
+\hfill $\square$
+\end{frame}
+
+\begin{frame}{Example 15 (Challenge): Find a $\delta$ in terms of $\eps$}
+Show (rigorously) that:
+\[
+\lim_{x\to 3}\frac{x^2-9}{x-3}=6.
+\]
+
+\pause
+\textbf{Hint:} For $x\neq 3$,
+\[
+\frac{x^2-9}{x-3}=x+3.
+\]
+So you want: $|x+3-6|<\eps$.
+
+\pause
+\textbf{Solution:}
+\[
+|x+3-6|=|x-3|.
+\]
+So choose
+\[
+\boxed{\delta=\eps.}
+\]
+Then $0<|x-3|<\delta$ implies $\left|\frac{x^2-9}{x-3}-6\right|<\eps$.
+
+\hfill $\square$
+\end{frame}
+
+% =========================================================
+\section{Wrap-up Practice Set (with answers)}
+
+\begin{frame}{Practice (compute these limits)}
+Compute:
+\begin{enumerate}[label=\arabic*.]
+  \item $\ds \lim_{x\to -2}(x^3+4x)$
+  \item $\ds \lim_{x\to 1}\frac{x^2-1}{x-1}$
+  \item $\ds \lim_{x\to 0}\frac{\sin(2x)}{x}$
+  \item $\ds \lim_{x\to 0}\frac{|x|}{x}$ (state DNE properly)
+  \item $\ds \lim_{x\to \infty}\frac{5x^2+1}{2x^2-7}$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Answers}
+\begin{enumerate}[label=\arabic*.]
+  \item Substitute: $(-2)^3+4(-2)=-8-8=-16$.
+  \item Factor: $\frac{(x-1)(x+1)}{x-1}=x+1\Rightarrow 2$.
+  \item $\frac{\sin(2x)}{x}=\frac{\sin(2x)}{2x}\cdot 2 \Rightarrow 2$.
+  \item Left limit $=-1$, right limit $=1$ $\Rightarrow$ DNE.
+  \item Divide by $x^2$: $\frac{5+1/x^2}{2-7/x^2}\Rightarrow \frac{5}{2}$.
+\end{enumerate}
+\end{frame}
+
+% =========================================================
+\section{Closing}
+
+\begin{frame}{Key Takeaways}
+\begin{itemize}
+  \item Limits describe \textbf{approach} behavior near a point.
+  \item If left and right limits disagree, the limit \textbf{does not exist}.
+  \item $\frac{0}{0}$ means: \textbf{simplify first} (factor/rationalize).
+  \item $\eps$--$\delta$ makes ``approaches'' fully rigorous.
+\end{itemize}
+
+\bigskip
+\centering
+\textbf{Next: Continuity \& how limits define it.}
+\end{frame}
+
+% (Empty frame kept from your template idea)
+\begin{frame}
+\centering \Large Questions?
+\end{frame}
+
+\end{document}

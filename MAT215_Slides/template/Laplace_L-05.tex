@@ -121,7 +121,10 @@
         Solve the given differential equation:
         $$y''+9y=\cos 2t,\: y(0)=0,y\left(\frac\pi2\right)=-1$$     
     \end{example}
-    \begin{example}
+\end{frame}
+
+\begin{frame}
+        \begin{example}
         Solve the given system of differential equations:
         \begin{align*}
             \frac{dx}{dt}&=-x+y\\
@@ -129,5 +132,28 @@
         \end{align*}
         with initial conditions $x(0)=0,y(0)=1$. 
     \end{example}
+    \textbf{Answer:} 
+    \begin{align*}
+        x'&=-x+y\\
+        sX(s)-x(0)&=-X(s)+Y(s)\\
+        Y(s)&=(s+1)X(s)
+    \end{align*} 
+\end{frame}
+
+\begin{frame}
+    And,
+    \begin{align*}
+        y'&=2x\\
+        sY(s)-y(0)&=2X(s)\\
+        sY(s)-1&=2X(s)\\
+        2X(s)-s(s+1)X(s)&=-1\\
+        X(s)&=\frac{1}{s^2+s-2}=\frac{1/3}{s-1}+\frac{-1/3}{s+2}\\
+        x(t)&=\frac{1}{3}e^{t}-\frac{1}{3}e^{-2t}
+    \end{align*}
+    Now,
+    \begin{align*}
+        Y(s)&=(s+1)X(s)=\frac{s+1}{s^2+s-2}=\frac{2/3}{s-1}+\frac{1/3}{s+2}\\
+        y(t)&=\frac{2}{3}e^{t}+\frac{1}{3}e^{-2t}
+    \end{align*}
 \end{frame}
 \end{document}
