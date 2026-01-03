@@ -1,0 +1,145 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-15}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Definition}
+    The \textbf{Fourier Transform} of a function \( f(x) \) is defined as,
+    \[
+        F(\omega) =\int_{-\infty}^{\infty} f(x) e^{-i\omega x} \, dx
+    \]
+    where \( \omega \) is the frequency variable.
+    And the \textbf{Inverse Fourier Transform} is given by,
+    \[
+        f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{i\omega x} \, d\omega
+    \]
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Find the Fourier transformation of the function,
+    \[
+        f(x) = 
+        \begin{cases}
+            \pi, & |x| \leq 1 \\
+            0, & |x| > 1
+        \end{cases}
+    \]
+Hence, evaluate the integral,
+    \[
+        \int_{0}^{\infty} \frac{\sin x}{x} \, dx
+    \]
+    \end{example}
+    \textbf{Hint:} 
+    \begin{align*}
+        F(\omega) &= \frac{2\pi \sin\omega}{\omega}
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \begin{example}
+        Find the Fourier transformation of the function,
+    \[
+        f(x) = 
+        \begin{cases}
+            1, & |x| < a \\
+            0, & |x| > a 
+        \end{cases}
+    \]
+    Hence evaluate the integral,
+    \[
+        \int_{0}^{\infty} \frac{\sin(ax)\cos(ax)}{x} \, dx
+    \]
+    \end{example}
+    \textbf{Hint:} 
+    \begin{align*}
+        F(\omega) &= \frac{2\sin(a\omega)}{\omega}
+    \end{align*}
+\end{frame}
+\begin{frame}{Example}
+    \begin{example}
+        Find the Fourier transformation of the function,
+    \[
+        f(x) = \begin{cases}
+            1-x^2, & |x| < 1 \\
+            0, & |x| > 1 
+        \end{cases}
+    \]
+    Hence, evaluate the integral,
+    \[
+        \int_{0}^{\infty} \left( \frac{x\cos(x)-\sin(x)}{x^3} \right)\cos\left(\frac x2 \right)\: dx
+    \]
+    \end{example}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Find the Fourier transformation of the function,
+    \[
+        f(x)=\begin{cases}
+            1-|x|, &|x|<1 \\
+            0, &|x|>1
+        \end{cases}
+    \]
+    Hence, evaluate the integral,
+    \[
+        \int_0^\infty \frac{\sin^2 x}{x^2} dx
+    \]
+    \end{example}
+    \textbf{Hint:} 
+    \begin{align*}
+        F(\omega) &= \frac{4}{\omega^2} \sin^2\left(\frac{\omega}{2}\right) 
+    \end{align*}
+\end{frame}
+\end{document}
