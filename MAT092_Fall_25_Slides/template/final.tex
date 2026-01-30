@@ -1,0 +1,134 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath,physics}
+\usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[lmargin=1in, tmargin=1in]{geometry}  %For centering solution box
+\usepackage{graphicx}
+\usepackage{enumitem}
+\lhead{MAT092\\}
+\rhead{Final Examination\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+\begingroup
+\centering
+\begin{figure}
+    \centering
+    \includegraphics[width=50px]{brac-university-logo.png}
+\end{figure}
+\LARGE Remedial Course in Mathematics\\
+\LARGE Final Examination\\
+% \large \today\\
+\LARGE Total - 40 Marks\\% , Due date: \textcolor{red}{Thursday, June 27, Please submit hard copy}\\
+\large (You need to answer \textbf{ANY FOUR} questions)\\
+\endgroup
+\hrule
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+% \renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+% \textcolor{white}{text} \\
+% \textbf{\large Name:}\\ \\
+% \textbf{\large ID:}\\ \\
+% \textbf{\large Section:}\\
+% \hrule
+\vspace{13pt} 
+\begin{questions}
+\question[5+5 Marks]
+\begin{parts}
+\part Sketch step-by-step the graph of
+\[
+y = 1 + 5\cos\!\left(2x - \frac{\pi}{2}\right).
+\]
+Mark at least one full period.
+\part On the same set of axes, sketch the graphs of
+\[
+y = |\sin x| \quad \text{and} \quad y = \cos x
+\]
+for $0 \le x < 2\pi$. Clearly mark all points of intersection. Hence, solve the equation
+\[
+|\sin x| = \cos x
+\]
+for $0 \le x < 2\pi$. 
+\end{parts}
+\droppoints
+\question[2+4+4 Marks]
+Given the system of equations:
+\begin{align*}
+    x &= 1\\
+    2y+3z &= 2\\
+    y+z &= 3
+\end{align*}
+\begin{parts}
+    \part Write the system in matrix form, $A\vec x=\vec b$.   
+    \part Determine whether the system is solvable or not. 
+    \part If the system is solvable find the solution. 
+\end{parts}
+\droppoints
+\question[6+4 Marks]
+\begin{parts}
+    \part Find the fourth root of $z=-1-i$. And sketch the root in the complex plane.
+    \part Write the complex number \[z = -1 + i\sqrt{3}\] in the polar form \[ z = r(\cos\theta + i\sin\theta)\]
+    Hence, compute $z^{100}$.  
+\end{parts}
+\droppoints
+\question[2+2+2+2+2 Marks]
+\begin{parts}
+    \part Eight friends go out for dinner. How many ways are there to sit them around a round table?
+Rotations of a sitting arrangement are considered the same, but a reflection is considered different.
+    \part If the reflections are also considered the same, how many ways are there to sit them around a round table?
+    \part A team of four has to be selected from $6$ boys and $4$ girls. How many different ways can a team be selected if at least one boy must be in the team?
+    \part How many different diagonals does a $12$-sided polygon have?
+    \part How many triangles can be formed using $10$ points in a plane, out of which $4$ are collinear?
+\end{parts}
+\droppoints
+\question[2+5+3 Marks]
+A \textbf{Riemann sum} approximates this area using rectangles:
+\[
+\sum_{i=1}^n f(x_i^\ast)\,\Delta x
+\quad\text{where}\quad
+\Delta x=\frac{b-a}{n}.
+\]
+As $n\to\infty$, rectangles become very thin and the approximation becomes exact.
+\begin{parts}
+\part Find the value of the definite integral using formula \[
+\int_0^1 x^2\,dx.
+\]    
+\part We want to approximate the same integral. Take $n=4$ equal subintervals and use \textbf{left endpoints} to compute the Riemann sum.
+\part Consider the differential equation
+\[
+\frac{dy}{dx}=x.
+\]
+Find the slope field and the solution family.
+\end{parts}
+\droppoints
+\question[6+4 Marks]
+\begin{parts}
+    \part 
+\[
+f(x)=
+\begin{cases}
+x^2+k, & x\le 2\\
+4x-3, & x>2
+\end{cases}
+\]
+Find \(k\) such that \(\lim_{x\to 2} f(x)\) exists.
+\part Evaluate:
+\[
+\lim_{x\to 4}\frac{\sqrt{x}-2}{x-4}.
+\]
+\end{parts}
+\droppoints
+\question[6+4 Marks]
+\begin{parts}
+    \part Identify and sketch: $$|z-1|+|z-1|=4$$
+    where \(z=x+iy\). 
+    \part Prove using $\epsilon-\delta$ definition that $\lim_{x\to 2}(3x-1)=5$.
+\end{parts}
+\droppoints
+\end{questions}
+\vfill
+\begin{center}
+    \large\textbf{In remembrance of Sharif Osman Bin Hadi, whose courage and sacrifice will shape our nation.}
+\end{center}
+\end{document}

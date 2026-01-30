@@ -1446,7 +1446,27 @@ And then use it in the general formula of the Fourier series:
     a_k &= \frac{1}{L}\int_{-L}^L f(x) \cos{\left(k\frac{\pi x}{L}\right)} dx\\
     b_k&=  \frac{1}{L}\int_{-L}^L f(x) \sin{\left(k\frac{\pi x}{L}\right)} dx
 \end{align*}
-
+For example,
+\begin{example}
+Find the Fourier series expansion of the function $f(x)$ over the interval,
+\begin{itemize}
+    \item $(-\pi,\pi)$
+    \item $(0,2\pi)$
+    \item $(-4,4)$
+    \item $(0,8)$
+\end{itemize}
+\textbf{Solution:} The value of $L$ is half of the length of the given interval.
+\begin{itemize}
+    \item For $(-\pi,\pi)$, $2L=\pi-(-\pi)=2\pi\Rightarrow L=\pi$
+    $$\frac{1}{\pi}\int_{-\pi}^\pi ... dx$$ 
+    \item For $(0,2\pi)$, $2L=2\pi-0=2\pi\Rightarrow L=\pi$
+    $$ \frac{1}{\pi}\int_{0}^{2\pi} ... dx$$
+    \item For $(-4,4)$, $2L=4-(-4)=8\Rightarrow L=4$
+    $$ \frac{1}{4}\int_{-4}^{4} ... dx$$
+    \item For $(0,8)$, $2L=8-0=8\Rightarrow L=4$
+    $$ \frac{1}{4}\int_{0}^{8} ... dx$$
+\end{itemize} 
+\end{example} 
 But if you asked for the Fourier Sine or Cosine series, then your formula gets changed as,
 $$L=\textbf{Given domain of the function}$$
 Because, this time we make it Odd or Even extension and then find the normal periodic extension and hence find the Fourier series.
@@ -1478,6 +1498,28 @@ Similarly, $b_k=0$ is also zero because,
 $$
 \tilde f(x)\sin{\left(k\frac{\pi x}{L}\right)}=\text{even (extended) function}\cdot\text{odd function}=\text{odd function}
 $$
+\begin{example}
+Find the Fourier Sine series expansion of the function $f(x)$ over the interval,
+\begin{itemize}
+    \item $(0,\pi)$
+    \item $(0,2\pi)$
+    \item $(0,4)$
+    \item $(0,8)$
+    
+\end{itemize}
+\textbf{Solution:} The value of $L$ is the same as the length of the given interval.
+\begin{itemize}
+    \item For $(0,\pi)$, $L=\pi$
+    $$ \frac{2}{\pi}\int_{0}^{\pi} ... dx$$
+    \item For $(0,2\pi)$, $L=2\pi$
+    $$ \frac{2}{2\pi}\int_{0}^{2\pi} ... dx$$
+    \item For $(0,4)$, $L=4$
+    $$ \frac{2}{4}\int_{0}^{4} ... dx$$
+    \item For $(0,8)$, $L=8$
+    $$ \frac{2}{8}\int_{0}^{8} ... dx$$
+\end{itemize}
+\end{example}
+\clearpage 
 \begin{problem} 
 ~\\
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
