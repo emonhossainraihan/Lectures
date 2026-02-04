@@ -1,0 +1,169 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-03}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Polar Form}
+    \begin{problem}
+        Find the Polar form of:
+        \begin{itemize}
+            \item $-1+\sqrt 3 i$
+            \item $12i$
+        \end{itemize}
+    \end{problem}
+    Find the expression:
+    \begin{itemize}
+        \item $z_1 z_2=?$
+        \item $\frac{z_1}{z_2}=?$
+        \item $z^{-1}$?
+    \end{itemize}
+    \textbf{Hint:} You need to pray to get the formula :3
+\end{frame}
+
+\begin{frame}{Exponential Form}
+    Find the expression:
+    \begin{itemize}
+        \item $z_1 z_2=?$
+        \item $\frac{z_1}{z_2}=?$
+        \item $z^{-1}$?
+    \end{itemize}
+    \textbf{Hint:} Use the polar form of each complex number and manipulate them.
+\end{frame}
+
+\begin{frame}{Issues}
+Let for multiplication, $z_1=i, z_2=-1$
+But
+$$\operatorname{Arg}(z_1)+\operatorname{Arg}(z_2)=\frac\pi2+\pi=\frac{3\pi}{2}\neq -\frac\pi2=\operatorname{Arg}(z_1 z_2)$$
+To bring it back into the principal range, subtract.
+\\~\\
+Let for division, $z_1 = -i, ; z_2 = -1$. Then:
+$
+\operatorname{Arg}(z_1) = -\frac{\pi}{2},\operatorname{Arg}(z_2) = \pi.
+$
+Then:$$-\frac{\pi}{2} - \pi = -\frac{3\pi}{2}$$.
+
+Now $-\frac{3\pi}{2} \notin (-\pi, \pi] )$. But $\frac{3\pi}{2} + 2\pi = \frac{\pi}{2}$\\~\\
+Let for power, $z = -1$, so $\operatorname{Arg}(z) = \pi.$ Then $z^2 = (-1)^2 = 1$, and $\operatorname{Arg}(z^2) = 0$.
+
+But $n\operatorname{Arg}(z) = 2\pi \notin (-\pi, \pi]$. We must subtract $2\pi$ to bring it back: $2\pi - 2\pi = 0.$
+\end{frame}
+
+\begin{frame}{Problems}
+To find a large power or nth root, use exponential form. 
+    \begin{problem}
+        Solve the equation: $e^{4z}=i$\\
+        \textbf{Hint:} Start with known complex number
+    \end{problem}
+    \begin{problem}
+        Solve for $x$ and $y$,
+        $$
+        \left(\frac{3}{2}+\frac{\sqrt 3}{2}i\right)^{2024}=3^{1012}(x+iy)
+        $$
+        \textbf{Hint:} Start with known complex number
+    \end{problem}
+\end{frame}
+\begin{frame}{Examples}
+    Find $(1+i\sqrt 3)^{10}$, $(-16)^{\frac14}$, all the cubic roots of unity.
+    \begin{problem}
+        Find all the values of $z$ for which $z^5=32\sqrt{-1}$, and locate them in the complex plane.
+    \end{problem}
+\end{frame}
+\begin{frame}{Problems}
+    \begin{problem}
+        Graph the lines,
+        \begin{itemize}
+            \item $|z|=2$
+            \item $|z-2i|=3$
+            \item $\left|\frac{z-3}{z+3} \right|=2$
+            \item $\operatorname{Im}(z^2)=4$
+            \item $\operatorname{Re}(z^2)=4$
+            \item $\operatorname{Re}\left(\frac{1}{z^2}\right)=1$
+            \item $\arg(z)=\frac{\pi}{3}$
+        \end{itemize}
+    \end{problem}
+\end{frame}
+\begin{frame}{Problems}
+    \begin{problem}
+        Graph the regions,
+        \begin{itemize}
+            \item $|z|>2$
+            \item $|z-2i|\leq 3$
+            \item $\left|\frac{z-3}{z+3} \right|<2$
+            \item $\operatorname{Im}(z^2)>4$
+            \item $\operatorname{Re}(z^2)<4$
+            \item $\frac{\pi}4\leq\arg(z)\leq\frac{2\pi}{3}$
+        \end{itemize}
+    \end{problem}
+\end{frame}
+\begin{frame}{Issues}
+    \begin{itemize}
+        \item $|z_1 z_2|=|z_1|\:\:|z_2|$ but $|z_1+z_2|\leq |z_1|+|z_2|$
+        \item $\sqrt{z_1 z_2}\neq \sqrt{z_1}\:\: \sqrt{z_2}$
+        \item $(z^a)^b\neq z^{ab}$
+        \item $\log_a b^r\neq r \log_a b$
+    \end{itemize}
+Consider the following examples: $z_1=1+i,z_2=-1+i$, $\sqrt{(-1)(-1)}\neq \sqrt{(-1)}\sqrt{(-1)}$.  
+\end{frame}
+\begin{frame}{Complex Power}
+    
+\end{frame}
+\end{document}

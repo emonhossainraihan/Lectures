@@ -1,0 +1,291 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{physics}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, calc, decorations.markings}
+\usepackage{bm}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-06}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+% Short macros
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\newcommand{\card}{\operatorname{card}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Motivation: Limit in Higher Dimensions}
+\begin{itemize}
+    \item In single-variable calculus, we know
+    \[
+        \lim_{x \to a} f(x) = L
+        \iff f(x) \text{ can be made as close as we want to } L \text{ when } x \text{ is near } a.
+    \]
+    \item But what happens when \(x\) is replaced by a vector \((x,y)\) or a complex number \(z\)?
+    \item The challenge: there are \textbf{infinitely many paths} approaching a point.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example 1: Different Paths, Different Limits}
+Consider
+\[
+    f(x,y) = \frac{x^2y}{x^4 + y^2}, \quad (x,y) \neq (0,0).
+\]
+We want to know whether \(\displaystyle \lim_{(x,y)\to(0,0)} f(x,y)\) exists.
+\pause
+\begin{itemize}
+    \item Along \(y = 0\): \(f(x,0)=0\)
+    \item Along \(y = x^2\): \(f(x,x^2)=\frac{x^4}{2x^4}=\frac{1}{2}\)
+\end{itemize}
+\pause
+\[
+\Rightarrow \text{Limit does not exist since it depends on the path.}
+\]
+\end{frame}
+
+\begin{frame}{Example 2: Polar Coordinate Technique}
+For
+\[
+    f(x,y) = \frac{x^2y^2}{x^2+y^2},
+\]
+convert to polar coordinates: \(x=r\cos\theta, \, y=r\sin\theta\).
+\pause
+\[
+    f(r,\theta) = \frac{r^4\cos^2\theta \sin^2\theta}{r^2} = r^2 \cos^2\theta \sin^2\theta.
+\]
+\pause
+As \(r \to 0\), \(f(r,\theta) \to 0\) regardless of \(\theta\).
+\[
+\boxed{\text{Hence, } \lim_{(x,y)\to(0,0)} f(x,y)=0.}
+\]
+\end{frame}
+
+\begin{frame}{Example 3: Oscillation near the Origin}
+Let
+\[
+    f(x,y) = \frac{\sin(x^2 + y^2)}{x^2 + y^2}, \quad (x,y)\neq(0,0).
+\]
+\pause
+\[
+    f(r,\theta) = \frac{\sin(r^2)}{r^2}.
+\]
+\pause
+As \(r\to 0\), \(\frac{\sin(r^2)}{r^2}\to 1\).
+\[
+\boxed{\text{Limit exists and equals } 1.}
+\]
+\end{frame}
+
+\begin{frame}{Limits in \(\mathbb{C}\)}
+\begin{itemize}
+    \item A function \(f:\mathbb{C}\to\mathbb{C}\) has a limit \(L\) at \(z_0\) if:
+    \[
+        \forall \varepsilon>0,\, \exists \delta>0 \text{ such that } |f(z)-L|<\varepsilon
+        \text{ whenever } 0<|z-z_0|<\delta.
+    \]
+    \item The same issue arises: \(z\) can approach \(z_0\) from any direction in the plane.
+    \item So path independence is essential.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example 1: Simple Complex Limit}
+\[
+    f(z)=z^2, \quad \text{find } \lim_{z\to 2+i} f(z).
+\]
+\pause
+\[
+    \lim_{z\to 2+i} z^2 = (2+i)^2 = 3 + 4i.
+\]
+\pause
+\textbf{Observation:} Polynomials are continuous in \(\mathbb{C}\) just like in \(\mathbb{R}\).
+\end{frame}
+
+\begin{frame}{Example 2: Path Dependence in \(\mathbb{C}\)}
+Consider
+\[
+    f(z) = \frac{z\,\overline{z}}{z^2}.
+\]
+Write \(z = x+iy\).
+\pause
+\[
+    f(z) = \frac{(x+iy)(x-iy)}{(x+iy)^2} = \frac{x^2+y^2}{x^2 - y^2 + 2ixy}.
+\]
+\pause
+Approaching along real axis \(y=0\): \(f(x,0)=1\).\\
+Approaching along imaginary axis \(x=0\): \(f(0,y)=\frac{y^2}{-y^2}= -1.\)
+\[
+\boxed{\text{Hence, limit does not exist.}}
+\]
+\end{frame}
+
+\begin{frame}{Example 3: A Continuous Limit in \(\mathbb{C}\)}
+\[
+    f(z)=|z|^2.
+\]
+\pause
+Let \(z=x+iy\), then \(f(z)=x^2+y^2 = r^2.\)
+\[
+    \lim_{z\to 0} |z|^2 = 0.
+\]
+\pause
+\textbf{Observation:} Although \(f(z)=|z|^2\) is not complex differentiable, the limit exists.
+\end{frame}
+
+\begin{frame}{Example 4}
+    If 
+    $$f(z)=\begin{cases}
+        \frac{z^2-4}{z^2-3z+2}, &z\neq 2\\
+        kz^2+6, &z=2 
+    \end{cases}
+    $$
+    Find $k$ such that such that $f(z)$ is continuous at $z=2$.  
+\end{frame}
+
+\begin{frame}{Summary and Reflection}
+\begin{itemize}
+    \item In \(\mathbb{R}^2\) and \(\mathbb{C}\), limit existence requires the same value along every path.
+    \item Polar coordinates help detect limit behavior efficiently.
+    \item In \(\mathbb{C}\), algebraic expressions behave like \(\mathbb{R}^2\) functions—but differentiability is far stricter.
+    \item Next Topic: \textbf{Continuity and differentiability in \(\mathbb{C}\)}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Harder Example 1: Path Dependence in Disguise}
+Let
+\[
+    f(z) = \frac{\Re(z)\Im(z)}{|z|^2}, \quad z \neq 0.
+\]
+\pause
+Write \(z = re^{i\theta}\), then
+\[
+    \Re(z)=r\cos\theta, \quad \Im(z)=r\sin\theta, \quad |z|=r.
+\]
+\[
+    f(z) = \frac{r^2\cos\theta\sin\theta}{r^2} = \cos\theta \sin\theta.
+\]
+\pause
+\textbf{Hence:} Limit as \(z\to0\) depends on the angle of approach \(\theta\).  
+\[
+\boxed{\text{No limit exists.}}
+\]
+\end{frame}
+
+\begin{frame}{Harder Example 2: Absolute Value and Non-Analytic Behavior}
+\[
+    f(z) = \frac{|z|}{z}.
+\]
+\pause
+Write \(z = re^{i\theta}\), so
+\[
+    f(z) = \frac{r}{re^{i\theta}} = e^{-i\theta}.
+\]
+\pause
+As \(z\to 0\), \(e^{-i\theta}\) depends on direction \(\theta\).\\
+\[
+\boxed{\text{Limit does not exist.}}
+\]
+\pause
+\textit{Note:} This function has no limit (and no derivative) at 0, but its magnitude \(|f(z)|=1\) is constant.
+\end{frame}
+
+\begin{frame}{Harder Example 3: A Real Limit, Complex Non-Analytic}
+Let
+\[
+    f(z) = |z|^2 e^{i|z|^2}.
+\]
+\pause
+Then \(|f(z)| = |z|^2\), so
+\[
+    |f(z)| \to 0 \quad \text{as} \quad z\to 0.
+\]
+\pause
+Therefore,
+\[
+\boxed{\lim_{z\to0} f(z) = 0.}
+\]
+Even though limit exists, \(f\) is not differentiable at \(0\) because of the \(|z|^2\) term (depends on both \(z\) and \(\overline{z}\)).
+\end{frame}
+
+\begin{frame}{Harder Example 4: Tricky Rational Form}
+Consider
+\[
+    f(z) = \frac{z^3}{|z|^2}, \quad z\neq 0.
+\]
+\pause
+In polar form \(z=re^{i\theta}\):
+\[
+    f(z) = \frac{r^3 e^{3i\theta}}{r^2} = r e^{3i\theta}.
+\]
+\pause
+As \(r\to 0\), \(r e^{3i\theta}\to 0\) regardless of \(\theta\).
+\[
+\boxed{\text{Limit exists and equals } 0.}
+\]
+\pause
+But \(f\) is \emph{not} continuous at \(z=0\) if extended by \(f(0)=0\)?  
+Actually it is continuous—but still not differentiable at \(0\).
+\end{frame}
+
+
+
+\end{document}

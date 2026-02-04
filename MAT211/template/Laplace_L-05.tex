@@ -1,0 +1,159 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+% \graphicspath{{images/}}
+\graphicspath{{../}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-05}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Derivative formula}
+    \begin{example}
+        Show that, $$\mathcal{L}\{y'(t)\}=sY(s)-y(0)$$
+    \end{example}
+    \begin{example}
+        Show that, $$\mathcal{L}\{y''(t)\}=s^2Y(s)-sy(0)-y'(0)$$
+    \end{example}
+    \begin{example}
+        Show that, $$\mathcal{L}\{y'''(t)\}=s^3Y(s)-s^2y(0)-sy'(0)-y''(0)$$
+    \end{example}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Solve the given differential equation:
+        $$y''-4y'+4y=t^3e^{2t},\:y(0)=0,y'(0)=0$$
+    \end{example}
+    \begin{example}
+        Solve the given differential equation:
+        $$y''-3y'+2y=4,y(0)=1,y'(0)=-1$$
+        \textbf{Hint:}
+        $$\frac{s-2}{s(s-1)}=\frac{2}{s}+\frac{-1}{s-1}$$
+    \end{example}
+\end{frame}
+\begin{frame}{Example}
+    \begin{example}
+        Solve the given differential equation:
+        $$y'''-3y''+3y'-y=e^t t^2,\:y(0)=0,y'(0)=1,y''(0)=-2$$
+    \end{example}
+    \begin{example}
+        Solve the given differential equation:
+        $$\frac{dy}{dt}+y=13\sin 2t,\:y(0)=6$$
+        \textbf{Hint:}
+        $$\frac{6s^2+50}{(s+3)(s^2+4)}=\frac{8}{(s+3)}+\frac{-2s+6}{(s^2+4)}$$
+    \end{example}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Solve the given differential equation:
+        $$2y'''+3y''-3y'-2y=e^{-t},\:y(0)=0,y'(0)=0,y''(0)=1$$
+    \end{example}
+    \begin{example}
+        Solve the given differential equation:
+        $$y''+2y'+5y=e^{-t}\sin t,\:y(0)=0,y'(0)=1$$        
+    \end{example}
+\end{frame}
+\begin{frame}{Example}
+    \begin{example}
+        Solve the given differential equation:
+        $$y'+y=f(t),\: y(0)=5$$
+        $$f(t)=\begin{cases}
+        0, & 0\le t<\pi\\
+        2\cos t, & t\ge \pi
+        \end{cases}$$        
+    \end{example}
+    \begin{example}
+        Solve the given differential equation:
+        $$y''+4y=\sin t u(t-2\pi),\: y(0)=1,y'(0)=0$$     
+    \end{example}
+\end{frame}
+\begin{frame}{Important}
+    \begin{example}
+        Solve the given differential equation:
+        $$y''+9y=\cos 2t,\: y(0)=0,y\left(\frac\pi2\right)=-1$$     
+    \end{example}
+\end{frame}
+
+\begin{frame}
+        \begin{example}
+        Solve the given system of differential equations:
+        \begin{align*}
+            \frac{dx}{dt}&=-x+y\\
+            \frac{dy}{dt}&=2x\\
+        \end{align*}
+        with initial conditions $x(0)=0,y(0)=1$. 
+    \end{example}
+    \textbf{Answer:} 
+    \begin{align*}
+        x'&=-x+y\\
+        sX(s)-x(0)&=-X(s)+Y(s)\\
+        Y(s)&=(s+1)X(s)
+    \end{align*} 
+\end{frame}
+
+\begin{frame}
+    And,
+    \begin{align*}
+        y'&=2x\\
+        sY(s)-y(0)&=2X(s)\\
+        sY(s)-1&=2X(s)\\
+        2X(s)-s(s+1)X(s)&=-1\\
+        X(s)&=\frac{1}{s^2+s-2}=\frac{1/3}{s-1}+\frac{-1/3}{s+2}\\
+        x(t)&=\frac{1}{3}e^{t}-\frac{1}{3}e^{-2t}
+    \end{align*}
+    Now,
+    \begin{align*}
+        Y(s)&=(s+1)X(s)=\frac{s+1}{s^2+s-2}=\frac{2/3}{s-1}+\frac{1/3}{s+2}\\
+        y(t)&=\frac{2}{3}e^{t}+\frac{1}{3}e^{-2t}
+    \end{align*}
+\end{frame}
+\end{document}

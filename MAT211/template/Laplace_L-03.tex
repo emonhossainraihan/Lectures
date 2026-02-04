@@ -1,0 +1,193 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+% \graphicspath{{images/}}
+\graphicspath{{../}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-03}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\begin{example}
+    \frametitle{Example}
+    \begin{itemize}[label={$\bullet$}]
+        \item Find the Laplace transform of the function \(f(t) = t e^{-2t} \sin(3t)\).
+        \item Find the Laplace transform of the function \(f(t) = t e^{-3t} \sin (2t)\sin (5t)\).\\
+        \textbf{Use the formula:} $$2\sin A\sin B= \cos(A-B) - \cos(A+B)$$
+    \end{itemize}
+\end{example}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reverse Relation!}
+    What will be the laplace transform,
+    $$\mathcal L\left\{\frac{f(t)}{t}\right\}=\int_s^\infty F(u)du$$
+    \begin{example}
+        \begin{itemize}[label={$\bullet$}]
+            \item Find the Laplace transform of the function \(f(t) = \frac{\sin(2t)}{t}\)
+            \item Find the Laplace transform of the function \(f(t) = \frac{\sin(2t)}{t} e^{2t}\)
+        \end{itemize}
+    Use the formula: :
+    $$\int \frac{1}{x^2+a^2} dx = \frac{1}{a} \tan^{-1}\left(\frac{x}{a}\right) + C$$        
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Unit Step Function}
+    \begin{itemize}[label={$\bullet$}]
+        \item The unit step function is defined as:
+        $$u(t-a) = \begin{cases}
+        0, & t < a \\
+        1, & t \geq a
+        \end{cases}$$
+        \item The Laplace transform of the unit step function is given by:
+        $$\mathcal{L}\{f(t-a)u(t-a)\} = F(s)e^{-as}$$
+        $$\mathcal L\{f(t)u(t-a)\} = \mathcal L \{f(t+a)u(t)\} = e^{-as} \mathcal L\{f(t+a)\}$$
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Derivation}
+    \begin{align*}
+        \mathcal L\{f(t-a)u(t-a)\}(s)&=\int_0^\infty e^{-st} f(t-a)u(t-a)dt\\
+        &= \int_a^\infty e^{-st} f(t-a)dt\\
+        &\stackrel{t=\tau+a}{=}\int_0^\infty e^{-s(\tau+a)} f(\tau)d\tau\\
+        &= e^{-as}\int_0^\infty e^{-s\tau} f(\tau)d\tau\\
+        &= e^{-as} F(s)  
+    \end{align*}
+\end{frame}
+\begin{frame}
+    \frametitle{Example}
+    \begin{example}
+        \begin{itemize}[label={$\bullet$}]
+            \item $$\mathcal L\{(2t-3)u(t-1)\}$$
+            \item $$\mathcal L\{e^{-2t}u(t-1)\}$$
+            \item $$\mathcal L\{\cos(2t)u(t-\pi)\}$$
+        \end{itemize}
+    \end{example}
+
+\end{frame}
+\begin{frame}
+    \frametitle{Piecewise Functions}
+    \begin{example}
+        \begin{itemize}[label={$\bullet$}]
+            \item Find the Laplace transform of the function:
+            $$f(t) = \begin{cases}
+            0, & 0 \leq t < \pi \\
+            \cos(t), & t \geq \pi
+            \end{cases}$$
+            \item Find the Laplace transform of the function:
+            $$f(t) = \begin{cases}
+            5\sin(t), & 0 \leq t < \pi \\
+            -4\cos(t), & t \geq \pi
+            \end{cases}$$
+            \item Find the Laplace transform of the function:
+            $$f(t) = \begin{cases}
+            0, & 0 \leq t < 2 \\
+            4, & 2 \leq t < 4 \\
+            e^t , & t \geq 4
+            \end{cases}$$
+        \end{itemize}
+    \end{example}
+\end{frame}
+\begin{frame}
+    \frametitle{Convolution}
+    What is Convolution?
+    $$[1,2,3]\star[4,5,6]=[4,13,28,27,18]$$
+    \pause
+    Slide 6,5,4 then multiply and add
+    % add image 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{convolution1.png}
+        \caption{Convolution Example}
+        \label{fig:convolution_example}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Convolution}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{convolution2.png}
+        \caption{Convolution Example}
+        \label{fig:convolution_example2}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Convolution}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{convolution3.png}
+        \caption{Convolution Example}
+        \label{fig:convolution_example3}
+    \end{figure}
+    \url{https://youtube.com/clip/UgkxyW-Gg-Albj__rrUiPBRgonzPh_Z2_KIm?si=bx6zQsKoZxjE6PFB}
+\end{frame}
+\begin{frame}
+    \frametitle{Convolution Integral}
+    The convolution of two functions \(f(t)\) and \(g(t)\) is defined as:
+    $$(f * g)(t) = \int_0^t f(\tau) g(t - \tau) d\tau$$
+    \pause
+    \textbf{Convolution Theorem:}
+    $$\mathcal{L}\{f * g\}(s) = F(s)G(s)$$
+    where \(F(s) = \mathcal{L}\{f(t)\}\) and \(G(s) = \mathcal{L}\{g(t)\}\).
+\end{frame}
+\begin{frame}
+    \frametitle{Example}
+    \textbf{Question:} Find the Laplace Transformation of $\frac{1}{s^2}\frac{1}{s^+1}$.\\ 
+\textbf{Answer:} We already knew that, $$\mathcal{L}\left\{\frac{1}{s^2}\right\}= t\:u(t), \qquad\mathcal{L}\left\{\frac{1}{s^2+1}\right\}=\sin{t}\: u(t)$$
+Now, use the convolution formula, 
+\begin{align*}
+    \mathcal{L}^{-1}\left\{\frac{1}{s^2}\frac{1}{s^2+1}\right\}&= \int_{-\infty}^\infty f(t-\tau)g(\tau)d\tau\\
+    &= \int_{-\infty}^\infty (t-\tau)\: u(t-\tau) \sin(\tau)\: u(\tau) d\tau\\
+    &\stackrel{A}{=} \int_0^t (t-\tau) \sin{\tau} d\tau 
+\end{align*}
+See the footnote for A\footnote{$u(t-\tau)$ force $t-\tau\geq 0\implies t\geq \tau$ and $u(\tau)$ force $\tau\geq 0$. Hence, $0\leq\tau\leq t$}.
+\end{frame}
+\end{document}

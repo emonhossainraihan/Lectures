@@ -1,0 +1,98 @@
+ \documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-09}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}[Examples]
+    \begin{problem}
+        $f(z)=z^2$, find the derivative at $x=3+2i$.  
+    \end{problem}
+    Using the definition, $$\lim_{\Delta z}\rightarrow 0\frac{f(z+\Delta z)-f(z)}{\Delta z}$$
+    make your life easy enough. 
+    \begin{problem}
+        $f(z)=\bar z$, find the derivative at $x=3+2i$. 
+    \end{problem}
+    Using the definition, $$\lim_{\Delta z}\rightarrow 0\frac{f(z+\Delta z)-f(z)}{\Delta z}$$
+    and use $\Delta z=\Delta x+i\Delta z$ when needed. 
+    \begin{problem}
+        Using definition show that $f(z)=\frac{2z-3i}{3z-2i}$ is differentiable at $z=-i$.
+    \end{problem}
+\end{frame}
+\begin{frame}
+    
+    \begin{problem}
+        Using definition find the derivative of $f(z)=z^2$ at $z=z_0$ (at all points). 
+    \end{problem}
+    \begin{problem}
+        Using definition show that $f(z)=\bar z$ is not differentiable at $z=0$. 
+    \end{problem}
+    \begin{problem}
+        Using definition show that $f(z)=z \bar z$ is not differentiable other than $z=0$.
+    \end{problem}
+    Using the definition, $$\lim_{\Delta z}\rightarrow 0\frac{f(z+\Delta z)-f(z)}{\Delta z}$$
+    and use $\Delta z=\Delta x+i\Delta z$ when needed. 
+\end{frame}
+
+\begin{frame}[Differentiation of $f(z)=u+iv$]
+    Can all derivative of $f:\mathbb R^2\rightarrow\mathbb R^2$ bw represented as derivative of $F:\mathbb C\rightarrow\mathbb C$. 
+\end{frame}
+\end{document}
