@@ -1,0 +1,225 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{quiver}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{physics}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, calc, decorations.markings}
+\usepackage{bm}
+
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-06}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+% Short macros
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\newcommand{\card}{\operatorname{card}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Motivation: Limit in Complex Plane}
+Let $f : D \to \mathbb{C}$ be a function defined on a domain $D \subset \mathbb{C}$.
+We say that the limit of $f(z)$ as $z$ approaches $z_0$ is $L$, denoted by
+\[
+\lim_{z\to z_0} f(z) = L,
+\]
+if for every $\epsilon > 0$, there exists a $\delta > 0$ such that for all $z \in D$ with
+$0 < |z - z_0| < \delta$, it follows that $|f(z) - L| < \epsilon$.\\~\\
+If in any path that $z$ approaches $z_0$, the limit of $f(z)$ is the same value
+$L$, then we say that the limit of $f(z)$ as $z$ approaches $z_0$ exists and is
+equal to $L$. Otherwise, we say that the limit does not exist.
+\end{frame}
+\begin{frame}{Example}
+Show that the limit
+\[
+\lim_{z \to 0} \frac{\overline{z}}{z}
+\]
+does not exist.
+\end{frame}
+\begin{frame}{Example}
+Show that the limit
+\[
+\lim_{z \to 0} \frac{xy}{|z|^2}
+\]
+does not exist where $z = x + iy$.
+\end{frame}
+\begin{frame}{Theorem}
+    Let $f(z)$ and $g(z)$ be functions defined on a domain $D \subseteq \mathbb{C}$, and let
+$z_0$ be a limit point of $D$. If
+\[
+\lim_{z\to z_0} f(z) = L_1
+\qquad \text{and} \qquad
+\lim_{z\to z_0} g(z) = L_2,
+\]
+then the following properties hold:
+\begin{enumerate}
+  \item $\displaystyle \lim_{z\to z_0}\bigl[f(z)+g(z)\bigr] = L_1 + L_2$
+  \item $\displaystyle \lim_{z\to z_0}\bigl[f(z)-g(z)\bigr] = L_1 - L_2$
+  \item $\displaystyle \lim_{z\to z_0}\bigl[f(z)g(z)\bigr] = L_1L_2$
+  \item If $L_2 \neq 0$, then $\displaystyle \lim_{z\to z_0}\left[\frac{f(z)}{g(z)}\right] = \frac{L_1}{L_2}$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Example}
+    Let $f(z)=\dfrac{2z-1}{3z+2}$. Prove that
+\[
+\lim_{h\to 0}\frac{f(z_0+h)-f(z_0)}{h}
+=
+\frac{7}{(3z_0+2)^2},
+\qquad z_0\ne -\frac{2}{3}.
+\]
+\end{frame}
+
+\begin{frame}{L'Hospital's Rule}
+Find the limit, if it exists:
+\[
+\lim_{z\to 0}\frac{z-\sin z}{z^3}.
+\]
+\end{frame}
+
+\begin{frame}{Example}
+Find the limit, if it exists:
+\[
+\lim_{z\to 0}\left(\frac{\sin z}{z}\right)^{\frac{1}{z^2}}.
+\]
+\end{frame}
+
+\begin{frame}{Example}
+Find the limit, if it exists:
+\[
+\lim_{z\to 0}\left(\frac{\sin z}{z}\right)^{\frac{\sin z}{\,z-\sin z\,}}.
+\]
+\end{frame}
+
+\begin{frame}{Example}
+Find the limit, if it exists:
+\[
+\lim_{z\to 0} (\sec z)^{\frac{1}{z^2}}.
+\]
+\end{frame}
+\begin{frame}{Example}
+Show that the limit does not exist:
+\[
+\lim_{z\to 0} (\cos z)^{\frac{1}{z^3}}.
+\]
+\end{frame}
+
+\begin{frame}{Definition: Continuity}
+A function $f : D \to \mathbb{C}$ is said to be continuous at a point $z_0 \in D$ if
+\[
+\lim_{z\to z_0} f(z) = f(z_0).
+\]
+If $f$ is continuous at every point in its domain $D$, then we say that $f$ is
+continuous on $D$.
+\end{frame}
+
+\begin{frame}{Properties of Continuity}
+$3$ conditions must be satisfied for a function $f$ to be continuous at a point $z_0$:
+\begin{enumerate}
+  \item $f(z_0)$ is defined.
+  \item $\displaystyle \lim_{z\to z_0} f(z)$ exists.
+  \item $\displaystyle \lim_{z\to z_0} f(z)=f(z_0)$.
+\end{enumerate}
+If any of these conditions fail, then $f$ is not continuous at $z_0$.
+\end{frame}
+
+\begin{frame}{Example}
+Let
+\[
+f(z)=
+\begin{cases}
+\dfrac{z^2-4}{z^2-3z+2}, & z\neq 2,\\[6pt]
+kz^2+6, & z=2.
+\end{cases}
+\]
+Find the value of $k$ such that $f(z)$ is continuous at $z=2$.
+\end{frame}
+
+\begin{frame}{Example}
+Let
+\[
+f(z)=
+\begin{cases}
+\dfrac{1-\cos(az)}{z^2}, & z\neq 0,\\[6pt]
+1, & z=0.
+\end{cases}
+\]
+Find the value of $a$ such that $f(z)$ is continuous at $z=0$.
+\end{frame}
+
+\begin{frame}{Example}
+Let
+\[
+f(z)=\frac{3z^4-2z^3+8z^2-2z+5}{z-i}.
+\]
+\begin{enumerate}
+  \item Is $f$ continuous at $z=i$?
+  \item If $f$ is not continuous at $z=i$, redefine $f(z)$ such that it becomes
+  continuous at $z=i$.
+\end{enumerate}   
+\end{frame}
+
+\begin{frame}{Example}
+Find all points of discontinuity for the following function
+\[
+f(z)=\frac{3z^2+4}{z^4-16}.
+\]
+\end{frame}
+\end{document}
