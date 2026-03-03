@@ -220,4 +220,44 @@ The CR theorem implies that $f(z)=z^2$ is differentiable. Its derivative turns o
         f^{\prime}(z)=u_x+i v_x=v_y-i u_y=2 x+i 2 y=2(x+i y)=2 z
     $$
 \end{frame}
+
+
+\begin{frame}{Analyticity}
+    \begin{definition}
+        A function $f(z)$ is said to be \emph{analytic} at a point $z_0$ if it is differentiable at every point in some neighborhood of $z_0$. If $f(z)$ is analytic at every point in a domain $D$, then we say that $f(z)$ is analytic in $D$.
+    \end{definition}
+    \begin{theorem}
+        A necessary condition that $w=f(z)=u(x,y)+iv(x,y)$ be analytic in a region $R$ is that,
+in $R$, $u$ and $v$ satisfy the \emph{Cauchy--Riemann equations}
+\[
+\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}, \qquad
+\frac{\partial u}{\partial y}=-\,\frac{\partial v}{\partial x}.
+\]
+If the partial derivatives are continuous in $R$, then the
+Cauchy--Riemann equations are sufficient conditions that $f(z)$ be analytic in $R$.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Analytic is more stronger than differentiable}
+    If a function is analytic at a point, it is automatically differentiable at that point. However, the converse is not true. A function can be differentiable at a point without being analytic in any neighborhood of that point.
+    \begin{example}
+$f(z)=|z|^2=z\bar z$ is differentiatbility at \(z_0=0\):
+\[
+f'(0)=\lim_{z\to 0}\frac{f(z)-f(0)}{z-0}
+=\lim_{z\to 0}\frac{|z|^2}{z}.
+\]
+Write \(z=re^{i\theta}\). Then
+\[
+\frac{|z|^2}{z}=\frac{r^2}{re^{i\theta}}=re^{-i\theta}\xrightarrow[r\to 0]{}0\implies f'(0)=0.
+\]
+But the Cauchy--Riemann equations hold only at \((0,0)\). Therefore \(f\) is not analytic at \(z_0=0\).
+\end{example}
+\end{frame}
+
+\begin{frame}
+    \begin{example}
+        Show that the function $f(z)=\frac{1}{z-3}$ is analytic except at $z=3$.
+    \end{example}
+\end{frame}
+
 \end{document}
