@@ -62,61 +62,202 @@
 \titlepage
 \end{frame}
 
-\begin{frame}{Definition of Harmonic Functions}
-\begin{definition}
-A function $u(x,y)$ is called a \textit{harmonic function} if it satisfies the Laplace's equation:
-\[\nabla^2 u=\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0.\]
-\end{definition}
+\begin{frame}{Differentiability in higher dimensions}
+    What does it mean by a function, $f:D\subset\mathbb R\rightarrow\mathbb R$, is differentiable at a point $a$? 
+    \begin{itemize}
+        \item Geometrically, what does it mean?
+    \end{itemize}
+    $$\boxed{\lim_{h\rightarrow 0}\frac{f(a+h)-f(a)}{h}}\qquad\boxed{\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}}$$
+    \textbf{Question:} How can you lift this definition to a higher dimension? 
+    \pause
+    \begin{itemize}
+        \item \textbf{Problem-1}: Dividing by the norm of $(x-a)\in\mathbb R^n$
+        \item \textbf{Problem-2}: Considering the derivative as a transformation: $\tilde{f}'(a)\cdot(x-a)$ 
+    \end{itemize}
+\end{frame}
+\begin{frame}{Definition}
+    \begin{definition}
+        The function $f:\mathbb R^n\rightarrow\mathbb R^m$ is differentiable at the point $a$ if there exists a linear transformation $T:\mathbb R^n\rightarrow\mathbb R^m$  that satisfies the condition:
+        $$
+        \boxed{\lim_{x\rightarrow a}\frac{\|f(x)-f(a)-T(x-a)\|}{\|x-a\|}=0}
+        $$
+    \end{definition}
+    You can check \url{https://mathinsight.org/differentiability_multivariable_definition} to get the full insight about the condition. 
+\end{frame}
+
+\begin{frame}{Find the Derivative}
+    \begin{example}
+        Let $f:\mathbb R^2\rightarrow\mathbb R$, and suppose the function is differentiable at $a=(x_0,y_0)$ and the derivative (transformation) is denoted by $Df(x_0,y_0)$. Then the condition gives us:
+        \begin{align*}
+           \lim_{(x,y)\rightarrow(x_0,y_0)}  \frac{\| f(x,y)-f(x_0,y_0)-Df(x_0,y_0)(x-x_0,y-y_0)\|}{\|x-a\|}=0
+        \end{align*}
+        Now, we knew that $Df(x_0,y_0)$ must be something like $\begin{pmatrix}
+            f_1(x_0,y_0)&f_2(x_0,y_0)
+        \end{pmatrix}$. Consider, $y=y_0$ then, 
+        \begin{align*}
+            \lim_{x\rightarrow x_0}  \frac{\| f(x,y_0)-f(x_0,y_0)-f_1(x_0,y_0)(x-x_0)-f_2(x_0,y_0)(y_0-y_0)\|}{\sqrt{(x-x_0)^2+(y_0-y_0)^2}}&=0\\
+            \lim_{x\rightarrow x_0}  \frac{\| f(x,y_0)-f(x_0,y_0)-f_1(x_0,y_0)(x-x_0)\|}{\|x-x_0\|}&=0
+        \end{align*}
+    \end{example}
+\end{frame}
+\begin{frame}{Continued...}
+    \begin{example}
+            $$
+            \underbrace{\lim_{x\rightarrow x_0}  \frac{\| f(x,\star)-f(x_0,\star)-f_1(x_0,\star)(x-x_0)\|}{\|x-x_0\|}=0}_{f_1(x_0,y_0)=\partial_1f(x_0,y_0)}
+            $$
+            Similarly, we can get, 
+            $$
+            \underbrace{\lim_{y\rightarrow y_0}  \frac{\| f(\star,y)-f(\star,y_0)-f_2(\star,y_0)(y-y_0)\|}{\|y-y_0\|}=0}_{f_2(x_0,y_0)=\partial_2f(x_0,y_0)}
+            $$
+            Hence, 
+            $$Df(x_0,y_0)=\begin{pmatrix}
+                \partial_1 f(x_0,y_0)&\partial_2 f(x_0,y_0)
+            \end{pmatrix}$$
+            Which is nothing but the Jacobian. 
+    \end{example}
+\end{frame}
+\begin{frame}{Complex Derivative}
+    \textbf{Question:} What is $f'(a)$ in the definition of the complex derivative?\\
+    Consider the complex function as $f:\mathbb R^2\rightarrow\mathbb R^2$ then we can mimic the same computation and will get:
+    $$
+    Df=\begin{pmatrix}
+        \partial_1 u&\partial_2 u\\\partial_1 v&\partial_2v
+    \end{pmatrix}
+    $$
+    which should follow something like, $\begin{pmatrix}
+        a&-b\\b&a
+    \end{pmatrix}$. Which implies, 
+    $$
+        \begin{cases}
+            \partial_x u&=\partial_y v\\
+            -\partial_y u&= \partial_x v
+        \end{cases}
+    $$
+    This is nothing but the famous Cauchy-Riemann Equation. 
+\end{frame}
+\begin{frame}{CR Theorem}
+    \begin{definition}
+        A complex function $f(z)=u(x, y)+i v(x, y)$ has a complex derivative $f^{\prime}(z)$ if and only if its real and imaginary part are continuously differentiable and satisfy the Cauchy-Riemann equations
+    $$
+        u_x=v_y, \quad u_y=-v_x
+    $$
+In this case, the complex derivative of $f(z)$ is equal to any of the following expressions:
+    $$
+        f^{\prime}(z)=\underbrace{u_x+i v_x}_{\text{horizontal dir.}}=\underbrace{v_y-i u_y}_{\text{vertical dir.}}
+    $$
+    Once CR equations hold, any direction of approach yields the same derivative. Check \url{https://complex-analysis.com/content/complex_differentiation.html} for more details.
+    \end{definition}
+\end{frame}
+\begin{frame}{Holomorphic vs Analytic}
+    Holomorphic is just talking about differentiability in the complex plane. Suppose a complex-valued function is holomorphic in all points of a domain, then it is called an analytic function. Have a look at the Wiki \url{https://en.wikipedia.org/wiki/Holomorphic_function}. 
+\end{frame}
+\begin{frame}{Wirtinger Derivative}
+    The Wirtinger derivatives are defined as the following linear partial differential operators of first order:
+    \begin{align*}{\frac {\partial }{\partial z}}&={\frac {1}{2}}\left({\frac {\partial }{\partial x}}-i{\frac {\partial }{\partial y}}\right)\\{\frac {\partial }{\partial {\bar {z}}}}&={\frac {1}{2}}\left({\frac {\partial }{\partial x}}+i{\frac {\partial }{\partial y}}\right)\end{align*}
+\end{frame}
+
+
+\begin{frame}{Example}
+    \begin{example}
+        $f(z)=z^2=(x^2-y^2)+(2xy)i$, find the derivative 
+    at $z=3+2i$.
+    \end{example} 
+    \begin{align*}
+        f'(z)&=\lim_{\Delta z\rightarrow0}\frac{f(z+\Delta z)-f(z)}{\Delta z}\\
+        f'(3+2i)&=\lim_{\Delta z\rightarrow0}\frac{f(3+2i+\Delta z)-f(3+2i)}{\Delta z}\\
+        &= 6+4i 
+    \end{align*}
 \end{frame}
 
 \begin{frame}{Example}
-\begin{example}
-Show that the function $u(x,y) = 3x^2y+2x^2-y^3-2y^2$ is a harmonic function.
-\end{example}
-\begin{example}
-Show that the function $u(x,y) = \tan^{-1}\left(\frac yx\right)$ is a harmonic function.
-\end{example}
+    \begin{example}
+        Using definition  find the derivative of $f(z)=z^2=(x^2-y^2)+(2xy)i$ at $z=z_0$
+    \end{example} 
+    \begin{align*}
+        f'(z_0)&=\lim_{\Delta z\rightarrow0}\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}\\
+        &=\lim_{\Delta z\rightarrow0} \frac{(z_0+\Delta z)^2-z_0^2}{\Delta z}\\
+        &= \lim_{\Delta z\rightarrow0} \frac{z_0^2+2z_0\Delta z+\Delta z^2-z_0^2}{\Delta z}\\
+        &= \lim_{\Delta z\rightarrow0} (2z_0+\Delta z)\\
+        &= 2z_0
+    \end{align*}
 \end{frame}
-\begin{frame}{Theorem}
+
+\begin{frame}{Example}
+    \begin{example}
+        Using definition show that $f(z)=\bar z$ is not differentiable at $z=0$.
+    \end{example} 
+    \textbf{Hint:} Split the expression.
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Using definition show that $f(z)=|z|^2$ is not differentiable other than $z=0$.
+    \end{example} 
+    \textbf{Hint:} Use $\overline{z+\Delta z}=\bar z+\overline{\Delta z}$, then simplify the expression. Finally, split the expression and check the limit.
+\end{frame}
+
+\begin{frame}
+    \begin{example}
+        If $f(z)=u(x,y)+i v(x,y)$ is differentiable at $z_0$, then $f'(z_0)=u_x(z_0)+i v_x(z_0)=v_y(z_0)-i u_y(z_0)$.
+    \end{example}
+\end{frame}
+
+
+\begin{frame}{Example}
+    \begin{example}
+        Consider the function $f:\mathbb C\rightarrow\mathbb C$, $f(z)=z^2$. Find the complex derivative. 
+    \end{example}
+    The $f(z)$ can be written as
+    $$
+        z^2=\left(x^2-y^2\right)+i(2 x y)
+    $$
+Its real part $u=x^2-y^2$ and imaginary part $v=2 x y$ satisfy the Cauchy-Riemann equations, since
+    $$
+        u_x=2 x=v_y, \quad u_y=-2 y=-v_x
+    $$
+The CR theorem implies that $f(z)=z^2$ is differentiable. Its derivative turns out to be
+    $$
+        f^{\prime}(z)=u_x+i v_x=v_y-i u_y=2 x+i 2 y=2(x+i y)=2 z
+    $$
+\end{frame}
+
+
+\begin{frame}{Analyticity}
+    \begin{definition}
+        A function $f(z)$ is said to be \emph{analytic} at a point $z_0$ if it is differentiable at every point in some neighborhood of $z_0$. If $f(z)$ is analytic at every point in a domain $D$, then we say that $f(z)$ is analytic in $D$.
+    \end{definition}
     \begin{theorem}
-    If $f(z) = u(x,y) + iv(x,y)$ is an analytic function in a region $D$, then both $u$ and $v$ are harmonic functions if they have continuous second partial derivatives in $D$.
+        A necessary condition that $w=f(z)=u(x,y)+iv(x,y)$ be analytic in a region $R$ is that,
+in $R$, $u$ and $v$ satisfy the \emph{Cauchy--Riemann equations}
+\[
+\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}, \qquad
+\frac{\partial u}{\partial y}=-\,\frac{\partial v}{\partial x}.
+\]
+If the partial derivatives are continuous in $R$, then the
+Cauchy--Riemann equations are sufficient conditions that $f(z)$ be analytic in $R$.
     \end{theorem}
 \end{frame}
 
-\begin{frame}{Example}
-\begin{example}
-Show that the function $u(x,y) = 3x^2y+2x^2-y^3-2y^2$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
-Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
+\begin{frame}{Analytic is more stronger than differentiable}
+    If a function is analytic at a point, it is automatically differentiable at that point. However, the converse is not true. A function can be differentiable at a point without being analytic in any neighborhood of that point.
+    \begin{example}
+$f(z)=|z|^2=z\bar z$ is differentiatbility at \(z_0=0\):
+\[
+f'(0)=\lim_{z\to 0}\frac{f(z)-f(0)}{z-0}
+=\lim_{z\to 0}\frac{|z|^2}{z}.
+\]
+Write \(z=re^{i\theta}\). Then
+\[
+\frac{|z|^2}{z}=\frac{r^2}{re^{i\theta}}=re^{-i\theta}\xrightarrow[r\to 0]{}0\implies f'(0)=0.
+\]
+But the Cauchy--Riemann equations hold only at \((0,0)\). Therefore \(f\) is not analytic at \(z_0=0\).
 \end{example}
 \end{frame}
 
-\begin{frame}{Example}
-\begin{example}
-Show that the function $u(x,y) = e^{-2x}\sin(2y)$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
-Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
-\end{example}
+\begin{frame}
+    \begin{example}
+        Show that the function $f(z)=\frac{1}{z-3}$ is analytic except at $z=3$.
+    \end{example}
 \end{frame}
 
-\begin{frame}{Example}
-\begin{example}
-Show that the function $u(x,y) = \ln(x^2+y^2)$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
-Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
-\end{example}
-\end{frame}
-
-\begin{frame}{Example}
-\begin{example}
-Show that the function $u(x,y) = \cos(x)\sinh(y)$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
-Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
-\end{example}
-\textbf{Hint: }
-$$\frac{d}{dx}(\sinh x)=\cosh x, \quad \frac{d}{dx}(\cosh x)=\sinh x$$
-\end{frame}
-
-\begin{frame}{Example}
-\begin{example}
-Show that the function $u(x,y) = xe^{-x}\sin(y)-e^{-x}y\cos(y)$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
-Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
-\end{example}
-\end{frame}
 \end{document}
