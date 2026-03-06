@@ -75,17 +75,18 @@
         \item \textbf{Problem-2}: Considering the derivative as a transformation: $\tilde{f}'(a)\cdot(x-a)$ 
     \end{itemize}
 \end{frame}
-\begin{frame}{Definition}
+\begin{frame}{Definition (optional)}
     \begin{definition}
         The function $f:\mathbb R^n\rightarrow\mathbb R^m$ is differentiable at the point $a$ if there exists a linear transformation $T:\mathbb R^n\rightarrow\mathbb R^m$  that satisfies the condition:
         $$
         \boxed{\lim_{x\rightarrow a}\frac{\|f(x)-f(a)-T(x-a)\|}{\|x-a\|}=0}
         $$
     \end{definition}
-    You can check \url{https://mathinsight.org/differentiability_multivariable_definition} to get the full insight about the condition. 
+    You can check \url{https://mathinsight.org/differentiability_multivariable_definition} to get the full insight about the condition.\\~\\
+    My lecture on this: \url{https://www.youtube.com/watch?v=e9X3zvyuvhk}. 
 \end{frame}
 
-\begin{frame}{Find the Derivative}
+\begin{frame}{Find the Derivative (optional)}
     \begin{example}
         Let $f:\mathbb R^2\rightarrow\mathbb R$, and suppose the function is differentiable at $a=(x_0,y_0)$ and the derivative (transformation) is denoted by $Df(x_0,y_0)$. Then the condition gives us:
         \begin{align*}
@@ -253,10 +254,19 @@ Write \(z=re^{i\theta}\). Then
 But the Cauchy--Riemann equations hold only at \((0,0)\). Therefore \(f\) is not analytic at \(z_0=0\).
 \end{example}
 \end{frame}
+\begin{frame}{Example}
+Show that the function $f(z)=z^2$ is analytic.
+\end{frame}
 
-\begin{frame}
+\begin{frame}{Example}
     \begin{example}
         Show that the function $f(z)=\frac{1}{z-3}$ is analytic except at $z=3$.
+    \end{example}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Show that the function $f(z)=\sinh (2z)$ is analytic.
     \end{example}
 \end{frame}
 
