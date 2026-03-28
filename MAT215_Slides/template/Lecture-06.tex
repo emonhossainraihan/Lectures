@@ -480,4 +480,129 @@ Hence,
 \cos(x+iy)=\cos x\cosh y-i\sin x\sinh y.
 \]
 \end{frame}
+\begin{frame}{Inverse Circular Functions}
+  The inverse circular functions for complex numbers are defined as follows:
+
+\[
+\sin^{-1} z = -i \ln \left( iz + \sqrt{1 - z^2} \right)
+\]
+
+\[
+\cos^{-1} z = -i \ln \left( z + \sqrt{z^2 - 1} \right)
+\]
+
+\[
+\tan^{-1} z = \frac{i}{2} \ln \left( \frac{i + z}{i - z} \right)
+\]
+
+\[
+\cot^{-1} z = \frac{i}{2} \ln \left( \frac{z - i}{z + i} \right)
+\]
+
+\[
+\sec^{-1} z = -i \ln \left( \frac{1 + \sqrt{1 - z^2}}{z} \right)
+\]
+
+\[
+\csc^{-1} z = -i \ln \left( \frac{i + \sqrt{z^2 - 1}}{z} \right)
+\]
+\end{frame}
+\begin{frame}
+  show that, \[
+\tan^{-1} z = \frac{i}{2} \ln \left( \frac{i + z}{i - z} \right)
+\]
+
+  \[
+\text{Let } \theta=\tan^{-1}z
+\quad\Rightarrow\quad
+z=\tan\theta
+\]
+
+\[
+\Rightarrow z=\frac{\sin\theta}{\cos\theta}
+\]
+
+\[
+\Rightarrow z=
+\frac{\dfrac{e^{i\theta}-e^{-i\theta}}{2i}}
+{\dfrac{e^{i\theta}+e^{-i\theta}}{2}}
+\]
+
+\[
+\Rightarrow z=
+\frac{e^{i\theta}-e^{-i\theta}}
+{i\left(e^{i\theta}+e^{-i\theta}\right)}
+\]
+
+\[
+\Rightarrow iz=
+\frac{e^{i\theta}-e^{-i\theta}}
+{e^{i\theta}+e^{-i\theta}}
+\]
+\end{frame}
+\begin{frame}
+By componendo and dividendo,
+\[
+\frac{1+iz}{1-iz}
+=
+\frac{(e^{i\theta}-e^{-i\theta})+(e^{i\theta}+e^{-i\theta})}
+{(e^{i\theta}+e^{-i\theta})-(e^{i\theta}-e^{-i\theta})}
+\]
+  \[
+\Rightarrow
+\frac{1+iz}{1-iz}
+=
+\frac{2e^{i\theta}}{2e^{-i\theta}}
+\]
+
+\[
+\Rightarrow
+\frac{1+iz}{1-iz}=e^{2i\theta}
+\]
+
+\[
+\Rightarrow
+2i\theta=\ln\left(\frac{1+iz}{1-iz}\right)
+\]
+
+\[
+\Rightarrow
+\theta=\frac{1}{2i}\ln\left(\frac{1+iz}{1-iz}\right)
+\]
+
+Since \(\dfrac{1}{i}=-i\),
+\[
+\theta=-\frac{i}{2}\ln\left(\frac{1+iz}{1-iz}\right)
+\]
+\end{frame}
+\begin{frame}
+Now,
+\[
+1+iz=i(z-i),\qquad 1-iz=-i(z+i)
+\]
+So,
+\[
+\frac{1+iz}{1-iz}
+=
+\frac{i(z-i)}{-i(z+i)}
+=
+-\frac{z-i}{z+i}
+=
+\frac{i-z}{i+z}
+\]
+
+Hence,
+\[
+-\frac{i}{2}\ln\left(\frac{1+iz}{1-iz}\right)
+=-\frac{i}{2}\ln\left(\frac{i-z}{i+z}\right)
+= \frac{i}{2}\ln\left(\frac{i+z}{i-z}\right)
+\]
+
+Therefore,
+\[
+\boxed{
+\tan^{-1}z=\frac{i}{2}\ln\left(\frac{i+z}{i-z}\right)
+}
+\]
+\end{frame}
 \end{document}
