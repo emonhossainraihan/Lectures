@@ -81,12 +81,12 @@
     \item Known formula 
     \item First Translation formula:
     $$\boxed{\mathcal L\{e^{at}f(t)\}=\mathcal L\{f(t)\}_{s\rightarrow s-a}=F(s-a)}$$
-    % $$
-    % \boxed{\underbrace{\mathcal L^{-1}\{F(s)\}}_{\text{unknown}}=e^{at}\underbrace{\mathcal L^{-1}\{F(s+a)\}}_{\text{known}}}
-    % $$
+    $$
+    \boxed{\underbrace{\mathcal L^{-1}\{F(s)\}}_{\text{unknown}}=e^{at}\underbrace{\mathcal L^{-1}\{F(s+a)\}}_{\text{known}}}
+    $$
     \item Truncation/Second Translation formula:
     $$\boxed{\mathcal{L}\{f(t-a)u(t-a)\}=e^{-as}F(s)}$$
-    % $$\boxed{\mathcal{L}^{-1}\{F(s)e^{-as}\}=f(t-a)u(t-a)}$$
+    $$\boxed{\mathcal{L}^{-1}\{F(s)e^{-as}\}=f(t-a)u(t-a)}$$
     \item $s$-differentiation:
     $$\boxed{\mathcal{L}\{(t)^nf(t)\}=(-1)^n\frac{d^n}{ds^n}F(s)}$$  
     \item Partial fraction type
@@ -187,6 +187,49 @@
             \item Find the Laplace transform of $f(t)=(t+2)^2 e^t$.
         \end{itemize}
     \end{example}
+\end{frame}
+
+\begin{frame}
+    \begin{example}
+Evaluate the Laplace transform directly from the definition
+% \begin{enumerate}[label=\alph*.]
+% \item 
+\[
+(a)\:\:f(t)=
+\begin{cases}
+0, & 0<t<\frac{\pi}{2},\\
+2\cos t, & t \ge \frac{\pi}{2}
+\end{cases},\qquad
+(b)\:\:f(t)=
+\begin{cases}
+\cos 3t, & 0<t<\pi,\\
+0, & t \ge \pi
+\end{cases}
+\]
+
+\[
+(c)\:\:f(t)=
+\begin{cases}
+0, & 0 \le t < \pi,\\
+\sin t, & \pi \le t < 2\pi,\\
+0, & t \ge 2\pi
+\end{cases},\qquad
+(d)\:\:f(t)=
+\begin{cases}
+0, & 0 \le t < 2,\\
+3, & 2 \le t < 4,\\
+e^t, & t \ge 4
+\end{cases}
+\]
+
+\[
+(e)\:\:f(t)=
+\begin{cases}
+5\sin t, & 0 \le t < \pi,\\
+-4\cos(2t), & t \ge \pi
+\end{cases}
+\]
+\end{example}
 \end{frame}
 
 \begin{frame}
