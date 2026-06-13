@@ -1,0 +1,70 @@
+\section{Lecture-01}
+
+Aim: Provide a proper mathematical language for 
+\begin{itemize}
+    \item Classical Mechanics
+    \item Electromagnetism
+    \item Quantum Mechanics
+    \item Statistical Mechanics
+\end{itemize}
+
+
+\subsection{Set}
+
+\subsection{Cardinality}
+
+
+The interesting number paradox is a humorous paradox which arises from the attempt to classify 
+every natural number as either "interesting" or "uninteresting". The paradox states that every 
+natural number is interesting.The "proof" is by contradiction: if there exists a non-empty set 
+of uninteresting natural numbers, there would be a smallest uninteresting number - 
+but the smallest uninteresting number is itself interesting because it is the smallest 
+uninteresting number, thus producing a contradiction.
+
+\begin{definition}
+\label{D1}
+A set is finite if there is a one-to-one correspondence with the set $\{1,2,3,…,n\}$ 
+for some natural number $n$ ($n=0$ gives the empty set as a special case).
+\end{definition}
+
+\begin{definition}
+\label{D2}
+A set is finite if there is no one-to-one map of the set to a proper subset of itself 
+(this is also called Dedekind finite).
+\end{definition}
+
+\begin{definition}
+Hereditarily finite sets are defined as finite sets whose elements are all hereditarily finite sets. 
+In other words, the set itself is finite, and all of its elements are finite sets, 
+recursively all the way down to the empty set.
+\end{definition}
+
+Now, in standard set theory, these two notions are equivalent, so any set that is finite via 
+\ref{D1} is finite via \ref{D2} and vice versa.
+
+BUT, this equivalence requires the axiom of choice (well, a countable version of it). 
+If you like to do set theory without that axiom, these two notions are different. 
+It is possible to be finite via \ref{D2} but not finite via \ref{D1} (the reverse is impossible). 
+Such a set is called a Dedekind set. So, by \ref{D2}, it is finite, but by \ref{D1} it is infinite.
+
+Such sets can exist without the axiom of choice. For example, it is possible to have an infinite 
+collection of 'pairs of socks' and not be able to select one sock from each pair. 
+There can also be infinite sets where every subset is finite or has finite complement.
+
+Another concept that is more standard is the concept of a 'hereditarily finite set'. 
+For example, if $\mathbb N$ is the (infinite) set of natural numbers, the set $\{\mathbb N\}$, 
+which has exactly one element (namely $\mathbb N$) is finite but it has an infinite set as an element, 
+so it is not hereditarily finite. Similarly, the set $\{\{\mathbb N\}\}$, which has one element and that 
+element has one element is finite but not hereditarily finite since the element of the element 
+is an inifinite set.
+
+\begin{remark}
+More Reading materials
+\begin{itemize}
+    \item \href{https://math.stackexchange.com/questions/4925345/finite-infinite-set}{Finite and Infinite Sets}
+    \item \href{https://math.stackexchange.com/questions/68659/set-theoretic-construction-of-the-natural-numbers}{Construction of Natural Numbers}
+    \item \href{https://math.stackexchange.com/questions/3933535/what-is-the-definition-for-an-infinite-set}{Infinite Set}
+\end{itemize}
+\end{remark}
+
+
