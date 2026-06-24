@@ -149,121 +149,121 @@
 
 
 
-% %---------------------------------------------------------
-% \begin{frame}{Motivation}
-% Functions describe how elements of one set (domain) correspond to another (codomain).  
-% But often, the \textbf{cardinality} of these sets already hints at whether the function is:
-% \[
-% \text{injective, surjective, or bijective.}
-% \]
-% \pause
-% \begin{block}{Key Idea}
-% Comparing $|A|$ and $|B|$ gives valuable information about the possible type of function.
-% \end{block}
-% \end{frame}
-% %---------------------------------------------------------
+%---------------------------------------------------------
+\begin{frame}{Motivation}
+Functions describe how elements of one set (domain) correspond to another (codomain).  
+But often, the \textbf{cardinality} of these sets already hints at whether the function is:
+\[
+\text{injective, surjective, or bijective.}
+\]
+\pause
+\begin{block}{Key Idea}
+Comparing $|A|$ and $|B|$ gives valuable information about the possible type of function.
+\end{block}
+\end{frame}
+%---------------------------------------------------------
 
-% \begin{frame}{Recap: Function Properties}
-% \begin{table}[h!]
-% \centering
-% \renewcommand{\arraystretch}{1.3}
-% \begin{tabular}{|l|l|l|}
-% \hline
-% \textbf{Property} & \textbf{Definition} & \textbf{Symbolic Form} \\ \hline
-% \textbf{Injective (One-to-one)} & Different inputs\\ give different outputs & $f(x_1)=f(x_2)\Rightarrow x_1=x_2$ \\ \hline
-% \textbf{Surjective (Onto)} & Every element\\ of codomain is hit & $\forall y\in B,\ \exists x\in A: f(x)=y$ \\ \hline
-% \textbf{Bijective} & Both injective\\ and surjective & One-to-one and onto \\ \hline
-% \end{tabular}
-% \end{table}
-% \end{frame}
-% %---------------------------------------------------------
+\begin{frame}{Recap: Function Properties}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Property} & \textbf{Definition} & \textbf{Symbolic Form} \\ \hline
+\textbf{Injective (One-to-one)} & Different inputs\\ give different outputs & $f(x_1)=f(x_2)\Rightarrow x_1=x_2$ \\ \hline
+\textbf{Surjective (Onto)} & Every element\\ of codomain is hit & $\forall y\in B,\ \exists x\in A: f(x)=y$ \\ \hline
+\textbf{Bijective} & Both injective\\ and surjective & One-to-one and onto \\ \hline
+\end{tabular}
+\end{table}
+\end{frame}
+%---------------------------------------------------------
 
-% \begin{frame}{Cardinality Clues}
-% Let $f:A\to B$, with $|A|=m$ and $|B|=n$.
+\begin{frame}{Cardinality Clues}
+Let $f:A\to B$, with $|A|=m$ and $|B|=n$.
 
-% \begin{table}[h!]
-% \centering
-% \renewcommand{\arraystretch}{1.3}
-% \begin{tabular}{|l|c|l|}
-% \hline
-% \textbf{Type} & \textbf{Relation} & \textbf{Consequence} \\ \hline
-% Injective & $m\le n$ & Domain can't have more elements than codomain. \\ \hline
-% Surjective & $m\ge n$ & Domain must be large enough to cover all of codomain. \\ \hline
-% Bijective & $m=n$ & Perfect pairing between domain and codomain. \\ \hline
-% \end{tabular}
-% \end{table}
-% \end{frame}
-% %---------------------------------------------------------
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Type} & \textbf{Relation} & \textbf{Consequence} \\ \hline
+Injective & $m\le n$ & Domain can't have more elements than codomain. \\ \hline
+Surjective & $m\ge n$ & Domain must be large enough to cover all of codomain. \\ \hline
+Bijective & $m=n$ & Perfect pairing between domain and codomain. \\ \hline
+\end{tabular}
+\end{table}
+\end{frame}
+%---------------------------------------------------------
 
 
-% \begin{frame}{Examples}
-% \begin{exampleblock}{Example 1}
-% $f:\{1,2,3\}\to\{a,b,c,d\}$ \\
-% $|A|=3, |B|=4$ $\Rightarrow$ can be injective, not surjective.
-% \end{exampleblock}
+\begin{frame}{Examples}
+\begin{exampleblock}{Example 1}
+$f:\{1,2,3\}\to\{a,b,c,d\}$ \\
+$|A|=3, |B|=4$ $\Rightarrow$ can be injective, not surjective.
+\end{exampleblock}
 
-% \pause
-% \begin{exampleblock}{Example 2}
-% $f:\{1,2,3,4\}\to\{a,b,c\}$ \\
-% $|A|=4, |B|=3$ $\Rightarrow$ can be surjective, not injective.
-% \end{exampleblock}
+\pause
+\begin{exampleblock}{Example 2}
+$f:\{1,2,3,4\}\to\{a,b,c\}$ \\
+$|A|=4, |B|=3$ $\Rightarrow$ can be surjective, not injective.
+\end{exampleblock}
 
-% \pause
-% \begin{exampleblock}{Example 3}
-% $f:\{1,2,3\}\to\{a,b,c\}$ \\
-% $|A|=|B|$ $\Rightarrow$ possible bijection.
-% \end{exampleblock}
-% \end{frame}
-% %---------------------------------------------------------
+\pause
+\begin{exampleblock}{Example 3}
+$f:\{1,2,3\}\to\{a,b,c\}$ \\
+$|A|=|B|$ $\Rightarrow$ possible bijection.
+\end{exampleblock}
+\end{frame}
+%---------------------------------------------------------
 
-% \begin{frame}{Infinite Sets: A Remark}
-% \begin{block}{Finite vs Infinite}
-% For finite sets, counting elements works. \\
-% For infinite sets, we use one-to-one correspondences.
-% \end{block}
+\begin{frame}{Infinite Sets: A Remark}
+\begin{block}{Finite vs Infinite}
+For finite sets, counting elements works. \\
+For infinite sets, we use one-to-one correspondences.
+\end{block}
 
-% \pause
-% \begin{exampleblock}{Example}
-% There exists a bijection between $\mathbb{N}$ and $2\mathbb{N}$:
-% \[
-% f(n) = 2n.
-% \]
-% Even though $2\mathbb{N} \subset \mathbb{N}$, they have the same cardinality.
-% \end{exampleblock}
-% \end{frame}
-% %---------------------------------------------------------
+\pause
+\begin{exampleblock}{Example}
+There exists a bijection between $\mathbb{N}$ and $2\mathbb{N}$:
+\[
+f(n) = 2n.
+\]
+Even though $2\mathbb{N} \subset \mathbb{N}$, they have the same cardinality.
+\end{exampleblock}
+\end{frame}
+%---------------------------------------------------------
 
-% \begin{frame}{Summary Table}
-% \begin{table}[h!]
-% \centering
-% \renewcommand{\arraystretch}{1.3}
-% \begin{tabular}{|l|c|c|}
-% \hline
-% \textbf{Property} & \textbf{Finite Sets} & \textbf{Infinite Sets} \\ \hline
-% Injective & $|A|\le |B|$ & Exists $A\hookrightarrow B$ \\ \hline
-% Surjective & $|A|\ge |B|$ & Exists $A\twoheadrightarrow B$ \\ \hline
-% Bijective & $|A|=|B|$ & Exists $A\leftrightarrow B$ \\ \hline
-% \end{tabular}
-% \end{table}
-% \end{frame}
-% %---------------------------------------------------------
+\begin{frame}{Summary Table}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Property} & \textbf{Finite Sets} & \textbf{Infinite Sets} \\ \hline
+Injective & $|A|\le |B|$ & Exists $A\hookrightarrow B$ \\ \hline
+Surjective & $|A|\ge |B|$ & Exists $A\twoheadrightarrow B$ \\ \hline
+Bijective & $|A|=|B|$ & Exists $A\leftrightarrow B$ \\ \hline
+\end{tabular}
+\end{table}
+\end{frame}
+%---------------------------------------------------------
 
-% \begin{frame}{Quick Quiz}
-% \begin{enumerate}
-% \item $f:\{1,2,3,4,5\}\to\{a,b,c\}$  
-% \quad Can it be injective? \textcolor{red}{No.}
-% \item Can it be surjective? \textcolor{green!60!black}{Yes.}
-% \item $f:\{1,2\}\to\{a,b,c\}$  
-% \quad Can it be injective? \textcolor{green!60!black}{Yes.}
-% \quad Surjective? \textcolor{red}{No.}
-% \end{enumerate}
+\begin{frame}{Quick Quiz}
+\begin{itemize}
+\item $f:\{1,2,3,4,5\}\to\{a,b,c\}$  
+\quad Can it be injective? \textcolor{red}{No.}
+\item Can it be surjective? \textcolor{green!60!black}{Yes.}
+\item $f:\{1,2\}\to\{a,b,c\}$  
+\quad Can it be injective? \textcolor{green!60!black}{Yes.}
+\quad Surjective? \textcolor{red}{No.}
+\end{itemize}
 
-% \pause
-% \begin{block}{Takeaway}
-% Cardinality gives strong hints—but the mapping itself confirms the property!
-% \end{block}
-% \end{frame}
-% %---------------------------------------------------------
+\pause
+\begin{block}{Takeaway}
+Cardinality gives strong hints—but the mapping itself confirms the property!
+\end{block}
+\end{frame}
+%---------------------------------------------------------
 \begin{frame}{Composition Function}
     $f = \{(1, 1), (2, 3), (3, 1), (4, 2)\}$, and $g = \{(1, 2), (2, 3), (3, 1), (4, 2)\}$, then $g \circ f = \{(1, 2), (2, 1), (3, 2), (4, 3)\}$
 \end{frame}
