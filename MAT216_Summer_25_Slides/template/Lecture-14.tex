@@ -1,0 +1,101 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-13}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}
+    Find the Fourier series of $f(x)=\frac12(\pi-x), [0,2\pi]$ and show that, $$1-\frac13+\frac15-\frac17+\cdots=\frac{\pi}{4}$$\\
+    \textbf{Answer:}
+    $$A_0=0$$
+    $$A_k=0$$
+    $$B_k=\frac{1}{\pi}\int_0^{2\pi} \frac12(\pi-x)\sin(kx)dx=\cdots=\frac1k$$
+\end{frame}
+
+\begin{frame}
+    $$
+f(x)=\frac{a_0}{2}+\sum_{k=1}^\infty a_k \cos\left(k\frac{x\pi}{L}\right)+\sum_{k=1}^\infty b_k\sin\left(k\frac{x\pi}{L}\right)
+$$
+    \begin{align*}
+        a_k &= \frac{1}{L} \int_{-L}^L f(x)\cos(k\frac{x\pi}{L}) dx\\
+        b_k &= \frac{1}{L} \int_{-L}^L f(x)\sin(k\frac{x\pi}{L}) dx\\
+        a_0 &= \frac{1}{L} \int_{-L}^L f(x) dx
+    \end{align*}
+    \textbf{How odd and even function change the formula for the Fourier series?}
+\end{frame}
+
+\begin{frame}{When $f(x)$ is even}
+\begin{align*}
+    A_k&=\frac{1}{L} \int_{-L}^L \underbrace{f(x)\cos\left(k\frac{x\pi}{L}\right)}_{even} dx\\
+    &= \frac{2}{L} \int_0^L f(x)\cos\left(k\frac{x\pi}{L}\right) dx
+\end{align*}    
+\end{frame}
+
+\begin{frame}{When $f(x)$ is odd}
+\begin{align*}
+    B_k&=\frac{1}{L} \int_{-L}^L \underbrace{f(x)\sin\left(k\frac{x\pi}{L}\right)}_{even} dx\\
+    &= \frac{2}{L} \int_0^L f(x)\sin\left(k\frac{x\pi}{L}\right) dx
+\end{align*}    
+\end{frame}
+
+\begin{frame}
+    Find the Fourier Sine Series of $f(x)=\cos(x)$ on the interval $(0,\pi)$. 
+\end{frame}
+
+\begin{frame}
+    Perseval Identity: $$\langle f(x),f(x) \rangle=\frac{A_0^2}{2}+\sum_{k=1}^\infty A_k^2+B_k^2$$
+    Find the Fourier series of $f(x)=x$ on the interval $(-\pi,\pi)$ and show that, $$\frac{\pi^2}{6}=\sum_{n=1}^\infty \frac{1}{n^2}$$
+    \textbf{Answer:} We already have, $$f(x)=\sum_{k=1}^\infty -\frac{2(-1)^k}{k}\sin (kx)$$
+\end{frame}
+\end{document}

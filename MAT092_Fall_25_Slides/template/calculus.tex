@@ -1,0 +1,254 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\graphicspath{{../}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+\date[] % (optional)
+{\textsc{Pre-Calculus}}
+\title[]{MAT092}
+
+\setbeamertemplate{navigation symbols}{}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% ---------- small helpers ----------
+\newcommand{\ds}{\displaystyle}
+\newcommand{\eps}{\varepsilon}
+
+\begin{document}
+
+% =========================================================
+\begin{frame}
+\titlepage
+\end{frame}
+
+% =========================================================
+\begin{frame}{Today}
+\begin{itemize}
+  \item How \textbf{derivatives} create a \textbf{slope field} and guide the original function.
+  \item How \textbf{Riemann sums} approximate \textbf{area} and lead to the definite integral.
+\end{itemize}
+\end{frame}
+
+% =========================================================
+\section{Derivative and Slope Field}
+
+% =========================================================
+\begin{frame}{Core idea: derivative gives slope}
+If a curve is given by $y=y(x)$, then
+\[
+\frac{dy}{dx}\Big|_{(x,y)} = \text{(slope of the tangent line at that point).}
+\]
+
+A \textbf{slope field} is a picture of these slopes:
+\begin{itemize}
+  \item At many points $(x,y)$, draw a small line segment with slope $\ds \frac{dy}{dx}$.
+  \item Curves that follow these tiny line segments are \textbf{solutions}.
+\end{itemize}
+\end{frame}
+
+% =========================================================
+\begin{frame}{Easy example: $\ds \frac{dy}{dx}=x$}
+Consider the differential equation
+\[
+\frac{dy}{dx}=x.
+\]
+Meaning:
+\begin{quote}
+\emph{At every point $(x,y)$, the slope depends only on $x$.}
+\end{quote}
+
+So along the vertical line $x=c$, every little segment has slope $c$:
+\[
+x=-2\Rightarrow \text{slope }=-2,\quad
+x=-1\Rightarrow \text{slope }=-1,\quad
+x=0\Rightarrow \text{slope }=0,\quad
+x=1\Rightarrow \text{slope }=1,\quad
+x=2\Rightarrow \text{slope }=2.
+\]
+\end{frame}
+
+% =========================================================
+\begin{frame}{Slope field picture (concept)}
+\begin{itemize}
+  \item For $x<0$ slopes are negative $\Rightarrow$ solution curves go \textbf{down}.
+  \item At $x=0$ slope is $0$ $\Rightarrow$ curves are \textbf{flat} there.
+  \item For $x>0$ slopes are positive $\Rightarrow$ curves go \textbf{up}.
+  \item Larger $|x|$ gives steeper segments $\Rightarrow$ curves become \textbf{steeper} as $|x|$ increases.
+\end{itemize}
+
+\medskip
+\textbf{Takeaway:} Even without solving, the slope field predicts the qualitative shape.
+\end{frame}
+
+% =========================================================
+\begin{frame}{Recovering the original function}
+Now integrate:
+\[
+\frac{dy}{dx}=x
+\quad\Longrightarrow\quad
+y=\int x\,dx=\frac{x^2}{2}+C.
+\]
+So the solution family is
+\[
+y=\frac{x^2}{2}+C \qquad (\text{parabolas}).
+\]
+
+\medskip
+\textbf{Geometric match with slope field:}
+\begin{itemize}
+  \item Horizontal tangent at $x=0$ (because slope $=0$ there).
+  \item Curves go down for $x<0$ and up for $x>0$.
+  \item Steeper for large $|x|$.
+\end{itemize}
+\end{frame}
+
+% =========================================================
+\section{Riemann Sum and Integration}
+
+% =========================================================
+\begin{frame}{Core idea: area by rectangles}
+The definite integral
+\[
+\int_a^b f(x)\,dx
+\]
+represents (for $f\ge 0$) the \textbf{area under the curve} from $x=a$ to $x=b$.
+
+A \textbf{Riemann sum} approximates this area using rectangles:
+\[
+\sum_{i=1}^n f(x_i^\ast)\,\Delta x
+\quad\text{where}\quad
+\Delta x=\frac{b-a}{n}.
+\]
+As $n\to\infty$, rectangles become very thin and the approximation becomes exact.
+\end{frame}
+
+% =========================================================
+\begin{frame}{Easy example: $\ds f(x)=x$ on $[0,1]$}
+We want to approximate
+\[
+\int_0^1 x\,dx.
+\]
+
+Take $n=4$ equal subintervals:
+\[
+\Delta x=\frac{1-0}{4}=\frac14.
+\]
+
+Using \textbf{left endpoints}:
+\[
+x_0=0,\quad x_1=\frac14,\quad x_2=\frac12,\quad x_3=\frac34.
+\]
+Heights are
+\[
+f(0)=0,\quad f\!\left(\frac14\right)=\frac14,\quad
+f\!\left(\frac12\right)=\frac12,\quad
+f\!\left(\frac34\right)=\frac34.
+\]
+\end{frame}
+
+% =========================================================
+\begin{frame}{Compute the left Riemann sum ($n=4$)}
+Left Riemann sum:
+\[
+\sum_{i=0}^{3} f(x_i)\,\Delta x
+=\left(0+\frac14+\frac12+\frac34\right)\frac14.
+\]
+
+Compute:
+\[
+0+\frac14+\frac12+\frac34
+=\frac{0}{4}+\frac{1}{4}+\frac{2}{4}+\frac{3}{4}
+=\frac{6}{4}=\frac{3}{2}.
+\]
+So
+\[
+\left(\frac{3}{2}\right)\left(\frac14\right)=\frac{3}{8}.
+\]
+
+\medskip
+Since $f(x)=x$ is increasing on $[0,1]$, left rectangles \textbf{underestimate} the true area:
+\[
+\frac{3}{8} < \int_0^1 x\,dx.
+\]
+\end{frame}
+
+% =========================================================
+\begin{frame}{Exact value (and the limit idea)}
+Exact integral:
+\[
+\int_0^1 x\,dx=\left[\frac{x^2}{2}\right]_0^1=\frac12.
+\]
+
+\medskip
+\textbf{Meaning:}
+\begin{itemize}
+  \item (1) Riemann sums give approximations (rectangles).
+  \item (2) Increasing $n$ makes $\Delta x$ smaller.
+  \item (3) The limit becomes the exact area:
+\end{itemize}
+
+\[
+\int_0^1 x\,dx
+=\lim_{n\to\infty}\sum_{i=1}^n f(x_i^\ast)\,\Delta x.
+\]
+
+\medskip
+\textbf{Key intuition:} integration is \emph{adding up many tiny areas}.
+\end{frame}
+
+% =========================================================
+\begin{frame}{Big picture connection}
+\begin{block}{Derivative (local)}
+\[
+\frac{dy}{dx}=\text{instantaneous slope at a point.}
+\]
+A slope field visualizes these local slopes everywhere.
+\end{block}
+
+\begin{block}{Integral (global)}
+\[
+\int_a^b f(x)\,dx=\text{total accumulated area/change on an interval.}
+\]
+Riemann sums show how ``adding tiny pieces'' becomes the integral.
+\end{block}
+\end{frame}
+
+% =========================================================
+\begin{frame}{Quick in-class exercises}
+\begin{itemize}
+  \item (1) For $\ds \frac{dy}{dx}=2x$, what slopes do you get at $x=-1,0,1$?
+  \item (2) Approximate $\ds \int_0^1 x\,dx$ using $n=2$ left rectangles. Compare with $\frac12$.
+\end{itemize}
+\end{frame}
+
+\end{document}

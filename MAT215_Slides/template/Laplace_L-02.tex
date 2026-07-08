@@ -1,0 +1,233 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+% \graphicspath{{images/}}
+\graphicspath{{../}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-02}}
+
+
+\title[]{MAT215: Complex Variables And Laplace Transformations}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Some important formulas}
+    $$
+    2 \sin(A)\cos(B)=\sin(A+B)+\sin(A-B)
+    $$
+    $$
+    2 \cos(A)\cos(B)=\cos(A+B)+\cos(A-B)
+    $$
+    $$
+    2 \sin(A)\sin(B)=\cos(A-B)-\cos(A+B)
+    $$
+
+    $$\sinh (\theta) =\frac{e^\theta- e^{-\theta}}{2}, \cosh (\theta) =\frac{e^\theta+ e^{-\theta}}{2}$$
+
+    $$
+    \int e^{at}\sin(bt)dt=\frac{e^{at}}{a^2+b^2}(a\sin(bt)-b\cos(bt))+C
+    $$
+    $$\int e^{at}\cos(bt)dt=\frac{e^{at}}{a^2+b^2}(a\cos(bt)+b\sin(bt))+C$$
+\end{frame}
+
+\begin{frame}
+    \frametitle{Some important Laplace Transform formulas}
+     \begin{itemize}[label=$\bullet$]
+    \item Known formula 
+    \item First Translation formula:
+    $$\boxed{\mathcal L\{e^{at}f(t)\}=\mathcal L\{f(t)\}_{s\rightarrow s-a}=F(s-a)}$$
+    % $$
+    % \boxed{\underbrace{\mathcal L^{-1}\{F(s)\}}_{\text{unknown}}=e^{at}\underbrace{\mathcal L^{-1}\{F(s+a)\}}_{\text{known}}}
+    % $$
+    \item Truncation/Second Translation formula:
+    $$\boxed{\mathcal{L}\{f(t-a)u(t-a)\}=e^{-as}F(s)}$$
+    % $$\boxed{\mathcal{L}^{-1}\{F(s)e^{-as}\}=f(t-a)u(t-a)}$$
+    \item $s$-differentiation:
+    $$\boxed{\mathcal{L}\{(t)^nf(t)\}=(-1)^n\frac{d^n}{ds^n}F(s)}$$  
+    \item Partial fraction type
+    \item Convolution type (Not very important)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example}
+    \begin{example}
+        Find the Laplace transform of $f(t)=t$.
+    \end{example}
+    \begin{example}
+        Find the Laplace transform of $f(t)=e^{at}$.
+    \end{example}
+\begin{example}
+        \begin{enumerate}[label=\alph*.]
+            \item Find the Laplace transform of $f(t)= 2e^{-2t}$.
+            \item Find the Laplace transform of $f(t)= 4t^3-e^{-1}$.
+            \item Find the Laplace transform of $f(t)= (t^2+1)^2$.
+            \item Find the Laplace transform of $f(t)= \cosh(3t)+\sin(2t)$.
+        \end{enumerate}
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+        \begin{example}
+        \begin{enumerate}[label=\alph*.] 
+            \item Find the Laplace transform of $f(t)=\cos(at)$.
+            \item Find the Laplace transform of $f(t)=\sin(at)$.
+            \item Find the Laplace transform of $f(t)=\sinh(at)$.
+            \item Find the Laplace transform of $f(t)=\cosh(at)$.
+        \end{enumerate}
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Way-01}
+    Find the Laplace transform of $f(t)=\sin(at)$.
+    \begin{align*}
+        \mathcal L\{\sin(at)\} &=\int_0^\infty e^{-st}\sin(at)dt\\
+        &= \text{Skip way-01} 
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Way-02 (best way)}
+    Find the Laplace transform of $f(t)=\sin(at)$.
+    \begin{align*}
+        \mathcal L\{\sin(at)\} &=\int_0^\infty e^{-st}\sin(at)dt \\
+        &= \int_0^\infty e^{-st} \frac{e^{i(at)}-e^{-i(at)}}{2i} dt\\
+        &= \frac{1}{2i}\left(\int_0^\infty e^{-st} e^{i(at)} dt - \int_0^\infty e^{-st} e^{-i(at)} dt\right) \\
+        &= \frac{1}{2i} \left[ \frac{1}{s-ia} - \frac{1}{s+ia} \right]\\
+        &=  \frac{1}{2i} \frac{2i a}{s^2 + a^2}\\
+        &= \frac{a}{s^2 + a^2}
+    \end{align*}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Way-03}
+    Find the Laplace transform of $f(t)=\sin(at)$.
+    \begin{align*}
+        \mathcal L\{\sin(at)\} &=\int_0^\infty e^{-st}\sin(at)dt \\
+        &=\lim_{b\to\infty}\int_0^b e^{-st}\sin(at)dt \\
+        &=\lim_{b\to\infty}\left[\frac{e^{-st}(-a\cos(at)-s\sin(at))}{a^2+s^2}\right]_0^b \\
+        &=\lim_{b\to\infty}\left(\frac{e^{-sb}(-a\cos(ab)-s\sin(ab))}{a^2+s^2}-\frac{-a}{a^2+s^2}\right) \\
+        &=\frac{a}{a^2+s^2}
+    \end{align*}
+\end{frame}
+
+
+\begin{frame}
+    \begin{example}
+        \begin{itemize}[label=$\bullet$]
+            \item Find the Laplace transform of $f(t)=t^3$.
+            \item Find the Laplace transform of $f(t)=t^3 e^{5t}$.
+            \text{Hint: Use the first Translation formula:}
+            $$\boxed{\mathcal L\{e^{at}f(t)\}=\mathcal L\{f(t)\}_{s\rightarrow s-a}=F(s-a)}$$
+        \end{itemize}
+    \end{example}
+    \begin{example}
+        \begin{itemize}
+            \item Find the Laplace transform of $f(t)=5\sin(4t)$.
+            \item Find the Laplace transform of $f(t)=5\sin(4t) e^{-3t}$.
+            \text{Hint: Use the first Translation formula:}
+            $$\boxed{\mathcal L\{e^{at}f(t)\}=\mathcal L\{f(t)\}_{s\rightarrow s-a}=F(s-a)}$$
+        \end{itemize}
+    \end{example}
+\end{frame}
+
+\begin{frame}
+    \begin{example}
+        \begin{itemize}
+            \item Find the Laplace transform of $f(t)=(t+2)^2$.
+            \item Find the Laplace transform of $f(t)=(t+2)^2 e^t$.
+        \end{itemize}
+    \end{example}
+\end{frame}
+
+\begin{frame}
+    \begin{example}
+        \begin{itemize}
+            \item Find the Laplace transform of $f(t)=t\sin(at)$.
+        \end{itemize}
+    \end{example}
+        \pause
+            \begin{align*}
+                \mathcal L\{t\sin(at)\} &= \int_0^\infty e^{-st}t\sin(at)dt \\
+                &= \int_0^\infty t \underbrace{e^{-st} \sin(at)}_{v} dt\\
+                &= \left[ t \frac{e^{-st}(-a\cos(at)-s\sin(at))}{a^2+s^2} \right]_0^\infty \\
+                & \qquad - \int_0^\infty \left[ t \frac{e^{-st}(-a\cos(at)-s\sin(at))}{a^2+s^2} \right]_0^\infty dt\\
+                &= \frac{s}{(s^2+a^2)} \int_0^\infty e^{-st}\sin(at)dt + \frac{a}{(s^2+a^2)} \int_0^\infty e^{-st}\cos(at)dt \\
+                &= \frac{s}{(s^2+a^2)} \cdot \frac{a}{s^2+a^2} + \frac{a}{(s^2+a^2)} \cdot \frac{s}{s^2+a^2} \\
+                &= \frac{2as}{(s^2+a^2)^2}
+            \end{align*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Way-02}
+    \textbf{Solution:}
+    \begin{align*}
+        \mathcal L\{t\sin(at)\} &= \int_0^\infty e^{-st}t\sin(at)dt \\
+        &= -\int_0^\infty e^{-st} \frac{\partial}{\partial a} \left( \cos(at) \right) dt\\
+        &= - \frac{\partial}{\partial a} \int_0^\infty e^{-st} \cos(at) dt \\
+        &= - \frac{\partial}{\partial a} \left( \frac{s}{s^2 + a^2} \right) \\
+        &= \frac{2as}{(s^2 + a^2)^2}
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \begin{example}
+        \begin{itemize}
+            \item Find the Laplace transform of $f(t)=2\sinh(3t)+5\cosh(4t)$.
+            \item Find the Laplace transform of $f(t)=e^{2t}[2\sinh(3t)+5\cosh(4t)]$.
+            \item Find the Laplace transform of $f(t)=t e^{2t}[2\sinh(3t)+5\cosh(4t)]$
+        \end{itemize}
+    \end{example}
+\end{frame}
+
+
+\end{document}

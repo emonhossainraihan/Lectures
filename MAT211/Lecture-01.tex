@@ -1,0 +1,253 @@
+% ===============================
+% Worksheet / Manual Template
+% ===============================
+\documentclass[12pt, a4paper]{article}
+
+% ===============================
+% Metadata
+% ===============================
+\newcommand*{\CourseCode}{MAT211}
+\newcommand*{\CourseTitle}{Calculus-I}
+\newcommand*{\Chapter}{Motivation}
+\newcommand*{\Topics}{Topics}
+
+\newcommand{\ReferenceList}{%
+\begin{enumerate}[leftmargin=2em, label={[\arabic{*}]}]
+	\item Stephen Abbott, \textit{Understanding Analysis}, 2nd Edition, Springer, 2015.
+
+	\item Terence Tao, \textit{Analysis I}, 3rd Edition, Texts and Readings in Mathematics, Hindustan Book Agency, 2016.
+\end{enumerate}
+}
+
+\newcommand*{\University}{BRAC University}
+\newcommand*{\Department}{Department of Mathematics and Natural Sciences}
+\newcommand*{\LogoPath}{Brac_University_Logo} % logo filename (no extension)
+\newcommand*{\DocDate}{\today}
+\newcommand*{\Instructor}{Emon Hossain}
+\newcommand*{\Role}{Lecturer, BRAC University, Dhaka-1212}
+
+% ---------- Encoding & Fonts ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\IfFileExists{qrcode.sty}{\usepackage{qrcode}}{}
+
+% ---------- Icons & Colors ----------
+\usepackage{fontawesome5} % icons
+\usepackage[dvipsnames, table]{xcolor}
+\definecolor{YTred}{RGB}{255,0,0}
+\definecolor{BannerLeft}{RGB}{30,64,175}
+\definecolor{BannerRight}{RGB}{56,189,248}
+\definecolor{Accent}{RGB}{20,120,200}
+
+% ---------- Page Setup ----------
+\usepackage[top=0.6in, bottom=1.0in, left=0.7in, right=0.7in]{geometry}
+\usepackage{setspace}
+\setstretch{1.2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\pagestyle{empty}
+
+% ---------- Math & Graphics ----------
+\usepackage{amsmath, amssymb, amsfonts, mathtools, bm}
+\usepackage{graphicx}
+\usepackage{tikz, pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{calc}
+
+% ---------- Tables & Lists ----------
+\usepackage{array, booktabs, multirow, colortbl, float}
+\renewcommand{\arraystretch}{1.25}
+\usepackage{enumitem}
+\setlist{leftmargin=*,itemsep=2pt}
+
+% ---------- Boxes & Links ----------
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\usepackage[
+	colorlinks=true,
+	linkcolor=MidnightBlue,
+	citecolor=OliveGreen,
+	urlcolor=RoyalBlue
+]{hyperref}
+\usepackage[nameinlink, noabbrev]{cleveref}
+
+% ===============================
+% Cover Page (styled with icons)
+% ===============================
+\newcommand{\FrontPage}{%
+\begin{titlepage}
+	\centering
+
+	% --- Gradient banner across the top ---
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=north west,inner sep=0pt] at ($(current page.north west)$) {%
+		\begin{tikzpicture}\path[shade, left color=BannerLeft, right color=BannerRight] (0,0) rectangle (\paperwidth,1.8cm);\end{tikzpicture} };
+	\end{tikzpicture}
+	\vspace*{1.0cm}
+
+	% --- Logo & University Name ---
+	\includegraphics[width=0.18\textwidth]{\LogoPath}
+	\par
+	\vspace{6pt}
+	{\Large\sffamily\bfseries \University\par} {\large\sffamily \Department\par}
+
+	% --- Title block ---
+	\vspace{24pt}
+	{\normalsize\sffamily\scshape Lecture on\par}
+	\vspace{6pt}
+	{\Large\sffamily\bfseries \CourseTitle\ (\CourseCode)\par}
+
+	\vspace{18pt}
+	{\Huge\sffamily\bfseries \textcolor{Accent}{\Chapter}\par}
+	\vspace{10pt}
+	{\Large\sffamily\bfseries \textcolor{teal}{\Topics}\par}
+	\vfill
+	\vspace{14pt}
+	\rule{0.55\textwidth}{0.8pt}\par
+	\vspace{10pt}
+	\vfill
+	{\large\sffamily\scshape \DocDate\par}
+	\vfill
+	\vspace{10pt}
+	{\large\sffamily\scshape Conducted by\par}
+	{\LARGE\sffamily\bfseries \Instructor\par} {\large\sffamily \Role\par}
+
+	% --- Contact / Links with icons ---
+	\vspace{18pt}
+	\begin{tcolorbox}
+		[ colback=gray!3!white, colframe=gray!40!black, boxrule=0.6pt, arc=2pt, left=8pt,right=8pt,top=8pt,bottom=8pt,
+		width=0.82\textwidth, enhanced ]
+		\centering
+		\sffamily {\large \faEnvelope\;\href{mailto:emon.hossain@bracu.ac.bd}{emon.hossain@bracu.ac.bd} \quad\textbar\quad \faEnvelope\;\href{mailto:mdemon7475@gmail.com}{mdemon7475@gmail.com} \\[4pt] For updates subscribe on \quad \textcolor{YTred}{\faYoutube}\; \href{https://www.youtube.com/@emonhossainraihan}{@emonhossainraihan} }
+	\end{tcolorbox}
+
+	\vspace{10pt}
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=south west,inner sep=0pt] at ($(current page.south west)$) {%
+		\begin{tikzpicture}\path[shade, left color=BannerRight, right color=BannerLeft] (0,0) rectangle (\paperwidth,0.9cm);\end{tikzpicture} };
+	\end{tikzpicture}
+\end{titlepage}%
+}
+
+% ===============================
+% End Page
+% ===============================
+\newcommand{\EndPage}{%
+\clearpage
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+	\node[anchor=north west,inner sep=0pt] at ($(current page.north west)$) {%
+	\begin{tikzpicture}\path[shade, left color=BannerLeft, right color=BannerRight] (0,0) rectangle (\paperwidth,1.2cm);\end{tikzpicture} };
+\end{tikzpicture}
+
+\vspace*{0.8cm}
+\begin{center}
+	{\fontsize{38}{42}\selectfont\sffamily\bfseries Thank You!\par}
+	\vspace{0.4em}
+	{\large\sffamily We’d love your questions and feedback.\par}
+	\vspace{1.2em}
+	\rule{0.5\textwidth}{0.8pt}\par
+	\vspace{1.2em}
+
+	\begin{tcolorbox}
+		[ colback=gray!2!white, colframe=gray!35!black, boxrule=0.7pt, arc=3pt,
+		width=0.86\textwidth, left=10pt,right=10pt,top=10pt,bottom=10pt, enhanced ]
+		\centering
+		\sffamily {\fontsize{18}{22}\selectfont\bfseries \Instructor\par}
+		\vspace{2pt}
+		{\normalsize \Role\par}
+		\vspace{1.2em}
+		{\large \faEnvelope\ \href{mailto:emon.hossain@bracu.ac.bd}{emon.hossain@bracu.ac.bd}\quad \textbar\quad \faEnvelope\ \href{mailto:mdemon7475@gmail.com}{mdemon7475@gmail.com} \par}
+		\vspace{0.8em}
+		\begin{minipage}{0.62\textwidth}
+			\centering
+			{\Large\bfseries \textcolor{YTred}{\faYoutube}\; \href{https://www.youtube.com/@emonhossainraihan}{@emonhossainraihan}}
+			\par {\small (Lectures, walkthroughs, and course updates)}
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.30\textwidth}
+			\centering
+			\IfFileExists{qrcode.sty}{ \qrcode[height=3cm]{https://www.youtube.com/@emonhossainraihan} \par\vspace{2pt}{\scriptsize Scan for the channel} }{ \vspace{2pt}\textcolor{YTred}{\faYoutube}\par }
+		\end{minipage}
+	\end{tcolorbox}
+
+	\vspace{1.6em}
+	\rule{0.64\textwidth}{0.8pt}\par
+	\vspace{1.2em}
+
+	\begin{tcolorbox}
+		[ colback=white, colframe=Accent, boxrule=0.8pt, arc=3pt, width=0.86\textwidth,
+		left=12pt,right=12pt,top=10pt,bottom=10pt, enhanced, title=\sffamily\bfseries\large
+		\faBook\ References ] \sffamily\large \ReferenceList
+	\end{tcolorbox}
+\end{center}
+
+\begin{tikzpicture}[remember picture, overlay]
+	\node[anchor=south west,inner sep=0pt] at ($(current page.south west)$) {%
+	\begin{tikzpicture}\path[shade, left color=BannerRight, right color=BannerLeft] (0,0) rectangle (\paperwidth,0.9cm);\end{tikzpicture} };
+\end{tikzpicture}
+\clearpage
+}
+
+% ===============================
+% Modern Box Styles (with neat tabbed titles)
+% ===============================
+
+% --- Definition (deep academic blue) ---
+\definecolor{DefBack}{RGB}{228,238,250}   % soft bluish background
+\definecolor{DefMain}{RGB}{0,90,190}      % deep but calm academic blue
+
+% --- Theorem (balanced emerald green) ---
+\definecolor{ThmBack}{RGB}{230,248,235}   % gentle greenish background
+\definecolor{ThmMain}{RGB}{0,155,70}      % balanced rich green
+
+% --- Problem (refined amber tone) ---
+\definecolor{ProbBack}{RGB}{255,245,232}  % warm ivory-peach background
+\definecolor{ProbMain}{RGB}{195,90,0}     % deep amber / rust-orange
+
+% --- Headers (coordinated with Definition) ---
+\definecolor{HeadL}{RGB}{20,55,120}       % deep navy (slightly cooler, academic tone)
+\definecolor{HeadR}{RGB}{45,135,215}      % calm mid-sky blue (not too bright)
+
+\tcbset{ parthoBase/.style={ breakable, enhanced jigsaw, boxrule=0.6pt, arc=4pt, left=10pt, right=10pt, top=10pt, bottom=10pt, coltitle=black, fonttitle=\bfseries\sffamily, fontupper=\sffamily, drop fuzzy shadow, attach boxed title to top left={yshift=-0.5mm}, % tab overlaps border neatly
+boxed title style={ boxrule=0pt, arc=3pt, top=2pt, bottom=2pt, left=8pt, right=8pt, interior style={left color=tcbcolframe!10!white, right color=tcbcolframe!30!white} }, }, }
+
+% --- Definition Box ---
+\NewTColorBox{definition}{ O{Definition} }{%
+parthoBase, colback=DefBack, colframe=DefMain, title={\faBook\ \ #1}, borderline west={2.5pt}{0pt}{DefMain}, overlay unbroken and first={ \node[opacity=0.06,anchor=north east,inner sep=6pt] at (frame.north east) {\scalebox{2}{\faBookOpen}}; }, }
+
+% --- Theorem Box ---
+\NewTColorBox{theorem}{ O{Theorem} }{%
+parthoBase, colback=ThmBack, colframe=ThmMain, title={\faLightbulb[regular]\ \ #1}, borderline west={2.5pt}{0pt}{ThmMain}, overlay unbroken and first={ \node[opacity=0.06,anchor=north east,inner sep=6pt] at (frame.north east) {\scalebox{2}{\faLightbulb}}; }, }
+
+% --- Problem Box ---
+\NewTColorBox{problem}{ O{Problem} }{%
+parthoBase, colback=ProbBack, colframe=ProbMain, title={\faQuestionCircle[regular]\ \ #1}, borderline west={2.5pt}{0pt}{ProbMain}, overlay unbroken and first={ \node[opacity=0.07,anchor=north east,inner sep=6pt] at (frame.north east) {\scalebox{2}{\faQuestionCircle}}; }, }
+
+% --- Heading Box ---
+\NewTColorBox{heading}{ O{Heading} }{%
+enhanced, frame empty, interior style={left color=HeadL!95!black, right color=HeadR!90!white}, boxsep=1pt, top=10pt, bottom=10pt, left=10pt, right=10pt, coltext=white, fontupper=\sffamily\bfseries\Large }
+
+% ==========================================
+% Document
+% ==========================================
+\begin{document}
+	\FrontPage
+	\Large
+
+    \begin{heading}
+		There are holes or gaps in $\mathbb{Q}$
+	\end{heading}
+
+    \vspace{10pt}
+
+    \begin{problem}
+        Show that there is no rational number $x$ such that $x^2 = 2$.
+    \end{problem}
+
+ 
+
+	\EndPage
+\end{document}

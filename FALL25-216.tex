@@ -1,0 +1,137 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,enumitem}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\begin{center}
+\Large \textbf{Outline Solutions (Key Steps Only)}
+\end{center}
+
+\hrule
+\vspace{0.6em}
+
+\begin{enumerate}
+
+%-------------------------
+\item \textbf{Solution}
+
+\[
+\int_C \frac{z}{z^2+4}\,dz,\quad |z|=3
+\]
+
+The singularities are at $z=\pm 2i$, both inside the contour.
+
+\[
+\frac{z}{z^2+4}
+=\frac12\left(\frac{1}{z-2i}+\frac{1}{z+2i}\right)
+\]
+
+Sum of residues $=1$.
+
+\[
+\boxed{\int_C \frac{z}{z^2+4}\,dz = 2\pi i}
+\]
+
+%-------------------------
+\item \textbf{Solution}
+
+Let $z=e^{it}$, $dz=i e^{it}dt$, $0\le t\le2\pi$.
+
+\[
+\Re(z)=\cos t
+\]
+
+\[
+\oint_{|z|=1}\Re(z)\,dz
+= i\int_0^{2\pi}\cos t(\cos t+i\sin t)\,dt
+\]
+
+Both integrals vanish over $[0,2\pi]$.
+
+\[
+\boxed{0}
+\]
+
+%-------------------------
+\item \textbf{Solution}
+
+\[
+2z^2-5z+2=(2z-1)(z-2)
+\]
+
+Poles: $z=\frac12$ (inside), $z=2$ (outside).
+
+\[
+\text{Res}_{z=\frac12}
+=\lim_{z\to\frac12}\frac{z-\frac12}{(2z-1)(z-2)}
+=-\frac13
+\]
+
+\[
+\boxed{\oint_{|z|=1}\frac{1}{2z^2-5z+2}\,dz
+=-\frac{2\pi i}{3}}
+\]
+
+%-------------------------
+\item \textbf{Solution}
+
+\[
+\begin{cases}
+X' = 2X + Y\\
+Y' = -X + 2Y
+\end{cases}
+\]
+
+Eigenvalues: $\lambda=2\pm i$.
+
+\[
+\boxed{
+\begin{aligned}
+X(t)&=e^{2t}(\cos t+\sin t)\\
+Y(t)&=-e^{2t}\sin t
+\end{aligned}}
+\]
+
+%-------------------------
+\item \textbf{Solution} NEED  
+%-------------------------
+\item \textbf{Solution}
+
+\[
+\mathcal L\{\sin(3t)\}
+=\int_0^\infty e^{-st}\sin(3t)\,dt
+\]
+
+\[
+\boxed{\mathcal L\{\sin(3t)\}=\frac{3}{s^2+9}}
+\]
+
+%-------------------------
+\item \textbf{Solution}
+
+\[
+\mathcal L^{-1}\!\left\{
+\frac{s^2+2s+3}{(s^2+2s+2)(s^2+2s+5)}
+\right\}
+\]
+
+\[
+=\frac13\left(
+\frac{1}{s^2+2s+2}
++\frac{2}{s^2+2s+5}
+\right)
+\]
+
+Using the shift theorem,
+
+\[
+\boxed{
+f(t)=\frac13 e^{-t}\left(\sin t+2\sin2t\right)
+}
+\]
+
+\end{enumerate}
+
+\end{document}

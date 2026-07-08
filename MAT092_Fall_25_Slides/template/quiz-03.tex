@@ -1,0 +1,84 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath,physics}
+\usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[lmargin=1in, tmargin=1in]{geometry}  %For centering solution box
+\usepackage{graphicx}
+\lhead{MAT216\\}
+\rhead{Quiz-03: MAT092\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+\begingroup
+\centering
+\begin{figure}
+    \centering
+    \includegraphics[width=50px]{brac-university-logo.png}
+\end{figure}
+\LARGE Linear Algebra \& Fourier Analysis\\
+\LARGE Quiz-03\\
+\large \today\\
+\large Total - 20 Marks\\% , Due date: \textcolor{red}{Thursday, June 27, Please submit hard copy}\\
+\large (You need to answer \textbf{ANY TWO} questions)\\
+\endgroup
+\hrule
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+\textcolor{white}{text} \\
+\textbf{\large Name:}\\ \\
+\textbf{\large ID:}\\ \\
+\textbf{\large Section:}\\
+\hrule
+\vspace{13pt} 
+\begin{questions}
+\question[5+5 MARKS]
+\begin{parts}
+    \part \[
+\begin{aligned}
+2x + 4y &= 6 \\
+x + 2y &= 3
+\end{aligned}
+\]
+Give reasons based on determinants.
+    \part 
+    Solve the system using $X=A^{-1}B$:
+\[
+\begin{pmatrix}
+1 & 2 \\
+3 & 4
+\end{pmatrix}
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}
+=
+\begin{pmatrix}
+5 \\ 11
+\end{pmatrix}.
+\]
+\end{parts}
+\question[2+2+2+4 MARKS]
+\begin{parts}
+    \part A team of four has to be selected from $6$ boys and $4$ girls.
+How many different ways can a team be selected if at least one boy must be in the team?
+    \part How many triangles can be formed using $10$ points in a plane, out of which $4$ are collinear?
+    \part How many parallelograms are formed when a set of $5$ parallel lines intersects a set of $4$ parallel lines?
+    \part Evaluate: $ \lim_{x\to 4}\frac{\sqrt{x}-2}{x-4}$.
+\end{parts}
+\question[10 MARKS]
+Find $k$ so that $f$ is continuous at \textbf{both} $x=0$ and $x=2$:
+$$
+f(x)=\begin{cases}
+    \frac{x^2-4}{x-2}, & x\neq 2\\
+    k+4, &x=2
+\end{cases}
+$$
+And $f(0)=k-2$.
+\end{questions}
+
+    \vfill
+\begin{center}
+    \large\textbf{Best of Luck!}
+\end{center}
+\end{document}
