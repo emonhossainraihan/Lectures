@@ -101,23 +101,16 @@
 \end{frame}
 \begin{frame}{Problem}
     \begin{problem}
-        Find the square root of $-15-8i$. 
+        Find the square root of $3+4i$. 
     \end{problem}
     \begin{problem}
-        Solve the equation $z^2+(2i-3)z+5-i=0$. 
+        Solve the equation $z^2+(1+i)z+\left(-\frac34-\frac12i\right)=0$. 
     \end{problem}
 \end{frame}
 \begin{frame}{Argument}
     The function $\boldsymbol{\operatorname { A r g }}(z): \mathbb{C} \backslash\{0\} \rightarrow(-\pi, \pi]$ is defined as follows:
-$$
-\operatorname{Arg}(z)=\left\{\begin{array}{cl}
-\arctan \frac{y}{x} & \text { if } x>0, y \in \mathbb{R} \\
-\arctan \frac{y}{x}+\pi & \text { if } x<0, y \geq 0 \\
-\arctan \frac{y}{x}-\pi & \text { if } x<0, y<0 \\
-\frac{\pi}{2} & \text { if } x=0, y>0 \\
--\frac{\pi}{2} & \text { if } x=0, y<0 \\
-\text { undefined } & \text { if } x=0, y=0
-\end{array}\right.
+$$ 
+\operatorname{Arg}(z)=??
 $$
 Thus, if $z=r(\cos \Theta+i \sin \Theta)$, with $r>0$ and $-\pi<\Theta \leq \pi$, then
 $$
@@ -137,13 +130,32 @@ $$
         \item $\operatorname{Arg}\left(\frac{z_1}{z_2}\right)=\operatorname{Arg}(z_1)-\operatorname{Arg}(z_2)$
         \item $\operatorname{Arg}(z^m)=m\operatorname{Arg}(z)$
     \end{itemize}
-    \url{https://scipp.ucsc.edu/~haber/ph116A/arg_11.pdf}\\
+    \url{https://scipp.ucsc.edu/~haber/ph116A/arg_11.pdf}\\    
+\end{frame}
+
+\begin{frame}{Weird properties}
+    $$\left((-1)^\frac{1}{2}\right)^2=i^2=-1\neq 1=\left((-1)^2\right)^\frac{1}{2}$$
+    $$\sqrt{(-4)(-4)}=\sqrt{-4}\sqrt{-4}=2i\cdot2i=-4\neq4= \sqrt{16}$$
+For real numbers $(a>0)$,
+$$ 
+a^z := e^{z\ln a}
+$$
+where $(\ln a)$ is a single real number.
+So:
+$$
+(a^m)^n = e^{n\ln(a^m)} = e^{nm\ln a} = a^{mn}.
+$$
+Everything works because $\ln$ is single-valued.
+\end{frame}
+
+\begin{frame}{Polar form}
     Express each of the following complex numbers in polar form:
     \begin{itemize}
-        \item (a) $2+2\sqrt{3}i$
-        \item (b) $-5+5i$
+        \item (a) $3+4i$
+        \item (b) $1+1i$
     \end{itemize}
 \end{frame}
+
 \begin{frame}{problems}
     \begin{problem}
         Solve the equation: $e^{4z}=i$
@@ -154,11 +166,5 @@ $$
         \left(\frac{3}{2}+\frac{\sqrt 3}{2}i\right)^{2024}=3^{1012}(x+iy)
         $$
     \end{problem}
-\end{frame}
-\begin{frame}{Good-bye}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.5\linewidth]{qrcode.png}
-    \end{figure}
 \end{frame}
 \end{document}

@@ -75,17 +75,18 @@
         \item \textbf{Problem-2}: Considering the derivative as a transformation: $\tilde{f}'(a)\cdot(x-a)$ 
     \end{itemize}
 \end{frame}
-\begin{frame}{Definition}
+\begin{frame}{Definition (optional)}
     \begin{definition}
         The function $f:\mathbb R^n\rightarrow\mathbb R^m$ is differentiable at the point $a$ if there exists a linear transformation $T:\mathbb R^n\rightarrow\mathbb R^m$  that satisfies the condition:
         $$
         \boxed{\lim_{x\rightarrow a}\frac{\|f(x)-f(a)-T(x-a)\|}{\|x-a\|}=0}
         $$
     \end{definition}
-    You can check \url{https://mathinsight.org/differentiability_multivariable_definition} to get the full insight about the condition. 
+    You can check \url{https://mathinsight.org/differentiability_multivariable_definition} to get the full insight about the condition.\\~\\
+    My lecture on this: \url{https://www.youtube.com/watch?v=e9X3zvyuvhk}. 
 \end{frame}
 
-\begin{frame}{Find the Derivative}
+\begin{frame}{Find the Derivative (optional)}
     \begin{example}
         Let $f:\mathbb R^2\rightarrow\mathbb R$, and suppose the function is differentiable at $a=(x_0,y_0)$ and the derivative (transformation) is denoted by $Df(x_0,y_0)$. Then the condition gives us:
         \begin{align*}
@@ -155,7 +156,55 @@ In this case, the complex derivative of $f(z)$ is equal to any of the following 
     The Wirtinger derivatives are defined as the following linear partial differential operators of first order:
     \begin{align*}{\frac {\partial }{\partial z}}&={\frac {1}{2}}\left({\frac {\partial }{\partial x}}-i{\frac {\partial }{\partial y}}\right)\\{\frac {\partial }{\partial {\bar {z}}}}&={\frac {1}{2}}\left({\frac {\partial }{\partial x}}+i{\frac {\partial }{\partial y}}\right)\end{align*}
 \end{frame}
-\begin{frame}{Examples}
+
+
+\begin{frame}{Example}
+    \begin{example}
+        $f(z)=z^2=(x^2-y^2)+(2xy)i$, find the derivative 
+    at $z=3+2i$.
+    \end{example} 
+    \begin{align*}
+        f'(z)&=\lim_{\Delta z\rightarrow0}\frac{f(z+\Delta z)-f(z)}{\Delta z}\\
+        f'(3+2i)&=\lim_{\Delta z\rightarrow0}\frac{f(3+2i+\Delta z)-f(3+2i)}{\Delta z}\\
+        &= 6+4i 
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Using definition  find the derivative of $f(z)=z^2=(x^2-y^2)+(2xy)i$ at $z=z_0$
+    \end{example} 
+    \begin{align*}
+        f'(z_0)&=\lim_{\Delta z\rightarrow0}\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}\\
+        &=\lim_{\Delta z\rightarrow0} \frac{(z_0+\Delta z)^2-z_0^2}{\Delta z}\\
+        &= \lim_{\Delta z\rightarrow0} \frac{z_0^2+2z_0\Delta z+\Delta z^2-z_0^2}{\Delta z}\\
+        &= \lim_{\Delta z\rightarrow0} (2z_0+\Delta z)\\
+        &= 2z_0
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Using definition show that $f(z)=\bar z$ is not differentiable at $z=0$.
+    \end{example} 
+    \textbf{Hint:} Split the expression.
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Using definition show that $f(z)=|z|^2$ is not differentiable other than $z=0$.
+    \end{example} 
+    \textbf{Hint:} Use $\overline{z+\Delta z}=\bar z+\overline{\Delta z}$, then simplify the expression. Finally, split the expression and check the limit.
+\end{frame}
+
+\begin{frame}
+    \begin{example}
+        If $f(z)=u(x,y)+i v(x,y)$ is differentiable at $z_0$, then $f'(z_0)=u_x(z_0)+i v_x(z_0)=v_y(z_0)-i u_y(z_0)$.
+    \end{example}
+\end{frame}
+
+
+\begin{frame}{Example}
     \begin{example}
         Consider the function $f:\mathbb C\rightarrow\mathbb C$, $f(z)=z^2$. Find the complex derivative. 
     \end{example}
@@ -172,4 +221,53 @@ The CR theorem implies that $f(z)=z^2$ is differentiable. Its derivative turns o
         f^{\prime}(z)=u_x+i v_x=v_y-i u_y=2 x+i 2 y=2(x+i y)=2 z
     $$
 \end{frame}
+
+
+\begin{frame}{Analyticity}
+    \begin{definition}
+        A function $f(z)$ is said to be \emph{analytic} at a point $z_0$ if it is differentiable at every point in some neighborhood of $z_0$. If $f(z)$ is analytic at every point in a domain $D$, then we say that $f(z)$ is analytic in $D$.
+    \end{definition}
+    \begin{theorem}
+        A necessary condition that $w=f(z)=u(x,y)+iv(x,y)$ be analytic in a region $R$ is that,
+in $R$, $u$ and $v$ satisfy the \emph{Cauchy--Riemann equations}
+\[
+\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}, \qquad
+\frac{\partial u}{\partial y}=-\,\frac{\partial v}{\partial x}.
+\]
+If the partial derivatives are continuous in $R$, then the
+Cauchy--Riemann equations are sufficient conditions that $f(z)$ be analytic in $R$.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Analytic is more stronger than differentiable}
+    If a function is analytic at a point, it is automatically differentiable at that point. However, the converse is not true. A function can be differentiable at a point without being analytic in any neighborhood of that point.
+    \begin{example}
+$f(z)=|z|^2=z\bar z$ is differentiatbility at \(z_0=0\):
+\[
+f'(0)=\lim_{z\to 0}\frac{f(z)-f(0)}{z-0}
+=\lim_{z\to 0}\frac{|z|^2}{z}.
+\]
+Write \(z=re^{i\theta}\). Then
+\[
+\frac{|z|^2}{z}=\frac{r^2}{re^{i\theta}}=re^{-i\theta}\xrightarrow[r\to 0]{}0\implies f'(0)=0.
+\]
+But the Cauchy--Riemann equations hold only at \((0,0)\). Therefore \(f\) is not analytic at \(z_0=0\).
+\end{example}
+\end{frame}
+\begin{frame}{Example}
+Show that the function $f(z)=z^2$ is analytic.
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Show that the function $f(z)=\frac{1}{z-3}$ is analytic except at $z=3$.
+    \end{example}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{example}
+        Show that the function $f(z)=\sinh (2z)$ is analytic.
+    \end{example}
+\end{frame}
+
 \end{document}

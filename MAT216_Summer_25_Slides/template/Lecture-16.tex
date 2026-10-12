@@ -1,0 +1,114 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\usepackage{mathtools,mathptmx,listings,forest,enumitem}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+% plotting things
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=1.15}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+\usetheme{Madrid}
+\usepackage{float,mathtools,dirtytalk,ulem,csquotes,cancel,hyperref}
+\author[] % (optional)
+{Emon Hossain\inst{1}}
+
+\institute[University of Dhaka] % (optional)
+{
+  \inst{1}%
+  Lecturer\\MNS department\\Brac University
+}
+
+\date[] % (optional)
+{\textsc{Lecture-16}}
+
+
+\title[]{MAT216: Linear Algebra and Fourier Transformation}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{Kyushu}
+
+% \usetheme{Frankfurt}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Definition}
+    As we saw in our previous lecture, that we can split our Fourier series formula for even and odd functions. Now, we can do the same for Fourier Transform.
+    The \textbf{Fourier Cosine Transform} of a function \( f(x) \) is defined as,
+    \[
+        F_c(\omega) =\int_{0}^{\infty} f(x) \cos(\omega x) \, dx
+    \]
+    where \( \omega \) is the frequency variable.
+    And the \textbf{Inverse Fourier Transform} is given by,
+    \[
+        f(x) = \frac{2}{\pi} \int_{0}^{\infty} F_c(\omega) \cos(\omega x) \, d\omega
+    \]
+\end{frame}
+
+\begin{frame}
+    Similarly, the \textbf{Fourier Sine Transform} of a function \( f(x) \) is defined as,
+    \[
+        F_s(\omega) =\int_{0}^{\infty} f(x) \sin(\omega x) \, dx
+    \]
+    And the \textbf{Inverse Fourier Transform} is given by,
+    \[
+        f(x) = \frac{2}{\pi} \int_{0}^{\infty} F_s(\omega) \sin(\omega x) \, d\omega
+    \]
+\end{frame}
+
+\begin{frame}{Example}
+    Find the Fourier Sine Transform of 
+    \[ 
+        \begin{cases}
+            1, & 0 \leq x < 1 \\
+            0, & x \geq 1
+        \end{cases}
+    \]
+    Hence, evaluate the integral $$\int_{0}^{\infty} \frac{\sin^3 x}{x} \, dx$$    
+        \textbf{Hint:} $$F_s(\omega)=\frac{1-\cos\omega}{\omega}$$
+\end{frame}
+\begin{frame}{Example}
+    Find the Fourier Cosine Transform of $e^{-x},\: x\geq 0$. Hence, show that,
+    $$\int_0^\infty \frac{\cos(mx)}{x^2+1}dx=\frac{\pi}{2}e^{-m},\:m>0$$
+    \textbf{Hint:} $$F_c(\omega)=\frac{1}{1+\omega^2}$$
+\end{frame}
+
+\begin{frame}{Example}
+    Find the Fourier Sine Transform of $e^{-x},\: x\geq 0$. Hence, show that,
+    $$\int_0^\infty \frac{x\sin(mx)}{x^2+1}dx=\frac{\pi}{2}e^{-m},\:m>0$$
+    \textbf{Hint:} $$F_s(\omega)=\frac{\omega}{1+\omega^2}$$
+\end{frame}
+
+\begin{frame}{Example}
+    Find the Fourier Cosine Transform of $e^{-mx},\: x\geq 0$. Hence, show that,
+    $$\int_0^\infty \frac{\beta\cos(\rho\nu)}{\nu^2+\beta^2}dx=\frac{\pi}{2}e^{-\rho\beta},\:\rho>0,\beta>0$$
+    \textbf{Hint:} $$F_c(\omega)=\frac{m}{\omega^2+m^2}$$
+\end{frame}
+
+\begin{frame}{Example}
+    Find the Fourier Sine Transform of $e^{-mx},\: x\geq 0$. Hence, show that,
+    $$\int_0^\infty \frac{x\sin(\rho x)}{x^2+m^2}dx=\frac{\pi}{2}e^{-\rho m},\:\rho>0,m>0$$
+\end{frame}
+\end{document}

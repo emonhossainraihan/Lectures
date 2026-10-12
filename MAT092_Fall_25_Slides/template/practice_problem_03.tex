@@ -1,0 +1,426 @@
+%====================
+% PROBLEM SHEET: MATRICES & LINEAR SYSTEMS
+%====================
+\documentclass[12pt]{article}
+
+%=== PACKAGES ===%
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+%=== COLORS ===%
+\definecolor{HeadBlue}{RGB}{0,80,155}
+\definecolor{Accent}{RGB}{0,173,76}
+\definecolor{LineGray}{RGB}{210,210,210}
+\definecolor{BoxBG}{RGB}{248,250,255}
+
+%=== TCOLORBOX STYLES ===%
+\tcbset{colback=BoxBG,colframe=HeadBlue,boxrule=0.9pt,arc=3pt}
+
+%=== TITLE BLOCK ===%
+\newcommand{\SheetTitle}{\textbf{Problem Sheet 03}}
+\newcommand{\CourseInfo}{\textit{(Final topics: Determinants, Inverses, Systems of Equations, Permutations, Combinations, Limits, Continuity)}}
+
+%=== SECTION HEADER BOX ===%
+\newtcolorbox{sectbox}[1]{enhanced,breakable,title=\textbf{#1},
+colbacktitle=HeadBlue!8,coltitle=black,colframe=HeadBlue,boxrule=0.9pt,arc=3pt}
+
+%=== LIST SPACING ===%
+\setlist[enumerate]{leftmargin=*,itemsep=6pt}
+\setlist[itemize]{leftmargin=*,itemsep=4pt}
+
+%=== DOCUMENT ===%
+\begin{document}
+
+\begin{tcolorbox}
+\centering
+{\Large \SheetTitle}\par
+{\small \CourseInfo}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\noindent\textit{Instructions.}
+Show all necessary steps clearly. Justify each method used.  
+For system-solving problems, explicitly mention whether you are using Cramer's Rule or the inverse matrix method.
+
+%====================
+% SECTION 1: MATRIX DETERMINANT
+%====================
+\begin{sectbox}{(1) Determinant of a Matrix}
+\begin{enumerate}[label=\textbf{D\arabic*:}]
+
+\item Compute the determinant:
+\[
+\begin{vmatrix}
+2 & 1 \\
+-3 & 4
+\end{vmatrix}
+\]
+
+\item Find the determinant of the matrix
+\[
+A=
+\begin{pmatrix}
+1 & 2 & 3 \\
+0 & -1 & 4 \\
+2 & 1 & 0
+\end{pmatrix}
+\]
+using cofactor expansion along a suitable row or column.
+
+\item Evaluate
+\[
+\det
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+\]
+and state the condition under which the matrix is invertible.
+
+\item If
+\[
+\det(A)=5,
+\]
+find
+\[
+\det(2A), \quad \det(A^{-1}), \quad \det(A^T).
+\]
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 2: INVERSE OF A MATRIX
+%====================
+\begin{sectbox}{(2) Inverse of a Matrix}
+\begin{enumerate}[label=\textbf{I\arabic*:}]
+
+\item Find the inverse of
+\[
+A=
+\begin{pmatrix}
+2 & 1 \\
+5 & 3
+\end{pmatrix}
+\]
+using the formula for a $2\times2$ matrix.
+
+\item Determine whether the matrix
+\[
+B=
+\begin{pmatrix}
+1 & 2 \\
+2 & 4
+\end{pmatrix}
+\]
+has an inverse. Justify your answer.
+
+\item Find $A^{-1}$ using the adjoint method, where
+\[
+A=
+\begin{pmatrix}
+1 & 0 & 2 \\
+-1 & 1 & 1 \\
+0 & 2 & 1
+\end{pmatrix}.
+\]
+
+\item Verify that
+\[
+AA^{-1}=I
+\]
+for the matrix in the previous problem.
+
+\item If
+\[
+A=
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix},
+\]
+find $A^{-1}$ (if it exists) and state clearly the condition required.
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 3: SOLVING SYSTEMS OF LINEAR EQUATIONS
+%====================
+\begin{sectbox}{(3) Systems of Linear Equations}
+\begin{enumerate}[label=\textbf{S\arabic*:}]
+
+\item Solve the system using \textbf{Cramer's Rule}:
+\[
+\begin{aligned}
+2x + y &= 5 \\
+x - y &= 1
+\end{aligned}
+\]
+
+\item Use Cramer's Rule to solve:
+\[
+\begin{aligned}
+x + 2y &= 4 \\
+3x - y &= 5
+\end{aligned}
+\]
+
+\item Write the following system in matrix form and solve using the \textbf{inverse matrix method}:
+\[
+\begin{aligned}
+x + y + z &= 6 \\
+2x - y + z &= 3 \\
+x + 2y - z &= 3
+\end{aligned}
+\]
+
+\item Solve the system using $X=A^{-1}B$:
+\[
+\begin{pmatrix}
+1 & 2 \\
+3 & 4
+\end{pmatrix}
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}
+=
+\begin{pmatrix}
+5 \\ 11
+\end{pmatrix}.
+\]
+
+\item Determine whether the following system has a unique solution:
+\[
+\begin{aligned}
+2x + 4y &= 6 \\
+x + 2y &= 3
+\end{aligned}
+\]
+Give reasons based on determinants.
+
+\end{enumerate}
+\end{sectbox}
+
+\begin{sectbox}{(4) Permutations (Distinct Objects \& Restrictions)}
+\begin{enumerate}[label=\textbf{P\arabic*:}]
+
+\item Out of a class of $30$ students, how many ways are there to choose a class president, a secretary, and a treasurer? A student may hold at most one post.
+
+\item Suppose Ellie is choosing a secret passcode consisting of the digits $0,1,2,\ldots,k$ for some $k\le 9$.
+She would like her passcode to use each digit at most once.
+What is the smallest value of $k$ such that the number of possible permutations is at least $250{,}000$?
+
+\item How many $5$-digit numbers without repetition of digits can be formed using the digits $0,2,4,6,8$?
+
+\item Six friends go out for dinner. How many ways are there to sit them around a round table?
+Rotations of a sitting arrangement are considered the same, but a reflection is considered different.
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 2: COMBINATIONS
+%====================
+\begin{sectbox}{(5) Combinations (Selection \& Complement Counting)}
+\begin{enumerate}[label=\textbf{C\arabic*:}]
+
+\item There are $4$ balls of colour red, green, yellow and blue.
+In how many ways can $2$ balls be selected such that at least one of them is red or blue?
+
+\item A team of four has to be selected from $6$ boys and $4$ girls.
+How many different ways can a team be selected if at least one boy must be in the team?
+
+\item There are $10$ people at a party and each pair of people shakes hands exactly once.
+How many handshakes happen at the party?
+
+\item How many different diagonals does a $12$-sided polygon have?
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 3: COMBINATORIAL GEOMETRY
+%====================
+\begin{sectbox}{(6) Counting Geometry (Lines, Grids, Points)}
+\begin{enumerate}[label=\textbf{G\arabic*:}]
+
+\item How many parallelograms are formed when a set of $5$ parallel lines intersects a set of $4$ parallel lines?
+
+\item How many different ways are there to color a $3\times 3$ grid using green, red, and blue paints, using each color exactly $3$ times?
+
+\item How many triangles can be formed using $10$ points in a plane, out of which $4$ are collinear?
+\item If Anna has $12$ different ornaments and would like to place $k$ of them on a necklace, and Lisa has $13$ different ornaments and would like to place $k$ of them on a necklace, for what values of $k$ does Anna have more choices for the number of ways to place $k$ ornaments?
+\end{enumerate}
+\end{sectbox}
+
+\begin{sectbox}{(7) Basic Limits by Substitution}
+\begin{enumerate}[label=\textbf{B\arabic*:}]
+
+\item Evaluate: $ \lim_{x\to 2}(3x^2-5x+1)$.
+
+\item Evaluate: $ \lim_{x\to -1}\frac{x^2+3x+2}{x^2+1}$.
+
+\item Evaluate: $ \lim_{x\to -2}(x^3+4x)$.
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 2: INDETERMINATE FORMS (ALGEBRA TRICKS)
+%====================
+\begin{sectbox}{(8) Indeterminate Forms and Algebra Tricks}
+\begin{enumerate}[label=\textbf{A\arabic*:}]
+
+\item Evaluate: $ \lim_{x\to 3}\frac{x^2-9}{x-3}$.
+
+\item Evaluate: $ \lim_{x\to 2}\frac{x^3-8}{x-2}$.
+
+\item Evaluate: $ \lim_{x\to 4}\frac{\sqrt{x}-2}{x-4}$.
+
+\item Evaluate: $ \lim_{x\to 1}\frac{x^2-1}{x-1}$.
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 3: ONE-SIDED LIMITS AND NON-EXISTENCE
+%====================
+\begin{sectbox}{(9) One-sided Limits and Non-existence}
+\begin{enumerate}[label=\textbf{O\arabic*:}]
+
+\item Evaluate: $ \lim_{x\to 0}\frac{|x|}{x}$.
+State clearly whether the two-sided limit exists.
+
+\item Let
+\[
+f(x)=
+\begin{cases}
+2x+1, & x<1,\\
+5, & x\ge 1.
+\end{cases}
+\]
+Find $ \lim_{x\to 1^-}f(x)$ and $ \lim_{x\to 1^+}f(x)$.
+Does $ \lim_{x\to 1}f(x)$ exist?
+
+\item Consider $f(x)=\sin\!\left(\frac{1}{x}\right)$. Evaluate $ \lim_{x\to 0} f(x)$ (or state DNE with reason).
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 4: INFINITE LIMITS AND LIMITS AT INFINITY
+%====================
+\begin{sectbox}{(10) Infinite Limits and Limits at Infinity}
+\begin{enumerate}[label=\textbf{I\arabic*:}]
+
+\item Compute:
+\[
+\lim_{x\to 0^+}\frac{1}{x}
+\qquad \text{and} \qquad
+\lim_{x\to 0^-}\frac{1}{x}.
+\]
+Does $ \lim_{x\to 0}\frac{1}{x}$ exist?
+
+\item Evaluate: $ \lim_{x\to \infty}\frac{3x^2-1}{x^2+5x+7}$.
+
+\item Evaluate: $ \lim_{x\to \infty}\frac{5x^2+1}{2x^2-7}$.
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 5: TRIG LIMITS
+%====================
+\begin{sectbox}{(11) Trig Limits (Use Special Limits)}
+\begin{enumerate}[label=\textbf{T\arabic*:}]
+
+\item Evaluate: $ \lim_{x\to 0}\frac{\sin(5x)}{x}$.
+
+\item Evaluate: $ \lim_{x\to 0}\frac{\sin(2x)}{x}$.
+
+\item Evaluate: $ \lim_{x\to 0}\frac{1-\cos x}{x^2}$.
+\item Prove using $\epsilon-\delta$ definition that $\lim_{x\to 2}(3x-1)=5$.
+\end{enumerate}
+\end{sectbox}
+
+\begin{sectbox}{(12) Continuity at a Point (Limit-based Definition)}
+\begin{enumerate}[label=\textbf{C\arabic*:}]
+
+\item Let $f(x)=3x^2-5x+1$.
+Use the definition $\lim_{x\to a}f(x)=f(a)$ to justify that $f$ is continuous for all $a\in\mathbb{R}$.
+
+\item Let $f(x)=|x|$.
+Check continuity at $x=0$ by computing $\lim_{x\to 0^-}|x|$ and $\lim_{x\to 0^+}|x|$, and comparing with $f(0)$.
+
+\item Let
+\[
+f(x)=
+\begin{cases}
+2x, & x<1,\\
+5, & x\ge 1.
+\end{cases}
+\]
+Compute $\lim_{x\to 1^-}f(x)$ and $\lim_{x\to 1^+}f(x)$.
+Does $\lim_{x\to 1}f(x)$ exist? Is $f$ continuous at $x=1$?
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 2: REMOVABLE DISCONTINUITY
+%====================
+\begin{sectbox}{(13) Removable Discontinuity (Holes)}
+\begin{enumerate}[label=\textbf{R\arabic*:}]
+
+\item Consider $f(x)=\dfrac{x^2-1}{x-1}$.
+\begin{enumerate}[label=(\alph*)]
+\item Simplify $f(x)$ for $x\neq 1$.
+\item Determine whether $f(1)$ is defined.
+\item Decide whether the discontinuity at $x=1$ is removable, and explain briefly.
+\end{enumerate}
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 3: OTHER TYPES OF DISCONTINUITIES
+%====================
+\begin{sectbox}{(14) Jump, Infinite, and Oscillatory Discontinuities}
+\begin{enumerate}[label=\textbf{D\arabic*:}]
+
+\item Let $f(x)=\dfrac{1}{x}$.
+Compute $\lim_{x\to 0^+}f(x)$ and $\lim_{x\to 0^-}f(x)$.
+State the type of discontinuity at $x=0$.
+
+\item Let $f(x)=\sin\!\left(\dfrac{1}{x}\right)$.
+Discuss whether $\lim_{x\to 0}f(x)$ exists.
+Hence decide continuity at $x=0$ and name the type of discontinuity.
+
+\end{enumerate}
+\end{sectbox}
+
+%====================
+% SECTION 4: CONTINUITY ON INTERVALS (ENDPOINTS)
+%====================
+\begin{sectbox}{(15) Continuity on Intervals and Endpoints}
+\begin{enumerate}[label=\textbf{I\arabic*:}]
+
+\item Consider $f(x)=\sqrt{x}$ on the domain $[0,4]$.
+\begin{enumerate}[label=(\alph*)]
+\item Verify right-continuity at $x=0$ by computing $\lim_{x\to 0^+}\sqrt{x}$ and comparing with $f(0)$.
+\item Verify left-continuity at $x=4$ by computing $\lim_{x\to 4^-}\sqrt{x}$ and comparing with $f(4)$.
+\item Conclude that $f$ is continuous on $[0,4]$.
+\end{enumerate}
+
+\end{enumerate}
+\end{sectbox}
+
+\end{document}
+
+
+

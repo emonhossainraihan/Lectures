@@ -62,37 +62,61 @@
 \titlepage
 \end{frame}
 
-\begin{frame}[Examples]
-    \begin{problem}
-        $f(z)=z^2$, find the derivative at $x=3+2i$.  
-    \end{problem}
-    Using the definition, $$\lim_{\Delta z}\rightarrow 0\frac{f(z+\Delta z)-f(z)}{\Delta z}$$
-    make your life easy enough. 
-    \begin{problem}
-        $f(z)=\bar z$, find the derivative at $x=3+2i$. 
-    \end{problem}
-    Using the definition, $$\lim_{\Delta z}\rightarrow 0\frac{f(z+\Delta z)-f(z)}{\Delta z}$$
-    and use $\Delta z=\Delta x+i\Delta z$ when needed. 
-    \begin{problem}
-        Using definition show that $f(z)=\frac{2z-3i}{3z-2i}$ is differentiable at $z=-i$.
-    \end{problem}
-\end{frame}
-\begin{frame}
-    
-    \begin{problem}
-        Using definition find the derivative of $f(z)=z^2$ at $z=z_0$ (at all points). 
-    \end{problem}
-    \begin{problem}
-        Using definition show that $f(z)=\bar z$ is not differentiable at $z=0$. 
-    \end{problem}
-    \begin{problem}
-        Using definition show that $f(z)=z \bar z$ is not differentiable other than $z=0$.
-    \end{problem}
-    Using the definition, $$\lim_{\Delta z}\rightarrow 0\frac{f(z+\Delta z)-f(z)}{\Delta z}$$
-    and use $\Delta z=\Delta x+i\Delta z$ when needed. 
+\begin{frame}{Definition of Harmonic Functions}
+\begin{definition}
+A function $u(x,y)$ is called a \textit{harmonic function} if it satisfies the Laplace's equation:
+\[\nabla^2 u=\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0.\]
+\end{definition}
 \end{frame}
 
-\begin{frame}[Differentiation of $f(z)=u+iv$]
-    Can all derivative of $f:\mathbb R^2\rightarrow\mathbb R^2$ bw represented as derivative of $F:\mathbb C\rightarrow\mathbb C$. 
+\begin{frame}{Example}
+\begin{example}
+Show that the function $u(x,y) = 3x^2y+2x^2-y^3-2y^2$ is a harmonic function.
+\end{example}
+\begin{example}
+Show that the function $u(x,y) = \tan^{-1}\left(\frac yx\right)$ is a harmonic function.
+\end{example}
+\end{frame}
+\begin{frame}{Theorem}
+    \begin{theorem}
+    If $f(z) = u(x,y) + iv(x,y)$ is an analytic function in a region $D$, then both $u$ and $v$ are harmonic functions if they have continuous second partial derivatives in $D$.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Example}
+\begin{example}
+Show that the function $u(x,y) = 3x^2y+2x^2-y^3-2y^2$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
+Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
+\end{example}
+\end{frame}
+
+\begin{frame}{Example}
+\begin{example}
+Show that the function $u(x,y) = e^{-2x}\sin(2y)$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
+Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
+\end{example}
+\end{frame}
+
+\begin{frame}{Example}
+\begin{example}
+Show that the function $u(x,y) = \ln(x^2+y^2)$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
+Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
+\end{example}
+\end{frame}
+
+\begin{frame}{Example}
+\begin{example}
+Show that the function $u(x,y) = \cos(x)\sinh(y)$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
+Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
+\end{example}
+\textbf{Hint: }
+$$\frac{d}{dx}(\sinh x)=\cosh x, \quad \frac{d}{dx}(\cosh x)=\sinh x$$
+\end{frame}
+
+\begin{frame}{Example}
+\begin{example}
+Show that the function $u(x,y) = xe^{-x}\sin(y)-e^{-x}y\cos(y)$ is a harmonic function and find its harmonic conjugate $v(x,y)$.
+Such that $f(z) = u(x,y) + iv(x,y)$ is an analytic function.
+\end{example}
 \end{frame}
 \end{document}
